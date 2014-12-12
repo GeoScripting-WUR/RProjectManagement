@@ -4,6 +4,7 @@ author: "Loïc Dutrieux, Jan Verbesselt"
 date: "11/19/2014"
 output:
   html_document:
+    number_sections: true
     toc: true
     toc_depth: 4
     theme: united
