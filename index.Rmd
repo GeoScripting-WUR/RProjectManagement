@@ -25,7 +25,7 @@ At the end of the lecture, you should be able to
 
 # Introduction
 
-During the previous lectures, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. Today the emphasis of the lecture is mostly oriented toward carrying an R project. Therefore, some recurrent aspects of project development, such as, how to find help, or techniques to organize your code are covered in the lecture.
+During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. Today the emphasis of the lecture is mostly oriented toward carrying an R project. Therefore, some recurrent aspects of project development, such as, how to find help, or techniques to organize your code are covered in the lecture.
 Scripting means that you often go beyond easy things and therefore face challenges; as a consequence, it is likely that at one moment or another, you will have to go look for help. Part of this lesson is intended to guide you through ways of finding help, including posting to the mail list and writing a reproducible example. In addition, this lecture goes through a couple of essential ''good practices'' when working on geo-scripting projects. Not all aspects of good practices are covered, however, for those of you who are curious to know more about version control, R package building, etc, be sure to check the reference section of this document.
 
 
@@ -91,7 +91,7 @@ plot(r)
 
 
 Useful to know when writing a reproducible example; instead of generating your own small datasets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' datasets. They are part of the main R packages.
-Some popular datasets are: cars, meuse.grid\_ll, Rlogo, iris, etc
+Some popular datasets are: cars, meuse.grid_ll, Rlogo, iris, etc
 The auto completion menu of the `data()` function will give you an overview of the datasets available.
 
 ```{r}
@@ -170,12 +170,16 @@ In order to achieve these objectives, you should try to follow a few good practi
 
 
 * Write short functions.
-* Make your functions generic and flexible, using control flow
+* Make your functions generic and flexible, using **control flow**
 * Comment your code
 * Follow the R [style guide](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) (The aim of having a formatted style guide is to increase readability of your code by others. In that regard, indentation, use of <- instead of = as assignment operator and placement of curly braces are of particular relevance when writing functions. Proper configuration of your script editor allows you to automatically implement some of these guidelines without having to think too much about it.)
 * Document your functions
-* Build a package
-* Use version control to develop/maintain your functions and packages
+* Build packages
+* Work with projects
+* Keep a similar directory structure across your projects
+* Use **version control** to develop/maintain your projects and packages
+
+Note that the RStudio IDE makes a lot of these good practices a lot easier and you should try to take maximum advantage of it. Take a moment to explore the menus of the RStudio session that should already be open on your machine. Particular emphasis will be given later in this tutorial on projects, project structure and use of version control.
 
 
 ## Function writing
@@ -256,6 +260,9 @@ is.character(32)
 is.numeric(32)
 ```
 
+You should always try to take maximum advantage of these small utilities and check for classes and properties of your objects.
+
+
 Also note that `is.character(32) == TRUE` is equivalent to `is.character(32)`. Therefore when checking logical arguments, you don't need to use the `== TRUE`. As an example, a function may have an argument (`plot`) that, if set to `TRUE` will generate a plot, and if set to `FALSE` does not generate a plot. It means that the function certainly contains an if statement. `if(plot)` in that case is equivalent to `if(plot == TRUE)`, it's just shorter.
 
 
@@ -287,7 +294,7 @@ r3 <- minusRaster(r, r2)
 ```
 
 
-```{r, minus, echo=TRUE, fig=TRUE, include=TRUE}
+```{r}
 # Now performs the claculation and plots the resulting RasterLayer
 r4 <- minusRaster(r, r2, plot=TRUE) 
 ```
@@ -361,7 +368,7 @@ out
 
 #### Function debugging
 
-Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. Carefully reading the return of that function will tell you where exactly in your function the error occurred. In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.
+Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. Carefully reading the return of that function will tell you where exactly in your function the error occurred. In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging. Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools.
 
 ## Package building
 Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.
@@ -375,7 +382,7 @@ Also part of good programming practices, building an R package is a great way to
 For these reasons, if you build a package, next year you will still be able to run the functions you wrote yesterday. Which is often not the case for stand alone functions that are poorly documented and may depend on many other functions ... that you cannot find anymore. So to summarize R packages are not only a way to extend the functionalities of R, they are also the standard way to archive and save R functions.
 
 ### Structure of a package
-Note that R package structure and creation are not necessarily easy things to understand. As a consequence, although there are many reasons why you should always consider working with packages, and depending on your understanding of the concepts described above, you may want to consider this part of the lesson as additional/optional. This sections describes the structure of a simple package, for more information about R packages in general and details of package creation, please refer to the manual *Writing R extensions* ([http://cran.r-project.org/doc/manuals/R-exts.html]).
+Note that R package structure and creation are not necessarily easy things to understand. As a consequence, although there are many reasons why you should always consider working with packages, and depending on your understanding of the concepts described above, you may want to consider this part of the lesson as additional/optional. This sections describes the structure of a simple package, for more information about R packages in general and details of package creation, please refer to the manual [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html).
 
 
 
@@ -390,11 +397,45 @@ The default basic structure of a package is as follows:
 
 ### Useful tips for package creation
 
-The `package.skeleton()` function will help you get the package structure from a list of sourced functions. (A function opened in the R Studio editor panel can be sourced by pressing the ''Source'' in the top right hand corner of the panel)
-`prompt()` creates a tailored documentation (.Rd) file from an existing function.
-The project functionalities of the R Studio IDE can greatly assist you in creating a package from scratch. Explore the menus and option under Project - New project.
+* The `package.skeleton()` function will help you get the package structure from a list of sourced functions. (A function opened in the R Studio editor panel can be sourced by pressing the ''Source'' in the top right hand corner of the panel)
+* `prompt()` creates a tailored documentation (.Rd) file from an existing function.
+* The project functionalities of the R Studio IDE can greatly assist you in creating a package from scratch. Explore the menus and option under Project - New project.
+* Use the **devtools** package to directly install your packages from the version control platforms where they are maintained and share them with others.
+* Newer R development provide the oportunity to document functions inside the function file (.R). Then from this file, a .Rd file can be created. This has the advantage that the function documentation always stay with the function itself, and does not get lost when for example transferring the files to another project. Once the documentation has been added to the function file with the roxygen2 syntax, a Rd file can be created using the `roxygenize()` function. A function documented (with minimum documentation) using roxygen2 would then look like that.
 
 
+
+```{r, eval=FALSE}
+#' Function to add two Numbers
+#'
+#' @description Takes two numbers x and y, and adds them
+#'
+#' @param x Numeric The number to be added to y
+#' @param y Numeric The number to be added to x
+#'
+#' @return A numeric
+#' 
+#' @author John Doe
+#'
+#' @examples
+#' a <- 3
+#' b <- 4
+#' addNums(a, b)
+
+addNums <- function(x, y) {
+    x + y
+}
+
+
+```
+
+
+### Example of package creation
+TODO: review this section
+
+<!--
+Stopped here
+-->
 
 For example, we created earlier a function called `minusRaster()`. We can try to create a package containing this function, let's call that package rasterOperations. The function was ran, which is equivalent than sourcing it, therefore it should appear in the list of workspace variables in the top right pannel in R Studio.
 
