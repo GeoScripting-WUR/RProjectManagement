@@ -4,10 +4,10 @@ author: "Loïc Dutrieux, Jan Verbesselt"
 date: "11/19/2014"
 output:
   html_document:
-    number_sections: true
-    toc: true
-    toc_depth: 4
+    number_sections: yes
     theme: united
+    toc: yes
+    toc_depth: 4
 ---
 
 # Today's learning objectives
@@ -17,6 +17,7 @@ At the end of the lecture, you should be able to
 * Find help for R related issues
 * Produce a reproducible example
 * Adopt some good scripting/programming habits
+* Make efficient use of RStudio projects
 * Use control flow for efficient function writing
 * Create a R package
 * Use version control to develop, maintain, and share with others your R packages
@@ -25,15 +26,15 @@ At the end of the lecture, you should be able to
 
 # Introduction
 
-During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. Today the emphasis of the lecture is mostly oriented toward carrying an R project. Therefore, some recurrent aspects of project development, such as, how to find help, or techniques to organize your code are covered in the lecture.
+During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. Today the emphasis of the lecture is mostly oriented toward carrying an R project. Therefore, some recurrent aspects of project development, such as, how to find help, or techniques to organize your code and your projects are covered in the lecture.
 Scripting means that you often go beyond easy things and therefore face challenges; as a consequence, it is likely that at one moment or another, you will have to go look for help. Part of this lesson is intended to guide you through ways of finding help, including posting to the mail list and writing a reproducible example. In addition, this lecture goes through a couple of essential ''good practices'' when working on geo-scripting projects. Not all aspects of good practices are covered, however, for those of you who are curious to know more about version control, R package building, etc, be sure to check the reference section of this document.
 
 
 # Finding help
 
-There are many place where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by googling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on Stack Exchange ([http://stackexchange.com/]). These two are reliable sources of information, and it is quite likely that the problem you were trying to  figure out has already been answered before.
+There are many place where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by googling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
 
-However, it may also happen that you discover a ''bug'' or something that you would qualify of abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general R mailing list ([https://stat.ethz.ch/mailman/listinfo/r-help]), while the spatial domain has its own mailing list ([https://stat.ethz.ch/mailman/listinfo/r-sig-geo]). Geo related question should be posted to this latter mailing list.
+However, it may also happen that you discover a ''bug'' or something that you would qualify of abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general [R mailing list](https://stat.ethz.ch/mailman/listinfo/r-help), while the spatial domain has its own mailing list ( [R SIG GEO](https://stat.ethz.ch/mailman/listinfo/r-sig-geo) ). Geo related question should be posted to this latter mailing list.
 
 
 Warning, these mailing list have heavy mail traffic, use your mail client efficiently and set filters, otherwise it will quickly bother you.
@@ -69,7 +70,7 @@ Well, one could define a reproducible example by a piece of code that can be exe
 So basically, if you can quickly start a R session on your neighbour's computer while he is on a break, copy-paste the code without making any adjustments and see almost immediately what you want to demonstrate; congratulation, you have created a reproducible example.
 
 Let's illustrate this by an example.
-I want to perform values replacements of one raster layer, based on the values of another raster Layer.
+I want to perform values replacements of one raster layer, based on the values of another raster Layer. (We haven't covered raster analysis in R as part of the course yet, but you will quickly understand that for certain operations rasters are analog to vectors of values).
 
 ```{r}
 # Create two rastersLayer objects of similar extent
@@ -91,8 +92,8 @@ plot(r)
 
 
 Useful to know when writing a reproducible example; instead of generating your own small datasets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' datasets. They are part of the main R packages.
-Some popular datasets are: cars, meuse.grid_ll, Rlogo, iris, etc
-The auto completion menu of the `data()` function will give you an overview of the datasets available.
+Some popular datasets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc
+The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the datasets available. (In RStudio like in most script editing environments autocompletion can be toggled by pressing the tab key, use it without moderation.)
 
 ```{r}
 # Imports the variable cars in the working environment
@@ -123,16 +124,14 @@ coordinates(meuse) <- c("x", "y")
 class(meuse)
 ```
 
-Now that the object belongs to a spatial class, we can plot it using one of the vector plotting function of the sp package. See the resulting in figure~
-ref{meuse1}.
+Now that the object belongs to a spatial class, we can plot it using one of the vector plotting function of the sp package. See the resulting in the figure below.
 
 ```{r, meuse1, echo=TRUE, fig=TRUE, include=TRUE}
 bubble(meuse, "zinc", maxsize = 2.5,
        main = "zic concentrations (ppm)", key.entries = 2^(-1:4))
 ```
 
-The sp package help page contain multiple examples of how to explore its meuse built-in data set. Another example of multiple plots using meuse.grid is given in figure~
-ref{meuse2}.
+The sp package help page contain multiple examples of how to explore its meuse built-in data set. Another example of multiple plots using `meuse.grid` is given in the figure below.
 
 ```{r, meuse2, echo=TRUE, fig=TRUE, include=TRUE}
 # Load meuse.riv dataset
@@ -146,11 +145,11 @@ coordinates(meuse.grid) = c("x", "y")
 gridded(meuse.grid) = TRUE
 # Plot all variables of the meuse.grid dataset in a multiple window spplot
 spplot(meuse.grid, col.regions=bpy.colors(), main = "meuse.grid",
-  sp.layout=list(
-  list("sp.polygons", meuse.sr),
-	list("sp.points", meuse, pch="+", col="black")
-  )
-)
+       sp.layout=list(
+           list("sp.polygons", meuse.sr),
+           list("sp.points", meuse, pch="+", col="black")
+           )
+       )
 ```
 
 
@@ -181,14 +180,70 @@ In order to achieve these objectives, you should try to follow a few good practi
 
 Note that the RStudio IDE makes a lot of these good practices a lot easier and you should try to take maximum advantage of it. Take a moment to explore the menus of the RStudio session that should already be open on your machine. Particular emphasis will be given later in this tutorial on projects, project structure and use of version control.
 
+Below is an example of a function written with good practices and without.
+First the good example:
+
+```{r}
+ageCalculator <- function(x) {
+    # Function to calculate age from birth year
+    # x (numeric) is the year you were born
+    if(!is.numeric(x)) {
+        stop("x must be of class numeric")
+    } else { # x is numeric
+        # Get today's date
+        date <- Sys.Date()
+        # extract year from date and substract
+        year <- as.numeric(format(date, "%Y"))
+        if(year <= x) {
+            stop("You aren't born yet")
+        }
+        age <- year - x
+    }
+    return(age)
+}
+
+ageCalculator(1985)
+```
+
+29, what a beautiful age for learning geo scripting.
+
+Then the bad example:
+
+```{r}
+# DON'T DO THAT, BAD EXAMPLE!!!
+funTest_4 <- function(x) {
+if(!is.numeric(x)) {
+stop("x must be of class numeric")
+}
+else {
+a = Sys.Date()
+b <- as.numeric(format(a, "%Y"))
+b - x
+}
+}
+
+funTest_4(1985)
+```
+It also works, but which of the two is the easiest to read, understand, and modify if needed? ... Exactly, the first one.
+So let's look back at the examples and identify some differences:
+
+* Function name: Not very self descriptive in the second example
+* Function description: Missing in the second example
+* Arguments description: Missing in the second example
+* Comments: The second example has none (Okay, the first one really has a lot, but that's for the example)
+* Variables naming: use of `a` and `b` not very self descriptive in second example
+* Indentation: Missing in the second example
+* Control flow: Second example does not check for irrealistic dates
+
+You haven't fully understood what is control flow or are not fully comfortable with functions writing yet? We'll see more of that in the following sections. 
 
 ## Function writing
 
-The objective of this section is to provide a few advices to help you write efficiently function. That is functions that are simple, generic and flexible, so that they integrate well in a processing/analysis chain and can easily be re-used in a slightly different chain if needed.
+The objective of this section is to provide a few advice to help you write efficiently function. That is functions that are simple, generic and flexible, so that they integrate well in a processing/analysis chain and can easily be re-used in a slightly different chain if needed.
 More flexibility in your function can be achieve thanks to some easy tricks provided by control flow. The following section develops further this concept and provides examples of how control flow can help your functions becoming more flexible.
 
 ## Control flow
-Control flow refers to the use of conditions in your code that redirect the flow to different directions depending on variables values or classe. Make use of that in your code, as this will make your functions more flexible and generic.
+Control flow refers to the use of conditions in your code that redirect the flow to different directions depending on variables values or class. Make use of that in your code, as this will make your functions more flexible and generic.
 
 ## Object classes and Control flow
 You have seen in a previous lesson already that every variable in your R working environment belongs to a class. You can take advantage of that, using control flow, to make your functions more flexible.
@@ -221,8 +276,8 @@ For example let's imagine that you just wrote a simple HelloWorld function.
 
 ```{r}
 HelloWorld <- function (x) {
-  hello <- sprintf('Hello %s', x)
-  return(hello)
+    hello <- sprintf('Hello %s', x)
+    return(hello)
 }
 
 # Let's test it
@@ -234,12 +289,12 @@ For example.
 
 ```{r}
 HelloWorld <- function (x) {
-  if (is.character(x)) {
-    hello <- sprintf('Hello %s', x)
-  } else {
-    hello <- warning('Object of class character expected for x')
-  }
-  return(hello)
+    if (is.character(x)) {
+      hello <- sprintf('Hello %s', x)
+    } else {
+      hello <- warning('Object of class character expected for x')
+    }
+    return(hello)
 }
 
 HelloWorld(21)
@@ -272,11 +327,11 @@ An example, with a function that subtracts 2 RasterLayers, with the option to pl
 library(raster)
 # Function to substract 2 rasterLayers
 minusRaster <- function(x, y, plot=FALSE) { 
-  z <- x - y
-  if (plot) {
-    plot(z)
-  }
-  return(z)
+    z <- x - y
+    if (plot) {
+        plot(z)
+    }
+    return(z)
 }
 
 # Let's generate 2 rasters 
@@ -335,7 +390,7 @@ list <- c(a,b,c)
 # Running freq(c) would return an error and crash the whole process
 out <- list()
 for(i in 1:length(list)) {
-  out[i] <- freq(list[[i]], value=-2)
+    out[i] <- freq(list[[i]], value=-2)
 }
 ```
 
@@ -344,18 +399,18 @@ for(i in 1:length(list)) {
 # we are able to catch the error
 # allowing the process to continue despite missing/corrupted data.
 fun <- function(x, value) {
-  tr <- try(freq(x=x, value=value), silent=TRUE)
-  if (class(tr) == 'try-error') {
-    return('This object returned an error')
-  } else {
-    return(tr)
-  }
+    tr <- try(freq(x=x, value=value), silent=TRUE)
+    if (class(tr) == 'try-error') {
+        return('This object returned an error')
+    } else {
+        return(tr)
+    }
 }
 
 # Let's try to run the loop again
 out <- list()
 for(i in 1:length(list)) {
-  out[i] <- fun(list[[i]], value=-2)
+    out[i] <- fun(list[[i]], value=-2)
 }
 out
 
@@ -369,6 +424,10 @@ out
 #### Function debugging
 
 Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. Carefully reading the return of that function will tell you where exactly in your function the error occurred. In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging. Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools.
+
+
+## Working with projects
+
 
 ## Package building
 Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.
