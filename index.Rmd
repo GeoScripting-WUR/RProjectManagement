@@ -427,6 +427,75 @@ Debugging a single line of code is usually relatively easy; simply double checki
 
 
 ## Working with projects
+RStudio allows you to work with projects. Organizing your work in different projects is a good way to stay organized and avoid getting mixed up and lost in too many files. Projects have many advantages as they:
+
+* Help you staying organized
+* Make it easy to use version control
+* Easily create packages
+
+In the following sections, we will create a project to put together the functions that we have created earlier in this tutorial.
+
+### Create a project in RStudio
+To create a new project, in RStudio, go to file --> New Project and then follow the menus. In an **empty directory** we will create a **New project**. You should see the dialog as in the figure below. Also tick the option to create a git repository; we will use that feature too later.
+
+<center>
+![Create a project][figs/new_project_screenCapture.png]
+</center>
+
+*Where should I store my projects?*
+I doesn't really matter exactly where on your computer your projects are stored, one important thing is that you store them all in the same place. This way you'll always know where to find them. So for instance if you work on Windows, you can create a directory `D:\Rprojects\` in which you will store all your projects. A new project automatically create a new sub-directory.
+
+#### Project structure
+Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediatly understand how things work.
+
+*And what about my working directory?*
+You may have learnt that one of the first thing to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eg `D:/data/remoteSensing/landsat/scene1.tif`).
+
+
+Typically your main script will look like that.
+
+
+```{r, eval=FALSE}
+# John Doe
+# Import packages
+library(raster)
+library(sp)
+# 
+
+```
+
+*And what about bigger datasets?*
+The `data/` directory of your project should indeed only contain relatively small datasets. When handling bigger remote sensing datasets, these should stay out of the project, where you store the rest of your data.
+
+Organization of a project
+
+### Version control
+### What is version control?
+
+Version control, also called revision control or source control, refers to the management of changes to documents, files or set of files. Version control is very well suited to large software development projects and for that reason it is an indispensable part of such projects. Although we are not software developers, version control systems present a set of advantages from which we, and the scientists who use scripting in  general, can benefit. 
+Among others, some arguments in favour of using version control are that:
+
+
+* It facilitates collaboration with others
+* Allows you to keep your code archived in a safe place (the cloud)
+* Allows you to go back to previous version of your code
+* Allows you to have experimental branches without breaking your code
+* Keep different versions of your code without having to worry about file names and archiving organization
+
+    
+### What systems exist for version control?
+
+The three main revision control software are Git, Subversion (abbreviated as svn), and mercurial (abbreviated as hg). Since we are not full time software developers we are only interested in a limited set of functionalities provided by these systems, most differences between them may appear futile to us. However, a few points of consideration remain, particularly regarding the integration with R Studio and R in general.
+
+
+Since the R Studio IDE provides integration for git and svn, we will only focus on these two system from here on. Table~
+ref{gitsvn} provides an overview of most online repositories options for svn and git, and level of integration with R package building. Please note that online repositories are not the only options for hosting of the remote repository. It is common practice in companies to have an internally hosted central repository.
+
+#### General considerations
+
+#### Set up git version control for your RStudio project.
+
+
 
 
 ## Package building
@@ -526,29 +595,6 @@ In order to be operational on your system the R package you just created has to 
 Another option for building package is to do so directly from a remote git repository using the devtools package. This aspect of package building, together with general consideration on version control systems is presented in the next section.
 
 
-## Version control
-In this lecture, we won't go into the details of version control, however, we will review some general aspects that make version control a valuable tool for scientists and geo-programmers.
-
-### What is version control?
-
-Version control, also called revision control or source control, refers to the management of changes to documents, files or set of files. The version control management can be performed locally or directly on a remote online repository, and the code is usually stored on an online repository, available from anywhere. Version control is very well suited to large software development projects and for that reason it is an indispensable part of such projects. Although we are not software developers, version control systems present a set of advantages from which we, and the scientists who use scripting in  general, can benefit. 
-Among others, some arguments in favour of using version control are that:
-
-
-* It facilitates collaboration with others
-* Allows you to keep your code archived in a safe place (the cloud)
-* Allows you to go back to previous version of your code
-* Allows you to have experimental branches without breaking your code
-* Keep different versions of your code without having to worry about file names and archiving organization
-
-	
-### What systems exist for version control?
-
-The three main revision control software are Git, Subversion (abbreviated as svn), and mercurial (abbreviated as hg). Since we are not full time software developers we are only interested in a limited set of functionalities provided by these systems, most differences between them may appear futile to us. However, a few points of consideration remain, particularly regarding the integration with R Studio and R in general.
-
-
-Since the R Studio IDE provides integration for git and svn, we will only focus on these two system from here on. Table~
-ref{gitsvn} provides an overview of most online repositories options for svn and git, and level of integration with R package building. Please note that online repositories are not the only options for hosting of the remote repository. It is common practice in companies to have an internally hosted central repository.
 
 <!-- I need to look into tables
 
