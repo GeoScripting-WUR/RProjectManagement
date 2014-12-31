@@ -442,32 +442,53 @@ To create a new project, in RStudio, go to file --> New Project and then follow 
 ![Create a project][figs/new_project_screenCapture.png]
 </center>
 
+This will create a new directory in which is contained a `projectName.Rproj` file; this file stores some basic information about the project.
+
 *Where should I store my projects?*
 I doesn't really matter exactly where on your computer your projects are stored, one important thing is that you store them all in the same place. This way you'll always know where to find them. So for instance if you work on Windows, you can create a directory `D:\Rprojects\` in which you will store all your projects. A new project automatically create a new sub-directory.
 
 #### Project structure
 Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediatly understand how things work.
+I recommend using the following structure:
+
+* A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc).
+* A `R/` subdirectory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script.
+* A `data/` subdirectory: This directory contains datasets of the project. For practical reasons, only put small datasets in that directory (<2-3 MB). These can be shapefiles, small rasters, csv files, but perhaps even better is to use the R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
+* An `output/` subdirectory (when applicable).
+
+<center>
+![project structure][figs/project_structure_screenCapture.png]
+</center>
+
 
 *And what about my working directory?*
 You may have learnt that one of the first thing to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eg `D:/data/remoteSensing/landsat/scene1.tif`).
 
 
-Typically your main script will look like that.
+Typically the header of your main script will look like that.
 
 
 ```{r, eval=FALSE}
 # John Doe
+# December 2014
 # Import packages
 library(raster)
 library(sp)
-# 
+# Source functions
+source('R/function1.R')
+source('R/function2.R')
+# Load datasets 
+load('data/input_model.rda')
+
+# Then the actual commands
 
 ```
 
 *And what about bigger datasets?*
 The `data/` directory of your project should indeed only contain relatively small datasets. When handling bigger remote sensing datasets, these should stay out of the project, where you store the rest of your data.
 
-Organization of a project
+#### Switch project
+To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from withon RStudio, and that makes it much easier to get organized.
 
 ### Version control
 ### What is version control?
@@ -564,6 +585,8 @@ TODO: review this section
 <!--
 Stopped here
 -->
+
+<!--
 
 For example, we created earlier a function called `minusRaster()`. We can try to create a package containing this function, let's call that package rasterOperations. The function was ran, which is equivalent than sourcing it, therefore it should appear in the list of workspace variables in the top right pannel in R Studio.
 
@@ -717,3 +740,5 @@ In order to submit, add the function (or package) to a repository on your own Gi
 * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
 * Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
 * Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
+
+-->
