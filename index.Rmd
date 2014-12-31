@@ -103,7 +103,7 @@ class(cars)
 head(cars) 
 ```
 
-```{r, cars, echo=TRUE, fig=TRUE, include=TRUE}
+```{r, echo=TRUE, fig=TRUE, include=TRUE}
 # The plot function on this type of dataset (class = data.frame, 2 column)
 # automatically generates a scatterplot
 plot(cars)
@@ -126,14 +126,14 @@ class(meuse)
 
 Now that the object belongs to a spatial class, we can plot it using one of the vector plotting function of the sp package. See the resulting in the figure below.
 
-```{r, meuse1, echo=TRUE, fig=TRUE, include=TRUE}
+```{r, echo=TRUE, fig=TRUE, include=TRUE}
 bubble(meuse, "zinc", maxsize = 2.5,
        main = "zic concentrations (ppm)", key.entries = 2^(-1:4))
 ```
 
 The sp package help page contain multiple examples of how to explore its meuse built-in data set. Another example of multiple plots using `meuse.grid` is given in the figure below.
 
-```{r, meuse2, echo=TRUE, fig=TRUE, include=TRUE}
+```{r, echo=TRUE, fig=TRUE, include=TRUE}
 # Load meuse.riv dataset
 data(meuse.riv)
 # Create an object of class spatialPolygons from meuse.riv
@@ -240,7 +240,7 @@ You haven't fully understood what is control flow or are not fully comfortable w
 ## Function writing
 
 The objective of this section is to provide a few advice to help you write efficiently function. That is functions that are simple, generic and flexible, so that they integrate well in a processing/analysis chain and can easily be re-used in a slightly different chain if needed.
-More flexibility in your function can be achieve thanks to some easy tricks provided by control flow. The following section develops further this concept and provides examples of how control flow can help your functions becoming more flexible.
+More flexibility in your function can be achieved thanks to some easy tricks provided by control flow. The following section develops further this concept and provides examples of how control flow can help your functions becoming more flexible.
 
 ## Control flow
 Control flow refers to the use of conditions in your code that redirect the flow to different directions depending on variables values or class. Make use of that in your code, as this will make your functions more flexible and generic.
@@ -366,7 +366,7 @@ The `try()` function may help you writing functions that do not crash whenever t
 Also `try()` returns an object of different class when it fails. You can take advantage of that at a later stage of your processing chain to make your function more adaptive.
 See the example below that illustrate the use of `try()` for sequentially calculating frequency on a list of auto-generated RasterLayers.
 
-```{r, a, eval=TRUE, echo=TRUE}
+```{r, eval=TRUE, echo=TRUE}
 library(raster)
 
 # Create a raster layer and fill it with "randomly" generated integer values
@@ -386,7 +386,7 @@ list <- c(a,b,c)
 # In that case, b and a are raster layers, c is ''corrupted''
 ```
 
-```{r, a, eval=FALSE, echo=TRUE}
+```{r, eval=FALSE, echo=TRUE}
 # Running freq(c) would return an error and crash the whole process
 out <- list()
 for(i in 1:length(list)) {
@@ -439,7 +439,7 @@ In the following sections, we will create a project to put together the function
 To create a new project, in RStudio, go to file --> New Project and then follow the menus. In an **empty directory** we will create a **New project**. You should see the dialog as in the figure below. Also tick the option to create a git repository; we will use that feature too later.
 
 <center>
-![Create a project][figs/new_project_screenCapture.png]
+![Create a project](figs/new_project_screenCapture.png)
 </center>
 
 This will create a new directory in which is contained a `projectName.Rproj` file; this file stores some basic information about the project.
@@ -457,7 +457,7 @@ I recommend using the following structure:
 * An `output/` subdirectory (when applicable).
 
 <center>
-![project structure][figs/project_structure_screenCapture.png]
+![project structure](figs/project_structure_screenCapture.png)
 </center>
 
 
@@ -488,16 +488,32 @@ load('data/input_model.rda')
 The `data/` directory of your project should indeed only contain relatively small datasets. When handling bigger remote sensing datasets, these should stay out of the project, where you store the rest of your data.
 
 #### Switch project
-To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from withon RStudio, and that makes it much easier to get organized.
+To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from withon RStudio, and that makes it much easier to stay organized.
+
+<!--
+TODO: Make the project section more concrete by creating a projects that contains the function we have written previously
+-->
 
 ### Version control
 ### What is version control?
 
-Version control, also called revision control or source control, refers to the management of changes to documents, files or set of files. Version control is very well suited to large software development projects and for that reason it is an indispensable part of such projects. Although we are not software developers, version control systems present a set of advantages from which we, and the scientists who use scripting in  general, can benefit. 
-Among others, some arguments in favour of using version control are that:
 
+Have you ever worked on a project and ended up having so many verions of your work that you didn't know which one was the lattest, and what were the differences between the versions? Probably yes, we all experienced that. Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
 
-* It facilitates collaboration with others
+The video below explains some basic concepts of verion control and why the benefits of using it are.
+
+<center>
+<iframe width="560" height="315" src="//www.youtube.com/embed/8oRjP8yj2Wo" frameborder="0" allowfullscreen></iframe>
+</center>
+
+So to sum up, version control allows to keep track of:
+* When you made changes to your files
+* Why you made these changes
+* What you changed
+
+Additionally, version control:
+
+* Facilitates collaboration with others
 * Allows you to keep your code archived in a safe place (the cloud)
 * Allows you to go back to previous version of your code
 * Allows you to have experimental branches without breaking your code
@@ -506,15 +522,50 @@ Among others, some arguments in favour of using version control are that:
     
 ### What systems exist for version control?
 
-The three main revision control software are Git, Subversion (abbreviated as svn), and mercurial (abbreviated as hg). Since we are not full time software developers we are only interested in a limited set of functionalities provided by these systems, most differences between them may appear futile to us. However, a few points of consideration remain, particularly regarding the integration with R Studio and R in general.
+The three most popular version control software are **git**, **subversion** (abreviated as svn), and **mercurial** (abreviated as hg). In this course we will only use git.
+
+#### Local and remote repositories
 
 
-Since the R Studio IDE provides integration for git and svn, we will only focus on these two system from here on. Table~
-ref{gitsvn} provides an overview of most online repositories options for svn and git, and level of integration with R package building. Please note that online repositories are not the only options for hosting of the remote repository. It is common practice in companies to have an internally hosted central repository.
-
-#### General considerations
 
 #### Set up git version control for your RStudio project.
+
+
+### Semantics of git
+
+* `Commit`: Consists of adding the latest changes to the repository. When you **commit** your changes, it is like putting a milestone in your progress. That milestone describes what have been changed, why and when. In the future you can always go back to that milestone.
+* `Push` : Add previous changes committed to the local repository, to the remote repository.
+* `Clone` : Copy the content of a remote repository locally.
+* `Branch` (more advanced): Create a branch (a parallel version of the code in the repository)
+* `Merge`: (more advanced) Merges two versions (branches) into one.
+
+
+
+### How to start an R package using R Studio projects and version control
+To be able to perform the following tutorial, you must have git installed on your machine. Please refer to the system setup vignette to know how to install and setup git and allow it to be embedded into R Studio.
+
+
+Note that although this tutorial illustrates the case of an R package maintained on GitHub, the package creation step is optional. 
+Also version control offers many benefits that are not tied to packages. The same type of R projects, symbolized by a ''projectName.Rproj'' file can be used to maintain simple scripts and stand alone functions.
+
+
+* Create a GitHub account (only if you don't have one already)
+* From GitHub, create a new repository and name it after the name of the package you want to start
+* Choose for the option to ''Initialize this repository with a README''
+* Copy the clone URL of the repository (Figure~
+ref{github})
+* From R Studio, go to project - Create project - Version Control - Git. In the repository URL field, enter the clone URL that you just copied from GitHub. Project directory name should appear automatically. Choose a location for your project.
+
+
+<center><img src="figs/github_screenCapture.png" alt="Drawing" style="width: 700px"/></center>
+
+  
+* Copy the content of a package (created using the `package.skeleton` function) to this newly created directory.
+* In the git panel of R Studio (by default on the upper right), add all the objects added to the package by checking them - press commit - write a commit message - commit - push. You should be prompted for your GitHub username and password, once this is done, your package is added to your GitHub remote repository.
+
+
+Note that such packages, that are maintained on git repositories can be installed and compiled directly on the fly using the devtools package. See function `install\_github()` and `install\_bitbucket()` functions for further details.
+If you are concerned about always having a ''compile-able'' version of your code, use different branches. Create a ''develop'' branch on which you develop your new functions or do any kind of experiments, and keep the stable version of your package on the ''master'' branch. Once the ''develop'' branch becomes stable, merge it with the ''master'' branch.
 
 
 
@@ -646,41 +697,6 @@ hline
 label{gitsvn}
     
 -->
-
-### Semantics of version control
-`Commits`: Consists of adding the latest changes to the repository. This is done locally with Git and directly on a remote repository with svn. Commits can be seen as a milestones in the versioning of a file or set of files. It is always possible to return to previous commits.
-
-
-* `Push` (git only): Add previous changes committed to the local repository, to the remote repository.
-* `Clone` (git)/`Checkout` (svn): Copy the content of the remote repository locally.
-* `Branch` (git): Create a branch (a parallel version of the code in the repository)
-* `Merge`: Merges two versions (branches) into one.
-
-### How to start an R package using R Studio projects and version control
-To be able to perform the following tutorial, you must have git installed on your machine. Please refer to the system setup vignette to know how to install and setup git and allow it to be embedded into R Studio.
-
-
-Note that although this tutorial illustrates the case of an R package maintained on GitHub, the package creation step is optional. 
-Also version control offers many benefits that are not tied to packages. The same type of R projects, symbolized by a ''projectName.Rproj'' file can be used to maintain simple scripts and stand alone functions.
-
-
-* Create a GitHub account (only if you don't have one already)
-* From GitHub, create a new repository and name it after the name of the package you want to start
-* Choose for the option to ''Initialize this repository with a README''
-* Copy the clone URL of the repository (Figure~
-ref{github})
-* From R Studio, go to project - Create project - Version Control - Git. In the repository URL field, enter the clone URL that you just copied from GitHub. Project directory name should appear automatically. Choose a location for your project.
-
-
-<center><img src="figs/github_screenCapture.pngg" alt="Drawing" style="width: 700px"/></center>
-
-  
-* Copy the content of a package (created using the `package.skeleton` function) to this newly created directory.
-* In the git panel of R Studio (by default on the upper right), add all the objects added to the package by checking them - press commit - write a commit message - commit - push. You should be prompted for your GitHub username and password, once this is done, your package is added to your GitHub remote repository.
-
-
-Note that such packages, that are maintained on git repositories can be installed and compiled directly on the fly using the devtools package. See function `install\_github()` and `install\_bitbucket()` functions for further details.
-If you are concerned about always having a ''compile-able'' version of your code, use different branches. Create a ''develop'' branch on which you develop your new functions or do any kind of experiments, and keep the stable version of your package on the ''master'' branch. Once the ''develop'' branch becomes stable, merge it with the ''master'' branch.
 
 # Exercise
 ## Exercise description
