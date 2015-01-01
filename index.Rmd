@@ -17,12 +17,11 @@ At the end of the lecture, you should be able to
 * Find help for R related issues
 * Produce a reproducible example
 * Adopt some good scripting/programming habits
-* Make efficient use of RStudio projects
 * Use control flow for efficient function writing
-* Create a R package
+* Make efficient use of RStudio projects
 * Use version control to develop, maintain, and share with others your R packages
 
-
+**The two last points are particularly important, so try to go quickly over the first part of the tutorial and spend more time on projects and version control**
 
 # Introduction
 
@@ -72,7 +71,7 @@ So basically, if you can quickly start a R session on your neighbour's computer 
 Let's illustrate this by an example.
 I want to perform values replacements of one raster layer, based on the values of another raster Layer. (We haven't covered raster analysis in R as part of the course yet, but you will quickly understand that for certain operations rasters are analog to vectors of values).
 
-```{r}
+```{r, fig.align='center'}
 # Create two rastersLayer objects of similar extent
 library(raster)
 r <- s <- raster(ncol=50, nrow=50)
@@ -84,9 +83,6 @@ s[50:150] <- 151
 # perform the replacement
 r[s %in% c(150, 151)] <- NA
 # Visualize the result
-```
-
-```{r, raster-1, echo=TRUE, fig=TRUE, include=TRUE}
 plot(r)
 ```
 
@@ -95,15 +91,12 @@ Useful to know when writing a reproducible example; instead of generating your o
 Some popular datasets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc
 The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the datasets available. (In RStudio like in most script editing environments autocompletion can be toggled by pressing the tab key, use it without moderation.)
 
-```{r}
+```{r, echo=TRUE, fig.align='center'}
 # Imports the variable cars in the working environment
 data(cars) 
 class(cars)
 # Visualizes the first six rows of the variable
-head(cars) 
-```
-
-```{r, echo=TRUE, fig=TRUE, include=TRUE}
+head(cars)
 # The plot function on this type of dataset (class = data.frame, 2 column)
 # automatically generates a scatterplot
 plot(cars)
@@ -126,14 +119,14 @@ class(meuse)
 
 Now that the object belongs to a spatial class, we can plot it using one of the vector plotting function of the sp package. See the resulting in the figure below.
 
-```{r, echo=TRUE, fig=TRUE, include=TRUE}
+```{r, echo=TRUE, fig.align='center'}
 bubble(meuse, "zinc", maxsize = 2.5,
        main = "zic concentrations (ppm)", key.entries = 2^(-1:4))
 ```
 
 The sp package help page contain multiple examples of how to explore its meuse built-in data set. Another example of multiple plots using `meuse.grid` is given in the figure below.
 
-```{r, echo=TRUE, fig=TRUE, include=TRUE}
+```{r, echo=TRUE, fig=TRUE, fig.align='center'}
 # Load meuse.riv dataset
 data(meuse.riv)
 # Create an object of class spatialPolygons from meuse.riv
@@ -534,6 +527,7 @@ Have you ever worked on a project and ended up having so many verions of your wo
 ![file name](figs/fileNames.png)
 </center>
 
+
 The video below explains some basic concepts of verion control and what the benefits of using it are.
 
 
@@ -560,9 +554,11 @@ Additionally, version control:
 
 The three most popular version control software are **git**, **subversion** (abreviated as svn), and **mercurial** (abreviated as hg). In this course we will only use git.
 
+
 <center>
 <img src="figs/Git_logo.png" alt="Drawing" style="width: 300px"/>
 </center>
+
 
 #### Local and remote repositories
 
@@ -577,6 +573,7 @@ When working with **git** you work locally, on what we call a **local repository
 * `Branch` (more advanced): Create a branch (a parallel version of the code in the repository)
 * `Merge`: (more advanced) Merges two versions (branches) into one.
 
+
 <center>
 <img src="figs/git_semantics.png" alt="Drawing" style="width: 600px"/>
 </center>
@@ -586,38 +583,54 @@ When working with **git** you work locally, on what we call a **local repository
 #### Set up git version control for your RStudio project.
 RStudio projects become really powerful when they are combined with version control, and RStudio helps you in doing that. To illustrate that, we are going to track the project created previously with git, and push it to github.
 
+
 1. *Create a github account*
+
 Go to [gitHub](https://github.com/) and create an account (It's free).
 
 2. *Make your first commit*
-  1. *Add files to version tracking*
+    * *Add files to version tracking*
+  
 In your RStudio session opened on your *exampleLesson2* project, go to the upper right pannel and open the git thumbnail. There should be a bunch of files visible in that area, check them all. By checking these files, it means that you are adding them to the version tracking of the project.
+
 
 ![](figs/git1.png)
 
-  2. *Commit*
+
+    * *Commit*
+    
 Now press on commit. A new window should open in which you are supposed to write a commit message to finalise your commit. Describe what you have done, then commit.
 
+
 ![](figs/git2.png)
+
 
 Your git pannel should now be empty. Everytime you modify a file or add a new file to your project, it will appear in that pannel, ready to be added and commited.
 
 3. *Make a new commit*
+
 Make some minor modifications to one of the files, save your changes, see it appear in the git pannel, then check it and commit again.
 
 4. *Create remote repository*
+
 Go to gitHub, and select "create new repository". Give it the same name as your project, and a short description, then finalize the creation of that repository.
 
+
 ![](figs/git3.png)
+
 
 On the following page, there are some instructions on how to connect your local repository to the newly created remote repository.
 
 5. *Connect locale repository to remote*
+
 Copy the two lines provided by gitHub for the case of you already have a local repository, then go to RStudio, Tools --> Shell (also available in the git pannel) and paste the two lines there and execute them. You will be asked for your github username and password.
+
 
 ![](figs/git4.png)
 
+
 Your project is now fully setup with version control; next time you make changes, and commit them, you can use the green ''push'' arrow to update your remote repository. Or use the ''pull'' arrow to update your local repository.
+
 
 ![](figs/git5.png)
 
@@ -652,6 +665,8 @@ Note that R package structure and creation are not necessarily easy things to un
 
 
 <center><img src="figs/package_structure.png" alt="Drawing" style="width: 700px"/></center>
+
+Note how similar this is to the way we organize projects.
 
 
 The default basic structure of a package is as follows:
@@ -695,12 +710,7 @@ addNums <- function(x, y) {
 ```
 
 
-### Example of package creation
-TODO: review this section
-
-
-### Package building
-
+### Build the package
 #### Prerequisites
 
 In order to be able to build package, you must have `Rtools` installed and properly setup on your system. Refer to the system setup document for more information on how to install Rtools. Once this is done R Studio offers great integration with Rtools, which makes package building really easy. Assuming you have installed and set up Rtools properly, the build panel in R Studio should be by default located in the upper right window.
@@ -716,7 +726,8 @@ In order to be operational on your system the R package you just created has to 
 
 # Exercise
 ## Exercise description
-Write a function that calculate whether a given year is a leap year or not. If you put the function in a package, that will give you additional points. The function should behave as follows:
+Create a RStudio project, with git version control. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the `main.R`.
+The function should behave as follows:
 
 
 
@@ -753,17 +764,18 @@ Write a function that calculate whether a given year is a leap year or not. If y
 
 
 ## Useful references
-[https://www.google.com]
-[http://en.wikipedia.org/wiki/Leap_year]
-[http://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html]
+
+* [Google](https://www.google.com)
+* [Leap Year](http://en.wikipedia.org/wiki/Leap_year)
+* [R arithmetic oprators](http://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html)
 
 
 
 ## Assessment
-Assessment will consider the completeness of the function (or package) and whether it works as intended, but also its readability. Therefore, try as much as possible to use all good practices mentioned in this course.
+Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-In order to submit, add the function (or package) to a repository on your own GitHub account and send the clone url to me by e-mail.
+In order to submit, put your project on your gitHub account and send the clone url to me by e-mail.
 
 # References
 
