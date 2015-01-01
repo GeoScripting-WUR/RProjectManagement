@@ -522,16 +522,25 @@ To navigate between projects, use the button in the top-right corner of RStudio.
 
 
 ### Version control
+
+**Important note:** you need to have git installed and properly configured on your computer to do the following. Visit the [system setup page](http://geoscripting-wur.github.io/system_setup/) for more details.
+
 ### What is version control?
 
 
-Have you ever worked on a project and ended up having so many verions of your work that you didn't know which one was the lattest, and what were the differences between the versions? Probably yes, we all experienced that. Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
+Have you ever worked on a project and ended up having so many verions of your work that you didn't know which one was the lattest, and what were the differences between the versions? Does the image below look familiar to you? Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
 
-The video below explains some basic concepts of verion control and why the benefits of using it are.
+<center>
+![file name](figs/fileNames.png)
+</center>
+
+The video below explains some basic concepts of verion control and what the benefits of using it are.
+
 
 <center>
 <iframe width="560" height="315" src="//www.youtube.com/embed/8oRjP8yj2Wo" frameborder="0" allowfullscreen></iframe>
 </center>
+
 
 So to sum up, version control allows to keep track of:
 * When you made changes to your files
@@ -551,20 +560,31 @@ Additionally, version control:
 
 The three most popular version control software are **git**, **subversion** (abreviated as svn), and **mercurial** (abreviated as hg). In this course we will only use git.
 
+<center>
+<img src="figs/Git_logo.png" alt="Drawing" style="width: 300px"/>
+</center>
+
 #### Local and remote repositories
+
+When working with **git** you work locally, on what we call a **local repository**, every time you make significant changes to the files contained in that repository, you have to **commit**, which means adding the changes to the history tracking of your local repository. Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a mirror of your local repository and allows you have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push**, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to **pull**.
+
+*Summary of git semantics*
+
+* `Commit`: Consists of adding the latest changes to the repository. When you **commit** your changes, it is like putting a milestone in your progress, or taking a snapshot of your project at that moment. That milestone describes what have been changed, why and when. In the future you can always go back to that milestone.
+* `Push` : Add previous changes committed to the local repository, to the remote repository.
+* `Pull` : Update a local repository based on the content of the remote repository.
+* `Clone` : Copy the content of a remote repository locally for the first time.
+* `Branch` (more advanced): Create a branch (a parallel version of the code in the repository)
+* `Merge`: (more advanced) Merges two versions (branches) into one.
+
+<center>
+<img src="figs/git_semantics.png" alt="Drawing" style="width: 600px"/>
+</center>
 
 
 
 #### Set up git version control for your RStudio project.
 
-
-### Semantics of git
-
-* `Commit`: Consists of adding the latest changes to the repository. When you **commit** your changes, it is like putting a milestone in your progress. That milestone describes what have been changed, why and when. In the future you can always go back to that milestone.
-* `Push` : Add previous changes committed to the local repository, to the remote repository.
-* `Clone` : Copy the content of a remote repository locally.
-* `Branch` (more advanced): Create a branch (a parallel version of the code in the repository)
-* `Merge`: (more advanced) Merges two versions (branches) into one.
 
 
 
@@ -584,7 +604,7 @@ ref{github})
 * From R Studio, go to project - Create project - Version Control - Git. In the repository URL field, enter the clone URL that you just copied from GitHub. Project directory name should appear automatically. Choose a location for your project.
 
 
-<center><img src="figs/github_screenCapture.png" alt="Drawing" style="width: 700px"/></center>
+<center><img src="figs/github_screenCapture.png" alt="Drawing" style="width: 600px"/></center>
 
   
 * Copy the content of a package (created using the `package.skeleton` function) to this newly created directory.
