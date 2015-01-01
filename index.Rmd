@@ -626,41 +626,16 @@ Your project is now fully setup with version control; next time you make changes
 An alternative to the approach described above (perhaps easier) when starting a new project is to create the remote first and let RStudio import it using the menus in file --> New project --> Version Control --> Git.
 
 
+#### Checkout a project on a different computer
 
-
-
-
-
-### How to start an R package using R Studio projects and version control
-To be able to perform the following tutorial, you must have git installed on your machine. Please refer to the system setup vignette to know how to install and setup git and allow it to be embedded into R Studio.
-
-
-Note that although this tutorial illustrates the case of an R package maintained on GitHub, the package creation step is optional. 
-Also version control offers many benefits that are not tied to packages. The same type of R projects, symbolized by a ''projectName.Rproj'' file can be used to maintain simple scripts and stand alone functions.
-
-
-* Create a GitHub account (only if you don't have one already)
-* From GitHub, create a new repository and name it after the name of the package you want to start
-* Choose for the option to ''Initialize this repository with a README''
-* Copy the clone URL of the repository (Figure~
-ref{github})
-* From R Studio, go to project - Create project - Version Control - Git. In the repository URL field, enter the clone URL that you just copied from GitHub. Project directory name should appear automatically. Choose a location for your project.
+If you have created a project and already added it to github and you now want to work on a different computer, you can use the menus of RStudio to check it out. (file --> New project --> Version Control --> Git). Use the **clone URL** as shown below to indicate the remote repository location to RStudio.
 
 
 <center><img src="figs/github_screenCapture.png" alt="Drawing" style="width: 600px"/></center>
 
-  
-* Copy the content of a package (created using the `package.skeleton` function) to this newly created directory.
-* In the git panel of R Studio (by default on the upper right), add all the objects added to the package by checking them - press commit - write a commit message - commit - push. You should be prompted for your GitHub username and password, once this is done, your package is added to your GitHub remote repository.
 
 
-Note that such packages, that are maintained on git repositories can be installed and compiled directly on the fly using the devtools package. See function `install\_github()` and `install\_bitbucket()` functions for further details.
-If you are concerned about always having a ''compile-able'' version of your code, use different branches. Create a ''develop'' branch on which you develop your new functions or do any kind of experiments, and keep the stable version of your package on the ''master'' branch. Once the ''develop'' branch becomes stable, merge it with the ''master'' branch.
-
-
-
-
-## Package building
+## Package building (Not part of the course)
 Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.
 
 ### Why building a package?
@@ -681,7 +656,7 @@ Note that R package structure and creation are not necessarily easy things to un
 
 The default basic structure of a package is as follows:
 
-2 sub directories (R and man), NAMESPACE and DESCRIPTION files (Figure above). The `R directory` includes the functions of the package, usually each in a separate functionName.R file; Each one of these function should have an associated functionName.Rd file, stored in the `man directory`. These .Rd files are the functions documentation. `NAMESPACE` and `DESCRIPTION` files contain general information about the package (package metadata, dependencies, version number, etc). That is quite a minimalist package structure; more elaborate packages may include extra sub directories, such as data, demo or vignette.
+2 sub directories (R and man), NAMESPACE and DESCRIPTION files (Figure above). The `R/` directory includes the functions of the package, usually each in a separate functionName.R file; Each one of these function should have an associated functionName.Rd file, stored in the `man/` directory. These .Rd files are the functions documentation. `NAMESPACE` and `DESCRIPTION` files contain general information about the package (package metadata, dependencies, version number, etc). That is quite a minimalist package structure; more elaborate packages may include extra sub directories, such as `data/`, `demo/` or `vignette/`.
 
 
 
@@ -723,25 +698,6 @@ addNums <- function(x, y) {
 ### Example of package creation
 TODO: review this section
 
-<!--
-Stopped here
--->
-
-<!--
-
-For example, we created earlier a function called `minusRaster()`. We can try to create a package containing this function, let's call that package rasterOperations. The function was ran, which is equivalent than sourcing it, therefore it should appear in the list of workspace variables in the top right pannel in R Studio.
-
-```{r, eval=FALSE}
-# Since this function will write some files to your working directory
-# you want to make sure that it is set where you want the file to be written
-# It can be changed using setwd()
-getwd()
-# Now we can create the package structure
-package.skeleton(name='rasterOperations', list=c('minusRaster'))
-```
-
-The structure of the package has been generated now, you can go and explore the different files and directories that have been created. If you want to go further and successfully pass the checks and build the package, some file have to be manually edited. 
-
 
 ### Package building
 
@@ -756,37 +712,7 @@ In order to be able to build package, you must have `Rtools` installed and prope
 In order to be operational on your system the R package you just created has to be checked and built. This is a critical step since everything has to be perfect in order to pass the check step. Simple things like a missing line in a function documentation file may result in the package not passing the checks. Although a package that does not fully passes the check may still be built in some cases, this is not recommended, and it is therefore preferable to deal with the errors returned in the check console before building.
 
 
-Another option for building package is to do so directly from a remote git repository using the devtools package. This aspect of package building, together with general consideration on version control systems is presented in the next section.
 
-
-
-<!-- I need to look into tables
-
-[H]
-  
-caption {Git and svn for R projects}
-  
-centering
-  {| l | p{6cm} | p{6cm} |}
-    
-hline
-    `Systems` & `Online repositories available` & `Integration with R` 
-
- 
-hline
-    `Git` & Bitbucket, GitHub, SourceForge & Via devtools package 
-
- 
-hline
-    `Svn` & R Forge, SourceForge& Via R Forge building tools and `install.package()` function 
-
- 
-hline
-  
-  
-label{gitsvn}
-    
--->
 
 # Exercise
 ## Exercise description
@@ -846,5 +772,3 @@ In order to submit, add the function (or package) to a repository on your own Gi
 * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
 * Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
 * Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
-
--->
