@@ -427,6 +427,9 @@ Debugging a single line of code is usually relatively easy; simply double checki
 
 
 ## Working with projects
+*Pay attention, this is a very important part, and you will be requested to work with projects for all subsequent assignments of the course*
+
+
 RStudio allows you to work with projects. Organizing your work in different projects is a good way to stay organized and avoid getting mixed up and lost in too many files. Projects have many advantages as they:
 
 * Help you staying organized
@@ -487,12 +490,36 @@ load('data/input_model.rda')
 *And what about bigger datasets?*
 The `data/` directory of your project should indeed only contain relatively small datasets. When handling bigger remote sensing datasets, these should stay out of the project, where you store the rest of your data.
 
+**So let's do it**
+
+* create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
+* Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
+
+```{r, eval=FALSE}
+# Name
+# Date
+library(raster)
+
+source('R/ageCalculator.R')
+source('R/HelloWorld.R')
+source('R/minusRaster.R')
+
+
+HelloWorld('john')
+ageCalculator(2009)
+
+# import dataset
+r <- raster(system.file("external/rlogo.grd", package="raster")) 
+r2 <- r 
+# Filling the rasterLayer with new values.
+r2[] <- (1:ncell(r2)) / 10
+# Performs the calculation
+r3 <- minusRaster(r, r2) 
+```
+
 #### Switch project
 To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from withon RStudio, and that makes it much easier to stay organized.
 
-<!--
-TODO: Make the project section more concrete by creating a projects that contains the function we have written previously
--->
 
 ### Version control
 ### What is version control?
