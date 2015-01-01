@@ -584,6 +584,49 @@ When working with **git** you work locally, on what we call a **local repository
 
 
 #### Set up git version control for your RStudio project.
+RStudio projects become really powerful when they are combined with version control, and RStudio helps you in doing that. To illustrate that, we are going to track the project created previously with git, and push it to github.
+
+1. *Create a github account*
+Go to [gitHub](https://github.com/) and create an account (It's free).
+
+2. *Make your first commit*
+  1. *Add files to version tracking*
+In your RStudio session opened on your *exampleLesson2* project, go to the upper right pannel and open the git thumbnail. There should be a bunch of files visible in that area, check them all. By checking these files, it means that you are adding them to the version tracking of the project.
+
+![](figs/git1.png)
+
+  2. *Commit*
+Now press on commit. A new window should open in which you are supposed to write a commit message to finalise your commit. Describe what you have done, then commit.
+
+![](figs/git2.png)
+
+Your git pannel should now be empty. Everytime you modify a file or add a new file to your project, it will appear in that pannel, ready to be added and commited.
+
+3. *Make a new commit*
+Make some minor modifications to one of the files, save your changes, see it appear in the git pannel, then check it and commit again.
+
+4. *Create remote repository*
+Go to gitHub, and select "create new repository". Give it the same name as your project, and a short description, then finalize the creation of that repository.
+
+![](figs/git3.png)
+
+On the following page, there are some instructions on how to connect your local repository to the newly created remote repository.
+
+5. *Connect locale repository to remote*
+Copy the two lines provided by gitHub for the case of you already have a local repository, then go to RStudio, Tools --> Shell (also available in the git pannel) and paste the two lines there and execute them. You will be asked for your github username and password.
+
+![](figs/git4.png)
+
+Your project is now fully setup with version control; next time you make changes, and commit them, you can use the green ''push'' arrow to update your remote repository. Or use the ''pull'' arrow to update your local repository.
+
+![](figs/git5.png)
+
+
+
+An alternative to the approach described above (perhaps easier) when starting a new project is to create the remote first and let RStudio import it using the menus in file --> New project --> Version Control --> Git.
+
+
+
 
 
 
