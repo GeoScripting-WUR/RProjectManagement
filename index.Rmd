@@ -59,14 +59,22 @@ So, when posting to the mail list:
 
 # Creating a reproducible example
 
-Indispensable when asking a question to the online community, being able to write a reproducible example has many advantages.
-First it may ensure that when you present a problem, people are able to answer your question without guessing what you are trying to do. But reproducible examples are not only to ask questions; they may help you in your thinking, developing  or debugging process when writing your own functions. For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated rasterLayer object, and not directly on your actual data covering the entire universe 
-dots
+Indispensable when asking a question to the online community, being able to write a reproducible example has many advantages:
+
+- it may ensure that when you present a problem, people are able to answer your question without guessing what you are trying to do. 
+- reproducible examples are not only to ask questions; they may help you in your thinking, developing  or debugging process when writing your own functions. 
+
+    - For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated rasterLayer object, and not directly on your actual data covering the entire universe 
+dots.
 
 ## But what is a reproducible example exactly?
 
-Well, one could define a reproducible example by a piece of code that can be executed by anyone who has R, independently of the data present on his machine or any preloaded variables. The computation time should not exceed a few seconds and if the code automatically downloads data, the data volume should be as small as possible.
-So basically, if you can quickly start a R session on your neighbour's computer while he is on a break, copy-paste the code without making any adjustments and see almost immediately what you want to demonstrate; congratulation, you have created a reproducible example.
+Well, one could define a reproducible example by:
+
+- a piece of code that can be executed by anyone who has R, independently of the data present on his machine or any preloaded variables. 
+- The computation time should not exceed a few seconds and if the code automatically downloads data, the data volume should be as small as possible.
+
+*So basically, if you can quickly start a R session on your neighbour's computer while he is on a break, copy-paste the code without making any adjustments and see almost immediately what you want to demonstrate; congratulation, you have created a reproducible example.*
 
 Let's illustrate this by an example.
 I want to perform values replacements of one raster layer, based on the values of another raster Layer. (We haven't covered raster analysis in R as part of the course yet, but you will quickly understand that for certain operations rasters are analog to vectors of values).
@@ -416,7 +424,15 @@ out
 
 #### Function debugging
 
-Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. Carefully reading the return of that function will tell you where exactly in your function the error occurred. In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging. Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools.
+Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. 
+
+- The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. 
+
+    - Carefully reading the return of that function will tell you where exactly in your function the error occurred. 
+    
+- In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.
+
+- Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools. See Rstudio help.
 
 
 ## Working with projects
