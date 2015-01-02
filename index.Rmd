@@ -1,7 +1,7 @@
 ---
 title: "Carrying out you R project"
 author: "Loïc Dutrieux, Jan Verbesselt"
-date: "11/19/2014"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     number_sections: yes
@@ -791,7 +791,7 @@ The function should behave as follows:
 Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-In order to submit, put your project on your gitHub account and send the clone url to me by e-mail.
+In order to submit, put your project on your gitHub account and send the clone url to me (Loïc) by e-mail before the next day (1030)
 
 # References
 
