@@ -10,6 +10,10 @@ output:
     toc_depth: 4
 ---
 
+# Todo in the morning
+
+To be added.
+
 # Today's learning objectives
 At the end of the lecture, you should be able to
 
@@ -429,7 +433,24 @@ Debugging a single line of code is usually relatively easy; simply double checki
 - The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. 
 
     - Carefully reading the return of that function will tell you where exactly in your function the error occurred. 
-    
+
+```{r, eval=FALSE}
+foo <- function(x) { print(1); bar(2) }
+bar <- function(x) { x + a.variable.which.does.not.exist }
+## Not run: 
+foo(2) # gives a strange error
+traceback()
+## 2: bar(2)
+## 1: foo(2)
+bar
+## Ah, this is the problem
+## redefine bar
+bar <- function(x) { x + 5}
+foo(2)
+```
+
+For another example see: http://rfunction.com/archives/2562.
+
 - In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.
 
 - Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools. See Rstudio help.
