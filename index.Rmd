@@ -5,14 +5,16 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     number_sections: yes
-    theme: united
+    theme: cosmo
     toc: yes
     toc_depth: 4
 ---
 
-# Todo in the morning
+# Today (7/01/2015)
 
-To be added.
+- Morning: Self-study from home or PC38 - Go through the following tutorial
+- 1330-1430: Loïc available for questions and clarifications on lecture content and exercise description.
+- Rest of the afternoon: Do/finalise the exercise.
 
 # Today's learning objectives
 At the end of the lecture, you should be able to
@@ -210,7 +212,7 @@ ageCalculator <- function(x) {
 ageCalculator(1985)
 ```
 
-29, what a beautiful age for learning geo scripting.
+30, what a beautiful age for learning geo scripting.
 
 Then the bad example:
 
@@ -247,10 +249,10 @@ You haven't fully understood what is control flow or are not fully comfortable w
 The objective of this section is to provide a few advice to help you write efficiently function. That is functions that are simple, generic and flexible, so that they integrate well in a processing/analysis chain and can easily be re-used in a slightly different chain if needed.
 More flexibility in your function can be achieved thanks to some easy tricks provided by control flow. The following section develops further this concept and provides examples of how control flow can help your functions becoming more flexible.
 
-## Control flow
+### Control flow
 Control flow refers to the use of conditions in your code that redirect the flow to different directions depending on variables values or class. Make use of that in your code, as this will make your functions more flexible and generic.
 
-## Object classes and Control flow
+### Object classes and Control flow
 You have seen in a previous lesson already that every variable in your R working environment belongs to a class. You can take advantage of that, using control flow, to make your functions more flexible.
 
 A quick reminder on classes
@@ -354,7 +356,7 @@ r3 <- minusRaster(r, r2)
 ```
 
 
-```{r}
+```{r, fig.align='center'}
 # Now performs the claculation and plots the resulting RasterLayer
 r4 <- minusRaster(r, r2, plot=TRUE) 
 ```
@@ -426,7 +428,7 @@ out
 ```
 
 
-#### Function debugging
+### Function debugging
 
 Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. 
 
@@ -453,10 +455,11 @@ For another example see: http://rfunction.com/archives/2562.
 
 - In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.
 
-- Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools. See Rstudio help.
+- Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools. See RStudio help.
 
 
-## Working with projects
+# Working with projects
+
 *Pay attention, this is a very important part, and you will be requested to work with projects for all subsequent assignments of the course*
 
 
@@ -468,7 +471,8 @@ RStudio allows you to work with projects. Organizing your work in different proj
 
 In the following sections, we will create a project to put together the functions that we have created earlier in this tutorial.
 
-### Create a project in RStudio
+## Create a project in RStudio
+
 To create a new project, in RStudio, go to file --> New Project and then follow the menus. In an **empty directory** we will create a **New project**. You should see the dialog as in the figure below. Also tick the option to create a git repository; we will use that feature too later.
 
 <center>
@@ -478,9 +482,11 @@ To create a new project, in RStudio, go to file --> New Project and then follow 
 This will create a new directory in which is contained a `projectName.Rproj` file; this file stores some basic information about the project.
 
 *Where should I store my projects?*
+
 I doesn't really matter exactly where on your computer your projects are stored, one important thing is that you store them all in the same place. This way you'll always know where to find them. So for instance if you work on Windows, you can create a directory `D:\Rprojects\` in which you will store all your projects. A new project automatically create a new sub-directory.
 
-#### Project structure
+## Project structure
+
 Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediatly understand how things work.
 I recommend using the following structure:
 
@@ -495,6 +501,7 @@ I recommend using the following structure:
 
 
 *And what about my working directory?*
+
 You may have learnt that one of the first thing to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eg `D:/data/remoteSensing/landsat/scene1.tif`).
 
 
@@ -547,16 +554,16 @@ r2[] <- (1:ncell(r2)) / 10
 r3 <- minusRaster(r, r2) 
 ```
 
-#### Switch project
+### Switch project
+
 To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from withon RStudio, and that makes it much easier to stay organized.
 
 
-### Version control
+## Version control
 
 **Important note:** you need to have git installed and properly configured on your computer to do the following. Visit the [system setup page](http://geoscripting-wur.github.io/system_setup/) for more details.
 
 ### What is version control?
-
 
 Have you ever worked on a project and ended up having so many verions of your work that you didn't know which one was the lattest, and what were the differences between the versions? Does the image below look familiar to you? Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
 
@@ -574,6 +581,7 @@ The video below explains some basic concepts of verion control and what the bene
 
 
 So to sum up, version control allows to keep track of:
+
 * When you made changes to your files
 * Why you made these changes
 * What you changed
@@ -597,7 +605,7 @@ The three most popular version control software are **git**, **subversion** (abr
 </center>
 
 
-#### Local and remote repositories
+### Local and remote repositories
 
 When working with **git** you work locally, on what we call a **local repository**, every time you make significant changes to the files contained in that repository, you have to **commit**, which means adding the changes to the history tracking of your local repository. Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a mirror of your local repository and allows you have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push**, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to **pull**.
 
@@ -617,7 +625,8 @@ When working with **git** you work locally, on what we call a **local repository
 
 
 
-#### Set up git version control for your RStudio project.
+### Set up git version control for your RStudio project.
+
 RStudio projects become really powerful when they are combined with version control, and RStudio helps you in doing that. To illustrate that, we are going to track the project created previously with git, and push it to github.
 
 
@@ -633,9 +642,10 @@ In your RStudio session opened on your *exampleLesson2* project, go to the upper
 
 ![](figs/git1.png)
 
+<ul><ul>
+<li><em>Commit</em></li>
+</ul></ul>
 
-    * *Commit*
-    
 Now press on commit. A new window should open in which you are supposed to write a commit message to finalise your commit. Describe what you have done, then commit.
 
 
@@ -660,23 +670,26 @@ On the following page, there are some instructions on how to connect your local 
 
 5. *Connect locale repository to remote*
 
+
+![](figs/git4.png)
+
 Copy the two lines provided by gitHub for the case of you already have a local repository, then go to RStudio, Tools --> Shell (also available in the git pannel) and paste the two lines there and execute them. You will be asked for your github username and password.
 
 
-![](figs/git4.png)
+![](figs/git5.png)
 
 
 Your project is now fully setup with version control; next time you make changes, and commit them, you can use the green ''push'' arrow to update your remote repository. Or use the ''pull'' arrow to update your local repository.
 
 
-![](figs/git5.png)
+
 
 
 
 An alternative to the approach described above (perhaps easier) when starting a new project is to create the remote first and let RStudio import it using the menus in file --> New project --> Version Control --> Git.
 
 
-#### Checkout a project on a different computer
+### Checkout a project on a different computer
 
 If you have created a project and already added it to github and you now want to work on a different computer, you can use the menus of RStudio to check it out. (file --> New project --> Version Control --> Git). Use the **clone URL** as shown below to indicate the remote repository location to RStudio.
 
@@ -684,80 +697,9 @@ If you have created a project and already added it to github and you now want to
 <center><img src="figs/github_screenCapture.png" alt="Drawing" style="width: 600px"/></center>
 
 
+## Make your own packages
 
-## Package building (Not part of the course)
-Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.
-
-### Why building a package?
-
-* Easy to share with others
-* Dependencies are automatically imported and functions are sourced (reduces the risk of having broken dependencies)
-* Documentation is attached to the functions and cannot be lost (or forgotten)
-
-For these reasons, if you build a package, next year you will still be able to run the functions you wrote yesterday. Which is often not the case for stand alone functions that are poorly documented and may depend on many other functions ... that you cannot find anymore. So to summarize R packages are not only a way to extend the functionalities of R, they are also the standard way to archive and save R functions.
-
-### Structure of a package
-Note that R package structure and creation are not necessarily easy things to understand. As a consequence, although there are many reasons why you should always consider working with packages, and depending on your understanding of the concepts described above, you may want to consider this part of the lesson as additional/optional. This sections describes the structure of a simple package, for more information about R packages in general and details of package creation, please refer to the manual [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html).
-
-
-
-<center><img src="figs/package_structure.png" alt="Drawing" style="width: 700px"/></center>
-
-Note how similar this is to the way we organize projects.
-
-
-The default basic structure of a package is as follows:
-
-2 sub directories (R and man), NAMESPACE and DESCRIPTION files (Figure above). The `R/` directory includes the functions of the package, usually each in a separate functionName.R file; Each one of these function should have an associated functionName.Rd file, stored in the `man/` directory. These .Rd files are the functions documentation. `NAMESPACE` and `DESCRIPTION` files contain general information about the package (package metadata, dependencies, version number, etc). That is quite a minimalist package structure; more elaborate packages may include extra sub directories, such as `data/`, `demo/` or `vignette/`.
-
-
-
-### Useful tips for package creation
-
-* The `package.skeleton()` function will help you get the package structure from a list of sourced functions. (A function opened in the R Studio editor panel can be sourced by pressing the ''Source'' in the top right hand corner of the panel)
-* `prompt()` creates a tailored documentation (.Rd) file from an existing function.
-* The project functionalities of the R Studio IDE can greatly assist you in creating a package from scratch. Explore the menus and option under Project - New project.
-* Use the **devtools** package to directly install your packages from the version control platforms where they are maintained and share them with others.
-* Newer R development provide the oportunity to document functions inside the function file (.R). Then from this file, a .Rd file can be created. This has the advantage that the function documentation always stay with the function itself, and does not get lost when for example transferring the files to another project. Once the documentation has been added to the function file with the roxygen2 syntax, a Rd file can be created using the `roxygenize()` function. A function documented (with minimum documentation) using roxygen2 would then look like that.
-
-
-
-```{r, eval=FALSE}
-#' Function to add two Numbers
-#'
-#' @description Takes two numbers x and y, and adds them
-#'
-#' @param x Numeric The number to be added to y
-#' @param y Numeric The number to be added to x
-#'
-#' @return A numeric
-#' 
-#' @author John Doe
-#'
-#' @examples
-#' a <- 3
-#' b <- 4
-#' addNums(a, b)
-
-addNums <- function(x, y) {
-    x + y
-}
-
-
-```
-
-
-### Build the package
-#### Prerequisites
-
-In order to be able to build package, you must have `Rtools` installed and properly setup on your system. Refer to the system setup document for more information on how to install Rtools. Once this is done R Studio offers great integration with Rtools, which makes package building really easy. Assuming you have installed and set up Rtools properly, the build panel in R Studio should be by default located in the upper right window.
-
-
-#### Check and build
-
-
-In order to be operational on your system the R package you just created has to be checked and built. This is a critical step since everything has to be perfect in order to pass the check step. Simple things like a missing line in a function documentation file may result in the package not passing the checks. Although a package that does not fully passes the check may still be built in some cases, this is not recommended, and it is therefore preferable to deal with the errors returned in the check console before building.
-
+[Optional](packages.html)
 
 
 
@@ -820,4 +762,5 @@ In order to submit, put your project on your gitHub account and send the clone u
 * A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)
 * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
 * Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
+* Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 * Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).

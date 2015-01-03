@@ -1,0 +1,83 @@
+---
+title: "Carrying out you R project - Make your own packages (optional)"
+author: "Loïc Dutrieux, Jan Verbesselt"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    number_sections: yes
+    theme: cosmo
+---
+
+
+Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.
+
+# Why making a package?
+
+* Easy to share with others
+* Dependencies are automatically imported and functions are sourced (reduces the risk of having broken dependencies)
+* Documentation is attached to the functions and cannot be lost (or forgotten)
+
+For these reasons, if you build a package, next year you will still be able to run the functions you wrote yesterday. Which is often not the case for stand alone functions that are poorly documented and may depend on many other functions ... that you cannot find anymore. So to summarize R packages are not only a way to extend the functionalities of R, they are also the standard way to archive and save R functions.
+
+# Structure of a package
+Note that R package structure and creation are not necessarily easy things to understand. As a consequence, although there are many reasons why you should always consider working with packages, and depending on your understanding of the concepts described above, you may want to consider this part of the lesson as additional/optional. This sections describes the structure of a simple package, for more information about R packages in general and details of package creation, please refer to the manual [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html).
+
+
+
+<center><img src="figs/package_structure.png" alt="Drawing" style="width: 400px"/></center>
+
+Note how similar this is to the way we organize projects.
+
+
+The default basic structure of a package is as follows:
+
+2 sub directories (R and man), NAMESPACE and DESCRIPTION files (Figure above). The `R/` directory includes the functions of the package, usually each in a separate functionName.R file; Each one of these function should have an associated functionName.Rd file, stored in the `man/` directory. These .Rd files are the functions documentation. `NAMESPACE` and `DESCRIPTION` files contain general information about the package (package metadata, dependencies, version number, etc). That is quite a minimalist package structure; more elaborate packages may include extra sub directories, such as `data/`, `demo/` or `vignette/`.
+
+
+
+# Useful tips for package creation
+
+* The `package.skeleton()` function will help you get the package structure from a list of sourced functions. (A function opened in the R Studio editor panel can be sourced by pressing the ''Source'' in the top right hand corner of the panel)
+* `prompt()` creates a tailored documentation (.Rd) file from an existing function.
+* The project functionalities of the R Studio IDE can greatly assist you in creating a package from scratch. Explore the menus and option under Project - New project.
+* Use the **devtools** package to directly install your packages from the version control platforms where they are maintained and share them with others.
+* Newer R development provide the oportunity to document functions inside the function file (.R). Then from this file, a .Rd file can be created. This has the advantage that the function documentation always stay with the function itself, and does not get lost when for example transferring the files to another project. Once the documentation has been added to the function file with the roxygen2 syntax, a Rd file can be created using the `roxygenize()` function. A function documented (with minimum documentation) using roxygen2 would then look like that.
+
+
+
+```{r, eval=FALSE}
+#' Function to add two Numbers
+#'
+#' @description Takes two numbers x and y, and adds them
+#'
+#' @param x Numeric The number to be added to y
+#' @param y Numeric The number to be added to x
+#'
+#' @return A numeric
+#' 
+#' @author John Doe
+#'
+#' @examples
+#' a <- 3
+#' b <- 4
+#' addNums(a, b)
+
+addNums <- function(x, y) {
+    x + y
+}
+
+
+```
+
+
+# Build the package
+## Prerequisites
+
+In order to be able to build package, you must have `Rtools` installed and properly setup on your system. Refer to the system setup document for more information on how to install Rtools. Once this is done R Studio offers great integration with Rtools, which makes package building really easy. Assuming you have installed and set up Rtools properly, the build panel in R Studio should be by default located in the upper right window.
+
+
+## Check and build
+
+
+In order to be operational on your system the R package you just created has to be checked and built. This is a critical step since everything has to be perfect in order to pass the check step. Simple things like a missing line in a function documentation file may result in the package not passing the checks. Although a package that does not fully passes the check may still be built in some cases, this is not recommended, and it is therefore preferable to deal with the errors returned in the check console before building.
+
