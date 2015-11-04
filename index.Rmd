@@ -1,6 +1,6 @@
 ---
 title: "Carrying out you R project"
-author: "Loïc Dutrieux, Jan Verbesselt"
+author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
@@ -758,9 +758,18 @@ In order to submit, put your project on your gitHub account and send the clone u
 
 # References
 
-* Reference document for creating R packages: [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html)
-* A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)
-* R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
-* Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
-* Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
-* Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
+* Packages:
+    * Reference document for creating R packages: [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html)
+    * A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)
+* Git:
+    * Great 15 min interactive git commands tutorial:[try.github.io](https://try.github.io)
+    * Hadley Wickham on [Rstudio and git](http://r-pkgs.had.co.nz/git.html#undefined)
+    * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
+    * Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
+    
+    * Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
+* Debugging:
+    * Hadely Wickham on [Debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html)
+    * Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
+
+
