@@ -1,13 +1,14 @@
 ---
-title: "Carrying out you R project"
-author: "Loïc Dutrieux, Jan Verbesselt"
+title: "Carrying out your R project"
+author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     number_sections: yes
     theme: cosmo
+    highlight: tango
     toc: yes
-    toc_depth: 4
+    toc_depth: 2
 ---
 
 # Today (7/01/2015)
@@ -31,13 +32,13 @@ At the end of the lecture, you should be able to
 
 # Introduction
 
-During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. Today the emphasis of the lecture is mostly oriented toward carrying an R project. Therefore, some recurrent aspects of project development, such as, how to find help, or techniques to organize your code and your projects are covered in the lecture.
+During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. Today the emphasis of the lecture is mostly oriented towards carrying an R project. Therefore, some recurrent aspects of project development, such as, how to find help, or techniques to organize your code and your projects are covered in the lecture.
 Scripting means that you often go beyond easy things and therefore face challenges; as a consequence, it is likely that at one moment or another, you will have to go look for help. Part of this lesson is intended to guide you through ways of finding help, including posting to the mail list and writing a reproducible example. In addition, this lecture goes through a couple of essential ''good practices'' when working on geo-scripting projects. Not all aspects of good practices are covered, however, for those of you who are curious to know more about version control, R package building, etc, be sure to check the reference section of this document.
 
 
 # Finding help
 
-There are many place where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by googling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
+There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by googling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
 
 However, it may also happen that you discover a ''bug'' or something that you would qualify of abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general [R mailing list](https://stat.ethz.ch/mailman/listinfo/r-help), while the spatial domain has its own mailing list ( [R SIG GEO](https://stat.ethz.ch/mailman/listinfo/r-sig-geo) ). Geo related question should be posted to this latter mailing list.
 
@@ -58,7 +59,7 @@ So, when posting to the mail list:
 
 * Be courteous,
 * Provide a brief description of the problem and why you are trying to do that.
-* Provide a reproducible example that illustrate the problem, reproducing the eventual error
+* Provide a reproducible example that illustrated the problem, reproducing the eventual error
 * Sign with your name and your affiliation
 * Do not expect an immediate answer (although well presented question often get answered fairly quickly)
 
@@ -80,7 +81,7 @@ Well, one could define a reproducible example by:
 - a piece of code that can be executed by anyone who has R, independently of the data present on his machine or any preloaded variables. 
 - The computation time should not exceed a few seconds and if the code automatically downloads data, the data volume should be as small as possible.
 
-*So basically, if you can quickly start a R session on your neighbour's computer while he is on a break, copy-paste the code without making any adjustments and see almost immediately what you want to demonstrate; congratulation, you have created a reproducible example.*
+*So basically, if you can quickly start a R session on your neighbour's computer while he is on a break, copy-paste the code without making any adjustments and see almost immediately what you want to demonstrate; congratulations, you have created a reproducible example.*
 
 Let's illustrate this by an example.
 I want to perform values replacements of one raster layer, based on the values of another raster Layer. (We haven't covered raster analysis in R as part of the course yet, but you will quickly understand that for certain operations rasters are analog to vectors of values).
@@ -103,7 +104,7 @@ plot(r)
 
 Useful to know when writing a reproducible example; instead of generating your own small datasets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' datasets. They are part of the main R packages.
 Some popular datasets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc
-The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the datasets available. (In RStudio like in most script editing environments autocompletion can be toggled by pressing the tab key, use it without moderation.)
+The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the datasets available. (In RStudio like in most script editing environments auto-completion can be toggled by pressing the tab key, use it without moderation.)
 
 ```{r, echo=TRUE, fig.align='center'}
 # Imports the variable cars in the working environment
@@ -138,7 +139,7 @@ bubble(meuse, "zinc", maxsize = 2.5,
        main = "zic concentrations (ppm)", key.entries = 2^(-1:4))
 ```
 
-The sp package help page contain multiple examples of how to explore its meuse built-in data set. Another example of multiple plots using `meuse.grid` is given in the figure below.
+The sp package help page contains multiple examples of how to explore its meuse built-in data set. Another example of multiple plots using `meuse.grid` is given in the figure below.
 
 ```{r, echo=TRUE, fig=TRUE, fig.align='center'}
 # Load meuse.riv dataset
@@ -174,16 +175,19 @@ Increasing your scripting/programming efficiency goes through adopting good scri
   
 In order to achieve these objectives, you should try to follow a few good practices. The list below is not exhaustive, but already constitutes a good basis that will help you getting more efficient now and in the future when working on R projects.
 
-
-* Write short functions.
-* Make your functions generic and flexible, using **control flow**
 * Comment your code
-* Follow the R [style guide](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) (The aim of having a formatted style guide is to increase readability of your code by others. In that regard, indentation, use of <- instead of = as assignment operator and placement of curly braces are of particular relevance when writing functions. Proper configuration of your script editor allows you to automatically implement some of these guidelines without having to think too much about it.)
-* Document your functions
-* Build packages
-* Work with projects
-* Keep a similar directory structure across your projects
-* Use **version control** to develop/maintain your projects and packages
+* Write [functions](#function-writing) for code you need more than once:
+    - Make your functions generic and flexible, using [control flow](#control-flow)
+    - Document your functions
+* Follow a R [style guide](http://adv-r.had.co.nz/Style.html). This will make your code more readable! Most important are: 
+    - meaningful and consistent naming of files, functions, variables...
+    - indentation (like in python: use space or tab to indent code in functions or loops etc.)
+    - use of `<-` instead of `=` as assignment operator. It's a convention. 
+    - placement of curly braces
+* [Make your own packages](#make-your-own-packages)
+* Work with [projects](#working-with-projects)
+* Keep a similar [directory structure](#project-structure) across your projects
+* Use [version control](#version-control) to develop/maintain your projects and packages
 
 Note that the RStudio IDE makes a lot of these good practices a lot easier and you should try to take maximum advantage of it. Take a moment to explore the menus of the RStudio session that should already be open on your machine. Particular emphasis will be given later in this tutorial on projects, project structure and use of version control.
 
@@ -199,7 +203,7 @@ ageCalculator <- function(x) {
     } else { # x is numeric
         # Get today's date
         date <- Sys.Date()
-        # extract year from date and substract
+        # extract year from date and subtract
         year <- as.numeric(format(date, "%Y"))
         if(year <= x) {
             stop("You aren't born yet")
@@ -212,7 +216,7 @@ ageCalculator <- function(x) {
 ageCalculator(1985)
 ```
 
-30, what a beautiful age for learning geo scripting.
+30, what a beautiful age for learning geo-scripting.
 
 Then the bad example:
 
@@ -240,14 +244,18 @@ So let's look back at the examples and identify some differences:
 * Comments: The second example has none (Okay, the first one really has a lot, but that's for the example)
 * Variables naming: use of `a` and `b` not very self descriptive in second example
 * Indentation: Missing in the second example
-* Control flow: Second example does not check for irrealistic dates
+* Control flow: Second example does not check for implausible dates
 
-You haven't fully understood what is control flow or are not fully comfortable with functions writing yet? We'll see more of that in the following sections. 
+You haven't fully understood what control flow is r are not fully comfortable with functions writing yet? We'll see more of that in the following sections. 
 
 ## Function writing
 
-The objective of this section is to provide a few advice to help you write efficiently function. That is functions that are simple, generic and flexible, so that they integrate well in a processing/analysis chain and can easily be re-used in a slightly different chain if needed.
-More flexibility in your function can be achieved thanks to some easy tricks provided by control flow. The following section develops further this concept and provides examples of how control flow can help your functions becoming more flexible.
+The objective of this section is to provide some help on effective function writing. That is functions that are:
+* simple, 
+* generic and 
+* flexible
+They should integrate well in a processing/analysis chain and be easily be re-used in a slightly different chain if needed.
+More flexibility in your function can be achieved through some easy control flow tricks. The following section develops this concept and provides examples.
 
 ### Control flow
 Control flow refers to the use of conditions in your code that redirect the flow to different directions depending on variables values or class. Make use of that in your code, as this will make your functions more flexible and generic.
@@ -345,7 +353,7 @@ minusRaster <- function(x, y, plot=FALSE) {
 # that first one is the R logo raster
 # converted to the raster package file format.
 r <- raster(system.file("external/rlogo.grd", package="raster")) 
-# The second RasterLayer is calqued from the initial RasterLayer in order
+# The second RasterLayer is derived from the initial RasterLayer in order
 # to avoid issues of non matching extent or resolution, etc
 r2 <- r 
 # Filling the rasterLayer with new values.
@@ -357,12 +365,12 @@ r3 <- minusRaster(r, r2)
 
 
 ```{r, fig.align='center'}
-# Now performs the claculation and plots the resulting RasterLayer
+# Now performs the calculation and plots the resulting RasterLayer
 r4 <- minusRaster(r, r2, plot=TRUE) 
 ```
 
 
-### Use of `try` and debugging your functions
+### Use of `try` and debugging with RStudio
 
 #### Use of try for error handling
 
@@ -453,7 +461,7 @@ foo(2)
 
 For another example see: http://rfunction.com/archives/2562.
 
-- In addition to `traceback()`, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.
+- Outside of RStudio you can get a similar functionality with `traceback()`. Further, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.
 
 - Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools. See RStudio help.
 
@@ -483,11 +491,11 @@ This will create a new directory in which is contained a `projectName.Rproj` fil
 
 *Where should I store my projects?*
 
-I doesn't really matter exactly where on your computer your projects are stored, one important thing is that you store them all in the same place. This way you'll always know where to find them. So for instance if you work on Windows, you can create a directory `D:\Rprojects\` in which you will store all your projects. A new project automatically create a new sub-directory.
+I doesn't really matter exactly where on your computer your projects are stored, one important thing is that you store them all in the same place. This way you'll always know where to find them. So for instance if you work on Windows, you can create a directory `D:\Rprojects\` in which you will store all your projects. A new project automatically creates a new sub-directory.
 
 ## Project structure
 
-Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediatly understand how things work.
+Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work.
 I recommend using the following structure:
 
 * A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc).
@@ -502,7 +510,7 @@ I recommend using the following structure:
 
 *And what about my working directory?*
 
-You may have learnt that one of the first thing to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eg `D:/data/remoteSensing/landsat/scene1.tif`).
+You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eg `D:/data/remoteSensing/landsat/scene1.tif`).
 
 
 Typically the header of your main script will look like that.
@@ -565,7 +573,7 @@ To navigate between projects, use the button in the top-right corner of RStudio.
 
 ### What is version control?
 
-Have you ever worked on a project and ended up having so many verions of your work that you didn't know which one was the lattest, and what were the differences between the versions? Does the image below look familiar to you? Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
+Have you ever worked on a project and ended up having so many versions of your work that you didn't know which one was the latest, and what were the differences between the versions? Does the image below look familiar to you? Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
 
 <center>
 ![file name](figs/fileNames.png)
@@ -607,20 +615,23 @@ The three most popular version control software are **git**, **subversion** (abr
 
 ### Local and remote repositories
 
-When working with **git** you work locally, on what we call a **local repository**, every time you make significant changes to the files contained in that repository, you have to **commit**, which means adding the changes to the history tracking of your local repository. Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a mirror of your local repository and allows you have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push**, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to **pull**.
+**Git** creates a **local repository** in your project directory (workspace). Every time you make significant changes to the files in your workspace, you have to **add** and **commit** them, which means saving the changes to the history tracking of your local repository. Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a mirror of your local repository and allows you have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push**, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to **pull**.
 
 *Summary of git semantics*
 
-* `Commit`: Consists of adding the latest changes to the repository. When you **commit** your changes, it is like putting a milestone in your progress, or taking a snapshot of your project at that moment. That milestone describes what have been changed, why and when. In the future you can always go back to that milestone.
-* `Push` : Add previous changes committed to the local repository, to the remote repository.
-* `Pull` : Update a local repository based on the content of the remote repository.
-* `Clone` : Copy the content of a remote repository locally for the first time.
-* `Branch` (more advanced): Create a branch (a parallel version of the code in the repository)
-* `Merge`: (more advanced) Merges two versions (branches) into one.
++ **add**: Tell git that you want a file or changes to be tracked. These files/changes  are not yet saved in the repository! They are listed as "staged" in the index or staging area for the next *commit*. (Rstudio: check the "staged" checkbox).
++ **commit**: Save the *staged* changes to your *local repository*. This is like putting a milestone or taking a snapshot of your project at that moment. That milestone describes what have been changed, why and when. In the future you can always go back to that milestone.
++ **push** : Add previous changes committed to the local repository, to the remote repsitory.
++ **pull** : Update your local repository (and your working directory) with all new stuff from the remote repository.
++ **clone** : Copy the content of a remote repository locally for the first time.
++ more advanced:
+    + **branch** : Create a branch (a parallel version of the code in the repository)
+    + **checkout**: load the status of a *branch* into your workspace
+    + **merge**: Merges two versions (branches) into one.
 
 
 <center>
-<img src="figs/git_semantics.png" alt="Drawing" style="width: 600px"/>
+<img src="figs/git-flows.svg" alt="git flows" style="width: 600px"/>
 </center>
 
 
@@ -637,7 +648,7 @@ Go to [gitHub](https://github.com/) and create an account (It's free).
 2. *Make your first commit*
     * *Add files to version tracking*
   
-In your RStudio session opened on your *exampleLesson2* project, go to the upper right pannel and open the git thumbnail. There should be a bunch of files visible in that area, check them all. By checking these files, it means that you are adding them to the version tracking of the project.
+In your RStudio session opened on your *exampleLesson2* project, go to the upper right panel and open the git thumbnail. There should be a bunch of files visible in that area, check them all as "staged". By checking these files, it means that you are adding them to the version tracking of the project.
 
 
 ![](figs/git1.png)
@@ -652,11 +663,11 @@ Now press on commit. A new window should open in which you are supposed to write
 ![](figs/git2.png)
 
 
-Your git pannel should now be empty. Everytime you modify a file or add a new file to your project, it will appear in that pannel, ready to be added and commited.
+Your git panel should now be empty. Every time you modify a file or add a new file to your project, it will appear in that panel, ready to be added and committed.
 
 3. *Make a new commit*
 
-Make some minor modifications to one of the files, save your changes, see it appear in the git pannel, then check it and commit again.
+Make some minor modifications to one of the files, save your changes, see it appear in the git panel, then check it and commit again.
 
 4. *Create remote repository*
 
@@ -673,7 +684,7 @@ On the following page, there are some instructions on how to connect your local 
 
 ![](figs/git4.png)
 
-Copy the two lines provided by gitHub for the case of you already have a local repository, then go to RStudio, Tools --> Shell (also available in the git pannel) and paste the two lines there and execute them. You will be asked for your github username and password.
+Copy the two lines provided by gitHub for the case of you already have a local repository, then go to RStudio, Tools --> Shell (also available in the git panel) and paste the two lines there and execute them. You will be asked for your github username and password.
 
 
 ![](figs/git5.png)
@@ -754,13 +765,20 @@ The function should behave as follows:
 Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-In order to submit, put your project on your gitHub account and send the clone url to me (Loïc) by e-mail before the next day (1030)
+In order to submit, put your project on your gitHub account and send the clone url to Johannes by e-mail before the next day (1030)
 
 # References
 
-* Reference document for creating R packages: [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html)
-* A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)
-* R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
-* Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
-* Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
-* Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
+* Packages:
+    * Reference document for creating R packages: [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html)
+    * A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)
+* Git:
+    * Great 15 min interactive git commands tutorial:[try.github.io](https://try.github.io)
+    * Hadley Wickham on [Rstudio and git](http://r-pkgs.had.co.nz/git.html#undefined)
+    * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
+    * Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
+    
+    * Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
+* Debugging:
+    * Hadely Wickham on [Debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html)
+    * Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
