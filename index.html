@@ -465,7 +465,7 @@ a[] &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="kw"
 <span class="co"># The freq() function returns the frequency of a certain value in a RasterLayer</span>
 <span class="co"># We want to know how many times the value -2 is present in the RasterLayer</span>
 <span class="kw">freq</span>(a, <span class="dt">value=</span>-<span class="dv">2</span>)</code></pre>
-<pre><code>## [1] 347</code></pre>
+<pre><code>## [1] 330</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Let's imagine that you want to run this function over a whole list of RasterLayer</span>
 <span class="co"># but some elements of the list are impredictibly corrupted</span>
 <span class="co"># so the list looks as follows</span>
@@ -497,45 +497,51 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(list)) {
 }
 out</code></pre>
 <pre><code>## [[1]]
-## [1] 347
+## [1] 330
 ## 
 ## [[2]]
-## [1] 347
+## [1] 330
 ## 
 ## [[3]]
 ## [1] &quot;This object returned an error&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note that using a function of the apply family would be a more</span>
 <span class="co"># elegant/shorter way to obtain the same result</span>
 (out &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dt">X=</span>list, <span class="dt">FUN=</span>fun, <span class="dt">value=</span>-<span class="dv">2</span>))</code></pre>
-<pre><code>## [1] &quot;347&quot;                           &quot;347&quot;                          
+<pre><code>## [1] &quot;330&quot;                           &quot;330&quot;                          
 ## [3] &quot;This object returned an error&quot;</code></pre>
 </div>
 <div id="function-debugging" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Function debugging</h3>
 <p>Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful.</p>
+<p>Here are the manual commands, which also with RStudio:</p>
 <ul>
-<li><p>The first thing to investigate right after an error occurs is to run the <code>traceback()</code> function; just like that without arguments.</p>
-<ul>
-<li>Carefully reading the return of that function will tell you where exactly in your function the error occurred.</li>
-</ul></li>
+<li><p>The first thing to investigate right after an error occurs is to run the <code>traceback()</code> function; just like that without arguments.</p></li>
+<li><p>Carefully reading the return of that function will tell you where exactly in your function the error occurred.</p></li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span>function(x) { <span class="kw">print</span>(<span class="dv">1</span>); <span class="kw">bar</span>(<span class="dv">2</span>) }
-bar &lt;-<span class="st"> </span>function(x) { x +<span class="st"> </span>a.variable.which.does.not.exist }
+<pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span>function(x) { 
+    <span class="kw">print</span>(<span class="dv">1</span>); <span class="kw">bar</span>(<span class="dv">2</span>) 
+}
+
+bar &lt;-<span class="st"> </span>function(x) { 
+    x +<span class="st"> </span>a.variable.which.does.not.exist 
+}
 ## Not run: 
 <span class="kw">foo</span>(<span class="dv">2</span>) <span class="co"># gives a strange error</span>
 <span class="kw">traceback</span>()
-## 2: bar(2)
+## 2: bar(2) at #1
 ## 1: foo(2)
-bar
-## Ah, this is the problem
-## redefine bar
+## Ah, bar() is the problem</code></pre>
+<ul>
+<li>Now try the same with the RStudio tools: in the Main Menu select Debug - On Error - Break in Code.</li>
+<li><p>Run the comand <code>foo(2)</code> again. Now the debuger will jump to the problematic code. Use the little green “Next” button to go line by line through the code. The traceback appears in a seperate pane on the right.</p></li>
+<li><p>Fianly solve the problem:</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">## redefine bar
 bar &lt;-<span class="st"> </span>function(x) { x +<span class="st"> </span><span class="dv">5</span>}
 <span class="kw">foo</span>(<span class="dv">2</span>)</code></pre>
-<p>For another example see: <a href="http://rfunction.com/archives/2562" class="uri">http://rfunction.com/archives/2562</a>.</p>
-<ul>
-<li><p>Outside of RStudio you can get a similar functionality with <code>traceback()</code>. Further, R has a more elaborated debugging mode that can be activated by calling <code>debug()</code>. Although the use of <code>debug()</code> is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.</p></li>
-<li><p>Aditionnaly RStudio can make your debugging process easier thanks to its integrated debugging tools. See RStudio help.</p></li>
-</ul>
+<p>See RStudio help and Hadely Wickham on <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">Debugging with Rstudio</a>.</p>
+<p>For another example see: <a href="http://rfunction.com/archives/2562">rfunction.com</a>.</p>
+<p>Further, R has a more elaborated debugging mode that can be activated by calling <code>debug()</code>. Although the use of <code>debug()</code> is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.</p>
 </div>
 </div>
 </div>
