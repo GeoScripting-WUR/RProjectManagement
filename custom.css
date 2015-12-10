@@ -1,0 +1,27 @@
+#TOC {
+  position: fixed;
+  left: 5px;
+  top: 100px;
+  width: 200px;
+  height: 100%;
+  overflow:auto;
+  color: #337ab7; 
+}
+
+body {
+  font-family: "Calibri", "Verdana", Helvetica, sans-serif;
+  max-width: 800px;
+  margin: auto;
+  margin-left: 210px;
+  line-height: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Calibri Lighrt", "Calibri", "Verdana", Helvetica, sans-serif;
+  color: #337ab7; 
+}
