@@ -464,8 +464,7 @@ bar <- function(x) {
     x + a.variable.which.does.not.exist 
 }
 
-## Not run: 
-#foo(2) # gives a strange error
+foo(2) # gives a strange error
 traceback()
 ## 2: bar(2) at #1
 ## 1: foo(2)
@@ -476,11 +475,9 @@ traceback()
 ```{r, eval=FALSE}
 fu <- function(y) { 
     foo(y)
-}
-## Not run: 
-#fu(2) 
+fu(2) 
 ```
-- The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Chose "Rerun with Debug" and use the little green "Next" button to go line by line through the code. The traceback appears in a separate pane on the right.  
+- The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Chose "Rerun with Debug" and use the little green "Next" button to go line by line through the code. The traceback appears in a separate pane on the right. 
 
 - Finally solve the problem: 
 ```{r, eval=FALSE}

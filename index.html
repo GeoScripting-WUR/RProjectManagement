@@ -482,7 +482,7 @@ a[] &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="kw"
 <span class="co"># The freq() function returns the frequency of a certain value in a RasterLayer</span>
 <span class="co"># We want to know how many times the value -2 is present in the RasterLayer</span>
 <span class="kw">freq</span>(a, <span class="dt">value=</span>-<span class="dv">2</span>)</code></pre>
-<pre><code>## [1] 347</code></pre>
+<pre><code>## [1] 351</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Let's imagine that you want to run this function over a whole list of RasterLayer</span>
 <span class="co"># but some elements of the list are impredictibly corrupted</span>
 <span class="co"># so the list looks as follows</span>
@@ -514,17 +514,17 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(list)) {
 }
 out</code></pre>
 <pre><code>## [[1]]
-## [1] 347
+## [1] 351
 ## 
 ## [[2]]
-## [1] 347
+## [1] 351
 ## 
 ## [[3]]
 ## [1] &quot;This object returned an error&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note that using a function of the apply family would be a more</span>
 <span class="co"># elegant/shorter way to obtain the same result</span>
 (out &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dt">X=</span>list, <span class="dt">FUN=</span>fun, <span class="dt">value=</span>-<span class="dv">2</span>))</code></pre>
-<pre><code>## [1] &quot;347&quot;                           &quot;347&quot;                          
+<pre><code>## [1] &quot;351&quot;                           &quot;351&quot;                          
 ## [3] &quot;This object returned an error&quot;</code></pre>
 </div>
 <div id="function-debugging" class="section level3">
@@ -545,8 +545,7 @@ bar &lt;-<span class="st"> </span>function(x) {
     x +<span class="st"> </span>a.variable.which.does.not.exist 
 }
 
-## Not run: 
-<span class="co">#foo(2) # gives a strange error</span>
+<span class="kw">foo</span>(<span class="dv">2</span>) <span class="co"># gives a strange error</span>
 <span class="kw">traceback</span>()
 ## 2: bar(2) at #1
 ## 1: foo(2)
@@ -556,9 +555,7 @@ bar &lt;-<span class="st"> </span>function(x) {
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">fu &lt;-<span class="st"> </span>function(y) { 
     <span class="kw">foo</span>(y)
-}
-## Not run: 
-<span class="co">#fu(2) </span></code></pre>
+<span class="kw">fu</span>(<span class="dv">2</span>) </code></pre>
 <ul>
 <li><p>The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Chose “Rerun with Debug” and use the little green “Next” button to go line by line through the code. The traceback appears in a separate pane on the right.</p></li>
 <li><p>Finally solve the problem:</p></li>
