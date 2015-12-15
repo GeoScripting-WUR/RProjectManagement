@@ -77,14 +77,14 @@ img {
 <h1 class="title"><a href="https://geoscripting-wur.github.io/">WUR GRS-51806 Geoscripting</a></h1>
 <h3 class="subtitle"><em>Week 1, Lesson 5: Carrying out your R project</em></h3>
 <h4 class="author"><em>Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz</em></h4>
-<h4 class="date"><em>7/01/2015, Last updated: 15 December, 2015</em></h4>
+<h4 class="date"><em>15 December, 2015</em></h4>
 </div>
 
 <div id="TOC">
 <ul>
 <li><a href="#carrying-out-your-r-project"><span class="toc-section-number">1</span> Carrying out your R project</a><ul>
-<li><a href="#introduction"><span class="toc-section-number">1.1</span> Introduction</a></li>
-<li><a href="#plan-for-today"><span class="toc-section-number">1.2</span> Plan for today</a></li>
+<li><a href="#today-7th-january-2016"><span class="toc-section-number">1.1</span> Today, 7th January, 2016</a></li>
+<li><a href="#introduction"><span class="toc-section-number">1.2</span> Introduction</a></li>
 <li><a href="#learning-objectives"><span class="toc-section-number">1.3</span> Learning objectives</a></li>
 </ul></li>
 <li><a href="#finding-help"><span class="toc-section-number">2</span> Finding help</a><ul>
@@ -118,15 +118,9 @@ img {
 
 <div id="carrying-out-your-r-project" class="section level1">
 <h1><span class="header-section-number">1</span> Carrying out your R project</h1>
-<div id="introduction" class="section level2">
-<h2><span class="header-section-number">1.1</span> Introduction</h2>
-<p>Good morning! During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing.</p>
-<p>Today it’s about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages!</p>
-<p>Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple “good practices” for scripting, debugging and geoscripting projects. This includees using version control and project management.</p>
-</div>
-<div id="plan-for-today" class="section level2">
-<h2><span class="header-section-number">1.2</span> Plan for today</h2>
-<p>Here is what you will do today:</p>
+<div id="today-7th-january-2016" class="section level2">
+<h2><span class="header-section-number">1.1</span> Today, 7th January, 2016</h2>
+<p>Good morning! Here is what you will do today:</p>
 <table>
 <thead>
 <tr class="header">
@@ -149,6 +143,12 @@ img {
 </tr>
 </tbody>
 </table>
+</div>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">1.2</span> Introduction</h2>
+<p>During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing.</p>
+<p>Today it’s about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages!</p>
+<p>Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple “good practices” for scripting, debugging and geoscripting projects. This includees using version control and project management.</p>
 </div>
 <div id="learning-objectives" class="section level2">
 <h2><span class="header-section-number">1.3</span> Learning objectives</h2>
@@ -482,7 +482,7 @@ a[] &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="kw"
 <span class="co"># The freq() function returns the frequency of a certain value in a RasterLayer</span>
 <span class="co"># We want to know how many times the value -2 is present in the RasterLayer</span>
 <span class="kw">freq</span>(a, <span class="dt">value=</span>-<span class="dv">2</span>)</code></pre>
-<pre><code>## [1] 351</code></pre>
+<pre><code>## [1] 328</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Let's imagine that you want to run this function over a whole list of RasterLayer</span>
 <span class="co"># but some elements of the list are impredictibly corrupted</span>
 <span class="co"># so the list looks as follows</span>
@@ -514,17 +514,17 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(list)) {
 }
 out</code></pre>
 <pre><code>## [[1]]
-## [1] 351
+## [1] 328
 ## 
 ## [[2]]
-## [1] 351
+## [1] 328
 ## 
 ## [[3]]
 ## [1] &quot;This object returned an error&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note that using a function of the apply family would be a more</span>
 <span class="co"># elegant/shorter way to obtain the same result</span>
 (out &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dt">X=</span>list, <span class="dt">FUN=</span>fun, <span class="dt">value=</span>-<span class="dv">2</span>))</code></pre>
-<pre><code>## [1] &quot;351&quot;                           &quot;351&quot;                          
+<pre><code>## [1] &quot;328&quot;                           &quot;328&quot;                          
 ## [3] &quot;This object returned an error&quot;</code></pre>
 </div>
 <div id="function-debugging" class="section level3">

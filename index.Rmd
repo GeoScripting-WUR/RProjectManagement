@@ -2,7 +2,7 @@
 title: "[WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/)"
 subtitle: "Week 1, Lesson 5: Carrying out your R project"
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
-date: "7/01/2015, Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     number_sections: yes
@@ -12,16 +12,9 @@ output:
     toc_depth: 2
 ---
 # Carrying out your R project 
-## Introduction
+## Today, 7th January, 2016
 
-Good morning! During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. 
-
-Today it's about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages! 
-
-Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple "good practices" for scripting, debugging and geoscripting projects. This includees using version control and project management.
-
-
-## Plan for today
+Good morning! 
 Here is what you will do today:
 
 Time  | Activity
@@ -29,6 +22,13 @@ Time  | Activity
 Morning  |  Self-study: go through the following tutorial
 1330 to 1430  | Johannes available for questions on the lecture and exercise description.
 Rest of the afternoon | Do/finalise the exercise.
+
+## Introduction
+During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. 
+
+Today it's about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages! 
+
+Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple "good practices" for scripting, debugging and geoscripting projects. This includees using version control and project management.
 
 ## Learning objectives
 At the end of the lecture, you should be able to
