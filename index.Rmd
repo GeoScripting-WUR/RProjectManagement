@@ -1,7 +1,8 @@
 ---
-title: "Carrying out your R project"
+title: "[WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/)"
+subtitle: "Week 1, Lesson 5: Carrying out your R project"
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "7/01/2015, Last updated: `r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     number_sections: yes
@@ -10,15 +11,24 @@ output:
     toc: yes
     toc_depth: 2
 ---
-# Overview 
-# Plan for today (7/01/2015)
-Good morning!
+# Carrying out your R project 
+## Introduction
 
-Here is what you will do today, Thursday, 7th jan 2016:
+Good morning! During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. 
 
-- Morning: Self-study from home or PC38 - Go through the following tutorial
-- 1330 to 1430: Johannes available for questions and clarifications on lecture content and exercise description.
-- Rest of the afternoon: Do/finalise the exercise.
+Today it's about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages! 
+
+Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple "good practices" for scripting, debugging and geoscripting projects. This includees using version control and project management.
+
+
+## Plan for today
+Here is what you will do today:
+
+Time  | Activity
+------------- | -------------
+Morning  |  Self-study: go through the following tutorial
+1330 to 1430  | Johannes available for questions on the lecture and exercise description.
+Rest of the afternoon | Do/finalise the exercise.
 
 ## Learning objectives
 At the end of the lecture, you should be able to
@@ -32,20 +42,11 @@ At the end of the lecture, you should be able to
 
 **The two last points are particularly important, so try to go quickly over the first part of the tutorial and spend more time on projects and version control**
 
-## Introduction
-
-During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. 
-
-Today it's about carrying out a geoscripting project. Therefore, some recurrent aspects of project development, such as, how to find help, or techniques to organize your code and your projects are covered in the lecture. The lecture is about R, but a lot of it can be appleid to other languages! 
-
-Scripting means that you often go beyond easy things and therefore face challenges. It is normal that at one moment or another, you will have to go look for help. Part of this lesson is intended to guide you through ways of finding help, including posting to the mail list and writing a reproducible example. In addition, this lecture goes through a couple of essential ''good practices'' when working on geo-scripting projects. Not all aspects of good practices are covered, however, for those of you who are curious to know more about version control, R package building, etc, be sure to check the reference section of this document.
-
-
 # Finding help
 ## Sources for help
-The most important helper is the R documentation. In RStudio, Just press F1 when the writing curser in the editor or console is over the fucntion you are interested in.
+The most important helper is the R documentation. In RStudio, Just press F1 when the writing curser in the editor or console is over the function you are interested in.
 
-There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by googling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
+There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by goggling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
 
 However, it may also happen that you discover a ''bug'' or something that you would qualify of abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general [R mailing list](https://stat.ethz.ch/mailman/listinfo/r-help), while the spatial domain has its own mailing list ( [R SIG GEO](https://stat.ethz.ch/mailman/listinfo/r-sig-geo) ). Geo related question should be posted to this latter mailing list.
 
@@ -106,9 +107,9 @@ plot(r)
 ```
 
 
-Useful to know when writing a reproducible example; instead of generating your own small datasets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' datasets. They are part of the main R packages.
-Some popular datasets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc
-The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the datasets available. (In RStudio like in most script editing environments auto-completion can be toggled by pressing the tab key, use it without moderation.)
+Useful to know when writing a reproducible example; instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' data-sets. They are part of the main R packages.
+Some popular data sets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc
+The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the data sets available. (In RStudio like in most script editing environments auto-completion can be toggled by pressing the tab key, use it without moderation.)
 
 ```{r, echo=TRUE, fig.align='center'}
 # Imports the variable cars in the working environment
@@ -293,7 +294,7 @@ class(e)
 ### Controlling the class of input variables of a function
 
 One way of making function more auto-adaptive is by adding checks of the input variables. Using object class can greatly simplify this task.
-For example let's imagine that you just wrote a simple HelloWorld function.
+For example let's imagine that you just wrote a simple Hello World function.
 
 ```{r}
 HelloWorld <- function (x) {
@@ -454,35 +455,45 @@ Here are the manual commands, which also with RStudio:
 
 ```{r, eval=FALSE}
 foo <- function(x) { 
-    print(1); bar(2) 
+    print(x)
+    bar(2) 
 }
 
 bar <- function(x) { 
+    print(x)
     x + a.variable.which.does.not.exist 
 }
+
 ## Not run: 
-foo(2) # gives a strange error
+#foo(2) # gives a strange error
 traceback()
 ## 2: bar(2) at #1
 ## 1: foo(2)
 ## Ah, bar() is the problem
 ```
 
-- Now try the same with the RStudio tools: in the Main Menu select Debug - On Error - Break in Code.
-- Run the comand `foo(2)` again. Now the debuger will jump to the problematic code. Use the little green "Next" button to go line by line through the code. The traceback appears in a seperate pane on the right.  
+- Now try the same with the RStudio tools: 
+```{r, eval=FALSE}
+fu <- function(y) { 
+    foo(y)
+}
+## Not run: 
+#fu(2) 
+```
+- The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Chose "Rerun with Debug" and use the little green "Next" button to go line by line through the code. The traceback appears in a separate pane on the right.  
 
-- Fianly solve the problem: 
+- Finally solve the problem: 
 ```{r, eval=FALSE}
 ## redefine bar
 bar <- function(x) { x + 5}
 foo(2)
 ```
 
-See RStudio help and Hadely Wickham on [Debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html).
+See RStudio help and Hadely Wickham on [debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html).
 
 For another example see: [rfunction.com](http://rfunction.com/archives/2562).
 
-Further, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionalities. Refer to the reference section of this document for further information on function debugging.
+Further, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
 
 
 # Working with projects
@@ -518,9 +529,9 @@ Try to keep a consistent structure across your projects, so that it is easier fo
 I recommend using the following structure:
 
 * A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc).
-* A `R/` subdirectory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script.
-* A `data/` subdirectory: This directory contains datasets of the project. For practical reasons, only put small datasets in that directory (<2-3 MB). These can be shapefiles, small rasters, csv files, but perhaps even better is to use the R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
-* An `output/` subdirectory (when applicable).
+* A `R/` sub directory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script.
+* A `data/` sub directory: This directory contains data sets of the project. For practical reasons, only put small data sets in that directory (<2-3 MB). These can be shapefiles, small rasters, csv files, but perhaps even better is to use the R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
+* An `output/` sub directory (when applicable).
 
 <center>
 ![project structure](figs/project_structure_screenCapture.png)
@@ -529,7 +540,7 @@ I recommend using the following structure:
 
 *And what about my working directory?*
 
-You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eg `D:/data/remoteSensing/landsat/scene1.tif`).
+You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` sub directory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eh `D:/data/remoteSensing/landsat/scene1.tif`).
 
 
 Typically the header of your main script will look like that.
@@ -552,7 +563,7 @@ load('data/input_model.rda')
 ```
 
 *And what about bigger datasets?*
-The `data/` directory of your project should indeed only contain relatively small datasets. When handling bigger remote sensing datasets, these should stay out of the project, where you store the rest of your data.
+The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
 
 **So let's do it**
 
@@ -583,7 +594,7 @@ r3 <- minusRaster(r, r2)
 
 ### Switch project
 
-To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from withon RStudio, and that makes it much easier to stay organized.
+To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from within RStudio, and that makes it much easier to stay organized.
 
 
 # Version control
@@ -599,7 +610,7 @@ Have you ever worked on a project and ended up having so many versions of your w
 </center>
 
 
-The video below explains some basic concepts of verion control and what the benefits of using it are.
+The video below explains some basic concepts of version control and what the benefits of using it are.
 
 
 <center>
@@ -623,7 +634,7 @@ Additionally, version control:
 
     
 
-The three most popular version control software are **git**, **subversion** (abreviated as svn), and **mercurial** (abreviated as hg). In this course we will only use git.
+The three most popular version control software are **git**, **subversion** (abbreviated as svn), and **mercurial** (abbreviated as hg). In this course we will only use git.
 <center>
 <img src="figs/Git_logo.png" alt="Drawing" style="width: 300px"/>
 </center>
@@ -640,9 +651,9 @@ Often you also setup a **remote repository**, stored on an online platform like 
 
 ### Summary of git semantics
 
-+ **add**: Tell git that you want a file or changes to be tracked. These files/changes  are not yet saved in the repository! They are listed as "staged" in the index or staging area for the next *commit*. (Rstudio: check the "staged" checkbox).
++ **add**: Tell git that you want a file or changes to be tracked. These files/changes  are not yet saved in the repository! They are listed as "staged" in the index or staging area for the next *commit*. (RStudio: check the "staged" check box).
 + **commit**: Save the *staged* changes to your *local repository*. This is like putting a milestone or taking a snapshot of your project at that moment. That milestone describes what have been changed, why and when. In the future you can always go back to that milestone.
-+ **push** : Add previous changes committed to the local repository, to the remote repsitory.
++ **push** : Add previous changes committed to the local repository, to the remote repository.
 + **pull** : Update your local repository (and your working directory) with all new stuff from the remote repository.
 + **clone** : Copy the content of a remote repository locally for the first time.
 + more advanced:
