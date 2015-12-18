@@ -737,8 +737,8 @@ If you have created a project and already added it to github and you now want to
 
 
 # (optional) Writing packages
+The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. find instructions [here](packages.html) and in the [references](#references) below.
 
-[Optional](packages.html)
 
 
 # Exercise
