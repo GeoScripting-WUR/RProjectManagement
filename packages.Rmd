@@ -1,11 +1,13 @@
 ---
-title: "Carrying out you R project - Make your own packages (optional)"
+title: "[WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/)"
+subtitle: "Week 1, Lesson 5: [Carrying out you R project](https://geoscripting-wur.github.io/RProjectManagement/) - Make your own packages (optional)"
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     number_sections: yes
     css: custom.css
+    highlight: tango
 ---
 
 
@@ -28,7 +30,7 @@ Note how similar this is to the way we organize projects!
 
 The default basic structure of a package is as follows:
 
-fruit| price
+where | what
 -----|-----:
 `R/`| includes the functions of the package, usually each in a separate functionName.R file
 `man/` |  functionName.Rd file, for each function in `R/`. These .Rd files are the functions documentation. 
