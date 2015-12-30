@@ -1,17 +1,17 @@
 ---
-title: "[WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/)"
-subtitle: "Week 1, Lesson 5: Carrying out your R project"
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document:
-    number_sections: yes
-    css: custom.css
-    highlight: tango
-    toc: yes
-    toc_depth: 2
+  knitrBootstrap::bootstrap_document:
+    title: "Week 1, Lesson 5: Carrying out your R project"
+    theme: cosmo
+    menu: FALSE
 ---
-# Carrying out your R project 
+
+# [WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/) ![WUR logo](http://www.wageningenur.nl/upload/f9a0b5f2-15c5-4b84-9e14-20ef02f5e265_wur-logo.png)
+
+
+# Week 1, Lesson 5: Carrying out your R project 
 ## Today, 7th January, 2016
 
 Good morning! 
@@ -379,7 +379,7 @@ r4 <- minusRaster(r, r2, plot=TRUE)
 
 ##`try` and debugging
 
-### Use of try for error handling
+### Use of `try` for error handling
 
 
 The `try()` function may help you writing functions that do not crash whenever they encounter an unknown of any kind. Anything (sub-function, piece of code) that is wrapped into `try()` will not interrupt the bigger function that contains `try()`. So for instance, this is useful if you want to apply a function sequentially but independently over a large set of raster files, and you already know that some of the files are corrupted and might return an error. By wrapping your function into `try()` you allow the overall process to continue until its end, regardless of the success of individual layers. So `try()` is a perfect way to deal with heterogeneous/unpredictable input data.
@@ -447,50 +447,51 @@ out
 
 Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. 
 
-Here are the manual commands, which also with RStudio:
+#### `traceback()`
 
 - The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. 
 
 - Carefully reading the return of that function will tell you where exactly in your function the error occurred. 
 
 ```{r, eval=FALSE}
-foo <- function(x) { 
+foo <- function(x) {
+    x <- x + 2
     print(x)
     bar(2) 
 }
 
 bar <- function(x) { 
+    x <- x + a.variable.which.does.not.exist 
     print(x)
-    x + a.variable.which.does.not.exist 
 }
 
-foo(2) # gives a strange error
+foo(2) 
+## gives an error
+
 traceback()
 ## 2: bar(2) at #1
 ## 1: foo(2)
-## Ah, bar() is the problem
+# Ah, bar() is the problem
 ```
+For another example see: [rfunction.com](http://rfunction.com/archives/2562).
 
-- Now try the same with the RStudio tools: 
-```{r, eval=FALSE}
-fu <- function(y) { 
-    foo(y)
-fu(2) 
-```
-- The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Chose "Rerun with Debug" and use the little green "Next" button to go line by line through the code. The traceback appears in a separate pane on the right. 
-
+#### RStudio tools: 
+- RStudio ahs great debugging tools. Select in the main menu *Debug - On Error - Break in Code*
+- Run again ``foo(2)``. 
+- RStudio will stop where the execution where the error happend. The traceback appears in a separate pane on the right. You can and use the little green "Next" button to go line by line through the code, or the red Stop button to leave the debugging mode. 
+- Reset the *On Error* behaviour to *Error Inspector*. In this setting, RStudio will try to decide wether the error is complex enough for debugging, and then offer the options to traceback or rerun the code with debugging with two buttons in the console. 
 - Finally solve the problem: 
 ```{r, eval=FALSE}
 ## redefine bar
-bar <- function(x) { x + 5}
+bar <- function(x) {
+    x + 5
+}
 foo(2)
+## [1] 4
+## [1] 7
 ```
 
-See RStudio help and Hadely Wickham on [debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html).
-
-For another example see: [rfunction.com](http://rfunction.com/archives/2562).
-
-Further, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
+The debugging mode can also reached through calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
 
 
 # Working with projects
@@ -516,9 +517,23 @@ To create a new project, in RStudio, go to file --> New Project and then follow 
 
 This will create a new directory in which is contained a `projectName.Rproj` file; this file stores some basic information about the project.
 
-*Where should I store my projects?*
+### Where should I store my projects?*
 
 I doesn't really matter exactly where on your computer your projects are stored, one important thing is that you store them all in the same place. This way you'll always know where to find them. So for instance if you work on Windows, you can create a directory `D:\Rprojects\` in which you will store all your projects. A new project automatically creates a new sub-directory.
+
+### Project Settings
+You shoudl aslo think about the settings for the project. In the Main menu *Tools - Projects's Setting* you can chose wether RStudio should keep the command history and always save the Workspace. If you work with large Datasets, it might make sense to switch this off, to save tiem and space.
+
+Note that you can also an configuration fiel called `.Rprofile` in  the yhe root directory of the project. The settinsg in this file overwrite the settings in you user config in `~/Rprofile`. An very usefull setting here is the temp directory for `raster` by adding a line like:
+```{r, eval=FALSE}
+# set the temporary fodler for `raster` operations
+options(rasterTmpDir='~/your_temp_dir')
+
+```
+
+### Switch project
+To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from within RStudio, and that makes it much easier to stay organized.
+
 
 ## Project structure
 
@@ -535,7 +550,7 @@ I recommend using the following structure:
 </center>
 
 
-*And what about my working directory?*
+### Working directory
 
 You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` sub directory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eh `D:/data/remoteSensing/landsat/scene1.tif`).
 
@@ -559,11 +574,10 @@ load('data/input_model.rda')
 
 ```
 
-*And what about bigger datasets?*
+### Bigger data
 The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
 
-**So let's do it**
-
+### Example
 * create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
 * Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
 
@@ -588,11 +602,6 @@ r2[] <- (1:ncell(r2)) / 10
 # Performs the calculation
 r3 <- minusRaster(r, r2) 
 ```
-
-### Switch project
-
-To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from within RStudio, and that makes it much easier to stay organized.
-
 
 # Version control
 
@@ -781,7 +790,7 @@ In order to submit, put your project on your gitHub account and send the clone u
     * Reference document for creating R packages: [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html)
     * A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)
 * Git:
-    * Great 15 min interactive git commands tutorial:[try.github.io](https://try.github.io)
+    * Great 15 min interactive git commands tutorial: [try.github.io](https://try.github.io)
     * Hadley Wickham on [Rstudio and git](http://r-pkgs.had.co.nz/git.html#undefined)
     * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
     * Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
