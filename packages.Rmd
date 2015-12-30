@@ -1,13 +1,16 @@
 ---
-title: "Carrying out you R project - Make your own packages (optional)"
-author: "Loïc Dutrieux, Jan Verbesselt"
+author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document:
-    number_sections: yes
+  knitrBootstrap::bootstrap_document:
+    title: "Week 1, Lesson 5: Carrying out your R project - Make your own packages"
     theme: cosmo
+    menu: FALSE
 ---
 
+# [WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/) ![WUR logo](http://www.wageningenur.nl/upload/f9a0b5f2-15c5-4b84-9e14-20ef02f5e265_wur-logo.png)
+
+# [Week 1, Lesson 5: Carrying out your R project](https://geoscripting-wur.github.io/RProjectManagement/) - Packages
 
 Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.
 
@@ -19,21 +22,20 @@ Also part of good programming practices, building an R package is a great way to
 
 For these reasons, if you build a package, next year you will still be able to run the functions you wrote yesterday. Which is often not the case for stand alone functions that are poorly documented and may depend on many other functions ... that you cannot find anymore. So to summarize R packages are not only a way to extend the functionalities of R, they are also the standard way to archive and save R functions.
 
-# Structure of a package
+## Structure of a package
 Note that R package structure and creation are not necessarily easy things to understand. As a consequence, although there are many reasons why you should always consider working with packages, and depending on your understanding of the concepts described above, you may want to consider this part of the lesson as additional/optional. This sections describes the structure of a simple package, for more information about R packages in general and details of package creation, please refer to the manual [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html).
-
-
 
 <center><img src="figs/package_structure.png" alt="Drawing" style="width: 400px"/></center>
 
-Note how similar this is to the way we organize projects.
-
+Note how similar this is to the way we organize projects!
 
 The default basic structure of a package is as follows:
 
-2 sub directories (R and man), NAMESPACE and DESCRIPTION files (Figure above). The `R/` directory includes the functions of the package, usually each in a separate functionName.R file; Each one of these function should have an associated functionName.Rd file, stored in the `man/` directory. These .Rd files are the functions documentation. `NAMESPACE` and `DESCRIPTION` files contain general information about the package (package metadata, dependencies, version number, etc). That is quite a minimalist package structure; more elaborate packages may include extra sub directories, such as `data/`, `demo/` or `vignette/`.
-
-
+where | what
+-----|-----:
+`R/`| includes the functions of the package, usually each in a separate functionName.R file
+`man/` |  functionName.Rd file, for each function in `R/`. These .Rd files are the functions documentation. 
+`NAMESPACE` file & `DESCRIPTION` file | Contain general information about the package (package metadata, dependencies, version additional: `data/`, `demo/` or `vignette/` | additional data and documentation
 
 # Useful tips for package creation
 
@@ -81,3 +83,7 @@ In order to be able to build package, you must have `Rtools` installed and prope
 
 In order to be operational on your system the R package you just created has to be checked and built. This is a critical step since everything has to be perfect in order to pass the check step. Simple things like a missing line in a function documentation file may result in the package not passing the checks. Although a package that does not fully passes the check may still be built in some cases, this is not recommended, and it is therefore preferable to deal with the errors returned in the check console before building.
 
+# References
+* [cheat sheet for package development](https://www.rstudio.com/resources/cheatsheets/)
+* Reference document for creating R packages: [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html)
+* A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)

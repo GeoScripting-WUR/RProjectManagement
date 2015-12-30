@@ -28,7 +28,7 @@ During the previous lecture, you saw some general aspects of the R language, suc
 
 Today it's about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages! 
 
-Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple "good practices" for scripting, debugging and geoscripting projects. This includees using version control and project management.
+Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple "good practices" for scripting, debugging and geoscripting projects. This includes using version control and project management.
 
 ## Learning objectives
 At the end of the lecture, you should be able to
@@ -44,11 +44,11 @@ At the end of the lecture, you should be able to
 
 # Finding help
 ## Sources for help
-The most important helper is the R documentation. In RStudio, Just press F1 when the writing curser in the editor or console is over the function you are interested in.
+The most important helper is the R documentation. In RStudio, just press F1 when the writing curser in the editor or console is over the function you are interested in.
 
-There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by goggling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
+There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by googling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
 
-However, it may also happen that you discover a ''bug'' or something that you would qualify of abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general [R mailing list](https://stat.ethz.ch/mailman/listinfo/r-help), while the spatial domain has its own mailing list ( [R SIG GEO](https://stat.ethz.ch/mailman/listinfo/r-sig-geo) ). Geo related question should be posted to this latter mailing list.
+However, it may also happen that you discover a ''bug'' or something that you would qualify as abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general [R mailing list](https://stat.ethz.ch/mailman/listinfo/r-help), while the spatial domain has its own mailing list ( [R SIG GEO](https://stat.ethz.ch/mailman/listinfo/r-sig-geo) ). Geo related question should be posted to this latter mailing list.
 
 
 Warning, these mailing list have heavy mail traffic, use your mail client efficiently and set filters, otherwise it will quickly bother you.
@@ -64,7 +64,7 @@ So, when posting to the mail list:
 
 * Be courteous,
 * Provide a brief description of the problem and why you are trying to do that.
-* Provide a reproducible example that illustrated the problem, reproducing the eventual error
+* Provide a reproducible example that illustrate the problem, reproducing the eventual error
 * Sign with your name and your affiliation
 * Do not expect an immediate answer (although well presented question often get answered fairly quickly)
 
@@ -76,8 +76,7 @@ Indispensable when asking a question to the online community, being able to writ
 - it may ensure that when you present a problem, people are able to answer your question without guessing what you are trying to do. 
 - reproducible examples are not only to ask questions; they may help you in your thinking, developing  or debugging process when writing your own functions. 
 
-    - For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated rasterLayer object, and not directly on your actual data covering the entire universe 
-dots.
+    - For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated rasterLayer object, and not directly on your actual data covering the entire universe dots.
 
 ### Example of an reproducible example
 
@@ -107,7 +106,7 @@ plot(r)
 ```
 
 
-Useful to know when writing a reproducible example; instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' data-sets. They are part of the main R packages.
+Useful to know when writing a reproducible example: instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' data-sets. They are part of the main R packages.
 Some popular data sets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc
 The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the data sets available. (In RStudio like in most script editing environments auto-completion can be toggled by pressing the tab key, use it without moderation.)
 
@@ -137,7 +136,7 @@ coordinates(meuse) <- c("x", "y")
 class(meuse)
 ```
 
-Now that the object belongs to a spatial class, we can plot it using one of the vector plotting function of the sp package. See the resulting in the figure below.
+Now that the object belongs to a spatial class, we can plot it using one of the vector plotting functions of the sp package. See the resulting in the figure below.
 
 ```{r, echo=TRUE, fig.align='center'}
 bubble(meuse, "zinc", maxsize = 2.5,
@@ -188,7 +187,7 @@ In order to achieve these objectives, you should try to follow a few good practi
     - indentation (like in python: use space or tab to indent code in functions or loops etc.)
     - use of `<-` instead of `=` as assignment operator. It's a convention. 
     - placement of curly braces
-* [Make your own packages](#make-your-own-packages)
+* [Make your own packages](#optional-writing-packages)
 * Work with [projects](#working-with-projects)
 * Keep a similar [directory structure](#project-structure) across your projects
 * Use [version control](#version-control) to develop/maintain your projects and packages
@@ -250,7 +249,7 @@ So let's look back at the examples and identify some differences:
 * Indentation: Missing in the second example
 * Control flow: Second example does not check for implausible dates
 
-You haven't fully understood what control flow is r are not fully comfortable with functions writing yet? We'll see more of that in the following sections. 
+You haven't fully understood what control flow is or you are not fully comfortable with function writing yet? We'll see more of that in the following sections. 
 
 # Function writing
 > A function is a sequence of program instructions that perform a specific task, packaged as a unit. This unit can then be used in programs wherever that particular task should be performed. -[Wikipedia](https://en.wikipedia.org/wiki/Subroutine)
@@ -293,7 +292,7 @@ class(e)
 
 ### Controlling the class of input variables of a function
 
-One way of making function more auto-adaptive is by adding checks of the input variables. Using object class can greatly simplify this task.
+One way of making functions more auto-adaptive is by adding checks of the input variables. Using object class can greatly simplify this task.
 For example let's imagine that you just wrote a simple Hello World function.
 
 ```{r}
@@ -447,7 +446,11 @@ out
 
 Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. 
 
+<<<<<<< HEAD
 #### `traceback()`
+=======
+Here are the manual commands, which also work with RStudio:
+>>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
 
 - The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. 
 
@@ -473,7 +476,11 @@ traceback()
 ## 1: foo(2)
 # Ah, bar() is the problem
 ```
+<<<<<<< HEAD
 For another example see: [rfunction.com](http://rfunction.com/archives/2562).
+=======
+- The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Choose "Rerun with Debug" and use the little green "Next" button to go line by line through the code. The traceback appears in a separate pane on the right. 
+>>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
 
 #### RStudio tools: 
 - RStudio ahs great debugging tools. Select in the main menu *Debug - On Error - Break in Code*
@@ -491,7 +498,15 @@ foo(2)
 ## [1] 7
 ```
 
+<<<<<<< HEAD
 The debugging mode can also reached through calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
+=======
+See RStudio help and Hadely Wickham on [debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html).
+
+For another example see: [rfunction.com](http://rfunction.com/archives/2562).
+
+Further, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, feel free to explore by yourself this debugging functionality. Refer to the reference section of this document for further information on function debugging.
+>>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
 
 
 # Working with projects
@@ -501,7 +516,7 @@ The debugging mode can also reached through calling `debug()`. Although the use 
 
 RStudio allows you to work with projects. Organizing your work in different projects is a good way to stay organized and avoid getting mixed up and lost in too many files. Projects have many advantages as they:
 
-* Help you staying organized
+* Help you stay organized
 * Make it easy to use version control
 * Easily create packages
 
@@ -552,7 +567,7 @@ I recommend using the following structure:
 
 ### Working directory
 
-You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` sub directory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eh `D:/data/remoteSensing/landsat/scene1.tif`).
+You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` sub directory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (e.g. `D:/data/remoteSensing/landsat/scene1.tif`).
 
 
 Typically the header of your main script will look like that.
@@ -577,8 +592,14 @@ load('data/input_model.rda')
 ### Bigger data
 The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
 
+<<<<<<< HEAD
 ### Example
 * create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
+=======
+**So let's do it**
+
+* Create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
+>>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
 * Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
 
 ```{r, eval=FALSE}
@@ -653,7 +674,7 @@ The three most popular version control software are **git**, **subversion** (abb
 
 Every time you make significant changes to the files in your workspace, you have to **add** and **commit** them, which means saving the changes to the history tracking of your local repository. 
 
-Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a mirror of your local repository and allows you have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push**, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to **pull**.
+Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a mirror of your local repository and allows you to have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push**, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to **pull**.
 
 ### Summary of git semantics
 
@@ -746,8 +767,8 @@ If you have created a project and already added it to github and you now want to
 
 
 # (optional) Writing packages
+The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. find instructions [here](packages.html) and in the [references](#references) below.
 
-[Optional](packages.html)
 
 
 # Exercise

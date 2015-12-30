@@ -898,7 +898,7 @@ Week 1, Lesson 5: Carrying out your R project
 <h2 id="introduction">Introduction</h2>
 <p>During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing.</p>
 <p>Today it's about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages!</p>
-<p>Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple &quot;good practices&quot; for scripting, debugging and geoscripting projects. This includees using version control and project management.</p>
+<p>Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple &quot;good practices&quot; for scripting, debugging and geoscripting projects. This includes using version control and project management.</p>
 <h2 id="learning-objectives">Learning objectives</h2>
 <p>At the end of the lecture, you should be able to</p>
 <ul>
@@ -912,9 +912,9 @@ Week 1, Lesson 5: Carrying out your R project
 <p><strong>The two last points are particularly important, so try to go quickly over the first part of the tutorial and spend more time on projects and version control</strong></p>
 <h1 id="finding-help">Finding help</h1>
 <h2 id="sources-for-help">Sources for help</h2>
-<p>The most important helper is the R documentation. In RStudio, Just press F1 when the writing curser in the editor or console is over the function you are interested in.</p>
-<p>There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by goggling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on <a href="http://stackexchange.com/">Stack Exchange</a>. These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.</p>
-<p>However, it may also happen that you discover a ''bug'' or something that you would qualify of abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general <a href="https://stat.ethz.ch/mailman/listinfo/r-help">R mailing list</a>, while the spatial domain has its own mailing list ( <a href="https://stat.ethz.ch/mailman/listinfo/r-sig-geo">R SIG GEO</a> ). Geo related question should be posted to this latter mailing list.</p>
+<p>The most important helper is the R documentation. In RStudio, just press F1 when the writing curser in the editor or console is over the function you are interested in.</p>
+<p>There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, google is your best friend. Most likely by googling the right key words relating to your ''problem'', google will direct you to the archive of the R mailing list, or to some discussions on <a href="http://stackexchange.com/">Stack Exchange</a>. These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.</p>
+<p>However, it may also happen that you discover a ''bug'' or something that you would qualify as abnormal behavior, or that you really have a question that no-one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general <a href="https://stat.ethz.ch/mailman/listinfo/r-help">R mailing list</a>, while the spatial domain has its own mailing list ( <a href="https://stat.ethz.ch/mailman/listinfo/r-sig-geo">R SIG GEO</a> ). Geo related question should be posted to this latter mailing list.</p>
 <p>Warning, these mailing list have heavy mail traffic, use your mail client efficiently and set filters, otherwise it will quickly bother you.</p>
 <p>These mailing lists have a few rules, and it's important to respect them in order to ensure that:</p>
 <ul>
@@ -926,7 +926,7 @@ Week 1, Lesson 5: Carrying out your R project
 <ul>
 <li>Be courteous,</li>
 <li>Provide a brief description of the problem and why you are trying to do that.</li>
-<li>Provide a reproducible example that illustrated the problem, reproducing the eventual error</li>
+<li>Provide a reproducible example that illustrate the problem, reproducing the eventual error</li>
 <li>Sign with your name and your affiliation</li>
 <li>Do not expect an immediate answer (although well presented question often get answered fairly quickly)</li>
 </ul>
@@ -987,7 +987,7 @@ plot(r)</code></pre>
 </div>
 </div>
 </div>
-<p>Useful to know when writing a reproducible example; instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' data-sets. They are part of the main R packages. Some popular data sets are: <code>cars</code>, <code>meuse.grid_ll</code>, <code>Rlogo</code>, <code>iris</code>, etc The <a href="http://en.wikipedia.org/wiki/Autocomplete">auto completion</a> menu of the <code>data()</code> function will give you an overview of the data sets available. (In RStudio like in most script editing environments auto-completion can be toggled by pressing the tab key, use it without moderation.)</p>
+<p>Useful to know when writing a reproducible example: instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R ''built-in'' data-sets. They are part of the main R packages. Some popular data sets are: <code>cars</code>, <code>meuse.grid_ll</code>, <code>Rlogo</code>, <code>iris</code>, etc The <a href="http://en.wikipedia.org/wiki/Autocomplete">auto completion</a> menu of the <code>data()</code> function will give you an overview of the data sets available. (In RStudio like in most script editing environments auto-completion can be toggled by pressing the tab key, use it without moderation.)</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1058,7 +1058,7 @@ class(meuse)</code></pre>
 ## [1] "sp"
 </code></pre>
 </div>
-<p>Now that the object belongs to a spatial class, we can plot it using one of the vector plotting function of the sp package. See the resulting in the figure below.</p>
+<p>Now that the object belongs to a spatial class, we can plot it using one of the vector plotting functions of the sp package. See the resulting in the figure below.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1122,7 +1122,7 @@ spplot(meuse.grid, col.regions=bpy.colors(), main = "meuse.grid",
 <li>use of <code>&lt;-</code> instead of <code>=</code> as assignment operator. It's a convention.</li>
 <li>placement of curly braces</li>
 </ul></li>
-<li><a href="#make-your-own-packages">Make your own packages</a></li>
+<li><a href="#optional-writing-packages">Make your own packages</a></li>
 <li>Work with <a href="#working-with-projects">projects</a></li>
 <li>Keep a similar <a href="#project-structure">directory structure</a> across your projects</li>
 <li>Use <a href="#version-control">version control</a> to develop/maintain your projects and packages</li>
@@ -1193,7 +1193,7 @@ funTest_4(1985)</code></pre>
 <li>Indentation: Missing in the second example</li>
 <li>Control flow: Second example does not check for implausible dates</li>
 </ul>
-<p>You haven't fully understood what control flow is r are not fully comfortable with functions writing yet? We'll see more of that in the following sections.</p>
+<p>You haven't fully understood what control flow is or you are not fully comfortable with function writing yet? We'll see more of that in the following sections.</p>
 <h1 id="function-writing">Function writing</h1>
 <blockquote>
 <p>A function is a sequence of program instructions that perform a specific task, packaged as a unit. This unit can then be used in programs wherever that particular task should be performed. -<a href="https://en.wikipedia.org/wiki/Subroutine">Wikipedia</a></p>
@@ -1271,7 +1271,7 @@ class(e)</code></pre>
 </code></pre>
 </div>
 <h3 id="controlling-the-class-of-input-variables-of-a-function">Controlling the class of input variables of a function</h3>
-<p>One way of making function more auto-adaptive is by adding checks of the input variables. Using object class can greatly simplify this task. For example let's imagine that you just wrote a simple Hello World function.</p>
+<p>One way of making functions more auto-adaptive is by adding checks of the input variables. Using object class can greatly simplify this task. For example let's imagine that you just wrote a simple Hello World function.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1418,7 +1418,7 @@ freq(a, value=-2)</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] 358
+<pre style=""><code class="output r">## [1] 323
 </code></pre>
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1467,10 +1467,10 @@ out</code></pre>
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
 <pre style=""><code class="output r">## [[1]]
-## [1] 358
+## [1] 323
 ## 
 ## [[2]]
-## [1] 358
+## [1] 323
 ## 
 ## [[3]]
 ## [1] "This object returned an error"
@@ -1484,13 +1484,13 @@ out</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] "358"                           "358"                          
+<pre style=""><code class="output r">## [1] "323"                           "323"                          
 ## [3] "This object returned an error"
 </code></pre>
 </div>
 <h3 id="function-debugging">Function debugging</h3>
 <p>Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful.</p>
-<h4 id="traceback"><code>traceback()</code></h4>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD #### <code>traceback()</code> ======= Here are the manual commands, which also work with RStudio: &gt;&gt;&gt;&gt;&gt;&gt;&gt; 6fa6bab17221ae7a72d545ab0402a461140e3ae0</p>
 <ul>
 <li><p>The first thing to investigate right after an error occurs is to run the <code>traceback()</code> function; just like that without arguments.</p></li>
 <li><p>Carefully reading the return of that function will tell you where exactly in your function the error occurred.</p></li>
@@ -1518,7 +1518,7 @@ traceback()
 ## 1: foo(2)
 # Ah, bar() is the problem</code></pre>
 </div>
-<p>For another example see: <a href="http://rfunction.com/archives/2562">rfunction.com</a>.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD For another example see: <a href="http://rfunction.com/archives/2562">rfunction.com</a>. ======= - The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Choose &quot;Rerun with Debug&quot; and use the little green &quot;Next&quot; button to go line by line through the code. The traceback appears in a separate pane on the right. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 6fa6bab17221ae7a72d545ab0402a461140e3ae0</p>
 <h4 id="rstudio-tools">RStudio tools:</h4>
 <ul>
 <li>RStudio ahs great debugging tools. Select in the main menu <em>Debug - On Error - Break in Code</em></li>
@@ -1539,12 +1539,14 @@ foo(2)
 ## [1] 7</code></pre>
 </div></li>
 </ul>
-<p>The debugging mode can also reached through calling <code>debug()</code>. Although the use of <code>debug()</code> is not covered in this lesson, fell free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD The debugging mode can also reached through calling <code>debug()</code>. Although the use of <code>debug()</code> is not covered in this lesson, fell free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging. ======= See RStudio help and Hadely Wickham on <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">debugging with Rstudio</a>.</p>
+<p>For another example see: <a href="http://rfunction.com/archives/2562">rfunction.com</a>.</p>
+<p>Further, R has a more elaborated debugging mode that can be activated by calling <code>debug()</code>. Although the use of <code>debug()</code> is not covered in this lesson, feel free to explore by yourself this debugging functionality. Refer to the reference section of this document for further information on function debugging. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 6fa6bab17221ae7a72d545ab0402a461140e3ae0</p>
 <h1 id="working-with-projects">Working with projects</h1>
 <p><em>Pay attention, this is a very important part, and you will be requested to work with projects for all subsequent assignments of the course</em></p>
 <p>RStudio allows you to work with projects. Organizing your work in different projects is a good way to stay organized and avoid getting mixed up and lost in too many files. Projects have many advantages as they:</p>
 <ul>
-<li>Help you staying organized</li>
+<li>Help you stay organized</li>
 <li>Make it easy to use version control</li>
 <li>Easily create packages</li>
 </ul>
@@ -1581,7 +1583,7 @@ options(rasterTmpDir='~/your_temp_dir')</code></pre>
 <img src="figs/project_structure_screenCapture.png" alt="project structure" />
 </center>
 <h3 id="working-directory">Working directory</h3>
-<p>You may have learned that one of the first things to do when opening a R session is to set your working directory, using the <code>setwd()</code> command. When creating a new project, the working directory is automatically set to the root of the project. That is where your <code>main.R</code> is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your <code>data/</code> sub directory, simply append <code>data/</code> to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (eh <code>D:/data/remoteSensing/landsat/scene1.tif</code>).</p>
+<p>You may have learned that one of the first things to do when opening a R session is to set your working directory, using the <code>setwd()</code> command. When creating a new project, the working directory is automatically set to the root of the project. That is where your <code>main.R</code> is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your <code>data/</code> sub directory, simply append <code>data/</code> to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (e.g. <code>D:/data/remoteSensing/landsat/scene1.tif</code>).</p>
 <p>Typically the header of your main script will look like that.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -1602,9 +1604,9 @@ load('data/input_model.rda')
 </div>
 <h3 id="bigger-data">Bigger data</h3>
 <p>The <code>data/</code> directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.</p>
-<h3 id="example">Example</h3>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD ### Example * create 3 files in your <code>R/</code> directory (<code>ageCalculator.R</code>, <code>HelloWorld.R</code> and <code>minusRaster.R</code>) in which you will copy paste the respective functions. ======= <strong>So let's do it</strong></p>
 <ul>
-<li>create 3 files in your <code>R/</code> directory (<code>ageCalculator.R</code>, <code>HelloWorld.R</code> and <code>minusRaster.R</code>) in which you will copy paste the respective functions.</li>
+<li>Create 3 files in your <code>R/</code> directory (<code>ageCalculator.R</code>, <code>HelloWorld.R</code> and <code>minusRaster.R</code>) in which you will copy paste the respective functions. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 6fa6bab17221ae7a72d545ab0402a461140e3ae0</li>
 <li>Create a <code>main.R</code> script at the root of your project and add some code to it. The content of the <code>main.R</code> in that case could be something as below.</li>
 </ul>
 <div class="row">
@@ -1665,7 +1667,7 @@ The three most popular version control software are <strong>git</strong>, <stron
 <h3 id="what-git-does">What git does</h3>
 <p><strong>Git</strong> creates a <strong>local repository</strong> in your project directory (workspace).</p>
 <p>Every time you make significant changes to the files in your workspace, you have to <strong>add</strong> and <strong>commit</strong> them, which means saving the changes to the history tracking of your local repository.</p>
-<p>Often you also setup a <strong>remote repository</strong>, stored on an online platform like <a href="https://github.com/">github</a> or other platform. It is simply a mirror of your local repository and allows you have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can <strong>push</strong>, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to <strong>pull</strong>.</p>
+<p>Often you also setup a <strong>remote repository</strong>, stored on an online platform like <a href="https://github.com/">github</a> or other platform. It is simply a mirror of your local repository and allows you to have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can <strong>push</strong>, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to <strong>pull</strong>.</p>
 <h3 id="summary-of-git-semantics">Summary of git semantics</h3>
 <ul>
 <li><strong>add</strong>: Tell git that you want a file or changes to be tracked. These files/changes are not yet saved in the repository! They are listed as &quot;staged&quot; in the index or staging area for the next <em>commit</em>. (RStudio: check the &quot;staged&quot; check box).</li>
@@ -1731,7 +1733,7 @@ The three most popular version control software are <strong>git</strong>, <stron
 <img src="figs/github_screenCapture.png" alt="Drawing" style="width: 600px"/>
 </center>
 <h1 id="optional-writing-packages">(optional) Writing packages</h1>
-<p><a href="packages.html">Optional</a></p>
+<p>The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. find instructions <a href="packages.html">here</a> and in the <a href="#references">references</a> below.</p>
 <h1 id="exercise">Exercise</h1>
 <h2 id="your-task">Your task</h2>
 <p>Create a RStudio project, with git version control. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the <code>main.R</code>. The function should behave as follows:</p>
