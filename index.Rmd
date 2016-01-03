@@ -446,11 +446,8 @@ out
 
 Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. 
 
-<<<<<<< HEAD
 #### `traceback()`
-=======
 Here are the manual commands, which also work with RStudio:
->>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
 
 - The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. 
 
@@ -475,18 +472,15 @@ traceback()
 ## 2: bar(2) at #1
 ## 1: foo(2)
 # Ah, bar() is the problem
-```
-<<<<<<< HEAD
+
 For another example see: [rfunction.com](http://rfunction.com/archives/2562).
-=======
-- The error is now nested one level deeper. RStudio will offer to show the traceback and rerunning the the problematic code with buttons in the console. Choose "Rerun with Debug" and use the little green "Next" button to go line by line through the code. The traceback appears in a separate pane on the right. 
->>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
 
 #### RStudio tools: 
-- RStudio ahs great debugging tools. Select in the main menu *Debug - On Error - Break in Code*
+- RStudio has great debugging tools. To force them to catch every error, select *Debug - On Error - Break in Code* in the main menu 
 - Run again ``foo(2)``. 
-- RStudio will stop where the execution where the error happend. The traceback appears in a separate pane on the right. You can and use the little green "Next" button to go line by line through the code, or the red Stop button to leave the debugging mode. 
-- Reset the *On Error* behaviour to *Error Inspector*. In this setting, RStudio will try to decide wether the error is complex enough for debugging, and then offer the options to traceback or rerun the code with debugging with two buttons in the console. 
+- RStudio will stop the execution where the error happend. The traceback appears in a separate pane on the right. 
+-You can and use the little green "Next" button to go line by line through the code, or the red Stop button to leave the debugging mode. 
+- Reset the *On Error* behaviour to *Error Inspector*. In this default setting, RStudio will try to decide wether the error is complex enough for debugging, and then offer the options to "traceback" or "rerun the code with debugging" with two buttons in the console. 
 - Finally solve the problem: 
 ```{r, eval=FALSE}
 ## redefine bar
@@ -498,21 +492,11 @@ foo(2)
 ## [1] 7
 ```
 
-<<<<<<< HEAD
-The debugging mode can also reached through calling `debug()`. Although the use of `debug()` is not covered in this lesson, fell free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
-=======
-See RStudio help and Hadely Wickham on [debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html).
-
-For another example see: [rfunction.com](http://rfunction.com/archives/2562).
-
-Further, R has a more elaborated debugging mode that can be activated by calling `debug()`. Although the use of `debug()` is not covered in this lesson, feel free to explore by yourself this debugging functionality. Refer to the reference section of this document for further information on function debugging.
->>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
-
+The debugging mode can also reached through calling `debug()`. This is not covered in this lesson, feel free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
 
 # Working with projects
 
 *Pay attention, this is a very important part, and you will be requested to work with projects for all subsequent assignments of the course*
-
 
 RStudio allows you to work with projects. Organizing your work in different projects is a good way to stay organized and avoid getting mixed up and lost in too many files. Projects have many advantages as they:
 
@@ -636,13 +620,10 @@ Have you ever worked on a project and ended up having so many versions of your w
 ![file name](figs/fileNames.png)
 </center>
 
-
 The video below explains some basic concepts of version control and what the benefits of using it are.
 
-
-<center>
-<iframe width="560" height="315" src="//www.youtube.com/embed/8oRjP8yj2Wo" frameborder="0" allowfullscreen></iframe>
-</center>
+<iframe src="https://player.vimeo.com/video/41027679" width="500" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/41027679">What is VCS? (Git-SCM) &bull; Git Basics #1</a> from <a href="https://vimeo.com/github">GitHub</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 
 So to sum up, version control allows to keep track of:
@@ -662,11 +643,8 @@ Additionally, version control:
     
 
 The three most popular version control software are **git**, **subversion** (abbreviated as svn), and **mercurial** (abbreviated as hg). In this course we will only use git.
-<center>
-<img src="figs/Git_logo.png" alt="Drawing" style="width: 300px"/>
-</center>
 
-## Git
+## Git <img src="figs/Git_logo.png" alt="git" style="width: 80px"/>
 
 ### What git does 
 
