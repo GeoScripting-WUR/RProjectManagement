@@ -576,14 +576,10 @@ load('data/input_model.rda')
 ### Bigger data
 The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
 
-<<<<<<< HEAD
-### Example
-* create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
-=======
-**So let's do it**
 
+### Example
 * Create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
->>>>>>> 6fa6bab17221ae7a72d545ab0402a461140e3ae0
+
 * Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
 
 ```{r, eval=FALSE}
@@ -674,8 +670,8 @@ Often you also setup a **remote repository**, stored on an online platform like 
 
 ## Seting up git with RStudio
 
+### From RStudio
 RStudio projects become really powerful when they are combined with version control, and RStudio helps you in doing that. To illustrate that, we are going to track the project created previously with git, and push it to github.
-
 
 1. *Create a github account*
 
@@ -728,20 +724,40 @@ Copy the two lines provided by gitHub for the case of you already have a local r
 
 Your project is now fully setup with version control; next time you make changes, and commit them, you can use the green ''push'' arrow to update your remote repository. Or use the ''pull'' arrow to update your local repository.
 
-
-
-
-
-
-An alternative to the approach described above (perhaps easier) when starting a new project is to create the remote first and let RStudio import it using the menus in file --> New project --> Version Control --> Git.
-
-
-### Checkout a project on a different computer
-
-If you have created a project and already added it to github and you now want to work on a different computer, you can use the menus of RStudio to check it out. (file --> New project --> Version Control --> Git). Use the **clone URL** as shown below to indicate the remote repository location to RStudio.
-
-
+### From new or existing github repo
+An alternative to the approach described above (perhaps easier) when starting a new project is to create the remote first on github.
+Use the **clone URL** as shown below to indicate the remote repository location to RStudio.
+In RStudio import it using the menus in _file --> New project --> Version Control --> Git (paste url)_.
+***This also works also with rpos of other people!*** Only than you won't be able to push to their remote.
 <center><img src="figs/github_screenCapture.png" alt="Drawing" style="width: 600px"/></center>
+
+### Git Password and errors
+When using the RStudio "push" button, you may see this error message from RStudio:
+
+```
+error: unable to read askpass response from 'rpostback-askpass'
+fatal: could not read Username for 'https://github.com': Device not configured
+```
+Also if you don't get an error, it's annoying to type your login every time you want to push to a remote.
+
+There's a few ways to go about fixing the password issue.
+
+#### Password Caching
+
+The easiest is to tell git to cache your password for the next four months (about ten million seconds) by opening a terminal and running the following command:
+
+`git config --global credential.helper 'cache --timeout=10000000'`
+
+You'll then have to force git to ask for your password once at the command line. If the remote is set-up already, this should work by running `git push`  _within the repository directory_ in the shell.
+
+These instructions are on the GitHub help page under [Password Caching](https://help.github.com/articles/set-up-git#platform-linux).
+
+#### SSH RSA Key
+
+A permanent option is to set up git, GitHub and RStudio to use an SSH RSA key. 
+In RStudio, click _Tools -> Global oprions ->  Git/SVN -> SSH RSA Key -> Create RSA Key_
+then View public key and then follow these instructions to [add your SSH key to GitHub](https://help.github.com/articles/generating-ssh-keys/#step-4-add-your-ssh-key-to-your-account). 
+You may need to restart RStudio before the configuration takes effect.
 
 
 # (optional) Writing packages
@@ -781,7 +797,12 @@ Error: argument of class numeric expected
 Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-In order to submit, put your project on your gitHub account and send the clone url to Johannes by e-mail before the next day (1030)
+Put your project on your gitHub account and post the clone url in the code review forum on BlackBoard before the next day (0930)!
+
+For reviewing other teams aswers: 
+
+* clone the repo you have to review to your computer and test it
+* you can either post your remarks in the review forum on blackboard, or try out the github feature [issues](https://guides.github.com/features/issues/)
 
 # References
 
