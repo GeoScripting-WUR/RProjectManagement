@@ -1,0 +1,47 @@
+---
+title: "Geoscripting: Project Management"
+author: "Johannes Eberenz"
+date: "7 January 2016"
+output: 
+    ioslides_presentation:
+        logo: figs/wur-logo.png
+        css: slides.css
+---
+
+## 
+
+## Project Structure
+Scripts vs. functions ?!
+![struc](figs/project_structure_screenCapture.png)
+
+## git
+![git](http://imgs.xkcd.com/comics/git.png)
+
+## git: examples
+
+![logo](https://camo.githubusercontent.com/ecc5ea9d9e0b4b553330e09249a0fd3c0b280029/687474703a2f2f6c6561666c65746a732e636f6d2f646f63732f696d616765732f6c6f676f2e706e67)
+![tux](https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/207px-Tux.svg.png)
+
+- [https://github.com/Leaflet/Leaflet](https://github.com/Leaflet/Leaflet)
+- [https://github.com/torvalds/linux](https://github.com/torvalds/linux)
+
+## Fun editors
+
+Nice features: code completion - git integration - ...
+
+For example:
+
+- Sublime Text
+- Atom
+-  ...?
+
+```
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt-get update
+sudo apt-get atom
+```
+
+
+## Questions {.flexbox .vcenter}
+???
+
