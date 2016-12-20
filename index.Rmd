@@ -1,5 +1,5 @@
 ---
-author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
+author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliunas"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   knitrBootstrap::bootstrap_document:
@@ -487,119 +487,9 @@ foo(2)
 
 The debugging mode can also reached through calling `debug()`. This is not covered in this lesson, feel free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
 
-# Working with projects
-
-*Pay attention, this is a very important part, and you will be requested to work with projects for all subsequent assignments of the course*
-
-RStudio allows you to work with projects. Organizing your work in different projects is a good way to stay organized and avoid getting mixed up and lost in too many files. Projects have many advantages as they:
-
-* Help you stay organized
-* Make it easy to use version control
-* Easily create packages
-
-In the following sections, we will create a project to put together the functions that we have created earlier in this tutorial.
-
-## Create a project in RStudio
-
-To create a new project, in RStudio, go to file --> New Project and then follow the menus. In an **empty directory** we will create a **New project**. You should see the dialog as in the figure below. Also tick the option to create a git repository; we will use that feature too later.
-
-<center>
-![Create a project](figs/new_project_screenCapture.png)
-</center>
-
-This will create a new directory in which is contained a `projectName.Rproj` file; this file stores some basic information about the project.
-
-### Where should I store my projects?*
-
-I doesn't really matter exactly where on your computer your projects are stored, one important thing is that you store them all in the same place. This way you'll always know where to find them. So for instance if you work on Windows, you can create a directory `D:\Rprojects\` in which you will store all your projects. A new project automatically creates a new sub-directory.
-
-### Project Settings
-You shoudl aslo think about the settings for the project. In the Main menu *Tools - Projects's Setting* you can chose wether RStudio should keep the command history and always save the Workspace. If you work with large Datasets, it might make sense to switch this off, to save tiem and space.
-
-Note that you can also an configuration fiel called `.Rprofile` in  the yhe root directory of the project. The settinsg in this file overwrite the settings in you user config in `~/Rprofile`. An very usefull setting here is the temp directory for `raster` by adding a line like:
-```{r, eval=FALSE}
-# set the temporary fodler for `raster` operations
-options(rasterTmpDir='~/your_temp_dir')
-
-```
-
-### Switch project
-To navigate between projects, use the button in the top-right corner of RStudio. All your recently opened projects should be visible there. Basically when you start working with projects, you almost never again have to deal with the files directly, but everything happens from within RStudio, and that makes it much easier to stay organized.
-
-
-## Project structure
-
-Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work.
-I recommend using the following structure:
-
-* A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc).
-* A `R/` sub directory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script.
-* A `data/` sub directory: This directory contains data sets of the project. For practical reasons, only put small data sets in that directory (<2-3 MB). These can be shapefiles, small rasters, csv files, but perhaps even better is to use the R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
-* An `output/` sub directory (when applicable).
-
-<center>
-![project structure](figs/project_structure_screenCapture.png)
-</center>
-
-
-### Working directory
-
-You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project. That is where your `main.R` is now located. When working with RStudio projects I do not recommend changing the working directory, if you want to access things stored in your `data/` sub directory, simply append `data/` to the beginning of the string leading to the file you want to load. If you want to point to files located outside of the project directory, use the full path (e.g. `D:/data/remoteSensing/landsat/scene1.tif`).
-
-
-Typically the header of your main script will look like that.
-
-
-```{r, eval=FALSE}
-# John Doe
-# December 2014
-# Import packages
-library(raster)
-library(sp)
-# Source functions
-source('R/function1.R')
-source('R/function2.R')
-# Load datasets 
-load('data/input_model.rda')
-
-# Then the actual commands
-
-```
-
-### Bigger data
-The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
-
-
-### Example
-* Create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
-
-* Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
-
-```{r, eval=FALSE}
-# Name
-# Date
-library(raster)
-
-source('R/ageCalculator.R')
-source('R/HelloWorld.R')
-source('R/minusRaster.R')
-
-
-HelloWorld('john')
-ageCalculator(2009)
-
-# import dataset
-r <- raster(system.file("external/rlogo.grd", package="raster")) 
-r2 <- r 
-# Filling the rasterLayer with new values.
-r2[] <- (1:ncell(r2)) / 10
-# Performs the calculation
-r3 <- minusRaster(r, r2) 
-```
-
 # Version control
 
-**Important note:** you need to have git installed and properly configured on your computer to do the following. Visit the [system setup page](http://geoscripting-wur.github.io/system_setup/) for more details.
+**Important note:** you need to have git installed and properly configured on your computer to do the following. Visit the [system setup page](http://geoscripting-wur.github.io/system_setup/) for more details. Git is preinstalled in the PC lab and on virtual machines already.
 
 ## What is version control?
 
@@ -626,34 +516,34 @@ Additionally, version control:
 * Facilitates collaboration with others
 * Allows you to keep your code archived in a safe place (the cloud)
 * Allows you to go back to previous version of your code
+* Allows you to find out what changes broke your code
 * Allows you to have experimental branches without breaking your code
-* Keep different versions of your code without having to worry about file names and archiving organization
+* Allows you to keep different versions of your code without having to worry about file names and archiving organization
 
-    
-
-The three most popular version control software are **git**, **subversion** (abbreviated as svn), and **mercurial** (abbreviated as hg). In this course we will only use git.
+The three most popular version control software are **Git**, **Mercurial** (abbreviated as hg) and **Subversion** (abbreviated as svn). *Git* is by far the most modern and popular one, so we will only use *Git* in this course.
 
 ## Git <img src="figs/Git_logo.png" alt="git" style="width: 80px"/>
 
 ### What git does 
 
-**Git** creates a **local repository** in your project directory (workspace). 
+**Git** keeps track of changes in a **local repository** you set up on your computer. Typically that is a folder that contains all your code and optionally the data your code needs in order to run. The local repository contains all your files, but also (in a hidden folder) all the changes to the files you have made. It does not keep track of all files automatically: you need to tell git which files to track and which not. Therefore a repository contains your current tracked files (**workspace**), an **index** of files that are being tracked, and the version history.
 
-Every time you make significant changes to the files in your workspace, you have to **add** and **commit** them, which means saving the changes to the history tracking of your local repository. 
+Every time you make significant changes to the files in your workspace, you have to **add** the changed files to the index, which selects the files whose changes you want to save, and **commit** them, which means saving the changes to the history tracking of your local repository.
 
-Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a mirror of your local repository and allows you to have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push**, which means updating the remote repository. When you want to update your local repository based on the content of a remote repository, you have to **pull**.
+Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a remotely-hosted mirror of your local repository and allows you to have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push** your commits, which means sending them to the remote repository so it keeps in sync with your local one. When you want to update your local repository based on the content of a remote repository, you have to **pull** the commits from the remote repository.
 
 ### Summary of git semantics
 
-+ **add**: Tell git that you want a file or changes to be tracked. These files/changes  are not yet saved in the repository! They are listed as "staged" in the index or staging area for the next *commit*. (RStudio: check the "staged" check box).
-+ **commit**: Save the *staged* changes to your *local repository*. This is like putting a milestone or taking a snapshot of your project at that moment. That milestone describes what have been changed, why and when. In the future you can always go back to that milestone.
-+ **push** : Add previous changes committed to the local repository, to the remote repository.
-+ **pull** : Update your local repository (and your working directory) with all new stuff from the remote repository.
++ **add**: Tell git that you want a file or changes to be tracked. These files/changes  are not yet saved in the repository! They are listed as "staged" in the index or staging area for the next *commit*.
++ **commit**: Save the *staged* changes to your *local repository*. This is like putting a milestone or taking a snapshot of your project at that moment. A commit describes what has been changed, why and when. In the future you can always revert all tracked files to the state they were at when you created the commit.
++ **push**: Send previous changes you committed to the local repository to the remote repository.
++ **pull**: Update your local repository (and your workspace) with all new stuff from the remote repository. This command is simple, but potentially destructive, since it overwrites your files with the ones in the remote server. Hence it is not available in the Git GUI.
+    + **fetch**: Get information about the latest commits from the remote repository, but do not apply them to your local repository automatically. This is always safe as it does not change your workspace.
+    + **merge**: Merges two versions (branches) into one, applying the result to the workspace. This includes merging commits from the remote repository with the commits of the local repository. In effect, a **fetch** followed by a **merge** is the same as a **pull**, but it allows you more fine-grained control and is available through the Git GUI.
 + **clone** : Copy the content of a remote repository locally for the first time.
 + more advanced:
     + **branch** : Create a branch (a parallel version of the code in the repository)
     + **checkout**: load the status of a *branch* into your workspace
-    + **merge**: Merges two versions (branches) into one.
 
 
 <center>
@@ -661,97 +551,178 @@ Often you also setup a **remote repository**, stored on an online platform like 
 </center>
 
 
-## Seting up git with RStudio
+## Seting up Git
 
-### From RStudio
-RStudio projects become really powerful when they are combined with version control, and RStudio helps you in doing that. To illustrate that, we are going to track the project created previously with git, and push it to github.
+### Using GitHub and Git GUI
+The easiest way to start with Git is to let a git repository host create a repository for you. To do that, we will use GitHub.
 
-1. *Create a github account*
+1. *Create a GitHub account*
 
-Go to [gitHub](https://github.com/) and create an account (It's free).
+Go to [GitHub](https://github.com/) and create an account if you don't have one yet (it's free).
 
-2. *Make your first commit*
-    * *Add files to version tracking*
-  
-In your RStudio session opened on your *exampleLesson2* project, go to the upper right panel and open the git thumbnail. There should be a bunch of files visible in that area, check them all as "staged". By checking these files, it means that you are adding them to the version tracking of the project.
+2. *Create remote repository*
 
+In GitHub, press the *Create new...* button ("+" at the top right corner) and select *New repository*. Give it a descriptive name and a short description, check the *Initialize this repository with a README* box and then finalize the creation of that repository.
 
-![](figs/git1.png)
-
-<ul><ul>
-<li><em>Commit</em></li>
-</ul></ul>
-
-Now press on commit. A new window should open in which you are supposed to write a commit message to finalise your commit. Describe what you have done, then commit.
-
-
-![](figs/git2.png)
-
-
-Your git panel should now be empty. Every time you modify a file or add a new file to your project, it will appear in that panel, ready to be added and committed.
-
-3. *Make a new commit*
-
-Make some minor modifications to one of the files, save your changes, see it appear in the git panel, then check it and commit again.
-
-4. *Create remote repository*
-
-Go to gitHub, and select "create new repository". Give it the same name as your project, and a short description, then finalize the creation of that repository.
-
+**Note**: You are also asked to provide a *license* for your code. Note that all code on GitHub is public, so a license is crucial to let others know what you allow them to do with your code. Code without a license is copyright by default, and thus nobody is allowed to make use of your code or contribute to it. For real projects, you will want to set a more permissive license so that others could make use of your code. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available.
 
 ![](figs/git3.png)
 
+3. *Launch Git GUI*
 
-On the following page, there are some instructions on how to connect your local repository to the newly created remote repository.
+Launch a program called *Git GUI* from your start menu (or command line). Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:
 
-5. *Connect locale repository to remote*
+![Main screen of Git GUI](figs/git_gui_main.png)
+
+4. *Create an SSH key*
+
+*This step is crucial for both security and the use of virtual machines in the next lesson. Do not skip this!*
+
+In order for GitHub (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to do something, too. Therefore we will use SSH keys.
+
+You can generate a new SSH key by going to *Help* → *Show SSH Key* and pressing the *Generate Key* button. It will ask you for a passphrase. This is optional: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus, but since SSH keys are specific to a machine, it is most of the time completely fine to leave the passphrase empty, so you do not need to enter it every time.
+
+Once done, you will see your new key:
+
+![SSH public key generated](figs/git_gui_sshkey.png)
+
+5. *Enrol the key to your user account*
+
+The SSH key is used to identify that you own the machine. In the case of the PC lab, the keys are stored on your *M:* drive, so it will follow you on any computer in the PC lab. Now you need to tell GitHub about your new key.
+
+To do that, copy the public key from the dialog, then in GitHub click on your avatar in the top right, go to *Settings* → *SSH and GPG keys* and press *New SSH key*. Give it a title describing your machine, and paste the key in the box, and press *Add SSH key*. You might need to confirm the key by email for added security.
+
+This only has to be done once (per machine/OS you use GitHub on).
+
+6. *Clone your new repository*
+
+Go back to the repository you just created, and copy its SSH address by clicking on the *Clone or Download* button and copying the URL in the *Clone with SSH* box. If you don't see it, you might need to click on the *Use SSH* button.
+
+![Clone or Download → Clone with SSH](figs/github_screenCapture.png)
+
+Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just coped to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
+
+Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, the question will appear there). You need to answer this with `yes`. This puts the GitHub server into a list of trusted servers, to guard against potential impostor servers.
+
+You will end up in an empty Git GUI window:
+![Git GUI in an empty directory](figs/git_gui_blank.png)
+
+But if you check the folder you cloned the repository in, it will show the `README.md` file.
+
+7. *Make changes*
+
+To see Git in action, you need to make some changes in your repository. Try it: edit the `README.md` file, and create a new R script file in the respository.
+
+Once you are done, go back to Git GUI. If you closed the window, you can get back to your repository by launching Git GUI and clicking on its path in the *Open Recent Repository* list. You will see some changes:
+
+![Changes pending in Git GUI](figs/git_gui_changes.png)
+
+At the top left corner, the *Unstaged Changes* panel, you can see all the files that changed in your workspace. If you click on the name of the file, the main panel will show you what changed since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. **Note**: Git is very efficient with storing changes in text files: these *diff* files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.
+
+If you click on the icon of the file in the *Unstaged Changes* panel, the file changes will be *staged* and appear at the *Staged Changes (Will Commit)* panel. These are the file changes you want to save. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the *Stage Changed* button. If you staged more than you wanted to, you can click on the file icon in the *Staged Changes* panel to unstage it.
+
+8. *Commit changes*
+
+Once you staged files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create, and why did you do them. The first line you enter is the name of the commit, keep that one short. Subsequent lines are the description. You may notice that the *Commit message* box does not have a horizontal scrollbar: that is intentional, because your commit message should fit within that box without the need for scrolling. Use new lines to break the text.
+
+If it is the first time you use Git GUI to make a commit, it might complain about it not knowing who you are. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitHub.
+
+Next press the *Commit* button and your commit will be saved locally. You will always be able to go back to the state that this commit was in.
+
+In the case you made a mistake (made a mistake in the message, forgot to stage something etc.), you can press the *Ammend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes already sent to GitHub.
+
+9. *Push changes to the server*
+
+Press the *Push* button, and confirm the push, to send all your changes to your GitHub repository. You can now refresh the GitHub page to see your changes. Well done!
+
+10. *Pull changes from the server*
+
+One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitHub to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using *Fetch* and *Merge*. If you like, you can test it by cloning the same repository in another folder, making changes and pushing them to the server, then using fetch in the other copy.
+
+If there are any changes on GitHub that are not on your local copy yet, in Git GUI go to *Remote* → *Fetch from* → *origin* to download all changes. This will not apply them yet, however. 
+
+To attempt to apply the changes, go to *Merge* → *Local Merge...*. If all goes well, the changes will be applied.
+
+There may be cases where files go out of sync in incompatile ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by comitting the changes.
+
+### Other Git GUI functionality
+
+Git GUI not only provides a way to make, push and pull commits, but also to visualise the commit history of your repository in a tree graph. Go to *Repository* → *Visualise Master's History* to see it. For larger and more complex projects with lots of contributors and merges, it might look like some sort of a subway map:
+
+![Git GUI history (gitk)](figs/git_gui_gitk.png)
+
+You might run into a situation when you have made changes in tracking files, but do not want to keep some of the changes. You can revert one file by selecting it in Git GUI, then clicking *Commit* → *Revert changes*.
+
+## Project structure
+
+Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work.
+You may use the following structure:
+
+* A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc).
+* An `R/` subdirectory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script.
+* A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitHub has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be shapefiles, small rasters, csv files, but perhaps even better is to use the R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
+* An `output/` sub directory (when applicable).
+
+<center>
+![project structure](figs/project_structure_screenCapture.png)
+</center>
+
+### Example `main.R` file
+
+Typically the header of your main script will look like that.
 
 
-![](figs/git4.png)
+```{r, eval=FALSE}
+# John Doe
+# January 2017
+# Import packages
+library(raster)
+library(sp)
+# Source functions
+source('R/function1.R')
+source('R/function2.R')
+# Load datasets 
+load('data/input_model.rda')
 
-Copy the two lines provided by gitHub for the case of you already have a local repository, then go to RStudio, Tools --> Shell (also available in the git panel) and paste the two lines there and execute them. You will be asked for your github username and password.
-
-
-![](figs/git5.png)
-
-
-Your project is now fully setup with version control; next time you make changes, and commit them, you can use the green ''push'' arrow to update your remote repository. Or use the ''pull'' arrow to update your local repository.
-
-### From new or existing github repo
-An alternative to the approach described above (perhaps easier) when starting a new project is to create the remote first on github.
-Use the **clone URL** as shown below to indicate the remote repository location to RStudio.
-In RStudio import it using the menus in _file --> New project --> Version Control --> Git (paste url)_.
-***This also works also with rpos of other people!*** Only than you won't be able to push to their remote.
-<center><img src="figs/github_screenCapture.png" alt="Drawing" style="width: 600px"/></center>
-
-### Git Password and errors
-When using the RStudio "push" button, you may see this error message from RStudio:
+# Then the actual commands
 
 ```
-error: unable to read askpass response from 'rpostback-askpass'
-fatal: could not read Username for 'https://github.com': Device not configured
+
+### Bigger data
+The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
+
+
+### Example
+* Create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
+* Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
+
+```{r, eval=FALSE}
+# Name
+# Date
+library(raster)
+
+source('R/ageCalculator.R')
+source('R/HelloWorld.R')
+source('R/minusRaster.R')
+
+
+HelloWorld('john')
+ageCalculator(2009)
+
+# import dataset
+r <- raster(system.file("external/rlogo.grd", package="raster")) 
+r2 <- r 
+# Filling the rasterLayer with new values.
+r2[] <- (1:ncell(r2)) / 10
+# Performs the calculation
+r3 <- minusRaster(r, r2) 
 ```
-Also if you don't get an error, it's annoying to type your login every time you want to push to a remote.
 
-There's a few ways to go about fixing the password issue.
+### RStudio projects
 
-#### Password Caching
+RStudio has a functionality called *projects* that allows organising your files a bit better. You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project, where your `main.R` is located. When working with RStudio projects you should not change the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load.
 
-The easiest is to tell git to cache your password for the next four months (about ten million seconds) by opening a terminal and running the following command:
-
-`git config --global credential.helper 'cache --timeout=10000000'`
-
-You'll then have to force git to ask for your password once at the command line. If the remote is set-up already, this should work by running `git push`  _within the repository directory_ in the shell.
-
-These instructions are on the GitHub help page under [Password Caching](https://help.github.com/articles/set-up-git#platform-linux).
-
-#### SSH RSA Key
-
-A permanent option is to set up git, GitHub and RStudio to use an SSH RSA key. 
-In RStudio, click _Tools -> Global oprions ->  Git/SVN -> SSH RSA Key -> Create RSA Key_
-then View public key and then follow these instructions to [add your SSH key to GitHub](https://help.github.com/articles/generating-ssh-keys/#step-4-add-your-ssh-key-to-your-account). 
-You may need to restart RStudio before the configuration takes effect.
-
+**Note**: RStudio projects are not compatible with base R or with other R IDEs. Their use is optional.
 
 # (optional) Writing packages
 The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. find instructions [here](packages.html) and in the [references](#references) below.
