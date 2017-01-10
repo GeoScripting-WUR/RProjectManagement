@@ -19,7 +19,7 @@ Here is what you will do today:
 Time  | Activity
 ------------- | -------------
 Morning  |  Self-study: go through the following tutorial
-13:30 to 14:30  | Johannes available for questions on the lecture and exercise description.
+13:30 to 14:30  | Presentation and discussion
 Rest of the afternoon | Do/finalise the exercise.
 
 ## Introduction
@@ -759,7 +759,7 @@ Error: argument of class numeric expected
 Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-Put your project on your gitHub account and post the clone url in the code review forum on BlackBoard before the next day (0930)!
+Put your project on your gitHub account and post the clone url in the code review forum on BlackBoard before the end of the day (feedback before 10 am the next day)
 
 For reviewing other teams aswers: 
 
