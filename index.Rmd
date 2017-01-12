@@ -276,6 +276,8 @@ RStudio has a functionality called *projects* that allows organising your files 
 
 **Note**: RStudio projects are not compatible with base R or with other R IDEs. Their use is optional.
 
+RStudio itself has integration with Git, and when creating a project there is an option to make it a git repository as well. However, in this lesson we will not be using this method, since it is specific to RStudio and does not work for Python or in other R IDEs. Git GUI, in contrast, is language-agnostic and standalone. So if you do create a project with RStudio, create it inside your cloned GitHub repository, and do **not** select that it creates a new git repository, then use Git GUI to handle all the changes you do in the repository. This will save you the confusion about how to handle it when we will come to Python lessons.
+
 # Finding help
 ## Sources for help
 The most important helper is the R documentation. In the R console, just enter `?function` or `help(function)` to get the manual page of the function you are interested in.
