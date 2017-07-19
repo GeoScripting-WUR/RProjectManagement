@@ -138,7 +138,7 @@ Once done, you will see your new key:
 
 ![SSH public key generated](figs/git_gui_sshkey.png)
 
-5. *Enrol the key to your user account*
+5. *Enroll the key to your user account*
 
 The SSH key is used to identify that you own the machine. In the case of the PC lab, the keys are stored on your *M:* drive, so it will follow you on any computer in the PC lab. Now you need to tell GitHub about your new key.
 
@@ -309,7 +309,7 @@ So, when posting to the mail list:
 Indispensable when asking a question to the online community, being able to write a reproducible example has many advantages:
 
 - It may ensure that when you present a problem, people are able to answer your question without guessing what you are trying to do. 
-- Reproducible examples are not only to ask questions; they may help you in your thinking, developing  or debugging process when writing your own functions. 
+- Reproducible examples are not only to ask questions; they may help you in your thinking, developing or debugging process when writing your own functions. 
     - For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated RasterLayer object, and not directly on your actual data that might be covering the whole world.
 
 ### Example of an reproducible example
