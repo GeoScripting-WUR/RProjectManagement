@@ -798,7 +798,7 @@ Error: argument of class numeric expected
 Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-Create a GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff member(s) responsible for checking your exercises (see Blackboard) as a member of the project and grant them "Master" privileges. Finish the exercise by 17:00 hours. The staff will check it and publish your answers on the student group on GitLab after the deadline.
+Create a **private** GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff member(s) responsible for checking your exercises (see Blackboard) as a member of the project and grant them "Master" privileges. Finish the exercise by 17:00 hours. The staff will check it and publish your answers on the student group on GitLab after the deadline.
 
 You will need to give the team you are reviewing feedback on their exercise solution before 10:00 the next day (see the [review team generator app on Shiny](https://greatemerald.shinyapps.io/teamselector/) to know who you are reviewing and who you are reviewed by). For reviewing other teams' answers: 
 
