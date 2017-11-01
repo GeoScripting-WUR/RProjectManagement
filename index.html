@@ -1006,7 +1006,7 @@ Week 1, Lesson 3: Carrying out your R project
 <p>Now that you have a remote repository, it's time to create a local repository that links to it! Copy the SSH address of your new repository by copying the URL in the <em>SSH</em> box (if it's showing <em>HTTPS</em>, click it and switch to <em>SSH</em>).</p>
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
 <p><img src="figs/GitLab-empty-repository.png" alt="Blank GitLab repository" /></p>
-<p>Go back to Git GUI, and press <em>Clone Existing Repository</em>. Paste the URL you just coped to the <em>Source Location</em> field, and choose a folder you want to store your code in in the <em>Target Directory</em> field. <strong>Note</strong>: the <em>Target Directory</em> must <strong>not</strong> already exist! Git GUI will create it for you.</p>
+<p>Go back to Git GUI, and press <em>Clone Existing Repository</em>. Paste the URL you just copied to the <em>Source Location</em> field, and choose a folder you want to store your code in in the <em>Target Directory</em> field. <strong>Note</strong>: the <em>Target Directory</em> must <strong>not</strong> already exist! Git GUI will create it for you.</p>
 <p>Once you click <em>Clone</em>, you will get a question about whether you trust the remote machine (if you ran <code>git gui</code> from a command line, it will appear stuck, but actually <strong>the question will appear in the terminal</strong> and you need to answer it there). You need to answer this with <code>yes</code> (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.</p>
 <p>You will end up in an empty Git GUI window:</p>
 <p><img src="figs/git_gui_blank.png" alt="Git GUI in an empty directory" /></p>
@@ -1137,7 +1137,7 @@ r3 <- minusRaster(r, r2) </code></pre>
 <li>For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated RasterLayer object, and not directly on your actual data that might be covering the whole world.</li>
 </ul></li>
 </ul>
-<h3 id="example-of-an-reproducible-example">Example of an reproducible example</h3>
+<h3 id="example-of-a-reproducible-example">Example of a reproducible example</h3>
 <p>Well, one could define a reproducible example by:</p>
 <ul>
 <li>A piece of code that can be executed by anyone who has R, independently of the data present on his machine or any preloaded variables.</li>
@@ -1603,7 +1603,7 @@ freq(a, value=-2)</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] 365
+<pre style=""><code class="output r">## [1] 353
 </code></pre>
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1663,10 +1663,10 @@ out</code></pre>
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
 <pre style=""><code class="output r">## [[1]]
-## [1] 365
+## [1] 353
 ## 
 ## [[2]]
-## [1] 365
+## [1] 353
 ## 
 ## [[3]]
 ## [1] "This object returned an error"
@@ -1680,7 +1680,7 @@ out</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] "365"                           "365"                          
+<pre style=""><code class="output r">## [1] "353"                           "353"                          
 ## [3] "This object returned an error"
 </code></pre>
 </div>

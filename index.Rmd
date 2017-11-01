@@ -167,7 +167,7 @@ Now that you have a remote repository, it's time to create a local repository th
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
 ![Blank GitLab repository](figs/GitLab-empty-repository.png)
 
-Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just coped to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
+Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
 
 Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, it will appear stuck, but actually **the question will appear in the terminal** and you need to answer it there). You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
 
@@ -332,7 +332,7 @@ Indispensable when asking a question to the online community, being able to writ
 - Reproducible examples are not only to ask questions; they may help you in your thinking, developing or debugging process when writing your own functions. 
     - For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated RasterLayer object, and not directly on your actual data that might be covering the whole world.
 
-### Example of an reproducible example
+### Example of a reproducible example
 
 Well, one could define a reproducible example by:
 
