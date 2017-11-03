@@ -154,9 +154,11 @@ If you were to do this on GitHub, you would also be asked to provide a *license*
 
 6. *Configure project settings*
 
-Explore your new blank project a bit. On the left sidebar, you can find that the project can have issues and merge requests assigned to them. Issues is what will be used to review your work, and what you will need to use to review the work of others, so try and make a few issues and close them.
+Explore your new blank project a bit. On the left sidebar, you can find that the project can have issues and merge requests assigned to them. **Issues** is what will be used to review your work, and what you will need to use to review the work of others, so try and make a few issues and close them.
 
 Next, check out the project settings. Under the *Members* tab of *Settings*, you can invite other people to collaborate on your project. Go ahead and invite your team member (and give them the *Master* role).
+
+![Example issue on GitLab](figs/GitLab-issues.png)
 
 <!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
 
