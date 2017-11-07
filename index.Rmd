@@ -4,8 +4,11 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   knitrBootstrap::bootstrap_document:
     title: "Week 1, Lesson 3: Carrying out your R project"
-    theme: cosmo
+    theme: "simplex"
+    highlight: Tomorrow Night Bright
     menu: FALSE
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
 ---
 
 # [WUR Geoscripting](https://geoscripting-wur.github.io/) ![WUR logo](http://www.wageningenur.nl/upload/f9a0b5f2-15c5-4b84-9e14-20ef02f5e265_wur-logo.png)
@@ -82,7 +85,7 @@ The three most popular version control software are **Git**, **Mercurial** (abbr
 
 Every time you make significant changes to the files in your workspace, you have to **add** the changed files to the index, which selects the files whose changes you want to save, and **commit** them, which means saving the changes to the history tracking of your local repository.
 
-Often you also setup a **remote repository**, stored on an online platform like [github](https://github.com/) or other platform. It is simply a remotely-hosted mirror of your local repository and allows you to have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push** your commits, which means sending them to the remote repository so it keeps in sync with your local one. When you want to update your local repository based on the content of a remote repository, you have to **pull** the commits from the remote repository.
+Often you also setup a **remote repository**, stored on an online platform like [GitHub](https://github.com/), [GitLab](https://gitlab.com) or others. It is simply a remotely-hosted mirror of your local repository and allows you to have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can **push** your commits, which means sending them to the remote repository so it keeps in sync with your local one. When you want to update your local repository based on the content of a remote repository, you have to **pull** the commits from the remote repository.
 
 ### Summary of git semantics
 
@@ -103,91 +106,110 @@ Often you also setup a **remote repository**, stored on an online platform like 
 </center>
 
 
-## Seting up Git
+## Setting up a Git project
 
-### Using GitHub and Git GUI
-The easiest way to start with Git is to let a git repository host create a repository for you. To do that, we will use GitHub.
+The first step in using Git is to set up a remote repository. GitHub is the most popular host, but in order to facilitate the assignment submission process, we will use the GitLab instance of Wageningen UR throughout this course. Note that the university instance is the same as what you can find on the [GitLab website](http://gitlab.com), except that it is managed by the university's IT department (so you do not need to register) and you may choose to make projects visible only to others from the university. If you are taking the course externally, you can use the public GitLab instance or GitHub.
 
-1. *Create a GitHub account*
+### Account setup
 
-Go to [GitHub](https://github.com/) and create an account if you don't have one yet (it's free).
+1. *Log into GitLab*
 
-2. *Create remote repository*
+Go to [WUR GitLab](https://git.wur.nl/) and log in. The username is your WUR email address and the password is your WUR account password.
 
-In GitHub, press the *Create new...* button ("+" at the top right corner) and select *New repository*. Give it a descriptive name and a short description, check the *Initialize this repository with a README* box and then finalize the creation of that repository.
+2. *Launch Git GUI*
 
-**Note**: You are also asked to provide a *license* for your code. Note that all code on GitHub is public, so a license is crucial to let others know what you allow them to do with your code. Code without a license is copyright by default, and thus nobody is allowed to make use of your code or contribute to it. For real projects, you will want to set a more permissive license so that others could make use of your code. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available.
-
-![](figs/git3.png)
-
-3. *Launch Git GUI*
-
-Launch a program called *Git GUI* from your start menu (or command line). Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:
+Launch a program called *Git GUI* from your start menu (or command line: `git gui`). Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:
 
 ![Main screen of Git GUI](figs/git_gui_main.png)
 
-4. *Create an SSH key*
+3. *Create an SSH key pair*
 
-*This step is crucial for both security and the use of virtual machines in the next lesson. Do not skip this!*
+In order for GitLab (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.
 
-In order for GitHub (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to do something, too. Therefore we will use SSH keys.
+You can generate a new SSH key pair in Git GUI by going to *Help* → *Show SSH Key* and pressing the *Generate Key* button. It will ask you for a passphrase. This is not a password and is completely optional: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus; however, SSH keys are specific to each machine and are never sent over the network, so most of the time it is completely fine to leave the passphrase empty. If you keep it empty, you will not need to enter it every time you try to push your changes, yet the connection will be even more secure than when using a password.
 
-You can generate a new SSH key by going to *Help* → *Show SSH Key* and pressing the *Generate Key* button. It will ask you for a passphrase. This is optional: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus, but since SSH keys are specific to a machine, it is most of the time completely fine to leave the passphrase empty, so you do not need to enter it every time.
-
-Once done, you will see your new key:
+Once done, you will see your new public key:
 
 ![SSH public key generated](figs/git_gui_sshkey.png)
 
-5. *Enroll the key to your user account*
+4. *Enrol the public key to your user account*
 
-The SSH key is used to identify that you own the machine. In the case of the PC lab, the keys are stored on your *M:* drive, so it will follow you on any computer in the PC lab. Now you need to tell GitHub about your new key.
+The SSH key pair is used to identify that you own the machine. On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university. On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware Horizon, the keys are stored on your personal VDI, so you can also access them from anywhere.
 
-To do that, copy the public key from the dialog, then in GitHub click on your avatar in the top right, go to *Settings* → *SSH and GPG keys* and press *New SSH key*. Give it a title describing your machine, and paste the key in the box, and press *Add SSH key*. You might need to confirm the key by email for added security.
+Now you need to tell GitLab about your new key. To do that, copy the public key from the dialog, then in GitLab click on your avatar in the top right and go to *Settings* → *SSH keys*. Give it a title describing your machine, paste the public key in the box, and press *Add key*. You might need to confirm the key by email for added security.
 
-This only has to be done once (per machine/OS you use GitHub on).
+This only has to be done once (per machine/OS you use GitLab on).
 
-6. *Clone your new repository*
+### Creating a new project
 
-Go back to the repository you just created, and copy its SSH address by clicking on the *Clone or Download* button and copying the URL in the *Clone with SSH* box. If you don't see it, you might need to click on the *Use SSH* button.
+5. *Create remote repository*
 
-![Clone or Download → Clone with SSH](figs/github_screenCapture.png)
+Now we are ready to start making new repositories for our projects! In GitLab, press the *New...* button ("⊞" button at the top, to the right) and select *New project*. Give it a descriptive name and a short description (leave *Create from template* as *Blank*), choose the visibility of the project.
 
-Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just coped to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
+![New project creation on GitLab](figs/GitLab-new-project.png)
 
-Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, the question will appear there). You need to answer this with `yes`. This puts the GitHub server into a list of trusted servers, to guard against potential impostor servers.
+<!-- **Note:** During the course you are asked to submit answers to exercises as **separate projects**, using a specific scheme for the project name: `Geoscripting-Exercise<id>-<team>` where `<id>` is the exercise number and `<team>` is your team name, for instance, `Geoscripting-Exercise3-TheGitters`. In addition, the visibility level **must** be set to *Private*. **Submissions that do not follow these rules may be rejected!** -->
+
+If you were to do this on GitHub, you would also be asked to provide a *license* for your code. That is a good idea in general, as choosing a license is crucial to let others know what you allow them to do with your code. Code without a license is copyright by default, and thus nobody is allowed to make use of your code or contribute to it. For real projects, you will want to set a more permissive license so that others could make use of your code. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available.
+
+6. *Configure project settings*
+
+Explore your new blank project a bit. On the left sidebar, you can find that the project can have issues and merge requests assigned to them. **Issues** is what will be used to review your work, and what you will need to use to review the work of others, so try and make a few issues and close them.
+
+Next, check out the project settings. Under the *Members* tab of *Settings*, you can invite other people to collaborate on your project. Go ahead and invite your team member (and give them the *Master* role).
+
+![Example issue on GitLab](figs/GitLab-issues.png)
+
+<!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
+
+7. *Clone your new repository*
+
+Now that you have a remote repository, it's time to create a local repository that links to it! Copy the SSH address of your new repository by copying the URL in the *SSH* box (if it's showing *HTTPS*, click it and switch to *SSH*).
+
+<!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
+![Blank GitLab repository](figs/GitLab-empty-repository.png)
+
+Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
+
+Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, it will appear stuck, but actually **the question will appear in the terminal** and you need to answer it there). You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
 
 You will end up in an empty Git GUI window:
+
 ![Git GUI in an empty directory](figs/git_gui_blank.png)
 
-But if you check the folder you cloned the repository in, it will show the `README.md` file.
+### Working with Git GUI
 
-7. *Make changes*
+8. *Make changes*
 
-To see Git in action, you need to make some changes in your repository. Try it: edit the `README.md` file, and create a new R script file in the respository.
+To see Git in action, you need to make some changes in your repository. Try it by creating a new R script file in the directory where you cloned your new project.
 
-Once you are done, go back to Git GUI. If you closed the window, you can get back to your repository by launching Git GUI and clicking on its path in the *Open Recent Repository* list. You will see some changes:
+Once you are done, go back to Git GUI. If you closed the window, you can get back to your repository by launching Git GUI and clicking on its path in the *Open Recent Repository* list. If you did not close it, click the *Rescan* button. You will see some changes:
 
 ![Changes pending in Git GUI](figs/git_gui_changes.png)
 
-At the top left corner, the *Unstaged Changes* panel, you can see all the files that changed in your workspace. If you click on the name of the file, the main panel will show you what changed since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. **Note**: Git is very efficient with storing changes in text files: these *diff* files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.
+At the top left corner, the *Unstaged Changes* panel, you can see all the files that changed in your workspace. If you click on the **name** of the file, the main panel will show you what changed since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. **Note**: Git is very efficient with storing changes in text files: these *diff* files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.
 
-If you click on the icon of the file in the *Unstaged Changes* panel, the file changes will be *staged* and appear at the *Staged Changes (Will Commit)* panel. These are the file changes you want to save. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the *Stage Changed* button. If you staged more than you wanted to, you can click on the file icon in the *Staged Changes* panel to unstage it.
+If you click on the **icon** of the file in the *Unstaged Changes* panel, the file changes will be *staged* and appear at the *Staged Changes (Will Commit)* panel. These are the file changes you want to save and sent to GitLab. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the *Stage Changed* button. If you staged more than you wanted to, you can click on the file **icon** in the *Staged Changes* panel to unstage it.
 
-8. *Commit changes*
+Remember: clicking the **name** of the file shows the changes you made, clicking the **icon** of the file stages or unstages the change!
 
-Once you staged files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create, and why did you do them. The first line you enter is the name of the commit, keep that one short. Subsequent lines are the description. You may notice that the *Commit message* box does not have a horizontal scrollbar: that is intentional, because your commit message should fit within that box without the need for scrolling. Use new lines to break the text.
+9. *Commit changes*
 
-If it is the first time you use Git GUI to make a commit, it might complain about it not knowing who you are. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitHub.
+Once you staged the files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create. The first line you enter is the name of the commit, keep that one short. Subsequent lines are the description. You may notice that the *Commit message* box does not have a horizontal scrollbar: that is intentional, because your commit message should fit within that box without the need for scrolling. Use new lines to break the text.
 
-Next press the *Commit* button and your commit will be saved locally. You will always be able to go back to the state that this commit was in.
+If it is the first time you use Git GUI to make a commit, it might complain about it not knowing who you are. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitLab.
 
-In the case you made a mistake (made a mistake in the message, forgot to stage something etc.), you can press the *Ammend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes already sent to GitHub.
+Next press the *Commit* button and your commit will be saved locally. A commit is like a saved state: you are always able to roll back the contents of your tracked files to the state they were in when you committed the changes.
 
-9. *Push changes to the server*
+In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the *Amend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitLab.
 
-Press the *Push* button, and confirm the push, to send all your changes to your GitHub repository. You can now refresh the GitHub page to see your changes. Well done!
+10. *Push changes to the server*
 
-10. *Pull changes from the server*
+Press the *Push* button, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!
+
+![GitLab repository with content](figs/GitLab-repository.png)
+
+11. *Pull changes from the server*
 
 One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitHub to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using *Fetch* and *Merge*. If you like, you can test it by cloning the same repository in another folder, making changes and pushing them to the server, then using fetch in the other copy.
 
@@ -195,7 +217,7 @@ If there are any changes on GitHub that are not on your local copy yet, in Git G
 
 To attempt to apply the changes, go to *Merge* → *Local Merge...*. If all goes well, the changes will be applied.
 
-There may be cases where files go out of sync in incompatile ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by comitting the changes.
+There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by comitting the changes.
 
 ### Other Git GUI functionality
 
@@ -272,9 +294,9 @@ r3 <- minusRaster(r, r2)
 
 ### RStudio projects
 
-RStudio has a functionality called *projects* that allows organising your files a bit better. You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project, where your `main.R` is located. When working with RStudio projects you should not change the working directory, if you want to access things stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load.
+RStudio has a functionality called *projects* that allows organising your files a bit better. You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project, where your `main.R` is located. When working with RStudio projects you should not change the working directory. If you want to access files stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load.
 
-**Note**: RStudio projects are not compatible with base R or with other R IDEs. Their use is optional.
+**Note**: RStudio projects are specific to RStudio and are not usable with base R or with other R IDEs. The use of RStudio projects is optional and is merely for convenience. When using other IDEs you can assume the user will set the working directory to where the script is located.
 
 RStudio itself has integration with Git, and when creating a project there is an option to make it a git repository as well. However, in this lesson we will not be using this method, since it is specific to RStudio and does not work for Python or in other R IDEs. Git GUI, in contrast, is language-agnostic and standalone. So if you do create a project with RStudio, create it inside your cloned GitHub repository, and do **not** select that it creates a new git repository, then use Git GUI to handle all the changes you do in the repository. This will save you the confusion about how to handle it when we will come to Python lessons.
 
@@ -312,7 +334,7 @@ Indispensable when asking a question to the online community, being able to writ
 - Reproducible examples are not only to ask questions; they may help you in your thinking, developing or debugging process when writing your own functions. 
     - For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated RasterLayer object, and not directly on your actual data that might be covering the whole world.
 
-### Example of an reproducible example
+### Example of a reproducible example
 
 Well, one could define a reproducible example by:
 
@@ -643,10 +665,19 @@ for(i in 1:length(list)) {
 }
 ```
 
+```{r, eval=FALSE, echo=TRUE}
+## If you wrap the call in a try(), you still get an error, but it's non-fatal
+out <- list()
+for(i in 1:length(list)) {
+    out[i] <- try(freq(list[[i]], value=-2))
+}
+out
+```
+
 ```{r, eval=TRUE, echo=TRUE}
-# Therefore by building a function that includes a try()
-# we are able to catch the error,
-# allowing the process to continue despite missing/corrupted data.
+# By building a function that includes a try()
+# we are able to catch the error without having it printed,
+# allowing the process to handle the error gracefully.
 fun <- function(x, value) {
     tr <- try(freq(x=x, value=value), silent=TRUE)
     if (class(tr) == 'try-error') {
@@ -674,7 +705,7 @@ out
 
 Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. 
 
-#### `traceback()`
+#### `traceback()` and `debugonce()`
 Here are the manual commands, which also work with RStudio and other IDEs:
 
 - The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. 
@@ -699,19 +730,27 @@ traceback()
 ## 2: bar(2) at #1
 ## 1: foo(2)
 # Ah, bar() is the problem
+
+# Debug it by declaring what to debug and running it
+debugonce(bar)
+foo(2)
 ```
+
+Depending on the IDE you are using, you may be presented with tools for stepping through the function line by line, as well as a Browse console, which allows you to query the state of the variables involved so that you can identify exactly what is going on in the function call. For instance, in RKWard, the *Debugging Frames* pane on the right shows which line you are stepping through.
 
 For another example see: [rfunction.com](http://rfunction.com/archives/2562).
 
-#### RStudio tools
-RStudio has great debugging tools. However, they are specific to the RStudio IDE.
+#### RStudio
+RStudio has integration with the debugging tools in R, so you can use a point-and-click interface. However, some parts of it are specific to the RStudio IDE.
 
 - To force them to catch every error, select *Debug - On Error - Break in Code* in the main menu.
 - Run again ``foo(2)``. 
 - RStudio will stop the execution where the error happened. The traceback appears in a separate pane on the right. 
 - You can and use the little green "Next" button to go line by line through the code, or the red Stop button to leave the debugging mode. 
-- Reset the *On Error* behaviour to *Error Inspector*. In this default setting, RStudio will try to decide wether the error is complex enough for debugging, and then offer the options to "traceback" or "rerun the code with debugging" with two buttons in the console. 
-- Finally solve the problem: 
+- Reset the *On Error* behaviour to *Error Inspector*. In this default setting, RStudio will try to decide whether the error is complex enough for debugging, and then offer the options to "traceback" or "rerun the code with debugging" with two buttons in the console. 
+
+Finally, solve the problem:
+
 ```{r, eval=FALSE}
 ## redefine bar
 bar <- function(x) {
@@ -722,14 +761,14 @@ foo(2)
 ## [1] 7
 ```
 
-The debugging mode can also reached through calling `debug()`. This is not covered in this lesson, feel free to explore by yourself these debugging functionality. Refer to the reference section of this document for further information on function debugging.
+Refer to the reference section of this document for further information on function debugging.
 
 # (optional) Writing packages
-The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. find instructions [here](packages.html) and in the [references](#references) below.
+The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. Find instructions [here](packages.html) and in the [references](#references) below.
 
 
 
-# Exercise
+# Exercise 3
 ## Your task
 Create a RStudio project, with git version control. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the `main.R`.
 The function should behave as follows:
@@ -761,12 +800,14 @@ Error: argument of class numeric expected
 Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-Put your project on your gitHub account and post the clone url in the code review forum on BlackBoard before the end of the day (feedback before 10 am the next day)
+Create a **private** GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff member(s) responsible for checking your exercises (see Blackboard) as a member of the project and grant them "Master" privileges. Finish the exercise by 17:00 hours. The staff will check it and publish your answers on the student group on GitLab after the deadline.
 
-For reviewing other teams aswers: 
+You will need to give the team you are reviewing feedback on their exercise solution before 10:00 the next day (see the [review team generator app on Shiny](https://greatemerald.shinyapps.io/teamselector/) to know who you are reviewing and who you are reviewed by). For reviewing other teams' answers: 
 
-* clone the repo you have to review to your computer and test it
-* you can either post your remarks in the review forum on blackboard, or try out the github feature [issues](https://guides.github.com/features/issues/)
+* Clone the repository of the team you have to review to your computer and test it.
+* Add an issue to their project and write out your review.
+
+This is the way the exercises will need to be submitted and reviewed from this lesson on.
 
 # References
 
