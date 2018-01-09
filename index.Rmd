@@ -800,12 +800,12 @@ Error: argument of class numeric expected
 Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
 
 ## How to submit?
-Create a **private** GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff member(s) responsible for checking your exercises (see Blackboard) as a member of the project and grant them "Master" privileges. Finish the exercise by 17:00 hours. The staff will check it and publish your answers on the student group on GitLab after the deadline.
+Create a **private** GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff member(s) responsible for checking your exercises (in 2018 it is @swink019 and @almei006, see Blackboard for any updates) as members of the project and grant them "Master" privileges. Finish the exercise by 17:15. The staff will check it and publish your answers on the student group `Geoscripting<year>` on GitLab after the deadline.
 
-You will need to give the team you are reviewing feedback on their exercise solution before 10:00 the next day (see the [review team generator app on Shiny](https://greatemerald.shinyapps.io/teamselector/) to know who you are reviewing and who you are reviewed by). For reviewing other teams' answers: 
+You will need to give the team you are reviewing feedback on their exercise solution before 11:00 the next day (use the review team generator Shiny app to know who you are reviewing and who you are reviewed by). Answers from other groups will be available on the `Geoscripting<year>` group on GitLab. For reviewing other teams' answers:
 
 * Clone the repository of the team you have to review to your computer and test it.
-* Add an issue to their project and write out your review.
+* Add an issue to their project and write out your review. Make sure to mention your team name in the review.
 
 This is the way the exercises will need to be submitted and reviewed from this lesson on.
 
@@ -818,8 +818,8 @@ This is the way the exercises will need to be submitted and reviewed from this l
     * Great 15 min interactive git commands tutorial: [try.github.io](https://try.github.io)
     * Hadley Wickham on [Rstudio and git](http://r-pkgs.had.co.nz/git.html#undefined)
     * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
-    * Video tutorial to use revision control with R Studio and GitHUb/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
+    * Video tutorial to use revision control with R Studio and GitHub/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
     * Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 * Debugging:
-    * Hadely Wickham on [Debugging with Rstudio](http://adv-r.had.co.nz/Exceptions-Debugging.html)
+    * Hadely Wickham on [Debugging with RStudio](http://adv-r.had.co.nz/Exceptions-Debugging.html)
     * Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
