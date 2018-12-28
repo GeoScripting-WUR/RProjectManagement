@@ -1,5 +1,5 @@
 ---
-author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliunas"
+author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   knitrBootstrap::bootstrap_document:
@@ -108,21 +108,35 @@ Often you also setup a **remote repository**, stored on an online platform like 
 
 ## Setting up a Git project
 
-The first step in using Git is to set up a remote repository. GitHub is the most popular host, but in order to facilitate the assignment submission process, we will use the GitLab instance of Wageningen UR throughout this course. Note that the university instance is the same as what you can find on the [GitLab website](http://gitlab.com), except that it is managed by the university's IT department (so you do not need to register) and you may choose to make projects visible only to others from the university. If you are taking the course externally, you can use the public GitLab instance or GitHub.
+Effective use of git includes two components: local software to manage the files on your computer (git client) and an online git hosting service to make them centrally accessible. While git is a single system, there is a variety of clients and a variety of hosts.
 
-### Account setup
+In this course, we will primarily use Git GUI as the client. It is a simple client that is included with Git itself, and is language-agnostic. There are more graphical clients as well, including one integrated into RStudio itself, but these clients are outside the scope of this course.
 
-1. *Log into GitLab*
+```{block, type="alert alert-info"}
+**Protip**: For those who are comfortable with working from the terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in protip boxes like this you will find command line equivalents to the GUI actions we will perform; you are not required to know them.
+```
 
-Go to [WUR GitLab](https://git.wur.nl/) and log in. The username is your WUR email address and the password is your WUR account password.
+GitHub is the most popular host, but in order to facilitate the assignment submission process, we will use the GitLab instance of Wageningen University throughout this course. Note that the university instance is the same as what you can find on the GitLab website, except that it is managed by the university's IT department (so you do not need to register) and you may choose to make projects visible only to others from the university.
 
-2. *Launch Git GUI*
+```{block, type="alert alert-info"}
+**Note**: If you are taking the course externally and do not have access to the WUR GitLab instance, you can use the [public GitLab instance](https://gitlab.com) or [GitHub](https://github.com) instead.
+```
 
-Launch a program called *Git GUI* from your start menu (or command line: `git gui`). Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:
+### Client setup
+
+1. *Launch Git GUI*
+
+Launch a program called *Git GUI* from your start menu. Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:
 
 ![Main screen of Git GUI](figs/git_gui_main.png)
 
-3. *Create an SSH key pair*
+```{block, type="alert alert-info"}
+**Note**: External users should [download git](https://git-scm.com/download/) and install it to obtain Git GUI.
+
+**Protip**: You can launch Git GUI from the terminal with `git gui`.
+```
+
+2. *Create an SSH key pair*
 
 In order for GitLab (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.
 
@@ -131,6 +145,18 @@ You can generate a new SSH key pair in Git GUI by going to *Help* → *Show SSH 
 Once done, you will see your new public key:
 
 ![SSH public key generated](figs/git_gui_sshkey.png)
+
+```{block, type="alert alert-info"}
+**Protip**: From the command line you generate a key pair by running `ssh-keygen -t rsa -b 4096`. In both cases, by default the public key is stored in the file `~/.ssh/id_rsa.pub` (where `~` indicates the user's home directory).
+```
+
+### Account setup
+
+Next, we will link our client with a Git host so that we can download and upload repositories.
+
+3. *Log into GitLab*
+
+Go to [WUR GitLab](https://git.wur.nl/) and log in. The username is your WUR email address and the password is your WUR account password.
 
 4. *Enrol the public key to your user account*
 
@@ -144,7 +170,7 @@ This only has to be done once (per machine/OS you use GitLab on).
 
 5. *Create remote repository*
 
-Now we are ready to start making new repositories for our projects! In GitLab, press the *New...* button ("⊞" button at the top, to the right) and select *New project*. Give it a descriptive name and a short description (leave *Create from template* as *Blank*), choose the visibility of the project.
+Now we are ready to start making new repositories for our projects! In GitLab, press the *New...* button ("⊞" button at the top, to the right) and select *New project*. Give it a descriptive name and a short description, choose the visibility of the project and check *Initialize repository with a README*.
 
 ![New project creation on GitLab](figs/GitLab-new-project.png)
 
@@ -156,18 +182,20 @@ If you were to do this on GitHub, you would also be asked to provide a *license*
 
 Explore your new blank project a bit. On the left sidebar, you can find that the project can have issues and merge requests assigned to them. **Issues** is what will be used to review your work, and what you will need to use to review the work of others, so try and make a few issues and close them.
 
-Next, check out the project settings. Under the *Members* tab of *Settings*, you can invite other people to collaborate on your project. Go ahead and invite your team member (and give them the *Master* role).
+Next, check out the project settings. Under the *Members* tab of *Settings*, you can invite other people to collaborate on your project. Go ahead and invite your team member (and give them the *Maintainer* role).
 
 ![Example issue on GitLab](figs/GitLab-issues.png)
 
 <!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
 
-7. *Clone your new repository*
+7. *Get the URL of your new repository*
 
-Now that you have a remote repository, it's time to create a local repository that links to it! Copy the SSH address of your new repository by copying the URL in the *SSH* box (if it's showing *HTTPS*, click it and switch to *SSH*).
+Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new project and copy the SSH address of your new repository by copying the URL in the *SSH* box located below the description of your project (if it's showing *HTTPS*, click *HTTPS* and switch to *SSH*).
 
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
 ![Blank GitLab repository](figs/GitLab-empty-repository.png)
+
+8. *Clone your repository*
 
 Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
 
@@ -177,9 +205,17 @@ You will end up in an empty Git GUI window:
 
 ![Git GUI in an empty directory](figs/git_gui_blank.png)
 
+```{block, type="alert alert-info"}
+**Protip**: From the command line, `cd` into the directory you want to clone into, and run `git clone <url>`, e.g. `git clone git@git.wur.nl:you001/example.git`. The repository will be cloned into a subdirectory with a matching name.
+```
+
+9. *Tell Git who you are*
+
+Before you start using Git, you should tell it what your name and email address it. You need to do that only once per Git installation.
+
 ### Working with Git GUI
 
-8. *Make changes*
+9. *Make changes*
 
 To see Git in action, you need to make some changes in your repository. Try it by creating a new R script file in the directory where you cloned your new project.
 
@@ -193,7 +229,7 @@ If you click on the **icon** of the file in the *Unstaged Changes* panel, the fi
 
 Remember: clicking the **name** of the file shows the changes you made, clicking the **icon** of the file stages or unstages the change!
 
-9. *Commit changes*
+10. *Commit changes*
 
 Once you staged the files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create. The first line you enter is the name of the commit, keep that one short. Subsequent lines are the description. You may notice that the *Commit message* box does not have a horizontal scrollbar: that is intentional, because your commit message should fit within that box without the need for scrolling. Use new lines to break the text.
 
