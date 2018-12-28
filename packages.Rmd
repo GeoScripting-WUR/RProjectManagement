@@ -1,20 +1,23 @@
 ---
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+title: "Week 1, Lesson 3: Carrying out your R project - Make your own packages"
 output:
   knitrBootstrap::bootstrap_document:
-    title: "Week 1, Lesson 5: Carrying out your R project - Make your own packages"
-    theme: cosmo
+    theme: "simplex"
+    highlight: Tomorrow Night Bright
     menu: FALSE
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
 ---
 
-# [WUR Geoscripting](https://geoscripting-wur.github.io/) ![WUR logo](http://www.wageningenur.nl/upload/f9a0b5f2-15c5-4b84-9e14-20ef02f5e265_wur-logo.png)
+# [WUR Geoscripting](https://geoscripting-wur.github.io/) <img src="http://www.wur.nl/upload/b43b7095-e452-482a-8969-fed9a50393a8_WUR_RGB_standard.png" alt="WUR logo" style="height: 35px;"/>
 
 # [Week 1, Lesson 5: Carrying out your R project](https://geoscripting-wur.github.io/RProjectManagement/) - Packages
 
 Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.
 
-# Why making a package?
+# Why make a package?
 
 * Easy to share with others
 * Dependencies are automatically imported and functions are sourced (reduces the risk of having broken dependencies)

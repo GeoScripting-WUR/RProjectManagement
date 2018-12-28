@@ -5,8 +5,13 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <title>Week 1, Lesson 3: Carrying out your R project - Make your own packages</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- jQuery -->
@@ -862,23 +867,25 @@
   </style>
 </head>
 <body>
-<title>
-Week 1, Lesson 5: Carrying out your R project - Make your own packages
-</title>
+<div id="header">
+<h1 class="title">Week 1, Lesson 3: Carrying out your R project - Make your own packages</h1>
+<h2 class="author">Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz</h2>
+<h3 class="date">28 December, 2018</h3>
+</div>
 <div id="wrap">
 <div class="container">
 <div class="row row-offcanvas row-offcanvas-right">
 <div class="contents col-xs-12 col-md-10">
-<h1 id="wur-grs-51806-geoscripting-wur-logo"><a href="https://geoscripting-wur.github.io/">WUR GRS-51806 Geoscripting</a> <img src="http://www.wageningenur.nl/upload/f9a0b5f2-15c5-4b84-9e14-20ef02f5e265_wur-logo.png" alt="WUR logo" /></h1>
+<h1 id="wur-geoscripting"><a href="https://geoscripting-wur.github.io/">WUR Geoscripting</a> <img src="http://www.wur.nl/upload/b43b7095-e452-482a-8969-fed9a50393a8_WUR_RGB_standard.png" alt="WUR logo" style="height: 35px;"/></h1>
 <h1 id="week-1-lesson-5-carrying-out-your-r-project---packages"><a href="https://geoscripting-wur.github.io/RProjectManagement/">Week 1, Lesson 5: Carrying out your R project</a> - Packages</h1>
 <p>Also part of good programming practices, building an R package is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time.</p>
-<h1 id="why-making-a-package">Why making a package?</h1>
+<h1 id="why-make-a-package">Why make a package?</h1>
 <ul>
 <li>Easy to share with others</li>
 <li>Dependencies are automatically imported and functions are sourced (reduces the risk of having broken dependencies)</li>
 <li>Documentation is attached to the functions and cannot be lost (or forgotten)</li>
 </ul>
-<p>For these reasons, if you build a package, next year you will still be able to run the functions you wrote yesterday. Which is often not the case for stand alone functions that are poorly documented and may depend on many other functions ... that you cannot find anymore. So to summarize R packages are not only a way to extend the functionalities of R, they are also the standard way to archive and save R functions.</p>
+<p>For these reasons, if you build a package, next year you will still be able to run the functions you wrote yesterday. Which is often not the case for stand alone functions that are poorly documented and may depend on many other functions … that you cannot find anymore. So to summarize R packages are not only a way to extend the functionalities of R, they are also the standard way to archive and save R functions.</p>
 <h2 id="structure-of-a-package">Structure of a package</h2>
 <p>Note that R package structure and creation are not necessarily easy things to understand. As a consequence, although there are many reasons why you should always consider working with packages, and depending on your understanding of the concepts described above, you may want to consider this part of the lesson as additional/optional. This sections describes the structure of a simple package, for more information about R packages in general and details of package creation, please refer to the manual <a href="http://cran.r-project.org/doc/manuals/R-exts.html">Writing R extensions</a>.</p>
 <center>
@@ -887,30 +894,34 @@ Week 1, Lesson 5: Carrying out your R project - Make your own packages
 <p>Note how similar this is to the way we organize projects!</p>
 <p>The default basic structure of a package is as follows:</p>
 <table>
+<colgroup>
+<col width="45%" />
+<col width="54%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">where</th>
+<th>where</th>
 <th align="right">what</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>R/</code></td>
+<td><code>R/</code></td>
 <td align="right">includes the functions of the package, usually each in a separate functionName.R file</td>
 </tr>
 <tr class="even">
-<td align="left"><code>man/</code></td>
+<td><code>man/</code></td>
 <td align="right">functionName.Rd file, for each function in <code>R/</code>. These .Rd files are the functions documentation.</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>NAMESPACE</code> file &amp; <code>DESCRIPTION</code> file</td>
+<td><code>NAMESPACE</code> file &amp; <code>DESCRIPTION</code> file</td>
 <td align="right">Contain general information about the package (package metadata, dependencies, version additional: <code>data/</code>, <code>demo/</code> or <code>vignette/</code></td>
 </tr>
 </tbody>
 </table>
 <h1 id="useful-tips-for-package-creation">Useful tips for package creation</h1>
 <ul>
-<li>The <code>package.skeleton()</code> function will help you get the package structure from a list of sourced functions. (A function opened in the R Studio editor panel can be sourced by pressing the ''Source'' in the top right hand corner of the panel)</li>
+<li>The <code>package.skeleton()</code> function will help you get the package structure from a list of sourced functions. (A function opened in the R Studio editor panel can be sourced by pressing the ‘’Source’’ in the top right hand corner of the panel)</li>
 <li><code>prompt()</code> creates a tailored documentation (.Rd) file from an existing function.</li>
 <li>The project functionalities of the R Studio IDE can greatly assist you in creating a package from scratch. Explore the menus and option under Project - New project.</li>
 <li>Use the <strong>devtools</strong> package to directly install your packages from the version control platforms where they are maintained and share them with others.</li>
@@ -963,7 +974,7 @@ Styled with <a href="https://github.com/jimhester/knitrBootstrap">knitrBootstrap
 </p>
 </div>
 </div>
-<link rel="stylesheet" id="theme" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" media="screen"></link><link rel="stylesheet" id="highlight" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.min.css" media="screen"></link>
+<link rel="stylesheet" id="theme" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css" media="screen"></link><link rel="stylesheet" id="highlight" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/tomorrow-night-bright.min.css" media="screen"></link>
 </div></li>
 </ul>
 </body>

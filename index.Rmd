@@ -1,9 +1,9 @@
 ---
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+title: "Week 1, Lesson 3: Carrying out your R project"
 output:
   knitrBootstrap::bootstrap_document:
-    title: "Week 1, Lesson 3: Carrying out your R project"
     theme: "simplex"
     highlight: Tomorrow Night Bright
     menu: FALSE
@@ -211,11 +211,19 @@ You will end up in an empty Git GUI window:
 
 9. *Tell Git who you are*
 
-Before you start using Git, you should tell it what your name and email address it. You need to do that only once per Git installation.
+Before you start using Git, you should tell it what your name and email address it. You need to do that only once per Git installation. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitLab.
+
+```{block, type="alert alert-info"}
+**Protip**: To set your user name and email from the command line:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+```
 
 ### Working with Git GUI
 
-9. *Make changes*
+10. *Make changes*
 
 To see Git in action, you need to make some changes in your repository. Try it by creating a new R script file in the directory where you cloned your new project.
 
@@ -223,27 +231,47 @@ Once you are done, go back to Git GUI. If you closed the window, you can get bac
 
 ![Changes pending in Git GUI](figs/git_gui_changes.png)
 
+```{block, type="alert alert-info"}
+**Protip**: To see a list of files with pending changes from the command line, use `git status` while in a git repository. To see what exactly changed in each of these files, use `git diff`.
+```
+
 At the top left corner, the *Unstaged Changes* panel, you can see all the files that changed in your workspace. If you click on the **name** of the file, the main panel will show you what changed since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. **Note**: Git is very efficient with storing changes in text files: these *diff* files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.
 
 If you click on the **icon** of the file in the *Unstaged Changes* panel, the file changes will be *staged* and appear at the *Staged Changes (Will Commit)* panel. These are the file changes you want to save and sent to GitLab. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the *Stage Changed* button. If you staged more than you wanted to, you can click on the file **icon** in the *Staged Changes* panel to unstage it.
 
 Remember: clicking the **name** of the file shows the changes you made, clicking the **icon** of the file stages or unstages the change!
 
-10. *Commit changes*
+```{block, type="alert alert-info"}
+**Protip**: To stage a change from the command line, use `git add path/to/file.ext` where `path/to/file.ext` is the file you want to stage. To unstage, use `git reset HEAD path/to/file.ext`.
+```
 
-Once you staged the files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create. The first line you enter is the name of the commit, keep that one short. Subsequent lines are the description. You may notice that the *Commit message* box does not have a horizontal scrollbar: that is intentional, because your commit message should fit within that box without the need for scrolling. Use new lines to break the text.
+11. *Commit changes*
 
-If it is the first time you use Git GUI to make a commit, it might complain about it not knowing who you are. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitLab.
+Once you staged the files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create. The **first line** you enter is the **title** of the commit, keep that one short. Subsequent lines are the **description**. You may notice that the *Commit message* box does not have a horizontal scrollbar: that is intentional, because your commit message should fit within that box without the need for scrolling. Use new lines to break the text.
+
+If it is the first time you use Git GUI to make a commit, and you haven't filled out your user name and email, it might complain about it not knowing who you are. In that case go back to step 9.
 
 Next press the *Commit* button and your commit will be saved locally. A commit is like a saved state: you are always able to roll back the contents of your tracked files to the state they were in when you committed the changes.
 
+```{block, type="alert alert-info"}
+**Protip**: To commit a change from the command line, use `git commit`. If you want to stage all tracked and changed files and commit, use `git commit -a`.
+```
+
 In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the *Amend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitLab.
+
+```{block, type="alert alert-info"}
+**Protip**: To amend the last commit from the command line, use `git commit \-\-amend`.
+```
 
 10. *Push changes to the server*
 
 Press the *Push* button, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!
 
 ![GitLab repository with content](figs/GitLab-repository.png)
+
+```{block, type="alert alert-info"}
+**Protip**: To push changes from the command line, use `git push`.
+```
 
 11. *Pull changes from the server*
 
@@ -253,15 +281,35 @@ If there are any changes on GitHub that are not on your local copy yet, in Git G
 
 To attempt to apply the changes, go to *Merge* → *Local Merge...*. If all goes well, the changes will be applied.
 
-There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by comitting the changes.
+```{block, type="alert alert-info"}
+**Protip**: To do a fetch and merge together the command line, use `git pull`.
+```
+
+There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by committing the changes.
 
 ### Other Git GUI functionality
+
+You might run into a situation when you have made changes in tracked files, but do not want to keep some of the changes. You can revert one file by selecting it in Git GUI, then clicking *Commit* → *Revert changes*.
+
+```{block, type="alert alert-info"}
+**Protip**: The command line equivalent is `git checkout \-\- path/to/file.ext`, or if you want to reset all changed files, `git reset \-\-hard`.
+```
 
 Git GUI not only provides a way to make, push and pull commits, but also to visualise the commit history of your repository in a tree graph. Go to *Repository* → *Visualise Master's History* to see it. For larger and more complex projects with lots of contributors and merges, it might look like some sort of a subway map:
 
 ![Git GUI history (gitk)](figs/git_gui_gitk.png)
 
-You might run into a situation when you have made changes in tracking files, but do not want to keep some of the changes. You can revert one file by selecting it in Git GUI, then clicking *Commit* → *Revert changes*.
+```{block, type="alert alert-info"}
+**Protip**: The command line equivalent is `git log`.
+```
+
+The history view also allows you to reset the state of the repository to any previous commit by using the context menu. Note, however, that you can only push if you are on the latest commit. So the easiest way to revert changes is to copy over the files to a temporary directory outside of git, reset back, and move the files back into your repository.
+
+```{block, type="alert alert-info"}
+**Protip**: A few more options are available from the command line. `git revert <commit>` will undo changes from a given commit, where `<commit>` is the commit ID (you can get commit IDs from `git log`, they look like a long string of letters and numbers). `git checkout <commit> \-\- path/to/file.ext` will reset a single file to the state it was at the given commit.
+```
+
+You can also browse the history of a repository from your Git hosting service, and GitLab/GitHub even allow editing files from a web interface.
 
 ## Project structure
 
@@ -478,9 +526,9 @@ In order to achieve these objectives, you should try to follow a few good practi
     - Consistent use of the assignment operator: either `<-` or `=` in all your code. The former is used by core R and allows assigning in function calls, the latter is shorter and consistent with most other programming languages.
     - Consistent placement of curly braces.
 * [Make your own packages](#optional-writing-packages).
-* Work with [projects](#working-with-projects).
 * Keep a similar [directory structure](#project-structure) across your projects.
 * Use [version control](#version-control) to develop/maintain your projects and packages.
+<!--* Work with [projects](#working-with-projects).-->
 
 Note that R IDEs like RStudio make a lot of these good practices a lot easier and you should try to take maximum advantage of them. Take a moment to explore the menus of the RStudio session that should already be open on your machine. Particular emphasis will be given later in this tutorial on projects, project structure and use of version control.
 
@@ -595,18 +643,20 @@ HelloWorld <- function (x) {
 
 # Let's test it
 HelloWorld('john')
+HelloWorld(2.5)
+HelloWorld(c("Devis", "Martin"))
+HelloWorld(NULL)
+HelloWorld(data.frame(a=1:10, b=rep("Name", 10)))
 ```
 
-Obviously, the user is expected to pass an object of character vector to x. Otherwise the function will return an error. But you can make it handle such cases gracefully and print an informative message by controlling the class of the input variable.
-For example.
+Surprisingly enough, R is smart enough to give intuitive output in most of the tested cases, since the `sprintf` function automatically casts non-character variables into character ones, and is also vectorised to produce output when the input is a vector. However, in the last two cases, the output is not intuitive. We may want to only allow passing character vectors to this function. We can do this with a small change:
 
-```{r}
+```{r, error=TRUE}
 HelloWorld <- function (x) {
-    if (is.character(x)) {
-      hello <- sprintf('Hello %s', x)
-    } else {
-      hello <- warning('Object of class character expected for x')
-    }
+    if (!is.character(x))
+      stop('Object of class "character" expected for x')
+
+    hello <- sprintf('Hello %s', x)
     return(hello)
 }
 
@@ -614,21 +664,42 @@ HelloWorld(21)
 
 ```
 
-The function does not crash anymore, but returns a warning instead.
+The function now throws an informative error when something not supported is requested. These function argument "sanity checks" are useful to avoid lengthy processing, when we know that the output of the function is going to be wrong anyway because of invalid arguments. Alternatively to `stop()`, the function could throw a `warning()` but still return some value.
 
-Note that most common object classes have their own logical function, that returns `TRUE` or `FALSE`.
-For example.
+Note that most common object classes have their own logical function (that returns `TRUE` or `FALSE`) to check what class it is.
+For example:
 
 ```{r}
 is.character('john')
-# is equivalent to 
+# is similar to
 class('john') == 'character'
 
 is.character(32)
 is.numeric(32)
 ```
 
-You should always try to take maximum advantage of these small utilities and check for classes and properties of your objects.
+You should always try to take maximum advantage of these small utilities and check for classes and properties of your objects. This is important in some cases that you might not think of in advance, for instance, consider an object with more than one class:
+
+```{r}
+a = list(a=1:10, b="b")
+# We can also set a class (only do that if you make your own class!)
+class(a) = c("myclass", "list")
+
+# Wrong
+if (class(a) == "list") {
+  print("a is a list")
+} else {
+  print("a is not a list")
+}
+
+# Right
+if (is.list(a)) {
+  print("a is a list")
+} else {
+  print("a is not a list")
+}
+
+```
 
 
 Also note that `is.character(32) == TRUE` is equivalent to `is.character(32)`. Therefore when checking logical arguments, you don't need to use the `== TRUE`. As an example, a function may have an argument (say, `plot`) that, if set to `TRUE` will generate a plot, and if set to `FALSE` does not generate a plot. It means that the function certainly contains an if statement. `if(plot)` in that case is equivalent to `if(plot == TRUE)`, it's just shorter (and very slightly faster).
@@ -663,7 +734,40 @@ r3 <- minusRaster(r, r2)
 r4 <- minusRaster(r, r2, plot=TRUE) 
 ```
 
-##`try` and debugging
+## Vectorised functions
+
+A lot of core R functions are *vectorised*, i.e. they are capable of taking vectors, rather than individual values, as input. This allows very simple and powerful syntax without needing to use loops, for instance:
+
+```{r}
+NumVec = 1:10
+# We do not need to run the function on each element individually
+as.character(NumVec)
+# Functions that reduce input into fewer numbers are also vectorised
+mean(NumVec)
+range(NumVec)
+# All math operators are vectorised
+NumVec + 100
+NumVec^2
+```
+
+Because most base functions are already vectorised, it is easy to write new functions that are themselves vectorised. For the most part, all you need to do is test your functions not just on single values, but also vectors of values, and think whether the result makes sense.
+
+Vectorisation also allows us to write short and versatile code. For instance, to check whether the input is a positive number:
+
+```{r}
+is.positive.number = function(x)
+{
+  is.numeric(x) & x > 0
+}
+
+is.positive.number(100)
+is.positive.number(c(-100, 10, NA))
+is.positive.number(c(TRUE, FALSE))
+# Somewhat counterintuitive, but remember that a vector always has a single type
+is.positive.number(c(TRUE, -5, 10))
+```
+
+## `try` and debugging
 
 ### Use of `try` for error handling
 
@@ -693,7 +797,7 @@ list <- c(a,b,c)
 # In that case, b and a are raster layers, c is ''corrupted''
 ```
 
-```{r, eval=FALSE, echo=TRUE}
+```{r, error=TRUE}
 ## Running freq(c) would return an error and stop the whole process
 out <- list()
 for(i in 1:length(list)) {
@@ -701,7 +805,7 @@ for(i in 1:length(list)) {
 }
 ```
 
-```{r, eval=FALSE, echo=TRUE}
+```{r}
 ## If you wrap the call in a try(), you still get an error, but it's non-fatal
 out <- list()
 for(i in 1:length(list)) {
@@ -710,7 +814,7 @@ for(i in 1:length(list)) {
 out
 ```
 
-```{r, eval=TRUE, echo=TRUE}
+```{r}
 # By building a function that includes a try()
 # we are able to catch the error without having it printed,
 # allowing the process to handle the error gracefully.
@@ -799,9 +903,10 @@ foo(2)
 
 Refer to the reference section of this document for further information on function debugging.
 
+```{block, type="alert alert-info"}
 # (optional) Writing packages
 The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. Find instructions [here](packages.html) and in the [references](#references) below.
-
+```
 
 
 # Exercise 3
