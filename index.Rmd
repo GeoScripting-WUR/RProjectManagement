@@ -985,11 +985,11 @@ Error: argument of class numeric expected
 ## Assessment
 When doing assessment, the following points are to be considered:
 
-1. Whether the function works as intended and handles a variety of input
-2. Whether the function is readable, complete, type consistent, throws meaningful errors and warnings when appropriate.
-3. The structure of your project and the appropriate use of git
+1. Whether the function works as intended
+2. Whether the fucntion handles a variety of input, throws meaningful errors and warnings when appropriate.
+3. Whether the function is readable, complete and type consistent.
 
-For bonus points, try to make the function as short as possible: can you come up with a solution without using any `if` statements?
+The structure of your project and the appropriate use of git will also be assessed. For bonus points, try to make the function as short as possible: can you come up with a solution without using any `if` statements?
 
 ## How to submit?
 ```{block, type="alert alert-danger"}
