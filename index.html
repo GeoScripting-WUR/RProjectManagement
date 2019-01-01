@@ -870,7 +870,7 @@
 <div id="header">
 <h1 class="title">Week 1, Lesson 3: Carrying out your R project</h1>
 <h2 class="author">Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas</h2>
-<h3 class="date">28 December, 2018</h3>
+<h3 class="date">01 January, 2019</h3>
 </div>
 <div id="wrap">
 <div class="container">
@@ -1174,6 +1174,15 @@ git config --global user.email you@example.com</code></pre>
 </div>
 </div>
 <p>You can also browse the history of a repository from your Git hosting service, and GitLab/GitHub even allow editing files from a web interface.</p>
+<div class="row">
+<div class="alert alert-success">
+<blockquote>
+<p>
+<strong>Question</strong>: How do you find commit history and old versions of your files on GitHub/GitLab?
+</p>
+</blockquote>
+</div>
+</div>
 <h2 id="project-structure">Project structure</h2>
 <p>Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work. You may use the following structure:</p>
 <ul>
@@ -1306,7 +1315,14 @@ plot(r)</code></pre>
 </div>
 </div>
 </div>
-<p>Useful to know when writing a reproducible example: instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R <em>built-in</em> data-sets. They are part of the main R packages. Some popular data sets are: <code>cars</code>, <code>meuse.grid_ll</code>, <code>Rlogo</code>, <code>iris</code>, etc. The <a href="http://en.wikipedia.org/wiki/Autocomplete">auto completion</a> menu of the <code>data()</code> function will give you an overview of the data sets available. (In most script editing environments, including the R console and RStudio, auto-completion can be invoked by pressing the tab key, use it without moderation.)</p>
+<p>Useful to know when writing a reproducible example: instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R <em>built-in</em> data-sets. They are part of the main R packages. Some popular data sets are: <code>cars</code>, <code>meuse.grid_ll</code>, <code>Rlogo</code>, <code>iris</code>, etc. The <a href="http://en.wikipedia.org/wiki/Autocomplete">auto completion</a> menu of the <code>data()</code> function will give you an overview of the data sets available.</p>
+<div class="row">
+<div class="alert alert-info">
+<p>
+<strong>Protip</strong>: In most script editing environments, including the R console and RStudio, auto-completion can be invoked by pressing the tab key, use it without moderation.
+</p>
+</div>
+</div>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1473,10 +1489,10 @@ ageCalculator(1985)</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] 33
+<pre style=""><code class="output r">## [1] 34
 </code></pre>
 </div>
-<p>31, what a beautiful age for learning geo-scripting.</p>
+<p>What a beautiful age for learning geo-scripting!</p>
 <p>Then the bad example:</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -1499,7 +1515,7 @@ funTest_4(1985)</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] 33
+<pre style=""><code class="output r">## [1] 34
 </code></pre>
 </div>
 <p>It also works, but which of the two is the easiest to read, understand, and modify if needed? … Exactly, the first one. So let’s look back at the examples and identify some differences:</p>
@@ -1667,6 +1683,15 @@ HelloWorld(21)</code></pre>
 </code></pre>
 </div>
 <p>The function now throws an informative error when something not supported is requested. These function argument “sanity checks” are useful to avoid lengthy processing, when we know that the output of the function is going to be wrong anyway because of invalid arguments. Alternatively to <code>stop()</code>, the function could throw a <code>warning()</code> but still return some value.</p>
+<div class="row">
+<div class="alert alert-success">
+<blockquote>
+<p>
+<strong>Question</strong>: In which cases should you use <code>stop()</code>, <code>warning()</code>, <code>message()</code>, and when should you return a string?
+</p>
+</blockquote>
+</div>
+</div>
 <p>Note that most common object classes have their own logical function (that returns <code>TRUE</code> or <code>FALSE</code>) to check what class it is. For example:</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -1872,17 +1897,70 @@ is.positive.number(100)</code></pre>
 </button>
 <pre style=""><code class="output r">## [1] FALSE FALSE
 </code></pre>
+</div>
+<div class="row">
+<div class="alert alert-success">
+<blockquote>
+<p>
+<strong>Question</strong>: Why does the following function call return different and counter-intuitive results?
+</p>
+</blockquote>
+</div>
+</div>
+<div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r"># Somewhat counterintuitive, but remember that a vector always has a single type
-is.positive.number(c(TRUE, -5, 10))</code></pre>
+<pre style=""><code class="source r">is.positive.number(c(TRUE, -5, 10))</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
 <pre style=""><code class="output r">## [1]  TRUE FALSE  TRUE
 </code></pre>
 </div>
+<h2 id="type-consistency">Type consistency</h2>
+<p>We just became familiar with functions for checking the types (classes) of variables. You may have noticed that there is one way in which they are all consistent: no matter the input, they return a <code>logical</code> value (<code>TRUE</code>, <code>FALSE</code>, or also <code>NA</code>). This is called type consistency and is a useful property. Consider code like this:</p>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">AddNewSubject = function(NewBirthYear)
+{
+  # Birth years of previous subjects
+  BirthYears = c(1980, 1985, 1987, 1990, 1993, 1994, 1998, 2000)
+  return(c(BirthYears, NewBirthYear))
+}
+
+# Works as expected
+NewSubjects = AddNewSubject(c(1995, 1998, 1999, 2000))
+sum(NewSubjects >= 2000) # How many subjects are born on or after 2000</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-down"></span> R output
+</button>
+<pre style=""><code class="output r">## [1] 2
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># Whoops!
+NewSubjects = AddNewSubject(c("MCMXCV", "1998", "1999", "2000"))
+sum(NewSubjects >= 2000)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-down"></span> R output
+</button>
+<pre style=""><code class="output r">## [1] 3
+</code></pre>
+</div>
+<div class="row">
+<div class="alert, alert-success">
+<blockquote>
+<p>
+<strong>Question</strong>: What happened, and what would happen if we didn’t include the Roman numerals?
+</p>
+</blockquote>
+</div>
+</div>
+<p><code>AddNewSubject</code> is not type consistent: depending on the input, the output class changes. This is sometimes convenient, but in the case above, the function succeeds but gives an output that is completely misleading. This has gone horribly right: a lot of code in R is flexible and can handle multiple input types, and so you may only notice that your output is wrong when you inspect it yourself. If the function <code>AddNewSubject</code> checked the input and always returned integers, we would be sure that comparing its output against numbers and summing them is safe. Similarly, the <code>is.numeric()</code> etc. functions are type consistent, and thus it is safe to use them in <code>if</code> statements which always require a logical input. This allows us to not need extra type checking after running such a function. In addition, the function name is hinting towards the type consistency: <code>is.</code> makes us realise that it will give a yes/no answer.</p>
 <h2 id="try-and-debugging"><code>try</code> and debugging</h2>
 <h3 id="use-of-try-for-error-handling">Use of <code>try</code> for error handling</h3>
 <p>The <code>try()</code> function may help you writing functions that do not stop with a cryptic error whenever they encounter an unknown of any kind. Anything (sub-function, piece of code) that is wrapped into <code>try()</code> will not interrupt the bigger function that contains <code>try()</code>. So for instance, this is useful if you want to apply a function sequentially but independently over a large set of raster files, and you already know that some of the files are corrupted and might return an error. By wrapping your function into <code>try()</code> you allow the overall process to continue until its end, regardless of the success of individual layers. So <code>try()</code> is a perfect way to deal with heterogeneous/unpredictable input data.</p>
@@ -1903,7 +1981,7 @@ freq(a, value=-2)</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] 315
+<pre style=""><code class="output r">## [1] 330
 </code></pre>
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1945,10 +2023,10 @@ out</code></pre>
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
 <pre style=""><code class="output r">## [[1]]
-## [1] 315
+## [1] 330
 ## 
 ## [[2]]
-## [1] 315
+## [1] 330
 ## 
 ## [[3]]
 ## [1] "Error in (function (classes, fdef, mtable)  : \n  unable to find an inherited method for function 'freq' for signature '\"logical\"'\n"
@@ -1980,10 +2058,10 @@ out</code></pre>
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
 <pre style=""><code class="output r">## [[1]]
-## [1] 315
+## [1] 330
 ## 
 ## [[2]]
-## [1] 315
+## [1] 330
 ## 
 ## [[3]]
 ## [1] "This object returned an error"
@@ -1997,7 +2075,7 @@ out</code></pre>
 <button class="output R toggle btn btn-xs btn-success">
 <span class="glyphicon glyphicon-chevron-down"></span> R output
 </button>
-<pre style=""><code class="output r">## [1] "315"                           "315"                          
+<pre style=""><code class="output r">## [1] "330"                           "330"                          
 ## [3] "This object returned an error"
 </code></pre>
 </div>
@@ -2073,12 +2151,14 @@ The next step to write re-usable code is packaging it, so others can simply inst
 </div>
 <h1 id="exercise-3">Exercise 3</h1>
 <h2 id="your-task">Your task</h2>
-<p>Create a RStudio project, with git version control. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the <code>main.R</code>. The function should behave as follows:</p>
+<p>Create a GitLab project on the WUR instance. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the <code>main.R</code>. The function should behave as follows:</p>
 <pre><code>&gt; is.leap(2000)
 [1] TRUE
 
-&gt; is.leap(1581)
-[1] &quot;1581 is out of the valid range&quot;
+&gt; is.leap(1580)
+Warning message:
+In is.leap(year): 1580 was before the Gregorian calendar was in use, using proleptic Gregorian calendar
+[1] TRUE
 
 &gt; is.leap(2002)
 [1] FALSE
@@ -2092,14 +2172,28 @@ Error: argument of class numeric expected</code></pre>
 <li><a href="http://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html">R arithmetic oprators</a></li>
 </ul>
 <h2 id="assessment">Assessment</h2>
-<p>Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.</p>
+<p>When doing assessment, the following points are to be considered:</p>
+<ol style="list-style-type: decimal">
+<li>Whether the function works as intended and handles a variety of input</li>
+<li>Whether the function is readable, complete, type consistent, throws meaningful errors and warnings when appropriate.</li>
+<li>The structure of your project and the appropriate use of git</li>
+</ol>
+<p>For bonus points, try to make the function as short as possible: can you come up with a solution without using any <code>if</code> statements?</p>
 <h2 id="how-to-submit">How to submit?</h2>
-<p>Create a <strong>private</strong> GitLab project with the name <code>Geoscripting-Exercise&lt;id&gt;-&lt;teamname&gt;</code>, where <code>&lt;id&gt;</code> is the number of the exercise (3 in today’s case) and <code>&lt;teamname&gt;</code> is the name of your team. In the Members section of the project, add the staff member(s) responsible for checking your exercises (in 2018 it is <span class="citation">@swink019</span> and <span class="citation">@almei006</span>, see Blackboard for any updates) as members of the project and grant them “Master” privileges. Finish the exercise by 17:15. The staff will check it and publish your answers on the student group <code>Geoscripting&lt;year&gt;</code> on GitLab after the deadline.</p>
-<p>You will need to give the team you are reviewing feedback on their exercise solution before 11:00 the next day (use the review team generator Shiny app to know who you are reviewing and who you are reviewed by). Answers from other groups will be available on the <code>Geoscripting&lt;year&gt;</code> group on GitLab. For reviewing other teams’ answers:</p>
+<div class="row">
+<div class="alert alert-danger">
+<p>
+<strong>Important</strong>: Please carefully read the submission instructions on Blackboard! You may not get scored if you submit your exercises incorrectly.
+</p>
+</div>
+</div>
+<p>As a summary: create a <strong>private</strong> GitLab project with the name <code>Geoscripting-Exercise&lt;id&gt;-&lt;teamname&gt;</code>, where <code>&lt;id&gt;</code> is the number of the exercise (3 in today’s case) and <code>&lt;teamname&gt;</code> is the name of your team. In the Members section of the project, add the staff members responsible for checking your exercises as members of the project and grant them “Maintainer” privileges. Finish the exercise by the deadline today. The staff will check it and publish your answers on the student group <code>Geoscripting&lt;year&gt;</code> on GitLab after the deadline.</p>
+<p>You will need to give the team you are reviewing feedback on their exercise solution the next day (use the review team generator Shiny app to know who you are reviewing and who you are reviewed by). Answers from other groups will be available on the <code>Geoscripting&lt;year&gt;</code> group on GitLab. For reviewing other teams’ answers:</p>
 <ul>
 <li>Clone the repository of the team you have to review to your computer and test it.</li>
 <li>Add an issue to their project and write out your review. Make sure to mention your team name in the review.</li>
 </ul>
+<p>Once you receive issues on your repository with feedback, do not close them! They will be checked by staff as part of the assessment.</p>
 <p>This is the way the exercises will need to be submitted and reviewed from this lesson on.</p>
 <h1 id="references">References</h1>
 <ul>

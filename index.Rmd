@@ -311,6 +311,10 @@ The history view also allows you to reset the state of the repository to any pre
 
 You can also browse the history of a repository from your Git hosting service, and GitLab/GitHub even allow editing files from a web interface.
 
+```{block, type="alert alert-success"}
+> **Question**: How do you find commit history and old versions of your files on GitHub/GitLab?
+```
+
 ## Project structure
 
 Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work.
@@ -446,8 +450,11 @@ plot(r)
 ```
 
 Useful to know when writing a reproducible example: instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R *built-in* data-sets. They are part of the main R packages.
-Some popular data sets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc.
-The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the data sets available. (In most script editing environments, including the R console and RStudio, auto-completion can be invoked by pressing the tab key, use it without moderation.)
+Some popular data sets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc. The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the data sets available.
+
+```{block, type="alert alert-info"}
+**Protip**: In most script editing environments, including the R console and RStudio, auto-completion can be invoked by pressing the tab key, use it without moderation.
+```
 
 ```{r, echo=TRUE, fig.align='center'}
 ## Import the variable "cars" in the working environment
@@ -557,7 +564,7 @@ ageCalculator <- function(x) {
 ageCalculator(1985)
 ```
 
-31, what a beautiful age for learning geo-scripting.
+What a beautiful age for learning geo-scripting!
 
 Then the bad example:
 
@@ -666,6 +673,10 @@ HelloWorld(21)
 
 The function now throws an informative error when something not supported is requested. These function argument "sanity checks" are useful to avoid lengthy processing, when we know that the output of the function is going to be wrong anyway because of invalid arguments. Alternatively to `stop()`, the function could throw a `warning()` but still return some value.
 
+```{block, type="alert alert-success"}
+> **Question**: In which cases should you use `stop()`, `warning()`, `message()`, and when should you return a string?
+```
+
 Note that most common object classes have their own logical function (that returns `TRUE` or `FALSE`) to check what class it is.
 For example:
 
@@ -763,9 +774,41 @@ is.positive.number = function(x)
 is.positive.number(100)
 is.positive.number(c(-100, 10, NA))
 is.positive.number(c(TRUE, FALSE))
-# Somewhat counterintuitive, but remember that a vector always has a single type
+```
+
+```{block, type="alert alert-success"}
+> **Question**: Why does the following function call return different and counter-intuitive results? 
+```
+
+```{r}
 is.positive.number(c(TRUE, -5, 10))
 ```
+
+## Type consistency
+We just became familiar with functions for checking the types (classes) of variables. You may have noticed that there is one way in which they are all consistent: no matter the input, they return a `logical` value (`TRUE`, `FALSE`, or also `NA`). This is called type consistency and is a useful property. Consider code like this:
+
+```{r}
+AddNewSubject = function(NewBirthYear)
+{
+  # Birth years of previous subjects
+  BirthYears = c(1980, 1985, 1987, 1990, 1993, 1994, 1998, 2000)
+  return(c(BirthYears, NewBirthYear))
+}
+
+# Works as expected
+NewSubjects = AddNewSubject(c(1995, 1998, 1999, 2000))
+sum(NewSubjects >= 2000) # How many subjects are born on or after 2000
+
+# Whoops!
+NewSubjects = AddNewSubject(c("MCMXCV", "1998", "1999", "2000"))
+sum(NewSubjects >= 2000)
+```
+
+```{block, type="alert, alert-success"}
+> **Question**: What happened, and what would happen if we didn't include the Roman numerals?
+```
+
+`AddNewSubject` is not type consistent: depending on the input, the output class changes. This is sometimes convenient, but in the case above, the function succeeds but gives an output that is completely misleading. This has gone horribly right: a lot of code in R is flexible and can handle multiple input types, and so you may only notice that your output is wrong when you inspect it yourself. If the function `AddNewSubject` checked the input and always returned integers, we would be sure that comparing its output against numbers and summing them is safe. Similarly, the `is.numeric()` etc. functions are type consistent, and thus it is safe to use them in `if` statements which always require a logical input. This allows us to not need extra type checking after running such a function. In addition, the function name is hinting towards the type consistency: `is.` makes us realise that it will give a yes/no answer.
 
 ## `try` and debugging
 
@@ -911,7 +954,7 @@ The next step to write re-usable code is packaging it, so others can simply inst
 
 # Exercise 3
 ## Your task
-Create a RStudio project, with git version control. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the `main.R`.
+Create a GitLab project on the WUR instance. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the `main.R`.
 The function should behave as follows:
 
 
@@ -919,8 +962,10 @@ The function should behave as follows:
 > is.leap(2000)
 [1] TRUE
 
-> is.leap(1581)
-[1] "1581 is out of the valid range"
+> is.leap(1580)
+Warning message:
+In is.leap(year): 1580 was before the Gregorian calendar was in use, using proleptic Gregorian calendar
+[1] TRUE
 
 > is.leap(2002)
 [1] FALSE
@@ -938,15 +983,27 @@ Error: argument of class numeric expected
 
 
 ## Assessment
-Assessment will consider whether the function works as intended, but also its readability and completeness (try as much as possible to use all good practices mentioned in this lecture). The structure of your project and the appropriate use of git will also be assessed.
+When doing assessment, the following points are to be considered:
+
+1. Whether the function works as intended and handles a variety of input
+2. Whether the function is readable, complete, type consistent, throws meaningful errors and warnings when appropriate.
+3. The structure of your project and the appropriate use of git
+
+For bonus points, try to make the function as short as possible: can you come up with a solution without using any `if` statements?
 
 ## How to submit?
-Create a **private** GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff member(s) responsible for checking your exercises (in 2018 it is @swink019 and @almei006, see Blackboard for any updates) as members of the project and grant them "Master" privileges. Finish the exercise by 17:15. The staff will check it and publish your answers on the student group `Geoscripting<year>` on GitLab after the deadline.
+```{block, type="alert alert-danger"}
+**Important**: Please carefully read the submission instructions on Blackboard! You may not get scored if you submit your exercises incorrectly.
+```
 
-You will need to give the team you are reviewing feedback on their exercise solution before 11:00 the next day (use the review team generator Shiny app to know who you are reviewing and who you are reviewed by). Answers from other groups will be available on the `Geoscripting<year>` group on GitLab. For reviewing other teams' answers:
+As a summary: create a **private** GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff members responsible for checking your exercises as members of the project and grant them "Maintainer" privileges. Finish the exercise by the deadline today. The staff will check it and publish your answers on the student group `Geoscripting<year>` on GitLab after the deadline.
+
+You will need to give the team you are reviewing feedback on their exercise solution the next day (use the review team generator Shiny app to know who you are reviewing and who you are reviewed by). Answers from other groups will be available on the `Geoscripting<year>` group on GitLab. For reviewing other teams' answers:
 
 * Clone the repository of the team you have to review to your computer and test it.
 * Add an issue to their project and write out your review. Make sure to mention your team name in the review.
+
+Once you receive issues on your repository with feedback, do not close them! They will be checked by staff as part of the assessment.
 
 This is the way the exercises will need to be submitted and reviewed from this lesson on.
 
