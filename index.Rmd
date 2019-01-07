@@ -22,7 +22,7 @@ Here is what you will do today:
 Time  | Activity
 ------------- | -------------
 Morning  |  Self-study: go through the following tutorial
-13:30 to 14:30  | Presentation and discussion
+14:00 to 15:00  | Presentation and discussion
 Rest of the afternoon | Do/finalise the exercise.
 
 ## Introduction
@@ -970,7 +970,7 @@ In is.leap(year): 1580 was before the Gregorian calendar was in use, using prole
 > is.leap(2002)
 [1] FALSE
 
-> is.leap('john') #should return an error 
+> is.leap('john') #should throw an error 
 Error: argument of class numeric expected
 ```
 
