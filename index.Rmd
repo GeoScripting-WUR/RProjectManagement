@@ -190,7 +190,7 @@ Next, check out the project settings. Under the *Members* tab of *Settings*, you
 
 7. *Get the URL of your new repository*
 
-Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new project and copy the SSH address of your new repository by copying the URL in the *SSH* box located below the description of your project (if it's showing *HTTPS*, click *HTTPS* and switch to *SSH*).
+Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new project, click the blue *Clone* button at the top right of the page, and copy the *Clone with **SSH** * address of your new repository.
 
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
 ![Blank GitLab repository](figs/GitLab-empty-repository.png)
