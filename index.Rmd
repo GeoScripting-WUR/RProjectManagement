@@ -1,7 +1,7 @@
 ---
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-title: "Week 1, Lesson 3: Carrying out your R project"
+title: "Week 1, Lesson 1: Carrying out your scripting project"
 output:
   knitrBootstrap::bootstrap_document:
     theme: "simplex"
@@ -14,24 +14,34 @@ output:
 # [WUR Geoscripting](https://geoscripting-wur.github.io/) <img src="http://www.wur.nl/upload/b43b7095-e452-482a-8969-fed9a50393a8_WUR_RGB_standard.png" alt="WUR logo" style="height: 35px;"/>
 
 
-# Week 1, Lesson 3: Carrying out your R project 
+# Week 1, Lesson 1: Carrying out your scripting project 
+
+<!-- TODO: Move to Brightspace
 
 Good morning! 
 Here is what you will do today:
 
 Time  | Activity
 ------------- | -------------
-Until 11:00 | Review yesterday's exercise answer of the other team
 Morning  |  Self-study: go through the following tutorial
 14:00 to 15:00  | Presentation and discussion
-Rest of the afternoon | Do/finalise the exercise.
+Rest of the afternoon | Do/finalise the exercise. -->
+
+## Course setup
+
+```{block type="alert alert-info"}
+**Important**: The Geoscripting course is a Master-level course given in Wageningen University. This set of documents that you are reading provide the theoretical material from the course for use both in the course itself, as well as for people who are following (parts of) the course externally or are in general interested in the topics that we cover. As such, these documents aim to be generic for all of the user groups above.
+
+If you are a student following the course at Wageningen University (WUR), **please read** the information on [Brightspace](https://brightspace.wur.nl) and the Slack channel linked from it. All course-specific information can be found there. Information on Brightspace overrule any information written in these pages, so **please read it carefully** and **check it often**. You will also find all the information on deliverables and exercises there.
+
+Throughout the whole course, we will be working in a Linux environment, and all of **the material has only been tested on (and assumes) a Linux environment**. While we will get into the details of what Linux is and why we use it in the next lesson, it is easiest if you **start using it also for this lesson**, as it will save you the trouble of setting up your version control twice. For WUR students, to find information on how to access your virtual machine, see the [VMWare Horizon tutorial](../Intro2Linux/vmware_horizon_tutorial.html).
+
+While the majority of the software used in the course also works on other platforms (e.g. Windows and macOS), we will not cover their use outside of Linux, as it is outside the scope of the course. In case you don't know how to run a piece of software mentioned in the tutorial, chances are that you are not working in a proper Linux environment - please see the paragraph above!
+```
 
 ## Introduction
-During the previous lecture, you saw some general aspects of the R language, such as an introduction to the syntax, object classes, reading of external data and function writing. 
 
-Today it's about carrying out a geoscripting project. This tutorial is about R, but a lot of it can be applied to other languages! 
-
-Scripting means that you often go beyond easy things and therefore face challenges. It is normal you will have to look for help. This lesson will guide you through ways of finding help. It continues with a couple "good practices" for scripting, debugging and geoscripting projects. This includes using version control and project management.
+Before we even start writing code, it is very important to think about the bigger picture: where are we going to store the code in the first place, and how do we want the folder structure to look like? For these reasons, today's tutorial focuses on version control systems and project management. At the end of the lesson, we also cover some of the basics in R.
 
 ## Learning objectives
 At the end of the lecture, you should be able to
@@ -39,13 +49,13 @@ At the end of the lecture, you should be able to
 * Use version control to develop, maintain, and share your code with others
 * Find help for R related issues
 * Produce a reproducible example
-* Adopt some good scripting/programming habits
-* Use control flow for efficient function writing
+* Refresh R skills and assessing scripting skills to see if you have the 
+necessary scripting skills to continue with the course
 
 
 # Version control
 
-**Important note:** you need to have git installed and properly configured on your computer to do the following. Visit the [system setup page](http://geoscripting-wur.github.io/system_setup/) for more details. Git is preinstalled in the PC lab and on virtual machines already.
+<!-- **Important note:** you need to have git installed and properly configured on your computer to do the following. Visit the [system setup page](http://geoscripting-wur.github.io/system_setup/) for more details. Git is preinstalled in the PC lab and on virtual machines already. -->
 
 ## What is version control?
 
@@ -114,14 +124,12 @@ Effective use of git includes two components: local software to manage the files
 In this course, we will primarily use Git GUI as the client. It is a simple client that is included with Git itself, and is language-agnostic. There are more graphical clients as well, including one integrated into RStudio itself, but these clients are outside the scope of this course.
 
 ```{block, type="alert alert-info"}
-**Protip**: For those who are comfortable with working from the terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in protip boxes like this you will find command line equivalents to the GUI actions we will perform; you are not required to know them.
+**Protip**: For those who are comfortable with working from the Linux terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in protip boxes like this you will find command line equivalents to the GUI actions we will perform. Choose whichever way you find the most convenient for yourself.
 ```
 
-GitHub is the most popular host, but in order to facilitate the assignment submission process, we will use the GitLab instance of Wageningen University throughout this course. Note that the university instance is the same as what you can find on the GitLab website, except that it is managed by the university's IT department (so you do not need to register) and you may choose to make projects visible only to others from the university.
+Throughout the Geoscripting course, for hosting our code, we will be using [GitHub](https://github.com), the most popular Git hosting platform. Conveniently enough, it also provides [GitHub Classroom](https://classroom.github.com), a platform that makes submitting programming exercises easier!
 
-```{block, type="alert alert-info"}
-**Note**: If you are taking the course externally and do not have access to the WUR GitLab instance, you can use the [public GitLab instance](https://gitlab.com) or [GitHub](https://github.com) instead.
-```
+Let's jump right into making your very own GitHub scripting project from scratch!
 
 ### Client setup
 
@@ -139,9 +147,9 @@ Launch a program called *Git GUI* from your start menu. Git GUI is a graphical i
 
 2. *Create an SSH key pair*
 
-In order for GitLab (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.
+In order for GitHub (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.
 
-You can generate a new SSH key pair in Git GUI by going to *Help* → *Show SSH Key* and pressing the *Generate Key* button. It will ask you for a passphrase. This is not a password and is completely optional: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus; however, SSH keys are specific to each machine and are never sent over the network, so most of the time it is completely fine to leave the passphrase empty. If you keep it empty, you will not need to enter it every time you try to push your changes, yet the connection will be even more secure than when using a password.
+You can generate a new SSH key pair in Git GUI by going to *Help* → *Show SSH Key* and pressing the *Generate Key* button. It will ask you for a **passphrase**. This is **not a password** and is completely **optional**: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus; however, SSH keys are specific to each machine and are never sent over the network, so most of the time it is completely fine to **leave the passphrase empty**. If you keep it empty, you will **not need to enter it every time** you try to push your changes, yet the connection will be even more secure than when using a password.
 
 Once done, you will see your new public key:
 
