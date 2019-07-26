@@ -135,7 +135,7 @@ Let's jump right into making your very own GitHub scripting project from scratch
 
 1. *Launch Git GUI*
 
-Launch a program called *Git GUI* from your start menu. Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:
+Launch a program called *Git GUI* (e.g. from the *Applications* → *Programming* menu). Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:
 
 ![Main screen of Git GUI](figs/git_gui_main.png)
 
@@ -163,64 +163,66 @@ Once done, you will see your new public key:
 
 Next, we will link our client with a Git host so that we can download and upload repositories.
 
-3. *Log into GitLab*
+3. *Log into GitHub*
 
-Go to [WUR GitLab](https://git.wur.nl/) and log in. The username is your WUR email address and the password is your WUR account password.
+Go to [GitHub](https://github.com/) and log in (register in case you don't have an account yet).
 
 4. *Enrol the public key to your user account*
 
-The SSH key pair is used to identify that you own the machine. On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university. On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware Horizon, the keys are stored on your personal VDI, so you can also access them from anywhere.
+The SSH key pair is used to identify that you own the machine. <!--On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university.--> On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware Horizon, the keys are stored on your personal VDI, so you can access them from anywhere.
 
-Now you need to tell GitLab about your new key. To do that, copy the public key from the dialog, then in GitLab click on your avatar in the top right and go to *Settings* → *SSH keys*. Give it a title describing your machine, paste the public key in the box, and press *Add key*. You might need to confirm the key by email for added security.
+Now you need to tell GitHub about your new key. To do that, copy the public key from the dialog, then in GitHub click on your avatar in the top right and go to *Settings* → *SSH and GPG keys*. Click *New SSH Key*, give it a title describing your machine, paste the public key in the box, and press *Add SSH key*. You might need to confirm the key by email for added security.
 
-This only has to be done once (per machine/OS you use GitLab on).
+This only has to be done once (per machine/OS you use GitHub on).
 
-### Creating a new project
+### Creating a new repository
 
 5. *Create remote repository*
 
-Now we are ready to start making new repositories for our projects! In GitLab, press the *New...* button ("⊞" button at the top, to the right) and select *New project*. Give it a descriptive name and a short description, choose the visibility of the project and check *Initialize repository with a README*.
+Now we are ready to start making new repositories! In GitHub, press the "+" button at the top right and select *New repository*. Give it a descriptive name and a short description, choose the visibility of the repository and check *Initialize this repository with a README*.
 
-![New project creation on GitLab](figs/GitLab-new-project.png)
+![New repository creation on GitHub](figs/GitHub-new-repository.png)
 
-<!-- **Note:** During the course you are asked to submit answers to exercises as **separate projects**, using a specific scheme for the project name: `Geoscripting-Exercise<id>-<team>` where `<id>` is the exercise number and `<team>` is your team name, for instance, `Geoscripting-Exercise3-TheGitters`. In addition, the visibility level **must** be set to *Private*. **Submissions that do not follow these rules may be rejected!** -->
+<!-- **Note:** During the course you are asked to submit answers to exercises as **separate projects**, using a specific scheme for the repository name: `Geoscripting-Exercise<id>-<team>` where `<id>` is the exercise number and `<team>` is your team name, for instance, `Geoscripting-Exercise3-TheGitters`. In addition, the visibility level **must** be set to *Private*. **Submissions that do not follow these rules may be rejected!** -->
 
-If you were to do this on GitHub, you would also be asked to provide a *license* for your code. That is a good idea in general, as choosing a license is crucial to let others know what you allow them to do with your code. Code without a license is copyright by default, and thus nobody is allowed to make use of your code or contribute to it. For real projects, you will want to set a more permissive license so that others could make use of your code. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available.
+You are also asked to provide a *license* for your code. That is a good idea in general, as choosing a license is crucial to let others know what you allow them to do with your code. Code without a license is copyright by default, and thus nobody is allowed to make use of your code or contribute to it. For real projects, you will want to set a more permissive license so that others could make use of your code. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available.
 
-6. *Configure project settings*
+In addition, you can add a `.gitignore` file. This is useful to prevent Git from tracking files that you don't want to keep track of, like temporary files or your R command history. The options are sorted by language, so you can select your language of choice, e.g. `R`.
 
-Explore your new blank project a bit. On the left sidebar, you can find that the project can have issues and merge requests assigned to them. **Issues** is what will be used to review your work, and what you will need to use to review the work of others, so try and make a few issues and close them.
+6. *Configure repository settings*
 
-Next, check out the project settings. Under the *Members* tab of *Settings*, you can invite other people to collaborate on your project. Go ahead and invite your team member (and give them the *Maintainer* role).
+Explore your new blank repository a bit. On the tabs on the top, you can find that the repository can have issues and pull requests assigned to them. **Issues** is what is used to give feedback on code, and within the course we will use issues to review each others' work, so try and make a few issues and close them.
 
-![Example issue on GitLab](figs/GitLab-issues.png)
+Next, check out the repository settings. Under the *Collaborators* tab of *Settings*, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collabortor with full permissions.
+
+![Example issue on GitHub](figs/GitHub-issues.png)
 
 <!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
 
 7. *Get the URL of your new repository*
 
-Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new project, click the blue *Clone* button at the top right of the page, and copy the *Clone with **SSH** * address of your new repository.
+Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new repository, click the green *Clone or download* button at the top right of the page, and copy the *Clone with **SSH** * address of your new repository.
 
-<!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
-![Blank GitLab repository](figs/GitLab-empty-repository.png)
+![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
+<!-- ![Blank GitLab repository](figs/GitLab-empty-repository.png) -->
 
 8. *Clone your repository*
 
 Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
 
-Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, it will appear stuck, but actually **the question will appear in the terminal** and you need to answer it there). You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
+Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, it will appear stuck, but actually **the question will appear in the terminal** and you need to answer it there). You need to answer this with `yes` (the full word). This puts the GitHub server into a list of trusted servers, to guard against potential impostor servers.
 
 You will end up in an empty Git GUI window:
 
 ![Git GUI in an empty directory](figs/git_gui_blank.png)
 
 ```{block, type="alert alert-info"}
-**Protip**: From the command line, `cd` into the directory you want to clone into, and run `git clone <url>`, e.g. `git clone git@git.wur.nl:you001/example.git`. The repository will be cloned into a subdirectory with a matching name.
+**Protip**: From the terminal, `cd` into the directory you want to clone into, and run `git clone <url>`, e.g. `git clone git@git.wur.nl:you001/example.git`. The repository will be cloned into a subdirectory with a matching name. This is much faster than using any GUI!
 ```
 
 9. *Tell Git who you are*
 
-Before you start using Git, you should tell it what your name and email address it. You need to do that only once per Git installation. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitLab.
+Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitHub.
 
 ```{block, type="alert alert-info"}
 **Protip**: To set your user name and email from the command line:
@@ -252,6 +254,8 @@ Remember: clicking the **name** of the file shows the changes you made, clicking
 
 ```{block, type="alert alert-info"}
 **Protip**: To stage a change from the command line, use `git add path/to/file.ext` where `path/to/file.ext` is the file you want to stage. To unstage, use `git reset HEAD path/to/file.ext`.
+
+If you have files that you don't want git to track, you can add them into the `.gitignore` file. It could be the name of a file, a directory, a wildcard (e.g. `*.pdf`), or any combination of these. To list several, put them on separate lines.
 ```
 
 11. *Commit changes*
@@ -266,7 +270,7 @@ Next press the *Commit* button and your commit will be saved locally. A commit i
 **Protip**: To commit a change from the command line, use `git commit`. If you want to stage all tracked and changed files and commit, use `git commit -a`.
 ```
 
-In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the *Amend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitLab.
+In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the *Amend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitHub.
 
 ```{block, type="alert alert-info"}
 **Protip**: To amend the last commit from the command line, use `git commit \-\-amend`.
@@ -274,9 +278,9 @@ In the case you made a mistake (a mistake in the message, forgot to stage someth
 
 10. *Push changes to the server*
 
-Press the *Push* button, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!
+Press the *Push* button, and confirm the push, to send all your changes to your GitHub repository. You can now refresh the GitHub page to see your changes. Well done!
 
-![GitLab repository with content](figs/GitLab-repository.png)
+![GitHub repository with content](figs/GitHub-repository.png)
 
 ```{block, type="alert alert-info"}
 **Protip**: To push changes from the command line, use `git push`.
@@ -318,21 +322,25 @@ The history view also allows you to reset the state of the repository to any pre
 **Protip**: A few more options are available from the command line. `git revert <commit>` will undo changes from a given commit, where `<commit>` is the commit ID (you can get commit IDs from `git log`, they look like a long string of letters and numbers). `git checkout <commit> \-\- path/to/file.ext` will reset a single file to the state it was at the given commit.
 ```
 
-You can also browse the history of a repository from your Git hosting service, and GitLab/GitHub even allow editing files from a web interface.
+You can also browse the history of a repository from your Git hosting service, and GitHub/GitLab even allow editing files from a web interface.
 
 ```{block, type="alert alert-success"}
 > **Question**: How do you find commit history and old versions of your files on GitHub/GitLab?
 ```
 
+That's it: now you know how to keep track of all your files, so you will never lose them again, and no longer have to worry about making backups or saving multiple versions. In addition, this is the way that free and open-source code development happens in actuality. Also, the exercises and assignments in the course will be delivered and submitted this way, so make sure you are familiar with the whole process!
+
 ## Project structure
 
-Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work.
-You may use the following structure:
+Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work. In most cases, the project structure is entirely up to you. In some cases, however, hte structure may be somewhat mandated, for instance, if you wish to make an R package. To make it easier to make a package out of your code, we will follow the structure of R packages:
 
-* A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc).
-* An `R/` subdirectory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script.
-* A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitHub has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be shapefiles, small rasters, csv files, but perhaps even better is to use the R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
-* An `output/` sub directory (when applicable).
+* A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc). If you are making a package, this should instead be a demo and live as `demo/main.R`.
+* An `R/` subdirectory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script. Or, if it's a package, `library(packagename)` makes them all available without needing to use `source()` manually.
+* A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitHub has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be geopackages, small rasters, csv files, or R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
+* An `output/` sub directory (when applicable). This should not be tracked by git, since your scripts create the output, so there is no need to store it.
+* For packages, a `DESCRIPTION` file is necessary. As the name implies, it contains a description of your package, its name and the name of the authors, but also describes what other packages your package needs to function correctly. Optionally, see [the documentation of the `DESCRIPTION` file](http://r-pkgs.had.co.nz/description.html) for more information.
+
+Note that other languages propose slightly different structures, e.g. Python modules store all functions in a directory that is named the same as the package itself, e.g. for a package named `packagename`, instead of a directory called `R` you'd use a directory called `packagename`. Instead of `DESCRIPTION`, Python uses `setup.py` and `requirements.txt`. However, as long as you are familiar with the project/package structure of one language, switching to another is a breeze!
 
 <center>
 ![project structure](figs/project_structure_screenCapture.png)
@@ -344,14 +352,17 @@ Typically the header of your main script will look like that.
 
 
 ```{r, eval=FALSE}
-# John Doe
-# January 2017
+# Team Teamname (John Doe and Jane Smith)
+# January 2020
+
 # Import packages
 library(raster)
-library(sp)
+library(sf)
+
 # Source functions
 source('R/function1.R')
 source('R/function2.R')
+
 # Load datasets 
 load('data/input_model.rda')
 
@@ -359,6 +370,31 @@ load('data/input_model.rda')
 
 ```
 
+### Working directory, relative and absolute file paths
+
+As you can see in the example file above, we source a file from our project using **relative** file paths. The reason why they are called *relative* is because they are *relative* to the **working directory**, which is the directory *from which the script is called*. By convention, the working directory is the same as the location of the script itself. This means that you can simply assume that whoever runs your script, will run it from the directory that your script is located.
+
+```{block, type="alert alert-warning"}
+**Note**: this also means that when you test others' code, you should also make sure to run it from the directory that the script is located, unless stated otherwise!
+```
+
+To refer to directories or files that are within the working directory, we simply use their names. So to refer to a directory called `R` in our working directory, we type `R`. To refer to a file or directory within another directory, we type the name of the directory, a slash, and then the name of the file/directory, for instance, `R/function1.R`.
+
+```{block, type="alert alert-warning"}
+**Note**: on Windows, you might see a backslash (`\`) being used as a path separator instead of a slash (`/`). **Don't do this**! In many languages, including R, a backslash denotes an [escape sequence](https://en.wikipedia.org/wiki/Escape_sequence). In addition, a backslash is not a valid path separator on non-Windows platforms, whereas both a slash and a backslash are valid on Windows. So save yourself the trouble and **always use a slash as a path separator**!
+```
+
+If we want to refer to a file or directory that is above the indicated directory, we use the special directory `..`. For instance, if our `main.R` is not in our project root, but located in the subdirectory `demo` (therefore our working directory is `demo`), we would refer to our `function1.R` file as `../R/function1.R`. Another special directory is `.`, which refers to the indicated directory itself.
+
+In contrast, an **absolute** file path refers to a file from the root of the entire file system. For instance, on Windows, an absolute file path could be `C:/Windows/cmd.exe`, or equivalently `/Windows/cmd.exe`. On Linux (and other UNIX-like systems like macOS), absolute file paths **always** start with `/`, for instance, `/home/user/proposed-meme/R/function1.R`.
+
+When making Git repository, you want to make sure that all your code is *portable* and self-contained, i.e. you can run it from any computer, and ideally using any operating system. That means that as a rule of thumb you should **always use relative file paths** in your scripts.
+
+```{block, type="alert alert-success"}
+> **Question**: what would be the location of this file: `././R/./.././R/./././function2.R`? How about `/./R/./.././R/./././function2.R`? What would be the meaning of `C:/Windows/cmd.exe` on Linux? Is it a relative or absolute file path?
+```
+
+<!--
 ### Bigger data
 The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
 
@@ -389,6 +425,8 @@ r2[] <- (1:ncell(r2)) / 10
 r3 <- minusRaster(r, r2) 
 ```
 
+
+
 ### RStudio projects
 
 RStudio has a functionality called *projects* that allows organising your files a bit better. You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project, where your `main.R` is located. When working with RStudio projects you should not change the working directory. If you want to access files stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load.
@@ -397,9 +435,85 @@ RStudio has a functionality called *projects* that allows organising your files 
 
 RStudio itself has integration with Git, and when creating a project there is an option to make it a git repository as well. However, in this lesson we will not be using this method, since it is specific to RStudio and does not work for Python or in other R IDEs. Git GUI, in contrast, is language-agnostic and standalone. So if you do create a project with RStudio, create it inside your cloned GitHub repository, and do **not** select that it creates a new git repository, then use Git GUI to handle all the changes you do in the repository. This will save you the confusion about how to handle it when we will come to Python lessons.
 
+-->
+
+# Basic *R* and *RStudio* setup {#gettingstarted}
+
+This preliminary section will cover some basic details about *R*. For this course you can use RStudio to write and run scripts. You can access it from e.g. *Applications* → *Programming* → *RStudio* menu.
+In case you are working on your own computer and would like to know how to install *R* and *RStudio*, see the [RStudio website](https://www.rstudio.com/products/rstudio/download/).
+
+<!--
+
+```{block type="alert alert-info"}
+**Protip**: if you are following the course externally, you can also set up all the rest of the necessary software for the course now. See the [system setup page](https://geoscripting-wur.github.io/system_setup/) for instructions. This is not necessary for enrolled students, as all the software will be provided in the upcoming lessons.
+```
+-->
+
+## Getting started with *RStudio* and *R* on your own computer.
+
+A summary YouTube movie about how to use RStudio and writing a function is here: [Intro to RStudio](https://www.youtube.com/watch?v=jPk6-3prknk). Have a look at this movie if you do not know how to work with RStudio and then do the following section. See the following tutorial for a [short introduction on the RStudio interface](http://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf).
+
+Now, Open RStudio and type the following script in the R console of **RStudio**:
+
+```{r}
+a = 1
+a
+```
+
+The first line you passed to the console created a new object named  $a$ in memory.
+The equals symbol `=` is somewhat equivalent to an arrow symbol `<-` for assigning values to variables. In the second line you printed $a$ to the console by simply typing its name.
+
+**What is the class of this object?**
+
+```{r}
+class(a)
+```
+
+You now have requested the class attribute of $a$ and the console has returned the attribute: numeric. R possesses a simple mechanism to support an object-oriented style of programming. All objects ($a$ in this case) have a class attribute assigned to them. R is quite forgiving and will assign a class to an object even if you haven't specified one (as you didn't in this case). Classes are a very important feature of the R environment. Any function or method that is applied to an object takes into account its class and uses this information to determine the correct course of action.
+
+## Set Your Working Directory
+
+Let's do some basic set up first.
+
+- Create a git repository which will be your working directory e.g. `Lesson1`
+- Create an R script within that directory
+- Set your working directory to `Lesson1`
+- Create a `data` directory within your working directory
+
+In RStudio you can set your working directory this way, if you have saved your R script to your working directory:
+![](figs/setwd_rstudiotip.png)
+
+```{block, type="alert alert-danger"}
+**Warning**: The use of `setwd()` is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
+
+*Never set the following in your script! This would make the script not reproducible by others!*
+`setwd('some/path/on/your/computer')`
+```
+
+```{block type="alert alert-info"}
+**Protip**: You can use relative paths to load your data. 
+For example by setting the path to a 
+file "my-table.csv" in the directory "data", relative to your script file:
+`datafile <- file.path("data", "my-table.csv")`
+
+Then you can for example read in the file using:
+`mytable <- read.csv(datafile) # Do something with that file name`
+
+```
+
+The above Protip is very important, so make sure you understand this and use this 
+within the geo-scripting exercises.
+
 # Finding help
+Great, now we are all set to dive into scripting itself! But how do we know *how* and *what* to write? Even the most experienced programmers run into these questions, so it's important to know how to find answers to them.
+
 ## Sources for help
-The most important helper is the R documentation. In the R console, just enter `?function` or `help(function)` to get the manual page of the function you are interested in.
+The most important helper is the R documentation. In the R console, just enter `?functionName` or `help(functionName)` to get the manual page of the function you are interested in.
+
+```{block type="alert alert-info"}
+**Protip**: to get the help page for a reserved keyword, wrap it in backticks `` ` ``. For instance, to learn about how to define a function, you can run `` ?`function` ``. In addition, to cancel input for a running command (e.g. to get out of `?function`), press the `Esc` key.
+
+```
 
 There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, a search engine like Google is your best friend. Most likely by searching the right key words relating to your problem, the search engine will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
 
@@ -423,7 +537,7 @@ So, when posting to the mail list:
 * Do not expect an immediate answer (although well presented questions often get answered fairly quickly).
 
 
-## Reproducible examples
+## Reproducible examples (reprex)
 
 Indispensable when asking a question to the online community, being able to write a reproducible example has many advantages:
 
@@ -441,7 +555,7 @@ Well, one could define a reproducible example by:
 *So basically, if you can quickly start a R session on your neighbour's computer while he is on a break, copy-paste the code without making any adjustments and see almost immediately what you want to demonstrate; congratulations, you have created a reproducible example.*
 
 Let's illustrate this by an example.
-I want to perform value replacements of one raster layer, based on the values of another raster layer. (We haven't covered raster analysis in R as part of the course yet, but you will quickly understand that for certain operations rasters are analog to vectors of values.)
+I want to perform value replacements of one raster layer, based on the values of another raster layer. (We haven't covered raster analysis in R as part of the course yet, but you will quickly understand that for certain operations rasters are analog to two-dimensional arrays.)
 
 ```{r, fig.align='center'}
 ## Create two RasterLayer objects of similar extent
@@ -457,6 +571,8 @@ r[s %in% c(150, 151)] <- NA
 ## Visualise the result
 plot(r)
 ```
+
+Once you have a reproducible example, you can make sure it's reproducible by using the [reprex package](https://www.tidyverse.org/help/). It will double-check for you that your code is reproducible and copy a neatly-formatted reprex into your clipboard, ready for sending it to others!
 
 Useful to know when writing a reproducible example: instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R *built-in* data-sets. They are part of the main R packages.
 Some popular data sets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc. The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the data sets available.
@@ -476,6 +592,7 @@ head(cars)
 plot(cars)
 ```
 
+<!-- TODO: replace with `sf` and `nc` (North Carolina statistics)
 Another famous data set is the `meuse` data set, providing all sorts of spatial variables spread across a part of the Meuse watershed.
 The following example compiled from the help pages of the `sp` package.
 
@@ -518,448 +635,9 @@ spplot(meuse.grid, col.regions=bpy.colors(), main = "meuse.grid",
            )
        )
 ```
+-->
 
-
-# Good scripting/programming habits
-
-Increasing your scripting/programming efficiency goes through adopting good scripting habits. Following a couple of guidelines will ensure that your work:
-
-* Can be understood and used by others.
-* Can be understood and reused by you in the future.
-* Can be debugged with minimal effort.
-* Can be re-used across different projects.
-* Is easily accessible by others.
-
-In order to achieve these objectives, you should try to follow a few good practices. The list below is not exhaustive, but already constitutes a good basis that will help you getting more efficient now and in the future when working on R projects.
-
-* Comment your code.
-* Write [functions](#function-writing) for code you need more than once:
-    - Make your functions generic and flexible, using [control flow](#control-flow).
-    - Document your functions.
-* Follow a R [style guide](http://adv-r.had.co.nz/Style.html). This will make your code more readable! Most important are: 
-    - Meaningful and consistent naming of files, functions, variables...
-    - Indentation (like in Python: use spaces or tab to indent code in functions or loops etc.).
-    - Consistent use of the assignment operator: either `<-` or `=` in all your code. The former is used by core R and allows assigning in function calls, the latter is shorter and consistent with most other programming languages.
-    - Consistent placement of curly braces.
-* [Make your own packages](#optional-writing-packages).
-* Keep a similar [directory structure](#project-structure) across your projects.
-* Use [version control](#version-control) to develop/maintain your projects and packages.
-<!--* Work with [projects](#working-with-projects).-->
-
-Note that R IDEs like RStudio make a lot of these good practices a lot easier and you should try to take maximum advantage of them. Take a moment to explore the menus of the RStudio session that should already be open on your machine. Particular emphasis will be given later in this tutorial on projects, project structure and use of version control.
-
-Below is an example of a function written with good practices and without.
-First the good example:
-
-```{r}
-ageCalculator <- function(x) {
-    # Function to calculate age from birth year
-    # x (numeric) is the year you were born
-    if(!is.numeric(x)) {
-        stop("x must be of class numeric")
-    } else { # x is numeric
-        # Get today's date
-        date <- Sys.Date()
-        # extract year from date and subtract
-        year <- as.numeric(format(date, "%Y"))
-        if(year <= x) {
-            stop("You aren't born yet")
-        }
-        age <- year - x
-    }
-    return(age)
-}
-
-ageCalculator(1985)
-```
-
-What a beautiful age for learning geo-scripting!
-
-Then the bad example:
-
-```{r}
-## DON'T DO THAT, BAD EXAMPLE!!!
-funTest_4 <- function(x) {
-if( !is.numeric(x))
-{
-stop("x must be of class numeric"  )
- }
-else {
-a = Sys.Date()
-b<- as.numeric( format( a,"%Y"))
-b-x
-}
-}
-
-funTest_4(1985)
-```
-It also works, but which of the two is the easiest to read, understand, and modify if needed? ... Exactly, the first one.
-So let's look back at the examples and identify some differences:
-
-* Function name: Not very self descriptive in the second example.
-* Function description: Missing in the second example.
-* Arguments description: Missing in the second example.
-* Comments: The second example has none (okay, the first one really has a lot, but that's for the example).
-* Variables naming: use of `a` and `b` not very self descriptive in second example.
-* Indentation: Missing in the second example.
-* Control flow: Second example does not check for implausible dates.
-* Consistency: Second example uses spaces, assigment operators and curly braces inconsistently.
-
-You haven't fully understood what control flow is or you are not fully comfortable with function writing yet? We'll see more of that in the following sections.
-
-# Function writing
-> A function is a sequence of program instructions that perform a specific task, packaged as a unit. This unit can then be used in programs wherever that particular task should be performed. -[Wikipedia](https://en.wikipedia.org/wiki/Subroutine)
-
-The objective of this section is to provide some help on effective function writing. That is functions that are:
-
-* simple, 
-* generic, and
-* flexible.
-
-They should integrate well in a processing/analysis chain and be easily be re-used in a slightly different chain if needed.
-More flexibility in your function can be achieved through some easy control flow tricks. The following section develops this concept and provides examples.
-
-## Control flow
-Control flow refers to the use of conditions in your code that redirect the flow to different directions depending on variables values or class. Make use of that in your code, as this will make your functions more flexible and generic.
-
-### Object classes and Control flow
-You have seen in a previous lesson already that every variable in your R working environment belongs to a class. You can take advantage of that, using control flow, to make your functions more flexible.
-
-A quick reminder on classes:
-
-```{r}
-# 5 different objects belonging to 5 different classes
-a <- 12
-class(a)
-
-b <- "I have a class too"
-class(b)
-
-library(raster)
-c <- raster(ncol=10, nrow=10)
-class(c)
-
-d <- stack(c, c)
-class(d)
-
-e <- brick(d)
-class(e)
-```
-
-### Controlling the class of input variables of a function
-
-One way of making functions more auto-adaptive is by adding checks of the input variables. Using object class can greatly simplify this task.
-For example let's imagine that you just wrote a simple Hello World function.
-
-```{r}
-HelloWorld <- function (x) {
-    hello <- sprintf('Hello %s', x)
-    return(hello)
-}
-
-# Let's test it
-HelloWorld('john')
-HelloWorld(2.5)
-HelloWorld(c("Devis", "Martin"))
-HelloWorld(NULL)
-HelloWorld(data.frame(a=1:10, b=rep("Name", 10)))
-```
-
-Surprisingly enough, R is smart enough to give intuitive output in most of the tested cases, since the `sprintf` function automatically casts non-character variables into character ones, and is also vectorised to produce output when the input is a vector. However, in the last two cases, the output is not intuitive. We may want to only allow passing character vectors to this function. We can do this with a small change:
-
-```{r, error=TRUE}
-HelloWorld <- function (x) {
-    if (!is.character(x))
-      stop('Object of class "character" expected for x')
-
-    hello <- sprintf('Hello %s', x)
-    return(hello)
-}
-
-HelloWorld(21)
-
-```
-
-The function now throws an informative error when something not supported is requested. These function argument "sanity checks" are useful to avoid lengthy processing, when we know that the output of the function is going to be wrong anyway because of invalid arguments. Alternatively to `stop()`, the function could throw a `warning()` but still return some value.
-
-```{block, type="alert alert-success"}
-> **Question**: In which cases should you use `stop()`, `warning()`, `message()`, and when should you return a string?
-```
-
-Note that most common object classes have their own logical function (that returns `TRUE` or `FALSE`) to check what class it is.
-For example:
-
-```{r}
-is.character('john')
-# is similar to
-class('john') == 'character'
-
-is.character(32)
-is.numeric(32)
-```
-
-You should always try to take maximum advantage of these small utilities and check for classes and properties of your objects. This is important in some cases that you might not think of in advance, for instance, consider an object with more than one class:
-
-```{r}
-a = list(a=1:10, b="b")
-# We can also set a class (only do that if you make your own class!)
-class(a) = c("myclass", "list")
-
-# Wrong
-if (class(a) == "list") {
-  print("a is a list")
-} else {
-  print("a is not a list")
-}
-
-# Right
-if (is.list(a)) {
-  print("a is a list")
-} else {
-  print("a is not a list")
-}
-
-```
-
-
-Also note that `is.character(32) == TRUE` is equivalent to `is.character(32)`. Therefore when checking logical arguments, you don't need to use the `== TRUE`. As an example, a function may have an argument (say, `plot`) that, if set to `TRUE` will generate a plot, and if set to `FALSE` does not generate a plot. It means that the function certainly contains an if statement. `if(plot)` in that case is equivalent to `if(plot == TRUE)`, it's just shorter (and very slightly faster).
-
-
-An example, with a function that subtracts 2 RasterLayers, with the option to plot the resulting RasterLayer, or not.
-
-```{r, fig.align='center'}
-library(raster)
-## Function to subtract 2 rasterLayers
-minusRaster <- function(x, y, plot=FALSE) { 
-    z <- x - y
-    if (plot) {
-        plot(z)
-    }
-    return(z)
-}
-
-# Let's generate 2 rasters 
-# that first one is the R logo raster
-# converted to the raster package file format.
-r <- raster(system.file("external/rlogo.grd", package="raster")) 
-# The second RasterLayer is derived from the initial RasterLayer in order
-# to avoid issues of non matching extent or resolution, etc
-r2 <- r
-## Filling the rasterLayer with new values
-# The /10 simply makes the result more spectacular
-r2[] <- (1:ncell(r2)) / 10
-## Simply performs the calculation
-r3 <- minusRaster(r, r2) 
-## Now performs the calculation and plots the resulting RasterLayer
-r4 <- minusRaster(r, r2, plot=TRUE) 
-```
-
-## Vectorised functions
-
-A lot of core R functions are *vectorised*, i.e. they are capable of taking vectors, rather than individual values, as input. This allows very simple and powerful syntax without needing to use loops, for instance:
-
-```{r}
-NumVec = 1:10
-# We do not need to run the function on each element individually
-as.character(NumVec)
-# Functions that reduce input into fewer numbers are also vectorised
-mean(NumVec)
-range(NumVec)
-# All math operators are vectorised
-NumVec + 100
-NumVec^2
-```
-
-Because most base functions are already vectorised, it is easy to write new functions that are themselves vectorised. For the most part, all you need to do is test your functions not just on single values, but also vectors of values, and think whether the result makes sense.
-
-Vectorisation also allows us to write short and versatile code. For instance, to check whether the input is a positive number:
-
-```{r}
-is.positive.number = function(x)
-{
-  is.numeric(x) & x > 0
-}
-
-is.positive.number(100)
-is.positive.number(c(-100, 10, NA))
-is.positive.number(c(TRUE, FALSE))
-```
-
-```{block, type="alert alert-success"}
-> **Question**: Why does the following function call return different and counter-intuitive results? 
-```
-
-```{r}
-is.positive.number(c(TRUE, -5, 10))
-```
-
-## Type consistency
-We just became familiar with functions for checking the types (classes) of variables. You may have noticed that there is one way in which they are all consistent: no matter the input, they return a `logical` value (`TRUE`, `FALSE`, or also `NA`). This is called type consistency and is a useful property. Consider code like this:
-
-```{r}
-AddNewSubject = function(NewBirthYear)
-{
-  # Birth years of previous subjects
-  BirthYears = c(1980, 1985, 1987, 1990, 1993, 1994, 1998, 2000)
-  return(c(BirthYears, NewBirthYear))
-}
-
-# Works as expected
-NewSubjects = AddNewSubject(c(1995, 1998, 1999, 2000))
-sum(NewSubjects >= 2000) # How many subjects are born on or after 2000
-
-# Whoops!
-NewSubjects = AddNewSubject(c("MCMXCV", "1998", "1999", "2000"))
-sum(NewSubjects >= 2000)
-```
-
-```{block, type="alert, alert-success"}
-> **Question**: What happened, and what would happen if we didn't include the Roman numerals?
-```
-
-`AddNewSubject` is not type consistent: depending on the input, the output class changes. This is sometimes convenient, but in the case above, the function succeeds but gives an output that is completely misleading. This has gone horribly right: a lot of code in R is flexible and can handle multiple input types, and so you may only notice that your output is wrong when you inspect it yourself. If the function `AddNewSubject` checked the input and always returned integers, we would be sure that comparing its output against numbers and summing them is safe. Similarly, the `is.numeric()` etc. functions are type consistent, and thus it is safe to use them in `if` statements which always require a logical input. This allows us to not need extra type checking after running such a function. In addition, the function name is hinting towards the type consistency: `is.` makes us realise that it will give a yes/no answer.
-
-## `try` and debugging
-
-### Use of `try` for error handling
-
-The `try()` function may help you writing functions that do not stop with a cryptic error whenever they encounter an unknown of any kind. Anything (sub-function, piece of code) that is wrapped into `try()` will not interrupt the bigger function that contains `try()`. So for instance, this is useful if you want to apply a function sequentially but independently over a large set of raster files, and you already know that some of the files are corrupted and might return an error. By wrapping your function into `try()` you allow the overall process to continue until its end, regardless of the success of individual layers. So `try()` is a perfect way to deal with heterogeneous/unpredictable input data.
-
-
-Also `try()` returns an object of different class when it fails. You can take advantage of that at a later stage of your processing chain to make your function more adaptive.
-See the example below that illustrate the use of `try()` for sequentially calculating frequency on a list of auto-generated RasterLayers.
-
-```{r, eval=TRUE, echo=TRUE}
-library(raster)
-
-## Create a raster layer and fill it with "randomly" generated integer values
-a <- raster(nrow=50, ncol=50)
-a[] <- floor(rnorm(n=ncell(a)))
-
-# The freq() function returns the frequency of a certain value in a RasterLayer
-# We want to know how many times the value -2 is present in the RasterLayer
-freq(a, value=-2)
-
-# Let's imagine that you want to run this function over a whole list of RasterLayer
-# but some elements of the list are impredictibly corrupted
-# so the list looks as follows
-b <- a
-c <- NA
-list <- c(a,b,c)
-# In that case, b and a are raster layers, c is ''corrupted''
-```
-
-```{r, error=TRUE}
-## Running freq(c) would return an error and stop the whole process
-out <- list()
-for(i in 1:length(list)) {
-    out[i] <- freq(list[[i]], value=-2)
-}
-```
-
-```{r}
-## If you wrap the call in a try(), you still get an error, but it's non-fatal
-out <- list()
-for(i in 1:length(list)) {
-    out[i] <- try(freq(list[[i]], value=-2))
-}
-out
-```
-
-```{r}
-# By building a function that includes a try()
-# we are able to catch the error without having it printed,
-# allowing the process to handle the error gracefully.
-fun <- function(x, value) {
-    tr <- try(freq(x=x, value=value), silent=TRUE)
-    if (class(tr) == 'try-error') {
-        return('This object returned an error')
-    } else {
-        return(tr)
-    }
-}
-
-## Let's try to run the loop again
-out <- list()
-for(i in 1:length(list)) {
-    out[i] <- fun(list[[i]], value=-2)
-}
-out
-
-# Note that using a function of the apply family would be a more
-# elegant/shorter way to obtain the same result
-(out <- sapply(X=list, FUN=fun, value=-2))
-
-```
-
-
-### Function debugging
-
-Debugging a single line of code is usually relatively easy; simply double checking the classes of all input arguments often gives good pointers to why the line crashes. But when writing more complicated functions where objects created within the function are reused later on in that same function or in a nested function, it is easy to lose track of what is happening, and debugging can then become a nightmare. A few tricks can be used to make that process less painful. 
-
-#### `traceback()` and `debugonce()`
-Here are the manual commands, which also work with RStudio and other IDEs:
-
-- The first thing to investigate right after an error occurs is to run the `traceback()` function; just like that without arguments. 
-- Carefully reading the return of that function will tell you where exactly in your function the error occurred. 
-
-```{r, eval=FALSE}
-foo <- function(x) {
-    x <- x + 2
-    print(x)
-    bar(2) 
-}
-
-bar <- function(x) { 
-    x <- x + a.variable.which.does.not.exist 
-    print(x)
-}
-
-foo(2) 
-## gives an error
-
-traceback()
-## 2: bar(2) at #1
-## 1: foo(2)
-# Ah, bar() is the problem
-
-# Debug it by declaring what to debug and running it
-debugonce(bar)
-foo(2)
-```
-
-Depending on the IDE you are using, you may be presented with tools for stepping through the function line by line, as well as a Browse console, which allows you to query the state of the variables involved so that you can identify exactly what is going on in the function call. For instance, in RKWard, the *Debugging Frames* pane on the right shows which line you are stepping through.
-
-For another example see: [rfunction.com](http://rfunction.com/archives/2562).
-
-#### RStudio
-RStudio has integration with the debugging tools in R, so you can use a point-and-click interface. However, some parts of it are specific to the RStudio IDE.
-
-- To force them to catch every error, select *Debug - On Error - Break in Code* in the main menu.
-- Run again ``foo(2)``. 
-- RStudio will stop the execution where the error happened. The traceback appears in a separate pane on the right. 
-- You can and use the little green "Next" button to go line by line through the code, or the red Stop button to leave the debugging mode. 
-- Reset the *On Error* behaviour to *Error Inspector*. In this default setting, RStudio will try to decide whether the error is complex enough for debugging, and then offer the options to "traceback" or "rerun the code with debugging" with two buttons in the console. 
-
-Finally, solve the problem:
-
-```{r, eval=FALSE}
-## redefine bar
-bar <- function(x) {
-    x + 5
-}
-foo(2)
-## [1] 4
-## [1] 7
-```
-
-Refer to the reference section of this document for further information on function debugging.
-
-```{block, type="alert alert-info"}
-# (optional) Writing packages
-The next step to write re-usable code is packaging it, so others can simply install and use it. If followed the steps to here, this step is not very big anymore! For this course, it is optional. Find instructions [here](packages.html) and in the [references](#references) below.
-```
-
+<!-- Ported over to GitHub starter repo
 
 # Exercise 3
 ## Your task
@@ -982,6 +660,7 @@ In is.leap(year): 1580 was before the Gregorian calendar was in use, using prole
 > is.leap('john') #should throw an error 
 Error: argument of class numeric expected
 ```
+
 
 ## Useful resources
 
@@ -1015,6 +694,8 @@ You will need to give the team you are reviewing feedback on their exercise solu
 Once you receive issues on your repository with feedback, do not close them! They will be checked by staff as part of the assessment.
 
 This is the way the exercises will need to be submitted and reviewed from this lesson on.
+
+-->
 
 # References
 
