@@ -1,7 +1,7 @@
 ---
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-title: "Week 1, Lesson 1: Carrying out your scripting project"
+pagetitle: "Week 1, Lesson 1: Carrying out your scripting project"
 output:
   knitrBootstrap::bootstrap_document:
     theme: "simplex"
@@ -203,7 +203,7 @@ Next, check out the repository settings. Under the *Collaborators* tab of *Setti
 
 Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new repository, click the green *Clone or download* button at the top right of the page, and copy the *Clone with **SSH** * address of your new repository.
 
-![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
+![Clone or Download → Clone with SSH](figs/github_screenCapture.png)
 <!-- ![Blank GitLab repository](figs/GitLab-empty-repository.png) -->
 
 8. *Clone your repository*
@@ -374,14 +374,14 @@ load('data/input_model.rda')
 
 As you can see in the example file above, we source a file from our project using **relative** file paths. The reason why they are called *relative* is because they are *relative* to the **working directory**, which is the directory *from which the script is called*. By convention, the working directory is the same as the location of the script itself. This means that you can simply assume that whoever runs your script, will run it from the directory that your script is located.
 
-```{block, type="alert alert-warning"}
+```{block, type="alert alert-danger"}
 **Note**: this also means that when you test others' code, you should also make sure to run it from the directory that the script is located, unless stated otherwise!
 ```
 
 To refer to directories or files that are within the working directory, we simply use their names. So to refer to a directory called `R` in our working directory, we type `R`. To refer to a file or directory within another directory, we type the name of the directory, a slash, and then the name of the file/directory, for instance, `R/function1.R`.
 
-```{block, type="alert alert-warning"}
-**Note**: on Windows, you might see a backslash (`\`) being used as a path separator instead of a slash (`/`). **Don't do this**! In many languages, including R, a backslash denotes an [escape sequence](https://en.wikipedia.org/wiki/Escape_sequence). In addition, a backslash is not a valid path separator on non-Windows platforms, whereas both a slash and a backslash are valid on Windows. So save yourself the trouble and **always use a slash as a path separator**!
+```{block, type="alert alert-danger"}
+**Note**: on Windows, you might see a backslash (`\\`) being used as a path separator instead of a slash (`/`). **Don't do this**! In many languages, including R, a backslash denotes an [escape sequence](https://en.wikipedia.org/wiki/Escape_sequence). In addition, a backslash is not a valid path separator on non-Windows platforms, whereas both a slash and a backslash are valid on Windows. So save yourself the trouble and **always use a slash as a path separator**!
 ```
 
 If we want to refer to a file or directory that is above the indicated directory, we use the special directory `..`. For instance, if our `main.R` is not in our project root, but located in the subdirectory `demo` (therefore our working directory is `demo`), we would refer to our `function1.R` file as `../R/function1.R`. Another special directory is `.`, which refers to the indicated directory itself.
@@ -487,7 +487,7 @@ In RStudio you can set your working directory this way, if you have saved your R
 **Warning**: The use of `setwd()` is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
 
 *Never set the following in your script! This would make the script not reproducible by others!*
-`setwd('some/path/on/your/computer')`
+`setwd("some/path/on/your/computer")`
 ```
 
 ```{block type="alert alert-info"}
