@@ -1336,18 +1336,22 @@ a</code></pre>
 <strong>Warning</strong>: The use of <code>setwd()</code> is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
 </p>
 <p>
-<em>Never set the following in your script! This would make the script not reproducible by others!</em> <code>setwd(“some/path/on/your/computer”)</code>
+<em>Never set either of the following in your script! This would make the script not reproducible by others!</em>
 </p>
+<pre><code>setwd(&quot;/some/path/on/your/computer&quot;)
+setwd(&quot;../some/path/outside/your/repository&quot;)</code></pre>
 </div>
 </div>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: You can use relative paths to load your data. For example by setting the path to a file “my-table.csv” in the directory “data”, relative to your script file: <code>datafile &lt;- file.path(“data”, “my-table.csv”)</code>
+<strong>Protip</strong>: You can use relative paths to load your data. For example by setting the path to a file “my-table.csv” in the directory “data”, relative to your script file:
 </p>
+<pre><code>datafile &lt;- file.path(&quot;data&quot;, &quot;my-table.csv&quot;)</code></pre>
 <p>
-Then you can for example read in the file using: <code>mytable &lt;- read.csv(datafile) # Do something with that file name</code>
+Then you can for example read in the file using:
 </p>
+<pre><code>mytable &lt;- read.csv(datafile) # Do something with that file name</code></pre>
 </div>
 </div>
 <p>The above Protip is very important, so make sure you understand this and use this within the geo-scripting exercises.</p>

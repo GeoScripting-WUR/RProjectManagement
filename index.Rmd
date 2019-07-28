@@ -486,18 +486,23 @@ In RStudio you can set your working directory this way, if you have saved your R
 ```{block, type="alert alert-danger"}
 **Warning**: The use of `setwd()` is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
 
-*Never set the following in your script! This would make the script not reproducible by others!*
-`setwd("some/path/on/your/computer")`
+*Never set either of the following in your script! This would make the script not reproducible by others!*
+
+    setwd("/some/path/on/your/computer")
+    setwd("../some/path/outside/your/repository")
 ```
+
 
 ```{block type="alert alert-info"}
 **Protip**: You can use relative paths to load your data. 
 For example by setting the path to a 
 file "my-table.csv" in the directory "data", relative to your script file:
-`datafile <- file.path("data", "my-table.csv")`
+
+    datafile <- file.path("data", "my-table.csv")
 
 Then you can for example read in the file using:
-`mytable <- read.csv(datafile) # Do something with that file name`
+
+    mytable <- read.csv(datafile) # Do something with that file name
 
 ```
 
