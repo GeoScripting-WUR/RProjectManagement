@@ -481,7 +481,7 @@ Let's do some basic set up first.
 - Create a `data` directory within your working directory
 
 In RStudio you can set your working directory this way, if you have saved your R script to your working directory:
-![Set working directory → to source file location](../Scriping4GeoIntro/figs/setwd_rstudiotip.png)
+![Set working directory → to source file location](../Scripting4GeoIntro/figs/setwd_rstudiotip.png)
 
 ```{block, type="alert alert-danger"}
 **Warning**: The use of `setwd()` is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
