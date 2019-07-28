@@ -481,7 +481,7 @@ Let's do some basic set up first.
 - Create a `data` directory within your working directory
 
 In RStudio you can set your working directory this way, if you have saved your R script to your working directory:
-![](figs/setwd_rstudiotip.png)
+![Set working directory → to source file location](../Scriping4GeoIntro/figs/setwd_rstudiotip.png)
 
 ```{block, type="alert alert-danger"}
 **Warning**: The use of `setwd()` is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
@@ -510,10 +510,7 @@ Great, now we are all set to dive into scripting itself! But how do we know *how
 ## Sources for help
 The most important helper is the R documentation. In the R console, just enter `?functionName` or `help(functionName)` to get the manual page of the function you are interested in.
 
-```{block type="alert alert-info"}
 **Protip**: to get the help page for a reserved keyword, wrap it in backticks `` ` ``. For instance, to learn about how to define a function, you can run `` ?`function` ``. In addition, to cancel input for a running command (e.g. to get out of `?function`), press the `Esc` key.
-
-```
 
 There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, a search engine like Google is your best friend. Most likely by searching the right key words relating to your problem, the search engine will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
 

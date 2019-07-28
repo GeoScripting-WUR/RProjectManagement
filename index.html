@@ -1329,7 +1329,7 @@ a</code></pre>
 <li>Set your working directory to <code>Lesson1</code></li>
 <li>Create a <code>data</code> directory within your working directory</li>
 </ul>
-<p>In RStudio you can set your working directory this way, if you have saved your R script to your working directory: <img src="figs/setwd_rstudiotip.png" /></p>
+<p>In RStudio you can set your working directory this way, if you have saved your R script to your working directory: <img src="../Scriping4GeoIntro/figs/setwd_rstudiotip.png" alt="Set working directory → to source file location" /></p>
 <div class="row">
 <div class="alert alert-danger">
 <p>
@@ -1355,13 +1355,7 @@ Then you can for example read in the file using: <code>mytable &lt;- read.csv(da
 <p>Great, now we are all set to dive into scripting itself! But how do we know <em>how</em> and <em>what</em> to write? Even the most experienced programmers run into these questions, so it’s important to know how to find answers to them.</p>
 <h2 id="sources-for-help">Sources for help</h2>
 <p>The most important helper is the R documentation. In the R console, just enter <code>?functionName</code> or <code>help(functionName)</code> to get the manual page of the function you are interested in.</p>
-<div class="row">
-<div class="alert alert-info">
-<p>
-<strong>Protip</strong>: to get the help page for a reserved keyword, wrap it in backticks <code><code>&lt;/code&gt;. For instance, to learn about how to define a function, you can run &lt;code&gt;?</code>function`</code>. In addition, to cancel input for a running command (e.g. to get out of <code>?function</code>), press the <code>Esc</code> key.
-</p>
-</div>
-</div>
+<p><strong>Protip</strong>: to get the help page for a reserved keyword, wrap it in backticks <code>`</code>. For instance, to learn about how to define a function, you can run <code>?`function`</code>. In addition, to cancel input for a running command (e.g. to get out of <code>?function</code>), press the <code>Esc</code> key.</p>
 <p>There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, a search engine like Google is your best friend. Most likely by searching the right key words relating to your problem, the search engine will direct you to the archive of the R mailing list, or to some discussions on <a href="http://stackexchange.com/">Stack Exchange</a>. These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.</p>
 <p>However, it may also happen that you discover a <em>bug</em> or something that you would qualify as abnormal behavior, or that you really have a question that no one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general <a href="https://stat.ethz.ch/mailman/listinfo/r-help">R mailing list</a>, while the spatial domain has its own mailing list (<a href="https://stat.ethz.ch/mailman/listinfo/r-sig-geo">R SIG GEO</a>). Geo related questions should be posted to this latter mailing list.</p>
 <p><strong>Note</strong>: these mailing lists have heavy mail traffic, use your mail client efficiently and set filters, otherwise it will quickly bother you.</p>
