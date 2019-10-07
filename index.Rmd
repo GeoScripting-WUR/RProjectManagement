@@ -129,7 +129,7 @@ In this course, we will primarily use Git GUI as the client. It is a simple clie
 
 Throughout the Geoscripting course, for hosting our code, we will be using [GitHub](https://github.com), the most popular Git hosting platform. Conveniently enough, it also provides [GitHub Classroom](https://classroom.github.com), a platform that makes submitting programming exercises easier!
 
-Let's jump right into making your very own GitHub scripting project from scratch!
+Let's jump right into it! We will start by making our very own GitHub scripting project from scratch, and also try forking someone else's project.
 
 ### Client setup
 
@@ -191,11 +191,11 @@ In addition, you can add a `.gitignore` file. This is useful to prevent Git from
 
 6. *Configure repository settings*
 
-Explore your new blank repository a bit. On the tabs on the top, you can find that the repository can have issues and pull requests assigned to them. **Issues** is what is used to give feedback on code, and within the course we will use issues to review each others' work, so try and make a few issues and close them.
-
-Next, check out the repository settings. Under the *Collaborators* tab of *Settings*, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collabortor with full permissions.
+Explore your new blank repository a bit. On the tabs on the top, you can find that the repository can have issues and pull requests assigned to them. **Issues** is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
 
 ![Example issue on GitHub](figs/GitHub-issues.png)
+
+Next, check out the repository settings. Under the *Collaborators* tab of *Settings*, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collabortor with full permissions.
 
 <!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
 
@@ -299,6 +299,42 @@ To attempt to apply the changes, go to *Merge* → *Local Merge...*. If all goes
 ```
 
 There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by committing the changes.
+
+### Forks and pull requests
+
+Now we know how to work with Git and GitHub for our personal work, and how to collaborate on a project with your team member. But what if you want to contribute code to someone else who has not given you access rights, or what if you want to review the code before it's accepted to your repository? That's where forking and pull requests come in handy (respectively)!
+
+A fork is your own personal copy of someone else's repository. GitHub allows you to fork any public repository. You want to make forks whenever you want to edit code but do not have direct commit rights.
+
+```{block, type="alert alert-info"}
+**Protip**: In fact, if you click the edit button on a file on GitHub and do changes to a repository that you don't have the rights to write into, GitHub will helpfully make a fork for you, followed by a proposal to make a pull request for your changes.
+```
+
+12. *Fork a repository*
+
+Go to your team member's repository that they created by following the steps above, and then click the *Fork* button at the top right. (If you can't find it, alternatively you can go to some other repository, e.g. [the first exercise](https://github.com/geoscripting-innovation/Exercise1-starter), and fork it). You will find a new repository under your profile, with the same name as the original.
+
+![Fork button](figs/GitHub-fork.png)
+
+13. *Make changes, commit and push*
+
+After you have your own fork, it is the same as having your own personal repository with the code from the original (*upstream*) repository in it. Clone it locally, make some changes, commit them and push them back to GitHub, as per steps 7-10. You should see that your changes take effect in your own *downsteam* fork, but not in the upstream repository.
+
+14. *Make a pull request*
+
+If you are ready to ask the upstream developers to incorporate your code into their repository, go to the Pull Requests tab and press the green *New pull request* button.
+
+![New pull request button](figs/GitHub-pr.png)
+
+This will show you all the changes you have made, and if that is what you want to propose for the upstream developers to incorporate, click on the *Create pull request* button, upon which you can give the name for your pull request (changeset) and a description as to why the upstream developers would want to incorporate your code. After you confirm by clicking *Create pull request* again, the pull request will be visible in the pull requests tab of the *upstream* repository:
+
+![A submitted pull request](figs/GitHub-pr-submitted.png)
+
+Then it's up to the upstream developers to perform a code review and either accept or reject the pull request in the end.
+
+```{block, type="alert alert-info"}
+**Protip**: For code review, GitHub also has special tools. If you look at the *Files changed* tab of a pull request, you will see that you can press a "+" button next to any line of code and write a comment about it. Once finished, there is a "Review changes" button at the top left that allows you to enter the final verdict and an overall comment.
+```
 
 ### Other Git GUI functionality
 
