@@ -36,6 +36,8 @@ At the end of the lecture, you should be able to:
 
 * Know what Linux is & what you can do with it 
 * Get comfortable working within a Linux environment
+* Explain why software licenses are important and what software license options there are
+* Apply a software license to your own code
 * Use version control to develop, maintain, and share your code with others
 * Submit an exercise using Git and GitHub
 * Perform peer review using GitHub review functionality
@@ -93,6 +95,26 @@ If you like, you can install a Linux distribution on your own laptops or externa
 
 Once you have everything ready, login into your Linux VM, try out RStudio/RKWard, and also open QGIS. Explore the environment a little to get used to it.
 
+# Software licenses
+
+One key advantage of Linux is that it is free and open-source software. While it is free as in free beer, that is, it can be used at no cost, more importantly it is free as in free speech: all of the source code of the kernel and the absolute majority of the applications is licensed under a free software license.
+
+A *software license* is a legal text that describes how the software and its source code can be used by other people. Software licenses are grounded in the framework of copyright: the protection of authors' intellectual rights. A *free* software license is a software license that gives others the freedom to run, copy, read, modify, and distribute changes to the original software and its source code. This is in addition to an *open-source* license, which makes the source code available and redistributable, but [does not necessarily make the source code free](https://www.gnu.org/philosophy/open-source-misses-the-point.html). Both free an open-source licenses have their overseeing bodies: the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.html) for free software licenses, and the [Open Source Initiative](https://opensource.org/osd) for open-source licenses. When a software fits both definitions (they often overlap), it is referred to as Free and Open-Source Software (FOSS), or les often as Free, Libre and Open-Source Software (FLOSS).
+
+There are many advantages to FOSS. One advantage is that it fosters collaboration: one person implementing a feature makes it available for all of the users in the world. This enables such a massive effort required to create GNU/Linux distributions based on volunteer work, without needing to rely on commercial licensing, advertisements, donations or spyware to finance the work. It also allows anyone to remove such undesired parts of any software component, therefore ensuring higher quality of the software. Thus, while FOSS projects initially start weaker than *proprietary* (non-free or closed-source) software, in the long run the collaboration potential brings it on par and even overtaking the propriatary counterparts. See for example QGIS, which is FOSS, vs the proprietary ArcGIS.
+
+A software license defines what others can do with your code, therefore before starting to write any code, **it is vital to think about the license** you would like to release your code under. This is because if you do not define any license, the default copyright terms apply: even if you publish the source code publicly, nobody is allowed to copy, redistribute or modify the code, in fact nobody is even allowed to read it! As an author, you are free to choose any license, both proprietary and FOSS licenses (or in fact no license altogether), but a proprietary license restricts the freedoms of others and therefore diminishes chances that others would want to collaborate with you to improve the code in the future. In addition, do not confuse a *software license* with *commercial licensing*, i.e. the requirement to activate a license subscription to use 
+
+There are two types of FOSS licenses: copyleft and permissive. A *permissive* license is one that allows copying, modifying and redistributing the code with no serious restrictions (usually with a restriction that the original author be credited for the work). A *copyleft* license adds a restriction that any modified versions that are distributed must be under the same (or equivalent) license. This restriction restricts others from restricting the terms of the software license in the future, therefore keeping the source code free forever. In other words, it's following the philosophy that if we want to achieve the most freedom, we must restrict the freedom to restrict freedom!
+
+Lastly, there is also an option to *dedicate software to the public domain*, which is not a license per se, but a waiver of copyright. Software in the public domain allows anyone to do anything with it without any restrictions, therefore it is radically permissive. There is no requirement to credit the original author, for example. Since some jurisdictions do not allow authors to waive copyright (including Germany, France and Italy), there are licenses such as [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/) that are aimed to make a work as free as possible by either dedicating it to the public domain, or if it is not possible, by giving it a permissive license.
+
+How can you choose a software license in practice? There are [multiple](https://choosealicense.com/) [websites](https://www.gnu.org/licenses/license-recommendations.en.html) that give an overview of the most popular licenses that you can choose. Once you choose one, you need to follow the terms of the license about how to apply it. In most cases, it is sufficient to copy the terms of the license next to your source code and include it in your version control repository.
+
+```{block, type="alert alert-success"}
+> **Question 1**: If you wanted to contribute to a project that is licensed under the GNU General Public License v3 (copyleft), under which license(s) could you contribute? Which license would you choose in the end?
+```
+
 # Version control
 
 Have you ever worked on a project and ended up having so many versions of your work that you didn't know which one was the latest, and what were the differences between the versions? Does the image below look familiar to you? Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
@@ -121,6 +143,10 @@ Additionally, version control:
 * Allows you to find out what changes broke your code
 * Allows you to have experimental branches without breaking your code
 * Allows you to keep different versions of your code without having to worry about file names and archiving organization
+
+```{block, type="alert alert-success"}
+> **Question 2**: Think of examples where you could use version control for things other than code.
+```
 
 The three most popular version control software are **Git**, **Mercurial** (abbreviated as hg) and **Subversion** (abbreviated as svn). *Git* is by far the most modern and popular one, so we will only use *Git* in this course.
 
@@ -223,7 +249,7 @@ Now we are ready to start making new repositories! In GitHub, press the "+" butt
 
 <!-- **Note:** During the course you are asked to submit answers to exercises as **separate projects**, using a specific scheme for the repository name: `Geoscripting-Exercise<id>-<team>` where `<id>` is the exercise number and `<team>` is your team name, for instance, `Geoscripting-Exercise3-TheGitters`. In addition, the visibility level **must** be set to *Private*. **Submissions that do not follow these rules may be rejected!** -->
 
-You are also asked to provide a *license* for your code. That is a good idea in general, as choosing a license is crucial to let others know what you allow them to do with your code. Code without a license is copyright by default, and thus nobody is allowed to make use of your code or contribute to it. For real projects, you will want to set a more permissive license so that others could make use of your code. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available.
+Next, GitHub asks what software license you'd like to apply to your code, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
 
 In addition, you can add a `.gitignore` file. This is useful to prevent Git from tracking files that you don't want to keep track of, like temporary files or your R command history. The options are sorted by language, so you can select your language of choice, e.g. `R`.
 
@@ -399,7 +425,7 @@ The history view also allows you to reset the state of the repository to any pre
 You can also browse the history of a repository from your Git hosting service, and GitHub/GitLab even allow editing files from a web interface.
 
 ```{block, type="alert alert-success"}
-> **Question**: How do you find commit history and old versions of your files on GitHub/GitLab?
+> **Question 3**: How do you find commit history and old versions of your files on GitHub/GitLab?
 ```
 
 That's it: now you know how to keep track of all your files, so you will never lose them again, and no longer have to worry about making backups or saving multiple versions. In addition, this is the way that free and open-source code development happens in actuality. Also, the exercises and assignments in the course will be delivered and submitted this way, so make sure you are familiar with the whole process!
