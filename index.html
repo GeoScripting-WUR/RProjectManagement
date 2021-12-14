@@ -7,12 +7,144 @@
   <meta name="author" content="Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas" />
   <title>Week 1, Lesson 1: Version control</title>
   <style type="text/css">
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -873,7 +1005,11 @@
 <div class="container">
 <div class="row row-offcanvas row-offcanvas-right">
 <div class="contents col-xs-12 col-md-10">
-<h1 id="wur-geoscripting"><a href="https://geoscripting-wur.github.io/">WUR Geoscripting</a> <img src="https://www.wur.nl/upload/5e55a1d9-47c3-4149-9384-26d5147ee2d7_WUR_RGB_standard.png" alt="WUR logo" style="height: 35px;"/></h1>
+<style type="text/css">
+body {max-width: none;}
+a:visited {color: #91170a;}
+</style>
+<h1 id="wur-geoscripting"><a href="https://geoscripting-wur.github.io/">WUR Geoscripting</a> <img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px;"/></h1>
 <h1 id="course-setup">Course setup</h1>
 <div class="row">
 <div class="alert alert-info">
@@ -896,15 +1032,14 @@ Throughout the whole course, we will be working in a Linux environment, and all 
 </div>
 </div>
 <h2 id="learning-objectives">Learning objectives</h2>
-<p>At the end of the lecture, you should be able to:</p>
+<p>At the end of the tutorial, you should be able to:</p>
 <ul>
 <li>Know what Linux is &amp; what you can do with it</li>
 <li>Get comfortable working within a Linux environment</li>
 <li>Explain why software licenses are important and what software license options there are</li>
 <li>Apply a software license to your own code</li>
 <li>Use version control to develop, maintain, and share your code with others</li>
-<li>Submit an exercise using Git and GitHub</li>
-<li>Perform peer review using GitHub review functionality</li>
+<li>Submit an exercise using Git and GitLab</li>
 </ul>
 <h1 id="linux">Linux</h1>
 <p><em>Linux</em> is a free and open-source operating system kernel. The kernel interacts with computer hardware and exposes its capabilities for your scripts! Together with a lot of small, handy programs, it forms an <em>operating system</em> called <em>GNU/Linux</em>. However, unlike e.g. Windows, there is not a single “GNU/Linux operating system”. Rather, there is a <a href="https://en.wikipedia.org/wiki/List_of_Linux_distributions">huge variety</a> of Linux distributions. Each Linux distribution provides the same kernel, but different programs and environments, suitable for different use cases.</p>
@@ -1042,8 +1177,8 @@ In addition, while this tutorial describes how to use the built-in <code>git-gui
 </p>
 </div>
 </div>
-<p>Throughout the Geoscripting course, for hosting our code, we will be using <a href="https://github.com">GitHub</a>, the most popular Git hosting platform.</p>
-<p>Let’s jump right into it! We will start by making our very own GitHub scripting project from scratch, and also try forking someone else’s project.</p>
+<p>Throughout the Geoscripting course, for hosting our code, we will be using the university’s very own instance of <a href="https://git.wur.nl">GitLab</a>, the most popular self-hosted Git hosting platform.</p>
+<p>Let’s jump right into it! We will start by making our very own GitLab scripting project from scratch, and also try forking someone else’s project.</p>
 <h3 id="client-setup">Client setup</h3>
 <ol style="list-style-type: decimal">
 <li><em>Launch Git GUI</em></li>
@@ -1063,7 +1198,7 @@ In addition, while this tutorial describes how to use the built-in <code>git-gui
 <ol start="2" style="list-style-type: decimal">
 <li><em>Create an SSH key pair</em></li>
 </ol>
-<p>In order for GitHub (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn’t require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.</p>
+<p>In order for GitLab (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn’t require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.</p>
 <p>You can generate a new SSH key pair in Git GUI by going to <em>Help</em> → <em>Show SSH Key</em> and pressing the <em>Generate Key</em> button. It will ask you for a <strong>passphrase</strong>. This is <strong>not a password</strong> and is completely <strong>optional</strong>: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus; however, SSH keys are specific to each machine and are never sent over the network, so most of the time it is completely fine to <strong>leave the passphrase empty</strong>. If you keep it empty, you will <strong>not need to enter it every time</strong> you try to push your changes, yet the connection will be even more secure than when using a password.</p>
 <p>Once done, you will see your new public key:</p>
 <p><img src="figs/git_gui_sshkey.png" alt="SSH public key generated" /></p>
@@ -1077,43 +1212,53 @@ In addition, while this tutorial describes how to use the built-in <code>git-gui
 <h3 id="account-setup">Account setup</h3>
 <p>Next, we will link our client with a Git host so that we can download and upload repositories.</p>
 <ol start="3" style="list-style-type: decimal">
-<li><em>Log into GitHub</em></li>
+<li><em>Log into GitLab</em></li>
 </ol>
-<p>Go to <a href="https://github.com/">GitHub</a> and log in (register in case you don’t have an account yet).</p>
+<p>Go to <a href="https://git.wur.nl/">GitLab</a> and log in (using your <strong>email address</strong> as the user name and your password). You also need to set up two-factor authentication by going to <a href="https://git.wur.nl/-/profile/account">your profile page</a>.</p>
 <ol start="4" style="list-style-type: decimal">
 <li><em>Enrol the public key to your user account</em></li>
 </ol>
 <p>The SSH key pair is used to identify that you own the machine. <!--On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university.--> On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware Horizon, the keys are stored on your personal VDI, so you can access them from anywhere.</p>
-<p>Now you need to tell GitHub about your new key. To do that, copy the public key from the dialog, then in GitHub click on your avatar in the top right and go to <em>Settings</em> → <em>SSH and GPG keys</em>. Click <em>New SSH Key</em>, give it a title describing your machine, paste the public key in the box, and press <em>Add SSH key</em>. You might need to confirm the key by email for added security.</p>
-<p>This only has to be done once (per machine/OS you use GitHub on).</p>
+<p>Now you need to tell GitLab about your new key. To do that, copy the public key from the dialog, then in GitLab click on your avatar in the top right and go to <em>Edit profile</em> → <em>SSH keys</em>. Paste the public key in the box, give it a title describing your machine, and press <em>Add key</em>. You might need to confirm the key by email for added security.</p>
+<p>This only has to be done once (per machine/OS you use GitLab on).</p>
 <h3 id="creating-a-new-repository">Creating a new repository</h3>
 <ol start="5" style="list-style-type: decimal">
 <li><em>Create remote repository</em></li>
 </ol>
-<p>Now we are ready to start making new repositories! In GitHub, press the “+” button at the top right and select <em>New repository</em>. Give it a descriptive name and a short description, choose the visibility of the repository and check <em>Initialize this repository with a README</em>.</p>
-<p><img src="figs/GitHub-new-repository.png" alt="New repository creation on GitHub" /></p>
+<p>Now we are ready to start making new repositories! In GitLab, press the “+” button at the top right, select <em>New repository/project</em> (GitLab uses both terms somewhat interchangeably) and <em>Create blank project</em>. Give it a descriptive name and a short description, choose the visibility of the repository and check <em>Initialize repository with a README</em>.</p>
+<p><img src="figs/GitLab-new-project.png" alt="New repository creation on GitLab" /></p>
 <!-- **Note:** During the course you are asked to submit answers to exercises as **separate projects**, using a specific scheme for the repository name: `Geoscripting-Exercise<id>-<team>` where `<id>` is the exercise number and `<team>` is your team name, for instance, `Geoscripting-Exercise3-TheGitters`. In addition, the visibility level **must** be set to *Private*. **Submissions that do not follow these rules may be rejected!** -->
-<p>Next, GitHub asks what software license you’d like to apply to your code, as we have discussed in the previous chapter. See <a href="http://choosealicense.com/">Choose a License</a> for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.</p>
-<p>In addition, you can add a <code>.gitignore</code> file. This is useful to prevent Git from tracking files that you don’t want to keep track of, like temporary files or your R command history. The options are sorted by language, so you can select your language of choice, e.g. <code>R</code>.</p>
+<!--Next, GitHub asks what software license you'd like to apply to your code, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
+
+In addition, you can add a `.gitignore` file. This is useful to prevent Git from tracking files that you don't want to keep track of, like temporary files or your R command history. The options are sorted by language, so you can select your language of choice, e.g. `R`.-->
 <ol start="6" style="list-style-type: decimal">
 <li><em>Configure repository settings</em></li>
 </ol>
-<p>Explore your new blank repository a bit. On the tabs on the top, you can find that the repository can have issues and pull requests assigned to them. <strong>Issues</strong> is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others’ projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!</p>
-<p><img src="figs/GitHub-issues.png" alt="Example issue on GitHub" /></p>
-<p>Next, check out the repository settings. Under the <em>Collaborators</em> tab of <em>Settings</em>, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collabortor with full permissions.</p>
+<p>Explore your new blank repository a bit. In the middle, you have buttons to add new files. Choose to add a <code>LICENSE</code> file, as we have discussed in the previous chapter. See <a href="http://choosealicense.com/">Choose a License</a> for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.</p>
+<p>On the tabs to the left, you can find that the repository can have issues and merge requests assigned to them. <strong>Issues</strong> is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others’ projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!</p>
+<p><img src="figs/GitLab-issues.png" alt="Example issue on GitLab" /></p>
+<p>Next, check out the repository settings. Under the <em>Members</em> subtab of the <em>Project information</em> tab, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collaborator with a maintainer role.</p>
 <!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
 <ol start="7" style="list-style-type: decimal">
 <li><em>Get the URL of your new repository</em></li>
 </ol>
-<p>Now that you have a remote repository, it’s time to create a local repository that links to it! Open the main page of your new repository, click the green <em>Clone or download</em> button at the top right of the page, and copy the <em>Clone with <strong>SSH</strong> </em> address of your new repository.</p>
-<p><img src="figs/github_screenCapture.png" alt="Clone or Download → Clone with SSH" /> <!-- ![Blank GitLab repository](figs/GitLab-empty-repository.png) --></p>
+<p>Now that you have a remote repository, it’s time to create a local repository that links to it! Open the main page of your new repository, click the blue <em>Clone</em> button at the top right of the page, and copy the <em>Clone with <strong>SSH</strong> </em> address of your new repository.</p>
+<!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
+<p><img src="figs/GitLab-empty-repository.png" alt="Blank GitLab repository" /></p>
 <ol start="8" style="list-style-type: decimal">
 <li><em>Clone your repository</em></li>
 </ol>
 <p>Go back to Git GUI, and press <em>Clone Existing Repository</em>. Paste the URL you just copied to the <em>Source Location</em> field, and choose a folder you want to store your code in in the <em>Target Directory</em> field. <strong>Note</strong>: the <em>Target Directory</em> must <strong>not</strong> already exist! Git GUI will create it for you.</p>
-<p>Once you click <em>Clone</em>, you will get a question about whether you trust the remote machine (if you ran <code>git gui</code> from a command line, it will appear stuck, but actually <strong>the question will appear in the terminal</strong> and you need to answer it there). You need to answer this with <code>yes</code> (the full word). This puts the GitHub server into a list of trusted servers, to guard against potential impostor servers.</p>
+<p>Once you click <em>Clone</em>, you will get a question about whether you trust the remote machine (if you ran <code>git gui</code> from a command line, it will appear stuck, but actually <strong>the question will appear in the terminal</strong> and you need to answer it there). You need to answer this with <code>yes</code> (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.</p>
 <p>You will end up in an empty Git GUI window:</p>
 <p><img src="figs/git_gui_blank.png" alt="Git GUI in an empty directory" /></p>
+<div class="row">
+<div class="alert alert-danger">
+<p>
+<strong>Notice</strong>: Sometimes Git GUI crashes or gets stuck at this stage. When you restart it, you may also find that the panes are collapsed (you need to drag them out from the borders of the window) and that the repository branch is set to <code>master</code> instead of <code>main</code>. To avoid this issue, and because it is much faster and more convenient in general, we recommend always cloning repositories from the terminal (see the next box), and then continuing to open the repository with Git GUI.
+</p>
+</div>
+</div>
 <div class="row">
 <div class="alert alert-info">
 <p>
@@ -1124,7 +1269,7 @@ In addition, while this tutorial describes how to use the built-in <code>git-gui
 <ol start="9" style="list-style-type: decimal">
 <li><em>Tell Git who you are</em></li>
 </ol>
-<p>Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to <em>Edit</em> → <em>Options…</em> and fill out the <em>Global (All Repositories)</em> options <em>User Name</em> and <em>Email Address</em>. These will be displayed on GitHub.</p>
+<p>Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to <em>Edit</em> → <em>Options…</em> and fill out the <em>Global (All Repositories)</em> options <em>User Name</em> and <em>Email Address</em>. These will be displayed on GitLab.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
@@ -1174,7 +1319,7 @@ If you have files that you don’t want git to track, you can add them into the 
 </p>
 </div>
 </div>
-<p>In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the <em>Amend Last Commit</em> button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitHub.</p>
+<p>In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the <em>Amend Last Commit</em> button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitLab.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
@@ -1185,8 +1330,8 @@ If you have files that you don’t want git to track, you can add them into the 
 <ol start="10" style="list-style-type: decimal">
 <li><em>Push changes to the server</em></li>
 </ol>
-<p>Press the <em>Push</em> button, and confirm the push, to send all your changes to your GitHub repository. You can now refresh the GitHub page to see your changes. Well done!</p>
-<p><img src="figs/GitHub-repository.png" alt="GitHub repository with content" /></p>
+<p>Press the <em>Push</em> button, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!</p>
+<p><img src="figs/GitLab-repository.png" alt="GitLab repository with content" /></p>
 <div class="row">
 <div class="alert alert-info">
 <p>
@@ -1197,8 +1342,8 @@ If you have files that you don’t want git to track, you can add them into the 
 <ol start="11" style="list-style-type: decimal">
 <li><em>Pull changes from the server</em></li>
 </ol>
-<p>One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitHub to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using <em>Fetch</em> and <em>Merge</em>. If you like, you can test it by cloning the same repository in another folder, making changes and pushing them to the server, then using fetch in the other copy.</p>
-<p>If there are any changes on GitHub that are not on your local copy yet, in Git GUI go to <em>Remote</em> → <em>Fetch from</em> → <em>origin</em> to download all changes. This will not apply them yet, however.</p>
+<p>One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using <em>Fetch</em> and <em>Merge</em>. If you like, you can test it by cloning the same repository in another folder, making changes and pushing them to the server, then using fetch in the other copy.</p>
+<p>If there are any changes on GitLab that are not on your local copy yet, in Git GUI go to <em>Remote</em> → <em>Fetch from</em> → <em>origin</em> to download all changes. This will not apply them yet, however.</p>
 <p>To attempt to apply the changes, go to <em>Merge</em> → <em>Local Merge…</em>. If all goes well, the changes will be applied.</p>
 <div class="row">
 <div class="alert alert-info">
@@ -1208,37 +1353,37 @@ If you have files that you don’t want git to track, you can add them into the 
 </div>
 </div>
 <p>There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a <em>merge conflict</em>. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of <code>&gt;&gt;&gt;&gt;</code> and <code>&lt;&lt;&lt;&lt;</code> symbols. Once you remove the parts you don’t need (including the separators), you can solve the conflict by committing the changes.</p>
-<h3 id="forks-and-pull-requests">Forks and pull requests</h3>
-<p>Now we know how to work with Git and GitHub for our personal work, and how to collaborate on a project with your team member. But what if you want to contribute code to someone else who has not given you access rights, or what if you want to review the code before it’s accepted to your repository? That’s where forking and pull requests come in handy (respectively)!</p>
-<p>A fork is your own personal copy of someone else’s repository. GitHub allows you to fork any public repository. You want to make forks whenever you want to edit code but do not have direct commit rights.</p>
+<h3 id="forks-and-merge-requests">Forks and merge requests</h3>
+<p>Now we know how to work with Git and GitLab for our personal work, and how to collaborate on a project with your team member. But what if you want to contribute code to someone else who has not given you access rights, or what if you want to review the code before it’s accepted to your repository? That’s where forking and merge requests come in handy (respectively)!</p>
+<p>A fork is your own personal copy of someone else’s repository. GitLab allows you to fork any public repository. You want to make forks whenever you want to edit code but do not have direct commit rights.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: In fact, if you click the edit button on a file on GitHub and do changes to a repository that you don’t have the rights to write into, GitHub will helpfully make a fork for you, followed by a proposal to make a pull request for your changes.
+<strong>Protip</strong>: In fact, if you click the edit button on a file on GitLab and do changes to a repository that you don’t have the rights to write into, GitLab will helpfully make a fork for you, followed by a proposal to make a merge request for your changes.
 </p>
 </div>
 </div>
 <ol start="12" style="list-style-type: decimal">
 <li><em>Fork a repository</em></li>
 </ol>
-<p>Go to your team member’s repository that they created by following the steps above, and then click the <em>Fork</em> button at the top right. (If you can’t find it, alternatively you can go to some other repository, e.g. <a href="https://github.com/geoscripting-innovation/Exercise1-starter">the first exercise</a>, and fork it). You will find a new repository under your profile, with the same name as the original.</p>
-<p><img src="figs/GitHub-fork.png" alt="Fork button" /></p>
+<p>Go to your team member’s repository that they created by following the steps above, and then click the <em>Fork</em> button at the top right. (If you can’t find it, alternatively you can go to some other repository, and fork it.) You will find a new repository under your profile, by default with the same name as the original.</p>
+<!--![Fork button](figs/GitHub-fork.png)-->
 <ol start="13" style="list-style-type: decimal">
 <li><em>Make changes, commit and push</em></li>
 </ol>
-<p>After you have your own fork, it is the same as having your own personal repository with the code from the original (<em>upstream</em>) repository in it. Clone it locally, make some changes, commit them and push them back to GitHub, as per steps 7-10. You should see that your changes take effect in your own <em>downsteam</em> fork, but not in the upstream repository.</p>
+<p>After you have your own fork, it is the same as having your own personal repository with the code from the original (<em>upstream</em>) repository in it. Clone it locally, make some changes, commit them and push them back to GitLab, as per steps 7-10. You should see that your changes take effect in your own <em>downsteam</em> fork, but not in the upstream repository.</p>
 <ol start="14" style="list-style-type: decimal">
-<li><em>Make a pull request</em></li>
+<li><em>Make a merge request</em></li>
 </ol>
-<p>If you are ready to ask the upstream developers to incorporate your code into their repository, go to the Pull Requests tab and press the green <em>New pull request</em> button.</p>
-<p><img src="figs/GitHub-pr.png" alt="New pull request button" /></p>
-<p>This will show you all the changes you have made, and if that is what you want to propose for the upstream developers to incorporate, click on the <em>Create pull request</em> button, upon which you can give the name for your pull request (changeset) and a description as to why the upstream developers would want to incorporate your code. After you confirm by clicking <em>Create pull request</em> again, the pull request will be visible in the pull requests tab of the <em>upstream</em> repository:</p>
-<p><img src="figs/GitHub-pr-submitted.png" alt="A submitted pull request" /></p>
+<p>If you are ready to ask the upstream developers to incorporate your code into their repository, go to the <em>Merge Requests</em> tab and press the blue <em>New merge request</em> button. Select your <code>main</code> branch of your fork as the source.</p>
+<!-- ![New pull request button](figs/GitHub-pr.png) -->
+<p>This will show you all the changes you have made, and if that is what you want to propose for the upstream developers to incorporate, give the name for your merge request (changeset) and a description as to why the upstream developers would want to incorporate your code. After you confirm clicking <em>Create merge request</em>, the merge request will be visible in the merge requests tab of the <em>upstream</em> repository:</p>
+<p><img src="figs/GitLab-pr-submitted.png" alt="A submitted pull request" /></p>
 <p>Then it’s up to the upstream developers to perform a code review and either accept or reject the pull request in the end.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: For code review, GitHub also has special tools. If you look at the <em>Files changed</em> tab of a pull request, you will see that you can press a “+” button next to any line of code and write a comment about it. Once finished, there is a “Review changes” button at the top left that allows you to enter the final verdict and an overall comment.
+<strong>Protip</strong>: For code review, GitLab also has special tools. If you look at the <em>Changes</em> tab of a merge request, you will see that you can press a bubble button next to any line of code and write a comment about it. Once finished, there is a “Submit review” button at the bottom to send all comments at once.
 </p>
 </div>
 </div>
