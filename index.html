@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas" />
-  <title>Week 1, Lesson 1: Version control</title>
+  <title>Tutorial 1: Linux &amp; version control</title>
   <style type="text/css">
     html {
       line-height: 1.5;
@@ -30,6 +30,9 @@
       body {
         font-size: 0.9em;
         padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
       }
     }
     @media print {
@@ -135,15 +138,26 @@
     #TOC li {
       list-style: none;
     }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
     #TOC a:not(:hover) {
       text-decoration: none;
     }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1001,6 +1015,9 @@
   </style>
 </head>
 <body>
+<title>
+Tutorial 1: Linux &amp; version control
+</title>
 <div id="wrap">
 <div class="container">
 <div class="row row-offcanvas row-offcanvas-right">
@@ -1009,25 +1026,50 @@
 body {max-width: none;}
 a:visited {color: #91170a;}
 </style>
-<h1 id="wur-geoscripting"><a href="https://geoscripting-wur.github.io/">WUR Geoscripting</a> <img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px;"/></h1>
+<h1 id="wur-geoscripting"><a
+href="https://geoscripting-wur.github.io/">WUR Geoscripting</a>
+<img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px;"/></h1>
 <h1 id="course-setup">Course setup</h1>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Important</strong>: The Geoscripting course is a Master-level course given in Wageningen University. This set of documents that you are reading provide the theoretical material from the course for use both in the course itself, as well as for people who are following (parts of) the course externally or are in general interested in the topics that we cover. As such, these documents aim to be generic for all of the user groups above.
+<strong>Important</strong>: The Geoscripting course is a Master-level
+course given in Wageningen University. This set of documents that you
+are reading provide the theoretical material from the course for use
+both in the course itself, as well as for people who are following
+(parts of) the course externally or are in general interested in the
+topics that we cover. As such, these documents aim to be generic for all
+of the user groups above.
 </p>
 <p>
-If you are a student following the course at Wageningen University (WUR), <strong>please read</strong> the information on <a href="https://brightspace.wur.nl">Brightspace</a>. All course-specific information and exercises can be found there. Information on Brightspace overrule any information written in these pages, so <strong>please read it carefully</strong> and <strong>check it often</strong>. You will also find all the information on deliverables and exercises there.
+If you are a student following the course at Wageningen University
+(WUR), <strong>please read</strong> the information in the course guide
+in Teams and on <a href="https://brightspace.wur.nl">Brightspace</a>.
+All course-specific information and exercises can be found there.
+Information in the course guide overrules any information written in
+these pages, so <strong>please read it carefully</strong> and
+<strong>check it often</strong>. You will also find all the information
+on deliverables and exercises there.
 </p>
 </div>
 </div>
-<h1 id="week-1-lesson-1-linux-version-control">Week 1, Lesson 1: Linux &amp; version control</h1>
+<h1 id="week-1-tutorial-1-linux-version-control">Week 1, Tutorial 1:
+Linux &amp; version control</h1>
 <h2 id="introduction">Introduction</h2>
-<p>Welcome to the Geoscripting course! Today we will get familiar with Linux, which is an advanced environment optimised for scripting, and with version control software that helps you collaborate with one another and keep track of your file versions. These tools are very important, as we will use them throughout the course for all course activities, and they will continue to be very useful after the end of the course for all your scripting work.</p>
+<p>Welcome to the Geoscripting course! Today we will get familiar with
+Linux, which is an advanced environment optimized for scripting, and
+with version control software that helps you collaborate with one
+another and keep track of your file versions. These tools are very
+important, as we will use them throughout the course for all course
+activities, and they will continue to be very useful after the end of
+the course for all your scripting work.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-Throughout the whole course, we will be working in a Linux environment, and all of <strong>the material has only been tested on (and assumes) a Linux environment</strong>. Every WUR student gets access to one Linux virtual machine. To find information on how to access the virtual machine, see the course information on Brightspace.
+Throughout the whole course, we will be working in a Linux environment,
+and all of <strong>the material has only been tested on (and assumes) a
+Linux environment</strong>. Every WUR student will get access to a Linux
+virtual machine.
 </p>
 </div>
 </div>
@@ -1036,43 +1078,105 @@ Throughout the whole course, we will be working in a Linux environment, and all 
 <ul>
 <li>Know what Linux is &amp; what you can do with it</li>
 <li>Get comfortable working within a Linux environment</li>
-<li>Explain why software licenses are important and what software license options there are</li>
+<li>Explain why software licenses are important and what software
+license options there are</li>
 <li>Apply a software license to your own code</li>
-<li>Use version control to develop, maintain, and share your code with others</li>
+<li>Use version control to develop, maintain, and share your code with
+others</li>
 <li>Submit an exercise using Git and GitLab</li>
 </ul>
 <h1 id="linux">Linux</h1>
-<p><em>Linux</em> is a free and open-source operating system kernel. The kernel interacts with computer hardware and exposes its capabilities for your scripts! Together with a lot of small, handy programs, it forms an <em>operating system</em> called <em>GNU/Linux</em>. However, unlike e.g. Windows, there is not a single “GNU/Linux operating system”. Rather, there is a <a href="https://en.wikipedia.org/wiki/List_of_Linux_distributions">huge variety</a> of Linux distributions. Each Linux distribution provides the same kernel, but different programs and environments, suitable for different use cases.</p>
-<p>For example, one distribution that is very handy for geo-information science work is OSGeo-Live, which is an Ubuntu-based <em>Linux distribution</em> that has a wide range of free and open-source GIS and Remote sensing tools preinstalled. See <a href="http://live.osgeo.org/">this website</a> for more information.</p>
-<p>These tools are also available in other distributions, but they have to be installed manually. A general-use distribution such as <em>Ubuntu</em> itself, <em>openSUSE</em> or <em>Fedora</em> is more suitable for regular day-to-day tasks, since not having the unnecessary tools installed takes less space and makes it work faster. It is also easier to find help for them than for specialised distributions.</p>
-<p>For the Geoscripting course, we have developed what is effectively our very own Linux distribution, with the use case of providing all of the tools necessary to finish the course. These tools are also very useful after the end of the course to continue data processing, for example for writing Master theses. Within our laboratory, we have several computers that are running this Geoscripting distribution, so that transferring over the work from one computer running it to another one would be as easy as possible, so you can continue working uninterrupted even after the end of the course. The Geoscripting distribution is nothing more than a set of scripts that install the necessary tools on top of what plain Ubuntu provides.</p>
+<p><em>Linux</em> is a free and open-source operating system kernel. The
+kernel interacts with computer hardware and exposes its capabilities for
+your scripts! Together with a lot of small, handy programs, it forms an
+<em>operating system</em> called <em>GNU/Linux</em>. However, unlike
+e.g. Windows, there is not a single “GNU/Linux operating system”.
+Rather, there is a <a
+href="https://en.wikipedia.org/wiki/List_of_Linux_distributions">huge
+variety</a> of Linux distributions. Each Linux distribution provides the
+same kernel, but different programs and environments, suitable for
+different use cases.</p>
+<p>For example, one distribution that is very handy for geo-information
+science work is OSGeo-Live, which is an Ubuntu-based <em>Linux
+distribution</em> that has a wide range of free and open-source GIS and
+Remote sensing tools preinstalled. See <a
+href="http://live.osgeo.org/">this website</a> for more information.</p>
+<p>These tools are also available in other distributions, but they have
+to be installed manually. A general-use distribution such as
+<em>Ubuntu</em> itself, <em>openSUSE</em> or <em>Fedora</em> is more
+suitable for regular day-to-day tasks, since not having the unnecessary
+tools installed takes less space and makes it work faster. It is also
+easier to find help for them than for specialised distributions.</p>
+<p>For the Geoscripting course, we have developed what is effectively
+our very own Linux distribution, with the use case of providing all of
+the tools necessary to finish the course. These tools are also very
+useful after the end of the course to continue data processing, for
+example for writing Master theses. Within our laboratory, we have
+several computers that are running this Geoscripting distribution, so
+that transferring over the work from one computer running it to another
+one would be as easy as possible, so you can continue working
+uninterrupted even after the end of the course. The Geoscripting
+distribution is nothing more than a set of scripts that install the
+necessary tools on top of what plain Ubuntu provides.</p>
 <h2 id="why-use-a-linux-distribution">Why use a Linux distribution?</h2>
-<p>A Linux environment makes it much easier to install and combine a variety of open-source software, such as Python modules and GDAL, compared to other operating systems like Windows or macOS. In addition, open-source scientific software is often developed primarily for Linux (since that’s what most supercomputers and servers run!), and so it tends to be more stable and have more features on Linux. Lastly, Linux has a set of standards that allow programs to interoperate with each other, so that e.g. you can access GRASS GIS from R, QGIS from Python, GRASS GIS from QGIS, Python from R etc. All of this is managed and checked for quality so that you can always use the latest and greatest software without worrying about version mismatches and compatibility between software tools.</p>
-<p>For the course, it also makes it possible to use the wide variety of tools that we will work with, all from a single supported environment. That way, we can be sure that the tools work the same way for all of the students, and that we also test the exercise submissions using the same versions of the tools to get the same output.</p>
+<p>A Linux environment makes it much easier to install and combine a
+variety of open-source software, such as Python modules and GDAL,
+compared to other operating systems like Windows or macOS. In addition,
+open-source scientific software is often developed primarily for Linux
+(since that’s what most supercomputers and servers run!), and so it
+tends to be more stable and have more features on Linux. Lastly, Linux
+has a set of standards that allow programs to interoperate with each
+other, so that e.g. you can access GRASS GIS from R, QGIS from Python,
+GRASS GIS from QGIS, Python from R etc. All of this is managed and
+checked for quality so that you can always use the latest and greatest
+software without worrying about version mismatches and compatibility
+between software tools.</p>
+<p>For the course, it also makes it possible to use the wide variety of
+tools that we will work with, all from a single supported environment.
+That way, we can be sure that the tools work the same way for all of the
+students, and that we also test the exercise submissions using the same
+versions of the tools to get the same output.</p>
 <h2 id="getting-started-on-linux">Getting started on Linux</h2>
-<p>During the course we will work in a Linux environment. For students taking the course in Wageningen University, we provide a <strong>VMware Horizon virtual desktop infrastructure (VDI)</strong> that is managed by the WUR IT department. It is available over the internet for each student in the course and supported by the IT department. The VMware Horizon VDIs can be accessed through the VMware Horizon client (preinstalled on WUR PCs).</p>
-<p><strong><a href="../Intro2Linux/vmware_horizon_tutorial.html">See the tutorial on setting up VMWare Horizon on this page.</a></strong></p>
+<p>During the course we will work in a Linux environment. For students
+taking the course in Wageningen University, we provide a <strong>VMware
+Horizon virtual desktop infrastructure (VDI)</strong> that is managed by
+the WUR IT department. It is available over the internet for each
+student in the course and supported by the IT department. The VMware
+Horizon VDIs can be accessed through the VMware Horizon client.</p>
+<p><strong><a href="../Intro2Linux/vmware_horizon_tutorial.html">See the
+tutorial on setting up VMWare Horizon on this page.</a></strong></p>
 <div class="row">
 <div class="alert alert-danger">
 <p>
-<strong>Notice</strong>: Make sure you <strong>read the page linked above</strong> and have no problems logging into and using the VDI. From here on out, we will try to work from within the VDI exclusively.
+<strong>Notice</strong>: Make sure you <strong>read the page linked
+above</strong> and have no problems logging into and using the VDI. From
+here on out, we will try to work from within the VDI exclusively.
 </p>
 </div>
 </div>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>In case you can’t get the VDI running successfully</strong> (and <strong>only</strong> in that case, so hopefully you don’t need to do this!), there is one alternative: if you know what you are doing, you can install Linux on your own laptops or external hard disks. See a <a href="../Intro2Linux/installation.html">theoretical overview of running Linux on your own hardware</a> and <a href="../system_setup/index.html">Linux system setup</a>.
+<strong>In case you can’t get the VDI running successfully</strong> (and
+<strong>only</strong> in that case, so hopefully you don’t need to do
+this!), there is an alternative: we have the possibility of providing
+access to a SURFsara cloud VM setup. <a
+href="../Intro2Linux/surfsara_tutorial.html">See this page for
+instructions on gaining access to the SURFsara cloud VM</a>.
 </p>
-<!-- - Local VirtualBox VMs installed on the PCs in the PC labs. These can only be accessed from a specific PC and intended as a fallback is there are problems when using VDIs. -->
 <p>
-<strong>The VDIs are recommended</strong>. If you go for the alternative, the systems need to be set up manually and we do not have the time and manpower to support every student with this.
+Another alternative (also if you are not following the course at WUR),
+is to install Linux on your own laptop or external hard disk. See a
+<a href="../Intro2Linux/installation.html">theoretical overview of
+running Linux on your own hardware</a> and <a
+href="../system_setup/index.html">Linux system setup</a>.
 </p>
-<!--### SURFsara cloud VM setup
-
-[See this page for instructions on setting up the SURFsara cloud VMs](surfsara_tutorial.html).
-
-### VirtualBox VM setup
+<p>
+<strong>The VDIs are strongly recommended</strong>. If you go for
+installing Linux yourself, the systems need to be set up manually and we
+do not have the time and manpower to support every student with this.
+</p>
+<!--### VirtualBox VM setup
 
 To set up VirtualBox, first find the provided image of OSGeo-Live on the network drive in the PC lab, which should be available to you as `W:\\Student\\GRS-33806\\OSGeo Live 12.ova`. This is a compressed VirtualBox image with RStudio installed. For use on your own PCs, you can copy the file on your PC from the PC lab or download OSGeo-Live from [its website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html).
 
@@ -1085,34 +1189,119 @@ Once importing is complete, you can go to the appliance settings and add a share
 If you like, you can install a Linux distribution on your own laptops or external hard drives. Compared to virtualisation, it is much faster to run a Linux distribution directly. -->
 </div>
 </div>
-<p>Once you have everything ready, login into your Linux VM, try out RStudio/RKWard, and also open QGIS. Explore the environment a little to get used to it.</p>
+<p>Once you have everything ready, login into your Linux VM, try out
+RStudio, and also open QGIS. Explore the environment a little to get
+used to it.</p>
 <h1 id="software-licenses">Software licenses</h1>
-<p>One key advantage of Linux is that it is free and open-source software. While it is free as in free beer, that is, it can be used at no cost, more importantly it is free as in free speech: all of the source code of the kernel and the absolute majority of the applications is licensed under a free software license.</p>
-<p>A <em>software license</em> is a legal text that describes how the software and its source code can be used by other people. Software licenses are grounded in the framework of copyright: the protection of authors’ intellectual rights. A <em>free</em> software license is a software license that gives others the freedom to run, copy, read, modify, and distribute changes to the original software and its source code. This is in addition to an <em>open-source</em> license, which makes the source code available and redistributable, but <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.html">does not necessarily make the source code free</a>. Both free an open-source licenses have their overseeing bodies: the <a href="https://www.gnu.org/philosophy/free-sw.html">Free Software Foundation</a> for free software licenses, and the <a href="https://opensource.org/osd">Open Source Initiative</a> for open-source licenses. When a software fits both definitions (they often overlap), it is referred to as Free and Open-Source Software (FOSS), or les often as Free, Libre and Open-Source Software (FLOSS).</p>
-<p>There are many advantages to FOSS. One advantage is that it fosters collaboration: one person implementing a feature makes it available for all of the users in the world. This enables such a massive effort required to create GNU/Linux distributions based on volunteer work, without needing to rely on commercial licensing, advertisements, donations or spyware to finance the work. It also allows anyone to remove such undesired parts of any software component, therefore ensuring higher quality of the software. Thus, while FOSS projects initially start weaker than <em>proprietary</em> (non-free or closed-source) software, in the long run the collaboration potential brings it on par and even overtaking the propriatary counterparts. See for example QGIS, which is FOSS, vs the proprietary ArcGIS.</p>
-<p>A software license defines what others can do with your code, therefore before starting to write any code, <strong>it is vital to think about the license</strong> you would like to release your code under. This is because if you do not define any license, the default copyright terms apply: even if you publish the source code publicly, nobody is allowed to copy, redistribute or modify the code, in fact nobody is even allowed to read it! As an author, you are free to choose any license, both proprietary and FOSS licenses (or in fact no license altogether), but a proprietary license restricts the freedoms of others and therefore diminishes chances that others would want to collaborate with you to improve the code in the future. In addition, do not confuse a <em>software license</em> with <em>commercial licensing</em>, i.e. the requirement to activate a license subscription to use</p>
-<p>There are two types of FOSS licenses: copyleft and permissive. A <em>permissive</em> license is one that allows copying, modifying and redistributing the code with no serious restrictions (usually with a restriction that the original author be credited for the work). A <em>copyleft</em> license adds a restriction that any modified versions that are distributed must be under the same (or equivalent) license. This restriction restricts others from restricting the terms of the software license in the future, therefore keeping the source code free forever. In other words, it’s following the philosophy that if we want to achieve the most freedom, we must restrict the freedom to restrict freedom!</p>
-<p>Lastly, there is also an option to <em>dedicate software to the public domain</em>, which is not a license per se, but a waiver of copyright. Software in the public domain allows anyone to do anything with it without any restrictions, therefore it is radically permissive. There is no requirement to credit the original author, for example. Since some jurisdictions do not allow authors to waive copyright (including Germany, France and Italy), there are licenses such as <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">CC0</a> that are aimed to make a work as free as possible by either dedicating it to the public domain, or if it is not possible, by giving it a permissive license.</p>
-<p>How can you choose a software license in practice? There are <a href="https://choosealicense.com/">multiple</a> <a href="https://www.gnu.org/licenses/license-recommendations.en.html">websites</a> that give an overview of the most popular licenses that you can choose. Once you choose one, you need to follow the terms of the license about how to apply it. In most cases, it is sufficient to copy the terms of the license next to your source code and include it in your version control repository.</p>
+<p>One key advantage of Linux is that it is free and open-source
+software. While it is free as in free beer, that is, it can be used at
+no cost, more importantly it is free as in free speech: all of the
+source code of the kernel and the absolute majority of the applications
+is licensed under a free software license.</p>
+<p>A <em>software license</em> is a legal text that describes how the
+software and its source code can be used by other people. Software
+licenses are grounded in the framework of copyright: the protection of
+authors’ intellectual rights. A <em>free</em> software license is a
+software license that gives others the freedom to run, copy, read,
+modify, and distribute changes to the original software and its source
+code. This is in addition to an <em>open-source</em> license, which
+makes the source code available and redistributable, but <a
+href="https://www.gnu.org/philosophy/open-source-misses-the-point.html">does
+not necessarily make the source code free</a>. Both free an open-source
+licenses have their overseeing bodies: the <a
+href="https://www.gnu.org/philosophy/free-sw.html">Free Software
+Foundation</a> for free software licenses, and the <a
+href="https://opensource.org/osd">Open Source Initiative</a> for
+open-source licenses. When a software fits both definitions (they often
+overlap), it is referred to as Free and Open-Source Software (FOSS), or
+les often as Free, Libre and Open-Source Software (FLOSS).</p>
+<p>There are many advantages to FOSS. One advantage is that it fosters
+collaboration: one person implementing a feature makes it available for
+all of the users in the world. This enables such a massive effort
+required to create GNU/Linux distributions based on volunteer work,
+without needing to rely on commercial licensing, advertisements,
+donations or spyware to finance the work. It also allows anyone to
+remove such undesired parts of any software component, therefore
+ensuring higher quality of the software. Thus, while FOSS projects
+initially start weaker than <em>proprietary</em> (non-free or
+closed-source) software, in the long run the collaboration potential
+brings it on par and even overtaking the propriatary counterparts. See
+for example QGIS, which is FOSS, vs the proprietary ArcGIS.</p>
+<p>A software license defines what others can do with your code,
+therefore before starting to write any code, <strong>it is vital to
+think about the license</strong> you would like to release your code
+under. This is because if you do not define any license, the default
+copyright terms apply: even if you publish the source code publicly,
+nobody is allowed to copy, redistribute or modify the code, in fact
+nobody is even allowed to read it! As an author, you are free to choose
+any license, both proprietary and FOSS licenses (or in fact no license
+altogether), but a proprietary license restricts the freedoms of others
+and therefore diminishes chances that others would want to collaborate
+with you to improve the code in the future. In addition, do not confuse
+a <em>software license</em> with <em>commercial licensing</em>, i.e. the
+requirement to activate a license subscription to use</p>
+<p>There are two types of FOSS licenses: copyleft and permissive. A
+<em>permissive</em> license is one that allows copying, modifying and
+redistributing the code with no serious restrictions (usually with a
+restriction that the original author be credited for the work). A
+<em>copyleft</em> license adds a restriction that any modified versions
+that are distributed must be under the same (or equivalent) license.
+This restriction restricts others from restricting the terms of the
+software license in the future, therefore keeping the source code free
+forever. In other words, it’s following the philosophy that if we want
+to achieve the most freedom, we must restrict the freedom to restrict
+freedom!</p>
+<p>Lastly, there is also an option to <em>dedicate software to the
+public domain</em>, which is not a license per se, but a waiver of
+copyright. Software in the public domain allows anyone to do anything
+with it without any restrictions, therefore it is radically permissive.
+There is no requirement to credit the original author, for example.
+Since some jurisdictions do not allow authors to waive copyright
+(including Germany, France and Italy), there are licenses such as <a
+href="https://creativecommons.org/share-your-work/public-domain/cc0/">CC0</a>
+that are aimed to make a work as free as possible by either dedicating
+it to the public domain, or if it is not possible, by giving it a
+permissive license.</p>
+<p>How can you choose a software license in practice? There are <a
+href="https://choosealicense.com/">multiple</a> <a
+href="https://www.gnu.org/licenses/license-recommendations.en.html">websites</a>
+that give an overview of the most popular licenses that you can choose.
+Once you choose one, you need to follow the terms of the license about
+how to apply it. In most cases, it is sufficient to copy the terms of
+the license next to your source code and include it in your version
+control repository.</p>
 <div class="row">
 <div class="alert alert-success">
 <blockquote>
 <p>
-<strong>Question 1</strong>: If you wanted to contribute to a project that is licensed under the GNU General Public License v3 (copyleft), under which license(s) could you contribute? Which license would you choose in the end?
+<strong>Question 1</strong>: If you wanted to contribute to a project
+that is licensed under the GNU General Public License v3 (copyleft),
+under which license(s) could you contribute? Which license would you
+choose in the end?
 </p>
 </blockquote>
 </div>
 </div>
 <h1 id="version-control">Version control</h1>
-<p>Have you ever worked on a project and ended up having so many versions of your work that you didn’t know which one was the latest, and what were the differences between the versions? Does the image below look familiar to you? Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.</p>
+<p>Have you ever worked on a project and ended up having so many
+versions of your work that you didn’t know which one was the latest, and
+what were the differences between the versions? Does the image below
+look familiar to you? Then you need to use version control (also called
+revision control). You will quickly understand that although it is
+designed primarily for big software development projects, being able to
+work with version control can be very helpful for scientists as
+well.</p>
 <center>
 <img src="figs/fileNames.png" alt="file name" />
 </center>
-<p>The video below explains some basic concepts of version control and what the benefits of using it are.</p>
+<p>The video below explains some basic concepts of version control and
+what the benefits of using it are.</p>
 <iframe src="https://player.vimeo.com/video/41027679" width="500" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
 </iframe>
 <p>
-<a href="https://vimeo.com/41027679">What is VCS? (Git-SCM) • Git Basics #1</a> from <a href="https://vimeo.com/github">GitHub</a> on <a href="https://vimeo.com">Vimeo</a>.
+<a href="https://vimeo.com/41027679">What is VCS? (Git-SCM) • Git Basics
+#1</a> from <a href="https://vimeo.com/github">GitHub</a> on
+<a href="https://vimeo.com">Vimeo</a>.
 </p>
 <p>So to sum up, version control allows to keep track of:</p>
 <ul>
@@ -1123,110 +1312,237 @@ If you like, you can install a Linux distribution on your own laptops or externa
 <p>Additionally, version control:</p>
 <ul>
 <li>Facilitates collaboration with others</li>
-<li>Allows you to keep your code archived in a safe place (the cloud)</li>
+<li>Allows you to keep your code archived in a safe place (the
+cloud)</li>
 <li>Allows you to go back to previous version of your code</li>
 <li>Allows you to find out what changes broke your code</li>
-<li>Allows you to have experimental branches without breaking your code</li>
-<li>Allows you to keep different versions of your code without having to worry about file names and archiving organization</li>
+<li>Allows you to have experimental branches without breaking your
+code</li>
+<li>Allows you to keep different versions of your code without having to
+worry about file names and archiving organization</li>
 </ul>
 <div class="row">
 <div class="alert alert-success">
 <blockquote>
 <p>
-<strong>Question 2</strong>: Think of examples where you could use version control for things other than code.
+<strong>Question 2</strong>: Think of examples where you could use
+version control for things other than code.
 </p>
 </blockquote>
 </div>
 </div>
-<p>The three most popular version control software are <strong>Git</strong>, <strong>Mercurial</strong> (abbreviated as hg) and <strong>Subversion</strong> (abbreviated as svn). <em>Git</em> is by far the most modern and popular one, so we will only use <em>Git</em> in this course.</p>
-<h2 id="git">Git <img src="figs/Git_logo.png" alt="git" style="width: 80px"/></h2>
+<p>The three most popular version control software are
+<strong>Git</strong>, <strong>Mercurial</strong> (abbreviated as hg) and
+<strong>Subversion</strong> (abbreviated as svn). <em>Git</em> is by far
+the most modern and popular one, so we will only use <em>Git</em> in
+this course.</p>
+<h2 id="git">Git
+<img src="figs/Git_logo.png" alt="git" style="width: 80px"/></h2>
 <h3 id="what-git-does">What git does</h3>
-<p><strong>Git</strong> keeps track of changes in a <strong>local repository</strong> you set up on your computer. Typically that is a folder that contains all your code and optionally the data your code needs in order to run. The local repository contains all your files, but also (in a hidden folder) all the changes to the files you have made. It does not keep track of all files automatically: you need to tell git which files to track and which not. Therefore a repository contains your current tracked files (<strong>workspace</strong>), an <strong>index</strong> of files that are being tracked, and the version history.</p>
-<p>Every time you make significant changes to the files in your workspace, you have to <strong>add</strong> the changed files to the index, which selects the files whose changes you want to save, and <strong>commit</strong> them, which means saving the changes to the history tracking of your local repository.</p>
-<p>Often you also setup a <strong>remote repository</strong>, stored on an online platform like <a href="https://github.com/">GitHub</a>, <a href="https://gitlab.com">GitLab</a> or others. It is simply a remotely-hosted mirror of your local repository and allows you to have your work stored in a safe place and accessible from your other computers and potential collaborators. Once in a while (at the end of the day, or every new commit if you want) you can <strong>push</strong> your commits, which means sending them to the remote repository so it keeps in sync with your local one. When you want to update your local repository based on the content of a remote repository, you have to <strong>pull</strong> the commits from the remote repository.</p>
+<p><strong>Git</strong> keeps track of changes in a <strong>local
+repository</strong> you set up on your computer. Typically that is a
+folder that contains all your code and optionally the data your code
+needs in order to run. The local repository contains all your files, but
+also (in a hidden folder) all the changes to the files you have made. It
+does not keep track of all files automatically: you need to tell git
+which files to track and which not. Therefore a repository contains your
+current tracked files (<strong>workspace</strong>), an
+<strong>index</strong> of files that are being tracked, and the version
+history.</p>
+<p>Every time you make significant changes to the files in your
+workspace, you have to <strong>add</strong> the changed files to the
+index, which selects the files whose changes you want to save, and
+<strong>commit</strong> them, which means saving the changes to the
+history tracking of your local repository.</p>
+<p>Often you also setup a <strong>remote repository</strong>, stored on
+an online platform like <a href="https://github.com/">GitHub</a>, <a
+href="https://gitlab.com">GitLab</a> or others. It is simply a
+remotely-hosted mirror of your local repository and allows you to have
+your work stored in a safe place and accessible from your other
+computers and potential collaborators. Once in a while (at the end of
+the day, or every new commit if you want) you can <strong>push</strong>
+your commits, which means sending them to the remote repository so it
+keeps in sync with your local one. When you want to update your local
+repository based on the content of a remote repository, you have to
+<strong>pull</strong> the commits from the remote repository.</p>
 <h3 id="summary-of-git-semantics">Summary of git semantics</h3>
 <ul>
-<li><strong>add</strong>: Tell git that you want a file or changes to be tracked. These files/changes are not yet saved in the repository! They are listed as “staged” in the index or staging area for the next <em>commit</em>.</li>
-<li><strong>commit</strong>: Save the <em>staged</em> changes to your <em>local repository</em>. This is like putting a milestone or taking a snapshot of your project at that moment. A commit describes what has been changed, why and when. In the future you can always revert all tracked files to the state they were at when you created the commit.</li>
-<li><strong>push</strong>: Send previous changes you committed to the local repository to the remote repository.</li>
-<li><strong>pull</strong>: Update your local repository (and your workspace) with all new stuff from the remote repository. This command is simple, but potentially destructive, since it overwrites your files with the ones in the remote server. Hence it is not available in the Git GUI.
+<li><strong>add</strong>: Tell git that you want a file or changes to be
+tracked. These files/changes are not yet saved in the repository! They
+are listed as “staged” in the index or staging area for the next
+<em>commit</em>.</li>
+<li><strong>commit</strong>: Save the <em>staged</em> changes to your
+<em>local repository</em>. This is like putting a milestone or taking a
+snapshot of your project at that moment. A commit describes what has
+been changed, why and when. In the future you can always revert all
+tracked files to the state they were at when you created the
+commit.</li>
+<li><strong>push</strong>: Send previous changes you committed to the
+local repository to the remote repository.</li>
+<li><strong>pull</strong>: Update your local repository (and your
+workspace) with all new stuff from the remote repository. This command
+is simple, but potentially destructive, since it overwrites your files
+with the ones in the remote server. Hence it is not available in the Git
+GUI.
 <ul>
-<li><strong>fetch</strong>: Get information about the latest commits from the remote repository, but do not apply them to your local repository automatically. This is always safe as it does not change your workspace.</li>
-<li><strong>merge</strong>: Merges two versions (branches) into one, applying the result to the workspace. This includes merging commits from the remote repository with the commits of the local repository. In effect, a <strong>fetch</strong> followed by a <strong>merge</strong> is the same as a <strong>pull</strong>, but it allows you more fine-grained control and is available through the Git GUI.</li>
+<li><strong>fetch</strong>: Get information about the latest commits
+from the remote repository, but do not apply them to your local
+repository automatically. This is always safe as it does not change your
+workspace.</li>
+<li><strong>merge</strong>: Merges two versions (branches) into one,
+applying the result to the workspace. This includes merging commits from
+the remote repository with the commits of the local repository. In
+effect, a <strong>fetch</strong> followed by a <strong>merge</strong> is
+the same as a <strong>pull</strong>, but it allows you more fine-grained
+control and is available through the Git GUI.</li>
 </ul></li>
-<li><strong>clone</strong> : Copy the content of a remote repository locally for the first time.</li>
+<li><strong>clone</strong> : Copy the content of a remote repository
+locally for the first time.</li>
 <li>more advanced:
 <ul>
-<li><strong>branch</strong> : Create a branch (a parallel version of the code in the repository)</li>
-<li><strong>checkout</strong>: load the status of a <em>branch</em> into your workspace</li>
+<li><strong>branch</strong> : Create a branch (a parallel version of the
+code in the repository)</li>
+<li><strong>checkout</strong>: load the status of a <em>branch</em> into
+your workspace</li>
 </ul></li>
 </ul>
 <center>
 <img src="figs/git-flows.svg" alt="git flows" style="width: 600px"/>
 </center>
 <h2 id="setting-up-a-git-project">Setting up a Git project</h2>
-<p>Effective use of git includes two components: local software to manage the files on your computer (git client) and an online git hosting service to make them centrally accessible. While git is a single system, there is a variety of clients and a variety of hosts.</p>
-<p>In this course, we will primarily use Git GUI as the client. It is a simple client that is included with Git itself, and is language-agnostic. There are more graphical clients as well, including one integrated into RStudio itself, but these clients are outside the scope of this course. Note that Git is language-agnostic, and we will be using it with both R and Python, so it’s best to learn the language-neutral GUI, rather than an R-specific GUI.</p>
+<p>Effective use of git includes two components: local software to
+manage the files on your computer (git client) and an online git hosting
+service to make them centrally accessible. While git is a single system,
+there is a variety of clients and a variety of hosts.</p>
+<p>In this course, we will primarily use Git GUI as the client. It is a
+simple client that is included with Git itself, and is
+language-agnostic. There are more graphical clients as well, including
+one integrated into RStudio itself, but these clients are outside the
+scope of this course. Note that Git is language-agnostic, and we will be
+using it with both R and Python, so it’s best to learn the
+language-neutral GUI, rather than an R-specific GUI.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: For those who are comfortable with working from the Linux terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in protip boxes like this you will find command line equivalents to the GUI actions we will perform. Choose whichever way you find the most convenient for yourself.
+<strong>Protip</strong>: For those who are comfortable with working from
+the Linux terminal, the command line client is often the most efficient
+choice. Knowing how to use git from the command line is also useful when
+working on cloud virtual machines/servers for big data processing. So in
+protip boxes like this you will find command line equivalents to the GUI
+actions we will perform. Choose whichever way you find the most
+convenient for yourself.
 </p>
 <p>
-In addition, while this tutorial describes how to use the built-in <code>git-gui</code>, you can also use the more modern <code>git-cola</code>, which may be more intuitive to you. The general steps are the same as in <code>git-gui</code>. You can find Git Cola in the applications menu (or else you may need to install it).
+In addition, while this tutorial describes how to use the built-in
+<code>git-gui</code>, you can also use the more modern
+<code>git-cola</code>, which may be more intuitive to you. The general
+steps are the same as in <code>git-gui</code>. You can find Git Cola in
+the applications menu (or else you may need to install it).
 </p>
 </div>
 </div>
-<p>Throughout the Geoscripting course, for hosting our code, we will be using the university’s very own instance of <a href="https://git.wur.nl">GitLab</a>, the most popular self-hosted Git hosting platform.</p>
-<p>Let’s jump right into it! We will start by making our very own GitLab scripting project from scratch, and also try forking someone else’s project.</p>
+<p>Throughout the Geoscripting course, for hosting our code, we will be
+using the university’s very own instance of <a
+href="https://git.wur.nl">GitLab</a>, the most popular self-hosted Git
+hosting platform.</p>
+<p>Let’s jump right into it! We will start by making our very own GitLab
+scripting project from scratch, and also try forking someone else’s
+project.</p>
 <h3 id="client-setup">Client setup</h3>
 <ol style="list-style-type: decimal">
 <li><em>Launch Git GUI</em></li>
 </ol>
-<p>Launch a program called <em>Git GUI</em> (e.g. from the <em>Applications</em> → <em>Programming</em> menu). Git GUI is a graphical interface to Git that comes with Git itself, and is thus cross-platform and always available. When launched, it looks something like this:</p>
+<p>Launch a program called <em>Git GUI</em> (e.g. from the
+<em>Applications</em> → <em>Programming</em> menu). Git GUI is a
+graphical interface to Git that comes with Git itself, and is thus
+cross-platform and always available. When launched, it looks something
+like this:</p>
 <p><img src="figs/git_gui_main.png" alt="Main screen of Git GUI" /></p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Note</strong>: External users should <a href="https://git-scm.com/download/">download git</a> and install it to obtain Git GUI.
+<strong>Note</strong>: External users should <a
+href="https://git-scm.com/download/">download git</a> and install it to
+obtain Git GUI.
 </p>
 <p>
-<strong>Protip</strong>: You can launch Git GUI from the terminal with <code>git gui</code>.
+<strong>Protip</strong>: You can launch Git GUI from the terminal with
+<code>git gui</code>.
 </p>
 </div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li><em>Create an SSH key pair</em></li>
 </ol>
-<p>In order for GitLab (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn’t require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.</p>
-<p>You can generate a new SSH key pair in Git GUI by going to <em>Help</em> → <em>Show SSH Key</em> and pressing the <em>Generate Key</em> button. It will ask you for a <strong>passphrase</strong>. This is <strong>not a password</strong> and is completely <strong>optional</strong>: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus; however, SSH keys are specific to each machine and are never sent over the network, so most of the time it is completely fine to <strong>leave the passphrase empty</strong>. If you keep it empty, you will <strong>not need to enter it every time</strong> you try to push your changes, yet the connection will be even more secure than when using a password.</p>
+<p>In order for GitLab (and other services) to identify that the machine
+connecting to it is indeed owned by you, there are two options: using a
+password, or using an SSH key. SSH keys are much more secure than
+passwords, and it doesn’t require you to enter a password every time you
+try to communicate with the server. Therefore throughout the course we
+will use SSH keys.</p>
+<p>You can generate a new SSH key pair in Git GUI by going to
+<em>Help</em> → <em>Show SSH Key</em> and pressing the <em>Generate
+Key</em> button. It will ask you for a <strong>passphrase</strong>. This
+is <strong>not a password</strong> and is completely
+<strong>optional</strong>: it is useful in the case your SSH key is
+stolen, for instance by a thief stealing your laptop or a virus;
+however, SSH keys are specific to each machine and are never sent over
+the network, so most of the time it is completely fine to <strong>leave
+the passphrase empty</strong>. If you keep it empty, you will
+<strong>not need to enter it every time</strong> you try to push your
+changes, yet the connection will be even more secure than when using a
+password.</p>
 <p>Once done, you will see your new public key:</p>
-<p><img src="figs/git_gui_sshkey.png" alt="SSH public key generated" /></p>
+<p><img src="figs/git_gui_sshkey.png"
+alt="SSH public key generated" /></p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: From the command line you generate a key pair by running <code>ssh-keygen -t rsa -b 4096</code>. In both cases, by default the public key is stored in the file <code>~/.ssh/id_rsa.pub</code> (where <code>~</code> indicates the user’s home directory).
+<strong>Protip</strong>: From the command line you generate a key pair
+by running <code>ssh-keygen -t rsa -b 4096</code>. In both cases, by
+default the public key is stored in the file
+<code>~/.ssh/id_rsa.pub</code> (where <code>~</code> indicates the
+user’s home directory).
 </p>
 </div>
 </div>
 <h3 id="account-setup">Account setup</h3>
-<p>Next, we will link our client with a Git host so that we can download and upload repositories.</p>
+<p>Next, we will link our client with a Git host so that we can download
+and upload repositories.</p>
 <ol start="3" style="list-style-type: decimal">
 <li><em>Log into GitLab</em></li>
 </ol>
-<p>Go to <a href="https://git.wur.nl/">GitLab</a> and log in (using your <strong>email address</strong> as the user name and your password). You also need to set up two-factor authentication by going to <a href="https://git.wur.nl/-/profile/account">your profile page</a>.</p>
+<p>Go to <a href="https://git.wur.nl/">GitLab</a> and log in (using your
+<strong>email address</strong> as the user name and your password). You
+also need to set up two-factor authentication by going to <a
+href="https://git.wur.nl/-/profile/account">your profile page</a>.</p>
 <ol start="4" style="list-style-type: decimal">
 <li><em>Enrol the public key to your user account</em></li>
 </ol>
-<p>The SSH key pair is used to identify that you own the machine. <!--On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university.--> On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware Horizon, the keys are stored on your personal VDI, so you can access them from anywhere.</p>
-<p>Now you need to tell GitLab about your new key. To do that, copy the public key from the dialog, then in GitLab click on your avatar in the top right and go to <em>Edit profile</em> → <em>SSH keys</em>. Paste the public key in the box, give it a title describing your machine, and press <em>Add key</em>. You might need to confirm the key by email for added security.</p>
+<p>The SSH key pair is used to identify that you own the machine.
+<!--On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university.-->
+On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware
+Horizon, the keys are stored on your personal VDI, so you can access
+them from anywhere.</p>
+<p>Now you need to tell GitLab about your new key. To do that, copy the
+public key from the dialog, then in GitLab click on your avatar in the
+top right and go to <em>Edit profile</em> → <em>SSH keys</em>. Paste the
+public key in the box, give it a title describing your machine, and
+press <em>Add key</em>. You might need to confirm the key by email for
+added security.</p>
 <p>This only has to be done once (per machine/OS you use GitLab on).</p>
 <h3 id="creating-a-new-repository">Creating a new repository</h3>
 <ol start="5" style="list-style-type: decimal">
 <li><em>Create remote repository</em></li>
 </ol>
-<p>Now we are ready to start making new repositories! In GitLab, press the “+” button at the top right, select <em>New repository/project</em> (GitLab uses both terms somewhat interchangeably) and <em>Create blank project</em>. Give it a descriptive name and a short description, choose the visibility of the repository and check <em>Initialize repository with a README</em>.</p>
-<p><img src="figs/GitLab-new-project.png" alt="New repository creation on GitLab" /></p>
+<p>Now we are ready to start making new repositories! In GitLab, press
+the “+” button at the top right, select <em>New repository/project</em>
+(GitLab uses both terms somewhat interchangeably) and <em>Create blank
+project</em>. Give it a descriptive name and a short description, choose
+the visibility of the repository and check <em>Initialize repository
+with a README</em>.</p>
+<p><img src="figs/GitLab-new-project.png"
+alt="New repository creation on GitLab" /></p>
 <!-- **Note:** During the course you are asked to submit answers to exercises as **separate projects**, using a specific scheme for the repository name: `Geoscripting-Exercise<id>-<team>` where `<id>` is the exercise number and `<team>` is your team name, for instance, `Geoscripting-Exercise3-TheGitters`. In addition, the visibility level **must** be set to *Private*. **Submissions that do not follow these rules may be rejected!** -->
 <!--Next, GitHub asks what software license you'd like to apply to your code, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
 
@@ -1234,46 +1550,95 @@ In addition, you can add a `.gitignore` file. This is useful to prevent Git from
 <ol start="6" style="list-style-type: decimal">
 <li><em>Configure repository settings</em></li>
 </ol>
-<p>Explore your new blank repository a bit. In the middle, you have buttons to add new files. Choose to add a <code>LICENSE</code> file, as we have discussed in the previous chapter. See <a href="http://choosealicense.com/">Choose a License</a> for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.</p>
-<p>On the tabs to the left, you can find that the repository can have issues and merge requests assigned to them. <strong>Issues</strong> is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others’ projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!</p>
-<p><img src="figs/GitLab-issues.png" alt="Example issue on GitLab" /></p>
-<p>Next, check out the repository settings. Under the <em>Members</em> subtab of the <em>Project information</em> tab, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collaborator with a maintainer role.</p>
+<p>Explore your new blank repository a bit. In the middle, you have
+buttons to add new files. Choose to add a <code>LICENSE</code> file, as
+we have discussed in the previous chapter. See <a
+href="http://choosealicense.com/">Choose a License</a> for a quick
+overview of what licenses are available. Make sure to choose a license,
+otherwise basic copyright applies to your code.</p>
+<p>On the tabs to the left, you can find that the repository can have
+issues and merge requests assigned to them. <strong>Issues</strong> is
+what is used to give feedback on code, so try and make a few issues and
+close them. It is useful to know how to use these, as for personal
+projects it can be used as a to-do list, and for others’ projects you
+can use it to report bugs or propose suggestions. You may be surprised
+how responsive developers can be to newly raised issues!</p>
+<p><img src="figs/GitLab-issues.png"
+alt="Example issue on GitLab" /></p>
+<p>Next, check out the repository settings. Under the <em>Members</em>
+subtab of the <em>Project information</em> tab, you can invite other
+people to collaborate on your repository. Go ahead and invite your team
+member to be a collaborator with a maintainer role.</p>
 <!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
 <ol start="7" style="list-style-type: decimal">
 <li><em>Get the URL of your new repository</em></li>
 </ol>
-<p>Now that you have a remote repository, it’s time to create a local repository that links to it! Open the main page of your new repository, click the blue <em>Clone</em> button at the top right of the page, and copy the <em>Clone with <strong>SSH</strong> </em> address of your new repository.</p>
+<p>Now that you have a remote repository, it’s time to create a local
+repository that links to it! Open the main page of your new repository,
+click the blue <em>Clone</em> button at the top right of the page, and
+copy the <em>Clone with <strong>SSH</strong> </em> address of your new
+repository.</p>
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
-<p><img src="figs/GitLab-empty-repository.png" alt="Blank GitLab repository" /></p>
+<p><img src="figs/GitLab-empty-repository.png"
+alt="Blank GitLab repository" /></p>
 <ol start="8" style="list-style-type: decimal">
 <li><em>Clone your repository</em></li>
 </ol>
-<p>Go back to Git GUI, and press <em>Clone Existing Repository</em>. Paste the URL you just copied to the <em>Source Location</em> field, and choose a folder you want to store your code in in the <em>Target Directory</em> field. <strong>Note</strong>: the <em>Target Directory</em> must <strong>not</strong> already exist! Git GUI will create it for you.</p>
-<p>Once you click <em>Clone</em>, you will get a question about whether you trust the remote machine (if you ran <code>git gui</code> from a command line, it will appear stuck, but actually <strong>the question will appear in the terminal</strong> and you need to answer it there). You need to answer this with <code>yes</code> (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.</p>
+<p>Go back to Git GUI, and press <em>Clone Existing Repository</em>.
+Paste the URL you just copied to the <em>Source Location</em> field, and
+choose a folder you want to store your code in in the <em>Target
+Directory</em> field. <strong>Note</strong>: the <em>Target
+Directory</em> must <strong>not</strong> already exist! Git GUI will
+create it for you.</p>
+<p>Once you click <em>Clone</em>, you will get a question about whether
+you trust the remote machine (if you ran <code>git gui</code> from a
+command line, it will appear stuck, but actually <strong>the question
+will appear in the terminal</strong> and you need to answer it there).
+You need to answer this with <code>yes</code> (the full word). This puts
+the GitLab server into a list of trusted servers, to guard against
+potential impostor servers.</p>
 <p>You will end up in an empty Git GUI window:</p>
-<p><img src="figs/git_gui_blank.png" alt="Git GUI in an empty directory" /></p>
+<p><img src="figs/git_gui_blank.png"
+alt="Git GUI in an empty directory" /></p>
 <div class="row">
 <div class="alert alert-danger">
 <p>
-<strong>Notice</strong>: Sometimes Git GUI crashes or gets stuck at this stage. When you restart it, you may also find that the panes are collapsed (you need to drag them out from the borders of the window) and that the repository branch is set to <code>master</code> instead of <code>main</code>. To avoid this issue, and because it is much faster and more convenient in general, we recommend always cloning repositories from the terminal (see the next box), and then continuing to open the repository with Git GUI.
+<strong>Notice</strong>: Sometimes Git GUI crashes or gets stuck at this
+stage. When you restart it, you may also find that the panes are
+collapsed (you need to drag them out from the borders of the window) and
+that the repository branch is set to <code>master</code> instead of
+<code>main</code>. To avoid this issue, and because it is much faster
+and more convenient in general, we recommend always cloning repositories
+from the terminal (see the next box), and then continuing to open the
+repository with Git GUI.
 </p>
 </div>
 </div>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: From the terminal, <code>cd</code> into the directory you want to clone into, and run <code>git clone &lt;url&gt;</code>, e.g. <code>git clone git@git.wur.nl:you001/example.git</code>. The repository will be cloned into a subdirectory with a matching name. This is much faster than using any GUI!
+<strong>Protip</strong>: From the terminal, <code>cd</code> into the
+directory you want to clone into, and run <code>git clone
+&lt;url&gt;</code>, e.g. <code>git clone
+git@git.wur.nl:you001/example.git</code>. The repository will be cloned
+into a subdirectory with a matching name. This is much faster than using
+any GUI!
 </p>
 </div>
 </div>
 <ol start="9" style="list-style-type: decimal">
 <li><em>Tell Git who you are</em></li>
 </ol>
-<p>Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to <em>Edit</em> → <em>Options…</em> and fill out the <em>Global (All Repositories)</em> options <em>User Name</em> and <em>Email Address</em>. These will be displayed on GitLab.</p>
+<p>Before you start using Git, you should tell it what your name and
+email address is. You need to do that only once per Git installation.
+You should go to <em>Edit</em> → <em>Options…</em> and fill out the
+<em>Global (All Repositories)</em> options <em>User Name</em> and
+<em>Email Address</em>. These will be displayed on GitLab.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: To set your user name and email from the command line:
+<strong>Protip</strong>: To set your user name and email from the
+command line:
 </p>
 <pre><code>git config --global user.name &quot;Your Name&quot;
 git config --global user.email you@example.com</code></pre>
@@ -1283,154 +1648,310 @@ git config --global user.email you@example.com</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li><em>Make changes</em></li>
 </ol>
-<p>To see Git in action, you need to make some changes in your repository. Try it by creating a new R script file in the directory where you cloned your new project.</p>
-<p>Once you are done, go back to Git GUI. If you closed the window, you can get back to your repository by launching Git GUI and clicking on its path in the <em>Open Recent Repository</em> list. If you did not close it, click the <em>Rescan</em> button. You will see some changes:</p>
-<p><img src="figs/git_gui_changes.png" alt="Changes pending in Git GUI" /></p>
+<p>To see Git in action, you need to make some changes in your
+repository. Try it by creating a new R script file in the directory
+where you cloned your new project.</p>
+<p>Once you are done, go back to Git GUI. If you closed the window, you
+can get back to your repository by launching Git GUI and clicking on its
+path in the <em>Open Recent Repository</em> list. If you did not close
+it, click the <em>Rescan</em> button. You will see some changes:</p>
+<p><img src="figs/git_gui_changes.png"
+alt="Changes pending in Git GUI" /></p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: To see a list of files with pending changes from the command line, use <code>git status</code> while in a git repository. To see what exactly changed in each of these files, use <code>git diff</code>.
+<strong>Protip</strong>: To see a list of files with pending changes
+from the command line, use <code>git status</code> while in a git
+repository. To see what exactly changed in each of these files, use
+<code>git diff</code>.
 </p>
 </div>
 </div>
-<p>At the top left corner, the <em>Unstaged Changes</em> panel, you can see all the files that changed in your workspace. If you click on the <strong>name</strong> of the file, the main panel will show you what changed since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. <strong>Note</strong>: Git is very efficient with storing changes in text files: these <em>diff</em> files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.</p>
-<p>If you click on the <strong>icon</strong> of the file in the <em>Unstaged Changes</em> panel, the file changes will be <em>staged</em> and appear at the <em>Staged Changes (Will Commit)</em> panel. These are the file changes you want to save and sent to GitLab. You don’t have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the <em>Stage Changed</em> button. If you staged more than you wanted to, you can click on the file <strong>icon</strong> in the <em>Staged Changes</em> panel to unstage it.</p>
-<p>Remember: clicking the <strong>name</strong> of the file shows the changes you made, clicking the <strong>icon</strong> of the file stages or unstages the change!</p>
+<p>At the top left corner, the <em>Unstaged Changes</em> panel, you can
+see all the files that changed in your workspace. If you click on the
+<strong>name</strong> of the file, the main panel will show you what
+changed since the last commit. Unless it is a non-text (data) file, in
+which case it will just note that something has changed.
+<strong>Note</strong>: Git is very efficient with storing changes in
+text files: these <em>diff</em> files are all it stores internally, it
+does not copy the whole file on each commit. However, it does not deal
+efficiently with non-text files, and thus you should limit the amount
+and size of such files as much as possible.</p>
+<p>If you click on the <strong>icon</strong> of the file in the
+<em>Unstaged Changes</em> panel, the file changes will be
+<em>staged</em> and appear at the <em>Staged Changes (Will Commit)</em>
+panel. These are the file changes you want to save and sent to GitLab.
+You don’t have to stage all files for each commit, only those you
+actually want to be tracked by git. You can safely ignore some files
+such as manual backups, temporary files, and the like and they will
+remain untracked by git, as long as you never stage them. If you do want
+to stage everything, you can press the <em>Stage Changed</em> button. If
+you staged more than you wanted to, you can click on the file
+<strong>icon</strong> in the <em>Staged Changes</em> panel to unstage
+it.</p>
+<p>Remember: clicking the <strong>name</strong> of the file shows the
+changes you made, clicking the <strong>icon</strong> of the file stages
+or unstages the change!</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: To stage a change from the command line, use <code>git add path/to/file.ext</code> where <code>path/to/file.ext</code> is the file you want to stage. To unstage, use <code>git reset HEAD path/to/file.ext</code>.
+<strong>Protip</strong>: To stage a change from the command line, use
+<code>git add path/to/file.ext</code> where
+<code>path/to/file.ext</code> is the file you want to stage. To unstage,
+use <code>git reset HEAD path/to/file.ext</code>.
 </p>
 <p>
-If you have files that you don’t want git to track, you can add them into the <code>.gitignore</code> file. It could be the name of a file, a directory, a wildcard (e.g. <code>*.pdf</code>), or any combination of these. To list several, put them on separate lines.
+If you have files that you don’t want git to track, you can add them
+into the <code>.gitignore</code> file. It could be the name of a file, a
+directory, a wildcard (e.g. <code>*.pdf</code>), or any combination of
+these. To list several, put them on separate lines.
 </p>
 </div>
 </div>
 <ol start="11" style="list-style-type: decimal">
 <li><em>Commit changes</em></li>
 </ol>
-<p>Once you staged the files that you want to commit, you need to fill out the <em>commit message</em>. This is a brief description of what changes you made between the last commit and the one you are about to create. The <strong>first line</strong> you enter is the <strong>title</strong> of the commit, keep that one short. Subsequent lines are the <strong>description</strong>. You may notice that the <em>Commit message</em> box does not have a horizontal scrollbar: that is intentional, because your commit message should fit within that box without the need for scrolling. Use new lines to break the text.</p>
-<p>If it is the first time you use Git GUI to make a commit, and you haven’t filled out your user name and email, it might complain about it not knowing who you are. In that case go back to step 9.</p>
-<p>Next press the <em>Commit</em> button and your commit will be saved locally. A commit is like a saved state: you are always able to roll back the contents of your tracked files to the state they were in when you committed the changes.</p>
+<p>Once you staged the files that you want to commit, you need to fill
+out the <em>commit message</em>. This is a brief description of what
+changes you made between the last commit and the one you are about to
+create. The <strong>first line</strong> you enter is the
+<strong>title</strong> of the commit, keep that one short. Subsequent
+lines are the <strong>description</strong>. You may notice that the
+<em>Commit message</em> box does not have a horizontal scrollbar: that
+is intentional, because your commit message should fit within that box
+without the need for scrolling. Use new lines to break the text.</p>
+<p>If it is the first time you use Git GUI to make a commit, and you
+haven’t filled out your user name and email, it might complain about it
+not knowing who you are. In that case go back to step 9.</p>
+<p>Next press the <em>Commit</em> button and your commit will be saved
+locally. A commit is like a saved state: you are always able to roll
+back the contents of your tracked files to the state they were in when
+you committed the changes.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: To commit a change from the command line, use <code>git commit</code>. If you want to stage all tracked and changed files and commit, use <code>git commit -a</code>.
+<strong>Protip</strong>: To commit a change from the command line, use
+<code>git commit</code>. If you want to stage all tracked and changed
+files and commit, use <code>git commit -a</code>.
 </p>
 </div>
 </div>
-<p>In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the <em>Amend Last Commit</em> button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitLab.</p>
+<p>In the case you made a mistake (a mistake in the message, forgot to
+stage something, etc.), you can press the <em>Amend Last Commit</em>
+button and get right back to where you were when you made the last
+commit; but use this functionality very sparingly, as it does not work
+with changes that have already been pushed to GitLab.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: To amend the last commit from the command line, use <code>git commit --amend</code>.
+<strong>Protip</strong>: To amend the last commit from the command line,
+use <code>git commit --amend</code>.
 </p>
 </div>
 </div>
 <ol start="10" style="list-style-type: decimal">
 <li><em>Push changes to the server</em></li>
 </ol>
-<p>Press the <em>Push</em> button, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!</p>
-<p><img src="figs/GitLab-repository.png" alt="GitLab repository with content" /></p>
+<p>Press the <em>Push</em> button, and confirm the push, to send all
+your changes to your GitLab repository. You can now refresh the GitLab
+page to see your changes. Well done!</p>
+<p><img src="figs/GitLab-repository.png"
+alt="GitLab repository with content" /></p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: To push changes from the command line, use <code>git push</code>.
+<strong>Protip</strong>: To push changes from the command line, use
+<code>git push</code>.
 </p>
 </div>
 </div>
 <ol start="11" style="list-style-type: decimal">
 <li><em>Pull changes from the server</em></li>
 </ol>
-<p>One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using <em>Fetch</em> and <em>Merge</em>. If you like, you can test it by cloning the same repository in another folder, making changes and pushing them to the server, then using fetch in the other copy.</p>
-<p>If there are any changes on GitLab that are not on your local copy yet, in Git GUI go to <em>Remote</em> → <em>Fetch from</em> → <em>origin</em> to download all changes. This will not apply them yet, however.</p>
-<p>To attempt to apply the changes, go to <em>Merge</em> → <em>Local Merge…</em>. If all goes well, the changes will be applied.</p>
+<p>One of the major uses of Git is collaboration and the ability to
+synchronise changes across different devices. Multiple users can do
+changes in the same Git repository (as long as you change the repository
+settings in GitLab to allow another user to do that), and you can work
+on the same code on different devices yourself. In both cases, it is
+important to keep all local repositories in sync with the remote
+repository. That is done via Git GUI by using <em>Fetch</em> and
+<em>Merge</em>. If you like, you can test it by cloning the same
+repository in another folder, making changes and pushing them to the
+server, then using fetch in the other copy.</p>
+<p>If there are any changes on GitLab that are not on your local copy
+yet, in Git GUI go to <em>Remote</em> → <em>Fetch from</em> →
+<em>origin</em> to download all changes. This will not apply them yet,
+however.</p>
+<p>To attempt to apply the changes, go to <em>Merge</em> → <em>Local
+Merge…</em>. If all goes well, the changes will be applied.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: To do a fetch and merge together the command line, use <code>git pull</code>.
+<strong>Protip</strong>: To do a fetch and merge together the command
+line, use <code>git pull</code>.
 </p>
 </div>
 </div>
-<p>There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a <em>merge conflict</em>. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of <code>&gt;&gt;&gt;&gt;</code> and <code>&lt;&lt;&lt;&lt;</code> symbols. Once you remove the parts you don’t need (including the separators), you can solve the conflict by committing the changes.</p>
+<p>There may be cases where files go out of sync in incompatible ways,
+however, like two people editing one file at the same time. In that case
+you may hit a <em>merge conflict</em>. It is best to try to avoid them.
+In case it happens, you need to go through the conflicting files in a
+text editor and edit them by hand, keeping the parts of the files you
+need. The conflicting parts will be in between lines of of
+<code>&gt;&gt;&gt;&gt;</code> and <code>&lt;&lt;&lt;&lt;</code> symbols.
+Once you remove the parts you don’t need (including the separators), you
+can solve the conflict by committing the changes.</p>
 <h3 id="forks-and-merge-requests">Forks and merge requests</h3>
-<p>Now we know how to work with Git and GitLab for our personal work, and how to collaborate on a project with your team member. But what if you want to contribute code to someone else who has not given you access rights, or what if you want to review the code before it’s accepted to your repository? That’s where forking and merge requests come in handy (respectively)!</p>
-<p>A fork is your own personal copy of someone else’s repository. GitLab allows you to fork any public repository. You want to make forks whenever you want to edit code but do not have direct commit rights.</p>
+<p>Now we know how to work with Git and GitLab for our personal work,
+and how to collaborate on a project with your team member. But what if
+you want to contribute code to someone else who has not given you access
+rights, or what if you want to review the code before it’s accepted to
+your repository? That’s where forking and merge requests come in handy
+(respectively)!</p>
+<p>A fork is your own personal copy of someone else’s repository. GitLab
+allows you to fork any public repository. You want to make forks
+whenever you want to edit code but do not have direct commit rights.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: In fact, if you click the edit button on a file on GitLab and do changes to a repository that you don’t have the rights to write into, GitLab will helpfully make a fork for you, followed by a proposal to make a merge request for your changes.
+<strong>Protip</strong>: In fact, if you click the edit button on a file
+on GitLab and do changes to a repository that you don’t have the rights
+to write into, GitLab will helpfully make a fork for you, followed by a
+proposal to make a merge request for your changes.
 </p>
 </div>
 </div>
 <ol start="12" style="list-style-type: decimal">
 <li><em>Fork a repository</em></li>
 </ol>
-<p>Go to your team member’s repository that they created by following the steps above, and then click the <em>Fork</em> button at the top right. (If you can’t find it, alternatively you can go to some other repository, and fork it.) You will find a new repository under your profile, by default with the same name as the original.</p>
+<p>Go to your team member’s repository that they created by following
+the steps above, and then click the <em>Fork</em> button at the top
+right. (If you can’t find it, alternatively you can go to some other
+repository, and fork it.) You will find a new repository under your
+profile, by default with the same name as the original.</p>
 <!--![Fork button](figs/GitHub-fork.png)-->
 <ol start="13" style="list-style-type: decimal">
 <li><em>Make changes, commit and push</em></li>
 </ol>
-<p>After you have your own fork, it is the same as having your own personal repository with the code from the original (<em>upstream</em>) repository in it. Clone it locally, make some changes, commit them and push them back to GitLab, as per steps 7-10. You should see that your changes take effect in your own <em>downsteam</em> fork, but not in the upstream repository.</p>
+<p>After you have your own fork, it is the same as having your own
+personal repository with the code from the original (<em>upstream</em>)
+repository in it. Clone it locally, make some changes, commit them and
+push them back to GitLab, as per steps 7-10. You should see that your
+changes take effect in your own <em>downsteam</em> fork, but not in the
+upstream repository.</p>
 <ol start="14" style="list-style-type: decimal">
 <li><em>Make a merge request</em></li>
 </ol>
-<p>If you are ready to ask the upstream developers to incorporate your code into their repository, go to the <em>Merge Requests</em> tab and press the blue <em>New merge request</em> button. Select your <code>main</code> branch of your fork as the source.</p>
+<p>If you are ready to ask the upstream developers to incorporate your
+code into their repository, go to the <em>Merge Requests</em> tab and
+press the blue <em>New merge request</em> button. Select your
+<code>main</code> branch of your fork as the source.</p>
 <!-- ![New pull request button](figs/GitHub-pr.png) -->
-<p>This will show you all the changes you have made, and if that is what you want to propose for the upstream developers to incorporate, give the name for your merge request (changeset) and a description as to why the upstream developers would want to incorporate your code. After you confirm clicking <em>Create merge request</em>, the merge request will be visible in the merge requests tab of the <em>upstream</em> repository:</p>
-<p><img src="figs/GitLab-pr-submitted.png" alt="A submitted pull request" /></p>
-<p>Then it’s up to the upstream developers to perform a code review and either accept or reject the pull request in the end.</p>
+<p>This will show you all the changes you have made, and if that is what
+you want to propose for the upstream developers to incorporate, give the
+name for your merge request (changeset) and a description as to why the
+upstream developers would want to incorporate your code. After you
+confirm clicking <em>Create merge request</em>, the merge request will
+be visible in the merge requests tab of the <em>upstream</em>
+repository:</p>
+<p><img src="figs/GitLab-pr-submitted.png"
+alt="A submitted pull request" /></p>
+<p>Then it’s up to the upstream developers to perform a code review and
+either accept or reject the pull request in the end.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: For code review, GitLab also has special tools. If you look at the <em>Changes</em> tab of a merge request, you will see that you can press a bubble button next to any line of code and write a comment about it. Once finished, there is a “Submit review” button at the bottom to send all comments at once.
+<strong>Protip</strong>: For code review, GitLab also has special tools.
+If you look at the <em>Changes</em> tab of a merge request, you will see
+that you can press a bubble button next to any line of code and write a
+comment about it. Once finished, there is a “Submit review” button at
+the bottom to send all comments at once.
 </p>
 </div>
 </div>
 <h3 id="other-git-gui-functionality">Other Git GUI functionality</h3>
-<p>You might run into a situation when you have made changes in tracked files, but do not want to keep some of the changes. You can revert one file by selecting it in Git GUI, then clicking <em>Commit</em> → <em>Revert changes</em>.</p>
+<p>You might run into a situation when you have made changes in tracked
+files, but do not want to keep some of the changes. You can revert one
+file by selecting it in Git GUI, then clicking <em>Commit</em> →
+<em>Revert changes</em>.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: The command line equivalent is <code>git checkout -- path/to/file.ext</code>, or if you want to reset all changed files, <code>git reset --hard</code>.
+<strong>Protip</strong>: The command line equivalent is <code>git
+checkout -- path/to/file.ext</code>, or if you want to reset all changed
+files, <code>git reset --hard</code>.
 </p>
 </div>
 </div>
-<p>Git GUI not only provides a way to make, push and pull commits, but also to visualise the commit history of your repository in a tree graph. Go to <em>Repository</em> → <em>Visualise Master’s History</em> to see it. For larger and more complex projects with lots of contributors and merges, it might look like some sort of a subway map:</p>
+<p>Git GUI not only provides a way to make, push and pull commits, but
+also to visualise the commit history of your repository in a tree graph.
+Go to <em>Repository</em> → <em>Visualise Master’s History</em> to see
+it. For larger and more complex projects with lots of contributors and
+merges, it might look like some sort of a subway map:</p>
 <p><img src="figs/git_gui_gitk.png" alt="Git GUI history (gitk)" /></p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: The command line equivalent is <code>git log</code>.
+<strong>Protip</strong>: The command line equivalent is <code>git
+log</code>.
 </p>
 </div>
 </div>
-<p>The history view also allows you to reset the state of the repository to any previous commit by using the context menu. Note, however, that you can only push if you are on the latest commit. So the easiest way to revert changes is to copy over the files to a temporary directory outside of git, reset back, and move the files back into your repository.</p>
+<p>The history view also allows you to reset the state of the repository
+to any previous commit by using the context menu. Note, however, that
+you can only push if you are on the latest commit. So the easiest way to
+revert changes is to copy over the files to a temporary directory
+outside of git, reset back, and move the files back into your
+repository.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
-<strong>Protip</strong>: A few more options are available from the command line. <code>git revert &lt;commit&gt;</code> will undo changes from a given commit, where <code>&lt;commit&gt;</code> is the commit ID (you can get commit IDs from <code>git log</code>, they look like a long string of letters and numbers). <code>git checkout &lt;commit&gt; -- path/to/file.ext</code> will reset a single file to the state it was at the given commit.
+<strong>Protip</strong>: A few more options are available from the
+command line. <code>git revert &lt;commit&gt;</code> will undo changes
+from a given commit, where <code>&lt;commit&gt;</code> is the commit ID
+(you can get commit IDs from <code>git log</code>, they look like a long
+string of letters and numbers). <code>git checkout &lt;commit&gt; --
+path/to/file.ext</code> will reset a single file to the state it was at
+the given commit.
 </p>
 </div>
 </div>
-<p>You can also browse the history of a repository from your Git hosting service, and GitHub/GitLab even allow editing files from a web interface.</p>
+<p>You can also browse the history of a repository from your Git hosting
+service, and GitHub/GitLab even allow editing files from a web
+interface.</p>
 <div class="row">
 <div class="alert alert-success">
 <blockquote>
 <p>
-<strong>Question 3</strong>: How do you find commit history and old versions of your files on GitHub/GitLab?
+<strong>Question 3</strong>: How do you find commit history and old
+versions of your files on GitHub/GitLab?
 </p>
 </blockquote>
 </div>
 </div>
-<p>That’s it: now you know how to keep track of all your files, so you will never lose them again, and no longer have to worry about making backups or saving multiple versions. In addition, this is the way that free and open-source code development happens in actuality. Also, the exercises and assignments in the course will be delivered and submitted this way, so make sure you are familiar with the whole process!</p>
+<p>That’s it: now you know how to keep track of all your files, so you
+will never lose them again, and no longer have to worry about making
+backups or saving multiple versions. In addition, this is the way that
+free and open-source code development happens in actuality. Also, the
+exercises and assignments in the course will be delivered and submitted
+this way, so make sure you are familiar with the whole process!</p>
 <h1 id="references">References</h1>
 <ul>
-<li>Great 15 min interactive git commands tutorial: <a href="https://try.github.io">try.github.io</a></li>
-<li>Hadley Wickham on <a href="http://r-pkgs.had.co.nz/git.html#undefined">Rstudio and git</a></li>
-<li>R Studio documentation on version control: <a href="http://www.rstudio.com/ide/docs/version_control/overview">Using Version Control with RStudio</a></li>
-<li>Video tutorial to use revision control with R Studio and GitHub/BitBucket <a href="http://www.youtube.com/watch?v=jGeCCxdZsDQ&amp;noredirect=1">Youtube link</a></li>
-<li>Advanced Git: <a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful git branching model</a>
+<li>Great 15 min interactive git commands tutorial: <a
+href="https://try.github.io">try.github.io</a></li>
+<li>Hadley Wickham on <a
+href="http://r-pkgs.had.co.nz/git.html#undefined">Rstudio and
+git</a></li>
+<li>R Studio documentation on version control: <a
+href="http://www.rstudio.com/ide/docs/version_control/overview">Using
+Version Control with RStudio</a></li>
+<li>Video tutorial to use revision control with R Studio and
+GitHub/BitBucket <a
+href="http://www.youtube.com/watch?v=jGeCCxdZsDQ&amp;noredirect=1">Youtube
+link</a></li>
+<li>Advanced Git: <a
+href="http://nvie.com/posts/a-successful-git-branching-model/">A
+successful git branching model</a>
 </div>
 </div>
 </div>
@@ -1440,7 +1961,8 @@ If you have files that you don’t want git to track, you can add them into the 
 <div id="footer">
 <div class="container">
 <p class="text-muted" id="credit">
-Styled with <a href="https://github.com/jimhester/knitrBootstrap">knitrBootstrap</a>
+Styled with
+<a href="https://github.com/jimhester/knitrBootstrap">knitrBootstrap</a>
 </p>
 </div>
 </div>
