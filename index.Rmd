@@ -155,7 +155,7 @@ The three most popular version control software are **Git**, **Mercurial** (abbr
 
 ### What git does 
 
-**Git** keeps track of changes in a **local repository** you set up on your computer. Typically that is a folder that contains all your code and optionally the data your code needs in order to run. The local repository contains all your files, but also (in a hidden folder) all the changes to the files you have made. It does not keep track of all files automatically: you need to tell git which files to track and which not. Therefore a repository contains your current tracked files (**workspace**), an **index** of files that are being tracked, and the version history.
+**Git** keeps track of changes in a **local repository** you set up on your computer. Typically that is a directory that contains all your code and optionally the data your code needs in order to run. The local repository contains all your files, but also (in a hidden directory) all the changes to the files you have made. It does not keep track of all files automatically: you need to tell git which files to track and which not. Therefore a repository contains your current tracked files (**workspace**), an **index** of files that are being tracked, and the version history.
 
 Every time you make significant changes to the files in your workspace, you have to **add** the changed files to the index, which selects the files whose changes you want to save, and **commit** them, which means saving the changes to the history tracking of your local repository.
 
@@ -275,7 +275,7 @@ Now that you have a remote repository, it's time to create a local repository th
 
 8. *Clone your repository*
 
-Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
+Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a directory you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
 
 Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, it will appear stuck, but actually **the question will appear in the terminal** and you need to answer it there). You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
 
@@ -359,7 +359,7 @@ Press the *Push* button, and confirm the push, to send all your changes to your 
 
 11. *Pull changes from the server*
 
-One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using *Fetch* and *Merge*. If you like, you can test it by cloning the same repository in another folder, making changes and pushing them to the server, then using fetch in the other copy.
+One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using *Fetch* and *Merge*. If you like, you can test it by cloning the same repository in another directory, making changes and pushing them to the server, then using fetch in the other copy.
 
 If there are any changes on GitLab that are not on your local copy yet, in Git GUI go to *Remote* → *Fetch from* → *origin* to download all changes. This will not apply them yet, however. 
 
