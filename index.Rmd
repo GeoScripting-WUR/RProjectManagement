@@ -31,7 +31,7 @@ If you are a student following the course at Wageningen University (WUR), **plea
 
 ## Introduction
 
-Welcome to the Geoscripting course! Today we will get familiar with Linux, which is an advanced environment optimized for scripting, and with version control software that helps you collaborate with one another and keep track of your file versions. These tools are very important, as we will use them throughout the course for all course activities, and they will continue to be very useful after the end of the course for all your scripting work.
+Welcome to the Geoscripting course! Today we will get familiar with Linux, which is an advanced environment optimised for scripting, and with version control software that helps you collaborate with one another and keep track of your file versions. These tools are very important, as we will use them throughout the course for all course activities, and they will continue to be very useful after the end of the course for all your scripting work.
 
 ```{block type="alert alert-info"}
 Throughout the whole course, we will be working in a Linux environment, and all of **the material has only been tested on (and assumes) a Linux environment**. Every WUR student will get access to a Linux virtual machine.
@@ -75,7 +75,7 @@ During the course we will work in a Linux environment. For students taking the c
 ```
 
 ```{block, type="alert alert-info"}
-**In case you can't get the VDI running successfully** (and **only** in that case, so hopefully you don't need to do this!), there is an alternative: we have the possibility of providing access to a SURFsara cloud VM setup. [See this page for instructions on gaining access to the SURFsara cloud VM](../Intro2Linux/surfsara_tutorial.html).
+**In case you can't get the VDI running successfully** (and **only** in that case, so hopefully you don't need to do this!), there is an alternative: we have the possibility of providing access to a SURF Research Cloud VM setup. [See this page for instructions on gaining access to the SURF Research Cloud VM](../Intro2Linux/surfsara_tutorial.html).
 
 Another alternative (also if you are not following the course at WUR), is to install Linux on your own laptop or external hard disk. See a [theoretical overview of running Linux on your own hardware](../Intro2Linux/installation.html) and [Linux system setup](../system_setup/index.html).
 
