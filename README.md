@@ -1,5 +1,5 @@
-RProjectManagement
-==================
+## RProjectManagement
 
-Week 1 Lesson 1 of the Geo-Scripting course. Introduces good practices in carrying out an R project.
-Lesson [here](http://geoscripting-wur.github.io/RProjectManagement)
+Tutorial 1 of the Geoscripting course: "Linux & version control".
+
+Introduces good practices in carrying out a scripting project using Linux and Git. Can be found [here](http://geoscripting-wur.github.io/RProjectManagement)
