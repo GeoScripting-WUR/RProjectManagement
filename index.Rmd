@@ -94,7 +94,7 @@ Once importing is complete, you can go to the appliance settings and add a share
 If you like, you can install a Linux distribution on your own laptops or external hard drives. Compared to virtualisation, it is much faster to run a Linux distribution directly. -->
 ```
 
-Once you have everything ready, login into your Linux VM, try out RStudio, and also open QGIS. Explore the environment a little to get used to it.
+Once you have everything ready, login into your Linux VM, try out RStudio/RKWard, and also open QGIS. Explore the environment a little to get used to it.
 
 # Software licenses
 
