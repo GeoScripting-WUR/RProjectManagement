@@ -1,9 +1,10 @@
 ---
+pagetitle: "Tutorial 1: Linux & version control"
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-pagetitle: "Week 1, Lesson 1: Carrying out your scripting project"
 output:
   knitrBootstrap::bootstrap_document:
+    title: "Tutorial 1: Linux & version control"
     theme: "simplex"
     highlight: Tomorrow Night Bright
     menu: FALSE
@@ -11,51 +12,111 @@ output:
     highlight.chooser: TRUE
 ---
 
-# [WUR Geoscripting](https://geoscripting-wur.github.io/) <img src="https://www.wur.nl/upload/5e55a1d9-47c3-4149-9384-26d5147ee2d7_WUR_RGB_standard.png" alt="WUR logo" style="height: 35px;"/>
+<style type="text/css">
+body {max-width: none;}
+a:visited {color: #91170a;}
+</style>
 
+# [WUR Geoscripting](https://geoscripting-wur.github.io/) <img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px;"/>
 
-# Week 1, Lesson 1: Carrying out your scripting project 
-
-<!-- TODO: Move to Brightspace
-
-Good morning! 
-Here is what you will do today:
-
-Time  | Activity
-------------- | -------------
-Morning  |  Self-study: go through the following tutorial
-14:00 to 15:00  | Presentation and discussion
-Rest of the afternoon | Do/finalise the exercise. -->
-
-## Course setup
+# Course setup
 
 ```{block type="alert alert-info"}
 **Important**: The Geoscripting course is a Master-level course given in Wageningen University. This set of documents that you are reading provide the theoretical material from the course for use both in the course itself, as well as for people who are following (parts of) the course externally or are in general interested in the topics that we cover. As such, these documents aim to be generic for all of the user groups above.
 
-If you are a student following the course at Wageningen University (WUR), **please read** the information on [Brightspace](https://brightspace.wur.nl). All course-specific information can be found there. Information on Brightspace overrule any information written in these pages, so **please read it carefully** and **check it often**. You will also find all the information on deliverables and exercises there.
-
-Throughout the whole course, we will be working in a Linux environment, and all of **the material has only been tested on (and assumes) a Linux environment**. While we will get into the details of what Linux is and why we use it in the next lesson, it is easiest if you **start using it also for this lesson**, as it will save you the trouble of setting up your version control twice. Every WUR student gets access to one Linux virtual machine. To find information on how to access the virtual machine, see the course information on Brightspace.
+If you are a student following the course at Wageningen University (WUR), **please read** the information in the course guide in Teams and on [Brightspace](https://brightspace.wur.nl). All course-specific information and exercises can be found there. Information in the course guide overrules any information written in these pages, so **please read it carefully** and **check it often**. You will also find all the information on deliverables and exercises there.
 ```
+
+# Week 1, Tutorial 1: Linux & version control
 
 ## Introduction
 
-Before we even start writing code, it is very important to think about the bigger picture: where are we going to store the code in the first place, and how do we want the folder structure to look like? For these reasons, today's tutorial focuses on version control systems and project management. At the end of the lesson, we also cover some of the basics in R.
+Welcome to the Geoscripting course! Today we will get familiar with Linux, which is an advanced environment optimised for scripting, and with version control software that helps you collaborate with one another and keep track of your file versions. These tools are very important, as we will use them throughout the course for all course activities, and they will continue to be very useful after the end of the course for all your scripting work.
+
+```{block type="alert alert-info"}
+Throughout the whole course, we will be working in a Linux environment, and all of **the material has only been tested on (and assumes) a Linux environment**. Every WUR student will get access to a Linux virtual machine.
+```
 
 ## Learning objectives
-At the end of the lecture, you should be able to
+At the end of the tutorial, you should be able to:
 
+* Know what Linux is & what you can do with it 
+* Get comfortable working within a Linux environment
+* Explain why software licenses are important and what software license options there are
+* Apply a software license to your own code
 * Use version control to develop, maintain, and share your code with others
-* Find help for R related issues
-* Produce a reproducible example
-* Refresh R skills and assessing scripting skills to see if you have the 
-necessary scripting skills to continue with the course
+* Submit an exercise using Git and GitLab
 
+# Linux
+
+*Linux* is a free and open-source operating system kernel. The kernel interacts with computer hardware and exposes its capabilities for your scripts! Together with a lot of small, handy programs, it forms an *operating system* called *GNU/Linux*. However, unlike e.g. Windows, there is not a single "GNU/Linux operating system". Rather, there is a [huge variety](https://en.wikipedia.org/wiki/List_of_Linux_distributions) of Linux distributions. Each Linux distribution provides the same kernel, but different programs and environments, suitable for different use cases.
+
+For example, one distribution that is very handy for geo-information science work is OSGeo-Live, which is an Ubuntu-based *Linux distribution* that has a wide range of free and open-source GIS and Remote sensing tools preinstalled.
+See [this website](http://live.osgeo.org/) for more information.
+
+These tools are also available in other distributions, but they have to be installed manually. A general-use distribution such as *Ubuntu* itself, *openSUSE* or *Fedora* is more suitable for regular day-to-day tasks, since not having the unnecessary tools installed takes less space and makes it work faster. It is also easier to find help for them than for specialised distributions.
+
+For the Geoscripting course, we have developed what is effectively our very own Linux distribution, with the use case of providing all of the tools necessary to finish the course. These tools are also very useful after the end of the course to continue data processing, for example for writing Master theses. Within our laboratory, we have several computers that are running this Geoscripting distribution, so that transferring over the work from one computer running it to another one would be as easy as possible, so you can continue working uninterrupted even after the end of the course. The Geoscripting distribution is nothing more than a set of scripts that install the necessary tools on top of what plain Ubuntu provides.
+
+## Why use a Linux distribution?
+
+A Linux environment makes it much easier to install and combine a variety of open-source software, such as Python modules and GDAL, compared to other operating systems like Windows or macOS. In addition, open-source scientific software is often developed primarily for Linux (since that's what most supercomputers and servers run!), and so it tends to be more stable and have more features on Linux. Lastly, Linux has a set of standards that allow programs to interoperate with each other, so that e.g. you can access GRASS GIS from R, QGIS from Python, GRASS GIS from QGIS, Python from R etc. All of this is managed and checked for quality so that you can always use the latest and greatest software without worrying about version mismatches and compatibility between software tools.
+
+For the course, it also makes it possible to use the wide variety of tools that we will work with, all from a single supported environment. That way, we can be sure that the tools work the same way for all of the students, and that we also test the exercise submissions using the same versions of the tools to get the same output.
+
+## Getting started on Linux
+
+During the course we will work in a Linux environment. For students taking the course in Wageningen University, we provide a **VMware Horizon virtual desktop infrastructure (VDI)** that is managed by the WUR IT department. It is available over the internet for each student in the course and supported by the IT department. The VMware Horizon VDIs can be accessed through the VMware Horizon client.
+
+**[See the tutorial on setting up VMWare Horizon on this page.](../Intro2Linux/vmware_horizon_tutorial.html)**
+
+```{block, type="alert alert-danger"}
+**Notice**: Make sure you **read the page linked above** and have no problems logging into and using the VDI. From here on out, we will try to work from within the VDI exclusively.
+```
+
+```{block, type="alert alert-info"}
+**In case you can't get the VDI running successfully** (and **only** in that case, so hopefully you don't need to do this!), there is an alternative: we have the possibility of providing access to a SURF Research Cloud VM setup. [See this page for instructions on gaining access to the SURF Research Cloud VM](../Intro2Linux/surfsara_tutorial.html).
+
+Another alternative (also if you are not following the course at WUR), is to install Linux on your own laptop or external hard disk. See a [theoretical overview of running Linux on your own hardware](../Intro2Linux/installation.html) and [Linux system setup](../system_setup/index.html).
+
+**The VDIs are strongly recommended**. If you go for installing Linux yourself, the systems need to be set up manually and we do not have the time and manpower to support every student with this.
+
+<!--### VirtualBox VM setup
+
+To set up VirtualBox, first find the provided image of OSGeo-Live on the network drive in the PC lab, which should be available to you as `W:\\Student\\GRS-33806\\OSGeo Live 12.ova`. This is a compressed VirtualBox image with RStudio installed. For use on your own PCs, you can copy the file on your PC from the PC lab or download OSGeo-Live from [its website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html).
+
+Once you have the file, all you need to do is import it in VirtualBox by going to *File → Import Appliance* and specifying the location of the OVA file. Everything else can be left default.
+
+Once importing is complete, you can go to the appliance settings and add a shared folder. That way all files you have in the shared folder will also be visible from the VM. You can see it by running the VM, opening the file manager in it and clicking on the shared folder name on the left side of the window.
+
+### Installing Linux on your own hardware
+
+If you like, you can install a Linux distribution on your own laptops or external hard drives. Compared to virtualisation, it is much faster to run a Linux distribution directly. -->
+```
+
+Once you have everything ready, login into your Linux VM, try out RStudio/RKWard, and also open QGIS. Explore the environment a little to get used to it.
+
+# Software licenses
+
+One key advantage of Linux is that it is free and open-source software. While it is free as in free beer, that is, it can be used at no cost, more importantly it is free as in free speech: all of the source code of the kernel and the absolute majority of the applications is licensed under a free software license.
+
+A *software license* is a legal text that describes how the software and its source code can be used by other people. Software licenses are grounded in the framework of copyright: the protection of authors' intellectual rights. A *free* software license is a software license that gives others the freedom to run, copy, read, modify, and distribute changes to the original software and its source code. This is in addition to an *open-source* license, which makes the source code available and redistributable, but [does not necessarily make the source code free](https://www.gnu.org/philosophy/open-source-misses-the-point.html). Both free an open-source licenses have their overseeing bodies: the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.html) for free software licenses, and the [Open Source Initiative](https://opensource.org/osd) for open-source licenses. When a software fits both definitions (they often overlap), it is referred to as Free and Open-Source Software (FOSS), or les often as Free, Libre and Open-Source Software (FLOSS).
+
+There are many advantages to FOSS. One advantage is that it fosters collaboration: one person implementing a feature makes it available for all of the users in the world. This enables such a massive effort required to create GNU/Linux distributions based on volunteer work, without needing to rely on commercial licensing, advertisements, donations or spyware to finance the work. It also allows anyone to remove such undesired parts of any software component, therefore ensuring higher quality of the software. Thus, while FOSS projects initially start weaker than *proprietary* (non-free or closed-source) software, in the long run the collaboration potential brings it on par and even overtaking the propriatary counterparts. See for example QGIS, which is FOSS, vs the proprietary ArcGIS.
+
+A software license defines what others can do with your code, therefore before starting to write any code, **it is vital to think about the license** you would like to release your code under. This is because if you do not define any license, the default copyright terms apply: even if you publish the source code publicly, nobody is allowed to copy, redistribute or modify the code, in fact nobody is even allowed to read it! As an author, you are free to choose any license, both proprietary and FOSS licenses (or in fact no license altogether), but a proprietary license restricts the freedoms of others and therefore diminishes chances that others would want to collaborate with you to improve the code in the future. In addition, do not confuse a *software license* with *commercial licensing*, i.e. the requirement to activate a license subscription to use 
+
+There are two types of FOSS licenses: copyleft and permissive. A *permissive* license is one that allows copying, modifying and redistributing the code with no serious restrictions (usually with a restriction that the original author be credited for the work). A *copyleft* license adds a restriction that any modified versions that are distributed must be under the same (or equivalent) license. This restriction restricts others from restricting the terms of the software license in the future, therefore keeping the source code free forever. In other words, it's following the philosophy that if we want to achieve the most freedom, we must restrict the freedom to restrict freedom!
+
+Lastly, there is also an option to *dedicate software to the public domain*, which is not a license per se, but a waiver of copyright. Software in the public domain allows anyone to do anything with it without any restrictions, therefore it is radically permissive. There is no requirement to credit the original author, for example. Since some jurisdictions do not allow authors to waive copyright (including Germany, France and Italy), there are licenses such as [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/) that are aimed to make a work as free as possible by either dedicating it to the public domain, or if it is not possible, by giving it a permissive license.
+
+How can you choose a software license in practice? There are [multiple](https://choosealicense.com/) [websites](https://www.gnu.org/licenses/license-recommendations.en.html) that give an overview of the most popular licenses that you can choose. Once you choose one, you need to follow the terms of the license about how to apply it. In most cases, it is sufficient to copy the terms of the license next to your source code and include it in your version control repository.
+
+```{block, type="alert alert-success"}
+> **Question 1**: If you wanted to contribute to a project that is licensed under the GNU General Public License v3 (copyleft), under which license(s) could you contribute? Which license would you choose in the end?
+```
 
 # Version control
-
-<!-- **Important note:** you need to have git installed and properly configured on your computer to do the following. Visit the [system setup page](http://geoscripting-wur.github.io/system_setup/) for more details. Git is preinstalled in the PC lab and on virtual machines already. -->
-
-## What is version control?
 
 Have you ever worked on a project and ended up having so many versions of your work that you didn't know which one was the latest, and what were the differences between the versions? Does the image below look familiar to you? Then you need to use version control (also called revision control). You will quickly understand that although it is designed primarily for big software development projects, being able to work with version control can be very helpful for scientists as well.
 
@@ -84,13 +145,17 @@ Additionally, version control:
 * Allows you to have experimental branches without breaking your code
 * Allows you to keep different versions of your code without having to worry about file names and archiving organization
 
+```{block, type="alert alert-success"}
+> **Question 2**: Think of examples where you could use version control for things other than code.
+```
+
 The three most popular version control software are **Git**, **Mercurial** (abbreviated as hg) and **Subversion** (abbreviated as svn). *Git* is by far the most modern and popular one, so we will only use *Git* in this course.
 
 ## Git <img src="figs/Git_logo.png" alt="git" style="width: 80px"/>
 
 ### What git does 
 
-**Git** keeps track of changes in a **local repository** you set up on your computer. Typically that is a folder that contains all your code and optionally the data your code needs in order to run. The local repository contains all your files, but also (in a hidden folder) all the changes to the files you have made. It does not keep track of all files automatically: you need to tell git which files to track and which not. Therefore a repository contains your current tracked files (**workspace**), an **index** of files that are being tracked, and the version history.
+**Git** keeps track of changes in a **local repository** you set up on your computer. Typically that is a directory that contains all your code and optionally the data your code needs in order to run. The local repository contains all your files, but also (in a hidden directory) all the changes to the files you have made. It does not keep track of all files automatically: you need to tell git which files to track and which not. Therefore a repository contains your current tracked files (**workspace**), an **index** of files that are being tracked, and the version history.
 
 Every time you make significant changes to the files in your workspace, you have to **add** the changed files to the index, which selects the files whose changes you want to save, and **commit** them, which means saving the changes to the history tracking of your local repository.
 
@@ -98,7 +163,7 @@ Often you also setup a **remote repository**, stored on an online platform like 
 
 ### Summary of git semantics
 
-+ **add**: Tell git that you want a file or changes to be tracked. These files/changes  are not yet saved in the repository! They are listed as "staged" in the index or staging area for the next *commit*.
++ **add**: Tell git that you want a file or changes to be tracked. These files/changes are not yet saved in the repository! They are listed as "staged" in the index or staging area for the next *commit*.
 + **commit**: Save the *staged* changes to your *local repository*. This is like putting a milestone or taking a snapshot of your project at that moment. A commit describes what has been changed, why and when. In the future you can always revert all tracked files to the state they were at when you created the commit.
 + **push**: Send previous changes you committed to the local repository to the remote repository.
 + **pull**: Update your local repository (and your workspace) with all new stuff from the remote repository. This command is simple, but potentially destructive, since it overwrites your files with the ones in the remote server. Hence it is not available in the Git GUI.
@@ -119,15 +184,17 @@ Often you also setup a **remote repository**, stored on an online platform like 
 
 Effective use of git includes two components: local software to manage the files on your computer (git client) and an online git hosting service to make them centrally accessible. While git is a single system, there is a variety of clients and a variety of hosts.
 
-In this course, we will primarily use Git GUI as the client. It is a simple client that is included with Git itself, and is language-agnostic. There are more graphical clients as well, including one integrated into RStudio itself, but these clients are outside the scope of this course.
+In this course, we will primarily use Git GUI as the client. It is a simple client that is included with Git itself, and is language-agnostic. There are more graphical clients as well, including one integrated into RStudio itself, but these clients are outside the scope of this course. Note that Git is language-agnostic, and we will be using it with both R and Python, so it's best to learn the language-neutral GUI, rather than an R-specific GUI.
 
 ```{block, type="alert alert-info"}
 **Protip**: For those who are comfortable with working from the Linux terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in protip boxes like this you will find command line equivalents to the GUI actions we will perform. Choose whichever way you find the most convenient for yourself.
+
+In addition, while this tutorial describes how to use the built-in `git-gui`, you can also use the more modern `git-cola`, which may be more intuitive to you. The general steps are the same as in `git-gui`. You can find Git Cola in the applications menu (or else you may need to install it).
 ```
 
-Throughout the Geoscripting course, for hosting our code, we will be using [GitHub](https://github.com), the most popular Git hosting platform. Conveniently enough, it also provides [GitHub Classroom](https://classroom.github.com), a platform that makes submitting programming exercises easier!
+Throughout the Geoscripting course, for hosting our code, we will be using the university's very own instance of [GitLab](https://git.wur.nl), the most popular self-hosted Git hosting platform.
 
-Let's jump right into it! We will start by making our very own GitHub scripting project from scratch, and also try forking someone else's project.
+Let's jump right into it! We will start by making our very own GitLab scripting project from scratch, and also try forking someone else's project.
 
 ### Client setup
 
@@ -145,7 +212,7 @@ Launch a program called *Git GUI* (e.g. from the *Applications* → *Programming
 
 2. *Create an SSH key pair*
 
-In order for GitHub (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.
+In order for GitLab (and other services) to identify that the machine connecting to it is indeed owned by you, there are two options: using a password, or using an SSH key. SSH keys are much more secure than passwords, and it doesn't require you to enter a password every time you try to communicate with the server. Therefore throughout the course we will use SSH keys.
 
 You can generate a new SSH key pair in Git GUI by going to *Help* → *Show SSH Key* and pressing the *Generate Key* button. It will ask you for a **passphrase**. This is **not a password** and is completely **optional**: it is useful in the case your SSH key is stolen, for instance by a thief stealing your laptop or a virus; however, SSH keys are specific to each machine and are never sent over the network, so most of the time it is completely fine to **leave the passphrase empty**. If you keep it empty, you will **not need to enter it every time** you try to push your changes, yet the connection will be even more secure than when using a password.
 
@@ -161,58 +228,64 @@ Once done, you will see your new public key:
 
 Next, we will link our client with a Git host so that we can download and upload repositories.
 
-3. *Log into GitHub*
+3. *Log into GitLab*
 
-Go to [GitHub](https://github.com/) and log in (register in case you don't have an account yet).
+Go to [GitLab](https://git.wur.nl/) and log in (using your **email address** as the user name and your password). You also need to set up two-factor authentication by going to [your profile page](https://git.wur.nl/-/profile/account).
 
 4. *Enrol the public key to your user account*
 
 The SSH key pair is used to identify that you own the machine. <!--On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university.--> On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware Horizon, the keys are stored on your personal VDI, so you can access them from anywhere.
 
-Now you need to tell GitHub about your new key. To do that, copy the public key from the dialog, then in GitHub click on your avatar in the top right and go to *Settings* → *SSH and GPG keys*. Click *New SSH Key*, give it a title describing your machine, paste the public key in the box, and press *Add SSH key*. You might need to confirm the key by email for added security.
+Now you need to tell GitLab about your new key. To do that, copy the public key from the dialog, then in GitLab click on your avatar in the top right and go to *Edit profile* → *SSH keys*. Paste the public key in the box, give it a title describing your machine, and press *Add key*. You might need to confirm the key by email for added security.
 
-This only has to be done once (per machine/OS you use GitHub on).
+This only has to be done once (per machine/OS you use GitLab on).
 
 ### Creating a new repository
 
 5. *Create remote repository*
 
-Now we are ready to start making new repositories! In GitHub, press the "+" button at the top right and select *New repository*. Give it a descriptive name and a short description, choose the visibility of the repository and check *Initialize this repository with a README*.
+Now we are ready to start making new repositories! In GitLab, press the "+" button at the top right, select *New repository/project* (GitLab uses both terms somewhat interchangeably) and *Create blank project*. Give it a descriptive name and a short description, choose the visibility of the repository and check *Initialize repository with a README*.
 
-![New repository creation on GitHub](figs/GitHub-new-repository.png)
+![New repository creation on GitLab](figs/GitLab-new-project.png)
 
 <!-- **Note:** During the course you are asked to submit answers to exercises as **separate projects**, using a specific scheme for the repository name: `Geoscripting-Exercise<id>-<team>` where `<id>` is the exercise number and `<team>` is your team name, for instance, `Geoscripting-Exercise3-TheGitters`. In addition, the visibility level **must** be set to *Private*. **Submissions that do not follow these rules may be rejected!** -->
 
-You are also asked to provide a *license* for your code. That is a good idea in general, as choosing a license is crucial to let others know what you allow them to do with your code. Code without a license is copyright by default, and thus nobody is allowed to make use of your code or contribute to it. For real projects, you will want to set a more permissive license so that others could make use of your code. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available.
+<!--Next, GitHub asks what software license you'd like to apply to your code, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
 
-In addition, you can add a `.gitignore` file. This is useful to prevent Git from tracking files that you don't want to keep track of, like temporary files or your R command history. The options are sorted by language, so you can select your language of choice, e.g. `R`.
+In addition, you can add a `.gitignore` file. This is useful to prevent Git from tracking files that you don't want to keep track of, like temporary files or your R command history. The options are sorted by language, so you can select your language of choice, e.g. `R`.-->
 
 6. *Configure repository settings*
 
-Explore your new blank repository a bit. On the tabs on the top, you can find that the repository can have issues and pull requests assigned to them. **Issues** is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
+Explore your new blank repository a bit. In the middle, you have buttons to add new files. Choose to add a `LICENSE` file, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
 
-![Example issue on GitHub](figs/GitHub-issues.png)
+On the tabs to the left, you can find that the repository can have issues and merge requests assigned to them. **Issues** is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
 
-Next, check out the repository settings. Under the *Collaborators* tab of *Settings*, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collabortor with full permissions.
+![Example issue on GitLab](figs/GitLab-issues.png)
+
+Next, check out the repository settings. Under the *Members* subtab of the *Project information* tab, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collaborator with a maintainer role.
 
 <!-- **Note:** During the course you are also required to add a staff member to your project with *Master* privileges before the submission deadline of each exercise in order for your exercise answer to be graded. The username of the staff member you need to add can be found on Blackboard. Do not share the repository with a group. **Submissions that do not follow this rule will be rejected!** -->
 
 7. *Get the URL of your new repository*
 
-Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new repository, click the green *Clone or download* button at the top right of the page, and copy the *Clone with **SSH** * address of your new repository.
+Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new repository, click the blue *Clone* button at the top right of the page, and copy the *Clone with **SSH** * address of your new repository.
 
-![Clone or Download → Clone with SSH](figs/github_screenCapture.png)
-<!-- ![Blank GitLab repository](figs/GitLab-empty-repository.png) -->
+<!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
+![Blank GitLab repository](figs/GitLab-empty-repository.png)
 
 8. *Clone your repository*
 
-Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a folder you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
+Go back to Git GUI, and press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a directory you want to store your code in in the *Target Directory* field. **Note**: the *Target Directory* must **not** already exist! Git GUI will create it for you.
 
-Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, it will appear stuck, but actually **the question will appear in the terminal** and you need to answer it there). You need to answer this with `yes` (the full word). This puts the GitHub server into a list of trusted servers, to guard against potential impostor servers.
+Once you click *Clone*, you will get a question about whether you trust the remote machine (if you ran `git gui` from a command line, it will appear stuck, but actually **the question will appear in the terminal** and you need to answer it there). You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
 
 You will end up in an empty Git GUI window:
 
 ![Git GUI in an empty directory](figs/git_gui_blank.png)
+
+```{block, type="alert alert-danger"}
+**Notice**: Sometimes Git GUI crashes or gets stuck at this stage. When you restart it, you may also find that the panes are collapsed (you need to drag them out from the borders of the window) and that the repository branch is set to `master` instead of `main`. To avoid this issue, and because it is much faster and more convenient in general, we recommend always cloning repositories from the terminal (see the next box), and then continuing to open the repository with Git GUI.
+```
 
 ```{block, type="alert alert-info"}
 **Protip**: From the terminal, `cd` into the directory you want to clone into, and run `git clone <url>`, e.g. `git clone git@git.wur.nl:you001/example.git`. The repository will be cloned into a subdirectory with a matching name. This is much faster than using any GUI!
@@ -220,7 +293,7 @@ You will end up in an empty Git GUI window:
 
 9. *Tell Git who you are*
 
-Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitHub.
+Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to *Edit* → *Options...* and fill out the *Global (All Repositories)* options *User Name* and *Email Address*. These will be displayed on GitLab.
 
 ```{block, type="alert alert-info"}
 **Protip**: To set your user name and email from the command line:
@@ -268,7 +341,7 @@ Next press the *Commit* button and your commit will be saved locally. A commit i
 **Protip**: To commit a change from the command line, use `git commit`. If you want to stage all tracked and changed files and commit, use `git commit -a`.
 ```
 
-In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the *Amend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitHub.
+In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the *Amend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitLab.
 
 ```{block, type="alert alert-info"}
 **Protip**: To amend the last commit from the command line, use `git commit \-\-amend`.
@@ -276,9 +349,9 @@ In the case you made a mistake (a mistake in the message, forgot to stage someth
 
 10. *Push changes to the server*
 
-Press the *Push* button, and confirm the push, to send all your changes to your GitHub repository. You can now refresh the GitHub page to see your changes. Well done!
+Press the *Push* button, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!
 
-![GitHub repository with content](figs/GitHub-repository.png)
+![GitLab repository with content](figs/GitLab-repository.png)
 
 ```{block, type="alert alert-info"}
 **Protip**: To push changes from the command line, use `git push`.
@@ -286,9 +359,9 @@ Press the *Push* button, and confirm the push, to send all your changes to your 
 
 11. *Pull changes from the server*
 
-One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitHub to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using *Fetch* and *Merge*. If you like, you can test it by cloning the same repository in another folder, making changes and pushing them to the server, then using fetch in the other copy.
+One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git GUI by using *Fetch* and *Merge*. If you like, you can test it by cloning the same repository in another directory, making changes and pushing them to the server, then using fetch in the other copy.
 
-If there are any changes on GitHub that are not on your local copy yet, in Git GUI go to *Remote* → *Fetch from* → *origin* to download all changes. This will not apply them yet, however. 
+If there are any changes on GitLab that are not on your local copy yet, in Git GUI go to *Remote* → *Fetch from* → *origin* to download all changes. This will not apply them yet, however. 
 
 To attempt to apply the changes, go to *Merge* → *Local Merge...*. If all goes well, the changes will be applied.
 
@@ -298,40 +371,40 @@ To attempt to apply the changes, go to *Merge* → *Local Merge...*. If all goes
 
 There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. It is best to try to avoid them. In case it happens, you need to go through the conflicting files in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by committing the changes.
 
-### Forks and pull requests
+### Forks and merge requests
 
-Now we know how to work with Git and GitHub for our personal work, and how to collaborate on a project with your team member. But what if you want to contribute code to someone else who has not given you access rights, or what if you want to review the code before it's accepted to your repository? That's where forking and pull requests come in handy (respectively)!
+Now we know how to work with Git and GitLab for our personal work, and how to collaborate on a project with your team member. But what if you want to contribute code to someone else who has not given you access rights, or what if you want to review the code before it's accepted to your repository? That's where forking and merge requests come in handy (respectively)!
 
-A fork is your own personal copy of someone else's repository. GitHub allows you to fork any public repository. You want to make forks whenever you want to edit code but do not have direct commit rights.
+A fork is your own personal copy of someone else's repository. GitLab allows you to fork any public repository. You want to make forks whenever you want to edit code but do not have direct commit rights.
 
 ```{block, type="alert alert-info"}
-**Protip**: In fact, if you click the edit button on a file on GitHub and do changes to a repository that you don't have the rights to write into, GitHub will helpfully make a fork for you, followed by a proposal to make a pull request for your changes.
+**Protip**: In fact, if you click the edit button on a file on GitLab and do changes to a repository that you don't have the rights to write into, GitLab will helpfully make a fork for you, followed by a proposal to make a merge request for your changes.
 ```
 
 12. *Fork a repository*
 
-Go to your team member's repository that they created by following the steps above, and then click the *Fork* button at the top right. (If you can't find it, alternatively you can go to some other repository, e.g. [the first exercise](https://github.com/geoscripting-innovation/Exercise1-starter), and fork it). You will find a new repository under your profile, with the same name as the original.
+Go to your team member's repository that they created by following the steps above, and then click the *Fork* button at the top right. (If you can't find it, alternatively you can go to some other repository, and fork it.) You will find a new repository under your profile, by default with the same name as the original.
 
-![Fork button](figs/GitHub-fork.png)
+<!--![Fork button](figs/GitHub-fork.png)-->
 
 13. *Make changes, commit and push*
 
-After you have your own fork, it is the same as having your own personal repository with the code from the original (*upstream*) repository in it. Clone it locally, make some changes, commit them and push them back to GitHub, as per steps 7-10. You should see that your changes take effect in your own *downsteam* fork, but not in the upstream repository.
+After you have your own fork, it is the same as having your own personal repository with the code from the original (*upstream*) repository in it. Clone it locally, make some changes, commit them and push them back to GitLab, as per steps 7-10. You should see that your changes take effect in your own *downsteam* fork, but not in the upstream repository.
 
-14. *Make a pull request*
+14. *Make a merge request*
 
-If you are ready to ask the upstream developers to incorporate your code into their repository, go to the Pull Requests tab and press the green *New pull request* button.
+If you are ready to ask the upstream developers to incorporate your code into their repository, go to the *Merge Requests* tab and press the blue *New merge request* button. Select your `main` branch of your fork as the source.
 
-![New pull request button](figs/GitHub-pr.png)
+<!-- ![New pull request button](figs/GitHub-pr.png) -->
 
-This will show you all the changes you have made, and if that is what you want to propose for the upstream developers to incorporate, click on the *Create pull request* button, upon which you can give the name for your pull request (changeset) and a description as to why the upstream developers would want to incorporate your code. After you confirm by clicking *Create pull request* again, the pull request will be visible in the pull requests tab of the *upstream* repository:
+This will show you all the changes you have made, and if that is what you want to propose for the upstream developers to incorporate, give the name for your merge request (changeset) and a description as to why the upstream developers would want to incorporate your code. After you confirm clicking *Create merge request*, the merge request will be visible in the merge requests tab of the *upstream* repository:
 
-![A submitted pull request](figs/GitHub-pr-submitted.png)
+![A submitted pull request](figs/GitLab-pr-submitted.png)
 
 Then it's up to the upstream developers to perform a code review and either accept or reject the pull request in the end.
 
 ```{block, type="alert alert-info"}
-**Protip**: For code review, GitHub also has special tools. If you look at the *Files changed* tab of a pull request, you will see that you can press a "+" button next to any line of code and write a comment about it. Once finished, there is a "Review changes" button at the top left that allows you to enter the final verdict and an overall comment.
+**Protip**: For code review, GitLab also has special tools. If you look at the *Changes* tab of a merge request, you will see that you can press a bubble button next to any line of code and write a comment about it. Once finished, there is a "Submit review" button at the bottom to send all comments at once.
 ```
 
 ### Other Git GUI functionality
@@ -359,391 +432,15 @@ The history view also allows you to reset the state of the repository to any pre
 You can also browse the history of a repository from your Git hosting service, and GitHub/GitLab even allow editing files from a web interface.
 
 ```{block, type="alert alert-success"}
-> **Question**: How do you find commit history and old versions of your files on GitHub/GitLab?
+> **Question 3**: How do you find commit history and old versions of your files on GitHub/GitLab?
 ```
 
 That's it: now you know how to keep track of all your files, so you will never lose them again, and no longer have to worry about making backups or saving multiple versions. In addition, this is the way that free and open-source code development happens in actuality. Also, the exercises and assignments in the course will be delivered and submitted this way, so make sure you are familiar with the whole process!
 
-## Project structure
-
-Try to keep a consistent structure across your projects, so that it is easier for you to switch from one project to the other and immediately understand how things work. In most cases, the project structure is entirely up to you. In some cases, however, hte structure may be somewhat mandated, for instance, if you wish to make an R package. To make it easier to make a package out of your code, we will follow the structure of R packages:
-
-* A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc). If you are making a package, this should instead be a demo and live as `demo/main.R`.
-* An `R/` subdirectory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script. Or, if it's a package, `library(packagename)` makes them all available without needing to use `source()` manually.
-* A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitHub has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be geopackages, small rasters, csv files, or R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
-* An `output/` sub directory (when applicable). This should not be tracked by git, since your scripts create the output, so there is no need to store it.
-* For packages, a `DESCRIPTION` file is necessary. As the name implies, it contains a description of your package, its name and the name of the authors, but also describes what other packages your package needs to function correctly. Optionally, see [the documentation of the `DESCRIPTION` file](http://r-pkgs.had.co.nz/description.html) for more information.
-
-Note that other languages propose slightly different structures, e.g. Python modules store all functions in a directory that is named the same as the package itself, e.g. for a package named `packagename`, instead of a directory called `R` you'd use a directory called `packagename`. Instead of `DESCRIPTION`, Python uses `setup.py` and `requirements.txt`. However, as long as you are familiar with the project/package structure of one language, switching to another is a breeze!
-
-<center>
-![project structure](figs/project_structure_screenCapture.png)
-</center>
-
-### Example `main.R` file
-
-Typically the header of your main script will look like that.
-
-
-```{r, eval=FALSE}
-# Team Teamname (John Doe and Jane Smith)
-# January 2020
-
-# Import packages
-library(raster)
-library(sf)
-
-# Source functions
-source('R/function1.R')
-source('R/function2.R')
-
-# Load datasets 
-load('data/input_model.rda')
-
-# Then the actual commands
-
-```
-
-### Working directory, relative and absolute file paths
-
-As you can see in the example file above, we source a file from our project using **relative** file paths. The reason why they are called *relative* is because they are *relative* to the **working directory**, which is the directory *from which the script is called*. By convention, the working directory is the same as the location of the script itself. This means that you can simply assume that whoever runs your script, will run it from the directory that your script is located.
-
-```{block, type="alert alert-danger"}
-**Note**: this also means that when you test others' code, you should also make sure to run it from the directory that the script is located, unless stated otherwise!
-```
-
-To refer to directories or files that are within the working directory, we simply use their names. So to refer to a directory called `R` in our working directory, we type `R`. To refer to a file or directory within another directory, we type the name of the directory, a slash, and then the name of the file/directory, for instance, `R/function1.R`.
-
-```{block, type="alert alert-danger"}
-**Note**: on Windows, you might see a backslash (`\\`) being used as a path separator instead of a slash (`/`). **Don't do this**! In many languages, including R, a backslash denotes an [escape sequence](https://en.wikipedia.org/wiki/Escape_sequence). In addition, a backslash is not a valid path separator on non-Windows platforms, whereas both a slash and a backslash are valid on Windows. So save yourself the trouble and **always use a slash as a path separator**!
-```
-
-If we want to refer to a file or directory that is above the indicated directory, we use the special directory `..`. For instance, if our `main.R` is not in our project root, but located in the subdirectory `demo` (therefore our working directory is `demo`), we would refer to our `function1.R` file as `../R/function1.R`. Another special directory is `.`, which refers to the indicated directory itself.
-
-In contrast, an **absolute** file path refers to a file from the root of the entire file system. For instance, on Windows, an absolute file path could be `C:/Windows/cmd.exe`, or equivalently `/Windows/cmd.exe`. On Linux (and other UNIX-like systems like macOS), absolute file paths **always** start with `/`, for instance, `/home/user/proposed-meme/R/function1.R`.
-
-When making Git repository, you want to make sure that all your code is *portable* and self-contained, i.e. you can run it from any computer, and ideally using any operating system. That means that as a rule of thumb you should **always use relative file paths** in your scripts.
-
-```{block, type="alert alert-success"}
-> **Question**: what would be the location of this file: `././R/./.././R/./././function2.R`? How about `/./R/./.././R/./././function2.R`? What would be the meaning of `C:/Windows/cmd.exe` on Linux? Is it a relative or absolute file path?
-```
-
-<!--
-### Bigger data
-The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
-
-
-### Example
-* Create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
-* Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
-
-```{r, eval=FALSE}
-# Name
-# Date
-library(raster)
-
-source('R/ageCalculator.R')
-source('R/HelloWorld.R')
-source('R/minusRaster.R')
-
-
-HelloWorld('john')
-ageCalculator(2009)
-
-# import dataset
-r <- raster(system.file("external/rlogo.grd", package="raster")) 
-r2 <- r 
-# Filling the rasterLayer with new values.
-r2[] <- (1:ncell(r2)) / 10
-# Performs the calculation
-r3 <- minusRaster(r, r2) 
-```
-
-
-
-### RStudio projects
-
-RStudio has a functionality called *projects* that allows organising your files a bit better. You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project, where your `main.R` is located. When working with RStudio projects you should not change the working directory. If you want to access files stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load.
-
-**Note**: RStudio projects are specific to RStudio and are not usable with base R or with other R IDEs. The use of RStudio projects is optional and is merely for convenience. When using other IDEs you can assume the user will set the working directory to where the script is located.
-
-RStudio itself has integration with Git, and when creating a project there is an option to make it a git repository as well. However, in this lesson we will not be using this method, since it is specific to RStudio and does not work for Python or in other R IDEs. Git GUI, in contrast, is language-agnostic and standalone. So if you do create a project with RStudio, create it inside your cloned GitHub repository, and do **not** select that it creates a new git repository, then use Git GUI to handle all the changes you do in the repository. This will save you the confusion about how to handle it when we will come to Python lessons.
-
--->
-
-# Basic *R* and *RStudio* setup {#gettingstarted}
-
-This preliminary section will cover some basic details about *R*. For this course you can use RStudio to write and run scripts. You can access it from e.g. *Applications* → *Programming* → *RStudio* menu.
-In case you are working on your own computer and would like to know how to install *R* and *RStudio*, see the [RStudio website](https://www.rstudio.com/products/rstudio/download/).
-
-<!--
-
-```{block type="alert alert-info"}
-**Protip**: if you are following the course externally, you can also set up all the rest of the necessary software for the course now. See the [system setup page](https://geoscripting-wur.github.io/system_setup/) for instructions. This is not necessary for enrolled students, as all the software will be provided in the upcoming lessons.
-```
--->
-
-## Getting started with *RStudio* and *R* on your own computer.
-
-A summary YouTube movie about how to use RStudio and writing a function is here: [Intro to RStudio](https://www.youtube.com/watch?v=jPk6-3prknk). Have a look at this movie if you do not know how to work with RStudio and then do the following section. See the following tutorial for a [short introduction on the RStudio interface](http://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf).
-
-Now, Open RStudio and type the following script in the R console of **RStudio**:
-
-```{r}
-a = 1
-a
-```
-
-The first line you passed to the console created a new object named  $a$ in memory.
-The equals symbol `=` is somewhat equivalent to an arrow symbol `<-` for assigning values to variables. In the second line you printed $a$ to the console by simply typing its name.
-
-**What is the class of this object?**
-
-```{r}
-class(a)
-```
-
-You now have requested the class attribute of $a$ and the console has returned the attribute: numeric. R possesses a simple mechanism to support an object-oriented style of programming. All objects ($a$ in this case) have a class attribute assigned to them. R is quite forgiving and will assign a class to an object even if you haven't specified one (as you didn't in this case). Classes are a very important feature of the R environment. Any function or method that is applied to an object takes into account its class and uses this information to determine the correct course of action.
-
-## Set Your Working Directory
-
-Let's do some basic set up first.
-
-- Create a git repository which will be your working directory e.g. `Lesson1`
-- Create an R script within that directory
-- Set your working directory to `Lesson1`
-- Create a `data` directory within your working directory
-
-In RStudio you can set your working directory this way, if you have saved your R script to your working directory:
-![Set working directory → to source file location](../Scripting4GeoIntro/figs/setwd_rstudiotip.png)
-
-```{block, type="alert alert-danger"}
-**Warning**: The use of `setwd()` is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
-
-*Never set either of the following in your script! This would make the script not reproducible by others!*
-
-    setwd("/some/path/on/your/computer")
-    setwd("../some/path/outside/your/repository")
-```
-
-
-```{block type="alert alert-info"}
-**Protip**: You can use relative paths to load your data. 
-For example by setting the path to a 
-file "my-table.csv" in the directory "data", relative to your script file:
-
-    datafile <- file.path("data", "my-table.csv")
-
-Then you can for example read in the file using:
-
-    mytable <- read.csv(datafile) # Do something with that file name
-
-```
-
-The above Protip is very important, so make sure you understand this and use this 
-within the geo-scripting exercises.
-
-# Finding help
-Great, now we are all set to dive into scripting itself! But how do we know *how* and *what* to write? Even the most experienced programmers run into these questions, so it's important to know how to find answers to them.
-
-## Sources for help
-The most important helper is the R documentation. In the R console, just enter `?functionName` or `help(functionName)` to get the manual page of the function you are interested in.
-
-**Protip**: to get the help page for a reserved keyword, wrap it in backticks `` ` ``. For instance, to learn about how to define a function, you can run `` ?`function` ``. In addition, to cancel input for a running command (e.g. to get out of `?function`), press the `Esc` key.
-
-There are many places where help can be found on the internet. So in case the function or package documentation is not sufficient for what you are trying to achieve, a search engine like Google is your best friend. Most likely by searching the right key words relating to your problem, the search engine will direct you to the archive of the R mailing list, or to some discussions on [Stack Exchange](http://stackexchange.com/). These two are reliable sources of information, and it is quite likely that the problem you are trying to figure out has already been answered before.
-
-However, it may also happen that you discover a *bug* or something that you would qualify as abnormal behavior, or that you really have a question that no one has ever asked (corollary: has never been answered). In that case, you may submit a question to one of the R mailing list. For general R question there is a general [R mailing list](https://stat.ethz.ch/mailman/listinfo/r-help), while the spatial domain has its own mailing list ([R SIG GEO](https://stat.ethz.ch/mailman/listinfo/r-sig-geo)). Geo related questions should be posted to this latter mailing list.
-
-**Note**: these mailing lists have heavy mail traffic, use your mail client efficiently and set filters, otherwise it will quickly bother you.
-
-These mailing lists have a few rules, and it's important to respect them in order to ensure that:
-
-* no one gets offended by your question,
-* people who are able to answer the question are actually willing to do so,
-* you get the best quality answer.
-
-
-So, when posting to the mail list: 
-
-* Be courteous.
-* Provide a brief description of the problem and why you are trying to do that.
-* Provide a reproducible example that illustrate the problem, reproducing the eventual error.
-* Sign with your name and your affiliation.
-* Do not expect an immediate answer (although well presented questions often get answered fairly quickly).
-
-
-## Reproducible examples (reprex)
-
-Indispensable when asking a question to the online community, being able to write a reproducible example has many advantages:
-
-- It may ensure that when you present a problem, people are able to answer your question without guessing what you are trying to do. 
-- Reproducible examples are not only to ask questions; they may help you in your thinking, developing or debugging process when writing your own functions. 
-    - For instance, when developing a function to do a certain type of raster calculation, start by testing it on a small auto-generated RasterLayer object, and not directly on your actual data that might be covering the whole world.
-
-### Example of a reproducible example
-
-Well, one could define a reproducible example by:
-
-- A piece of code that can be executed by anyone who has R, independently of the data present on his machine or any preloaded variables. 
-- The computation time should not exceed a few seconds and if the code automatically downloads data, the data volume should be as small as possible.
-
-*So basically, if you can quickly start a R session on your neighbour's computer while he is on a break, copy-paste the code without making any adjustments and see almost immediately what you want to demonstrate; congratulations, you have created a reproducible example.*
-
-Let's illustrate this by an example.
-I want to perform value replacements of one raster layer, based on the values of another raster layer. (We haven't covered raster analysis in R as part of the course yet, but you will quickly understand that for certain operations rasters are analog to two-dimensional arrays.)
-
-```{r, fig.align='center'}
-## Create two RasterLayer objects of similar extent
-library(raster)
-r <- s <- raster(ncol=50, nrow=50)
-## Fill the raster with values
-r[] <- 1:ncell(r)
-s[] <- 2 * (1:ncell(s))
-s[200:400] <- 150
-s[50:150] <- 151
-## Perform the replacement
-r[s %in% c(150, 151)] <- NA
-## Visualise the result
-plot(r)
-```
-
-Once you have a reproducible example, you can make sure it's reproducible by using the [reprex package](https://www.tidyverse.org/help/). It will double-check for you that your code is reproducible and copy a neatly-formatted reprex into your clipboard, ready for sending it to others!
-
-Useful to know when writing a reproducible example: instead of generating your own small data sets (vectors or RasterLayers, etc) as part of your reproducible example, use some of R *built-in* data-sets. They are part of the main R packages.
-Some popular data sets are: `cars`, `meuse.grid_ll`, `Rlogo`, `iris`, etc. The [auto completion](http://en.wikipedia.org/wiki/Autocomplete) menu of the `data()` function will give you an overview of the data sets available.
-
-```{block, type="alert alert-info"}
-**Protip**: In most script editing environments, including the R console and RStudio, auto-completion can be invoked by pressing the tab key, use it without moderation.
-```
-
-```{r, echo=TRUE, fig.align='center'}
-## Import the variable "cars" in the working environment
-data(cars)
-class(cars)
-## Visualise the first six rows of the variable
-head(cars)
-# The plot function on this type of dataset (class = data.frame, 2 column)
-# automatically generates a scatterplot
-plot(cars)
-```
-
-<!-- TODO: replace with `sf` and `nc` (North Carolina statistics)
-Another famous data set is the `meuse` data set, providing all sorts of spatial variables spread across a part of the Meuse watershed.
-The following example compiled from the help pages of the `sp` package.
-
-```{r}
-## Example using built-in dataset from the sp package
-library(sp)
-## Load required datastes
-data(meuse)
-# The meuse dataset is not by default a spatial object
-# but its x, y coordinates are part of the data.frame
-class(meuse)
-coordinates(meuse) <- c("x", "y")
-class(meuse)
-```
-
-Now that the object belongs to a spatial class, we can plot it using one of the vector plotting functions of the `sp` package. See the result in the figure below.
-
-```{r, echo=TRUE, fig.align='center'}
-bubble(meuse, "zinc", maxsize = 2.5,
-       main = "zinc concentrations (ppm)", key.entries = 2^(-1:4))
-```
-
-The `sp` package help page contains multiple examples of how to explore its `meuse` built-in data set. Another example of multiple plots using `meuse.grid` is given in the figure below.
-
-```{r, echo=TRUE, fig=TRUE, fig.align='center'}
-## Load meuse.riv dataset
-data(meuse.riv)
-## Create an object of class SpatialPolygons from meuse.riv
-meuse.sr <- SpatialPolygons(list(Polygons(list(Polygon(meuse.riv)),"meuse.riv")))
-## Load the meuse.grid dataset
-data(meuse.grid)
-## Assign coordinates to the dataset and make it a grid
-coordinates(meuse.grid) = c("x", "y")
-gridded(meuse.grid) = TRUE
-## Plot all variables of the meuse.grid dataset in a multiple window spplot
-spplot(meuse.grid, col.regions=bpy.colors(), main = "meuse.grid",
-       sp.layout=list(
-           list("sp.polygons", meuse.sr),
-           list("sp.points", meuse, pch="+", col="black")
-           )
-       )
-```
--->
-
-<!-- Ported over to GitHub starter repo
-
-# Exercise 3
-## Your task
-Create a GitLab project on the WUR instance. The project should contain a simple function to calculate whether or not a year is a leap year. Use control flow, and provide some examples of how the function works in the `main.R`.
-The function should behave as follows:
-
-
-```
-> is.leap(2000)
-[1] TRUE
-
-> is.leap(1580)
-Warning message:
-In is.leap(year): 1580 was before the Gregorian calendar was in use, using proleptic Gregorian calendar
-[1] TRUE
-
-> is.leap(2002)
-[1] FALSE
-
-> is.leap('john') #should throw an error 
-Error: argument of class numeric expected
-```
-
-
-## Useful resources
-
-* [Google](https://www.google.com)
-* [Leap Year](http://en.wikipedia.org/wiki/Leap_year)
-* [R arithmetic oprators](http://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html)
-
-
-
-## Assessment
-When doing assessment, the following points are to be considered:
-
-1. Whether the function works as intended
-2. Whether the fucntion handles a variety of input, throws meaningful errors and warnings when appropriate.
-3. Whether the function is readable, complete and type consistent.
-
-The structure of your project and the appropriate use of git will also be assessed. For bonus points, try to make the function as short as possible: can you come up with a solution without using any `if` statements?
-
-## How to submit?
-```{block, type="alert alert-danger"}
-**Important**: Please carefully read the submission instructions on Blackboard! You may not get scored if you submit your exercises incorrectly.
-```
-
-As a summary: create a **private** GitLab project with the name `Geoscripting-Exercise<id>-<teamname>`, where `<id>` is the number of the exercise (3 in today's case) and `<teamname>` is the name of your team. In the Members section of the project, add the staff members responsible for checking your exercises as members of the project and grant them "Maintainer" privileges. Finish the exercise by the deadline today. The staff will check it and publish your answers on the student group `Geoscripting<year>` on GitLab after the deadline.
-
-You will need to give the team you are reviewing feedback on their exercise solution the next day (use the review team generator Shiny app to know who you are reviewing and who you are reviewed by). Answers from other groups will be available on the `Geoscripting<year>` group on GitLab. For reviewing other teams' answers:
-
-* Clone the repository of the team you have to review to your computer and test it.
-* Add an issue to their project and write out your review. Make sure to mention your team name in the review.
-
-Once you receive issues on your repository with feedback, do not close them! They will be checked by staff as part of the assessment.
-
-This is the way the exercises will need to be submitted and reviewed from this lesson on.
-
--->
-
 # References
 
-* Packages:
-    * Reference document for creating R packages: [Writing R extensions](http://cran.r-project.org/doc/manuals/R-exts.html)
-    * A set of good practices when creating packages: [R package development](http://mages.github.io/R_package_development/#1)
-* Git:
-    * Great 15 min interactive git commands tutorial: [try.github.io](https://try.github.io)
-    * Hadley Wickham on [Rstudio and git](http://r-pkgs.had.co.nz/git.html#undefined)
-    * R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
-    * Video tutorial to use revision control with R Studio and GitHub/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
-    * Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
-* Debugging:
-    * Hadely Wickham on [Debugging with RStudio](http://adv-r.had.co.nz/Exceptions-Debugging.html)
-    * Reference manual for function debugging in R: [Manual](http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/).
+* Great 15 min interactive git commands tutorial: [try.github.io](https://try.github.io)
+* Hadley Wickham on [Rstudio and git](http://r-pkgs.had.co.nz/git.html#undefined)
+* R Studio documentation on version control: [Using Version Control with RStudio](http://www.rstudio.com/ide/docs/version_control/overview)
+* Video tutorial to use revision control with R Studio and GitHub/BitBucket [Youtube link](http://www.youtube.com/watch?v=jGeCCxdZsDQ&noredirect=1)
+* Advanced Git: [A successful git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
