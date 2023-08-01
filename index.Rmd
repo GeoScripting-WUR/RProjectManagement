@@ -1,23 +1,28 @@
 ---
 pagetitle: "Tutorial 1: Linux & version control"
 author: "Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output:
-  knitrBootstrap::bootstrap_document:
-    title: "Tutorial 1: Linux & version control"
-    theme: "simplex"
-    highlight: Tomorrow Night Bright
-    menu: FALSE
-    theme.chooser: TRUE
-    highlight.chooser: TRUE
+  rmdformats::html_clean:
+    highlight: zenburn
 ---
 
-<style type="text/css">
-body {max-width: none;}
-a:visited {color: #91170a;}
-</style>
+```{css, echo=FALSE}
+@import url("https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css");
+.main-container {max-width: none;}
+pre {color: inherit; background-color: inherit;}
+code[class^="sourceCode"]::before {
+  content: attr(class);
+  display: block;
+  text-align: right;
+  font-size: 70%;
+}
+code[class^="sourceCode r"]::before { content: "R Source";}
+code[class^="sourceCode python"]::before { content: "Python Source"; }
+code[class^="sourceCode bash"]::before { content: "Bash Source"; }
+```
 
-# [WUR Geoscripting](https://geoscripting-wur.github.io/) <img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px;"/>
+<font size="6">[WUR Geoscripting](https://geoscripting-wur.github.io/)</font> <img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px; margin:inherit;"/>
 
 # Course setup
 
@@ -66,32 +71,18 @@ For the course, it also makes it possible to use the wide variety of tools that 
 
 ## Getting started on Linux
 
-During the course we will work in a Linux environment. For students taking the course in Wageningen University, we provide a **VMware Horizon virtual desktop infrastructure (VDI)** that is managed by the WUR IT department. It is available over the internet for each student in the course and supported by the IT department. The VMware Horizon VDIs can be accessed through the VMware Horizon client.
-
-**[See the tutorial on setting up VMWare Horizon on this page.](../Intro2Linux/vmware_horizon_tutorial.html)**
+During the course we will work in a Linux environment. **See the [Linux system setup](../system_setup/index.html) page on how to install and run the Linux virtual machine on your own computer.** The page also explains how to run Linux from a USB stick in case you don't have enough space for a virtual machine.
 
 ```{block, type="alert alert-danger"}
-**Notice**: Make sure you **read the page linked above** and have no problems logging into and using the VDI. From here on out, we will try to work from within the VDI exclusively.
+**Notice**: Make sure you **read the page linked above** and have no problems logging into and using the VM. From here on out, we will try to work from within the VM exclusively.
 ```
 
 ```{block, type="alert alert-info"}
-**In case you can't get the VDI running successfully** (and **only** in that case, so hopefully you don't need to do this!), there is an alternative: we have the possibility of providing access to a SURF Research Cloud VM setup. [See this page for instructions on gaining access to the SURF Research Cloud VM](../Intro2Linux/surfsara_tutorial.html).
+**In case you can't get the VM running successfully** (and **only** in that case, so hopefully you don't need to do this!), there is an alternative: we have the possibility of providing access to a SURF Research Cloud VM setup. [See this page for instructions on gaining access to the SURF Research Cloud VM](../Intro2Linux/surfsara_tutorial.html).
 
-Another alternative (also if you are not following the course at WUR), is to install Linux on your own laptop or external hard disk. See a [theoretical overview of running Linux on your own hardware](../Intro2Linux/installation.html) and [Linux system setup](../system_setup/index.html).
+If you are a power user and want to install Linux on your own laptop directly to have it run at full performance, see also a [theoretical overview of running Linux on your own hardware](../Intro2Linux/installation.html).
 
-**The VDIs are strongly recommended**. If you go for installing Linux yourself, the systems need to be set up manually and we do not have the time and manpower to support every student with this.
-
-<!--### VirtualBox VM setup
-
-To set up VirtualBox, first find the provided image of OSGeo-Live on the network drive in the PC lab, which should be available to you as `W:\\Student\\GRS-33806\\OSGeo Live 12.ova`. This is a compressed VirtualBox image with RStudio installed. For use on your own PCs, you can copy the file on your PC from the PC lab or download OSGeo-Live from [its website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html).
-
-Once you have the file, all you need to do is import it in VirtualBox by going to *File → Import Appliance* and specifying the location of the OVA file. Everything else can be left default.
-
-Once importing is complete, you can go to the appliance settings and add a shared folder. That way all files you have in the shared folder will also be visible from the VM. You can see it by running the VM, opening the file manager in it and clicking on the shared folder name on the left side of the window.
-
-### Installing Linux on your own hardware
-
-If you like, you can install a Linux distribution on your own laptops or external hard drives. Compared to virtualisation, it is much faster to run a Linux distribution directly. -->
+**The VMs are strongly recommended**. If you go for installing Linux yourself, the systems need to be set up manually and we do not have the time and manpower to support every student with this.
 ```
 
 Once you have everything ready, login into your Linux VM, try out RStudio/RKWard, and also open QGIS. Explore the environment a little to get used to it.
@@ -234,7 +225,7 @@ Go to [GitLab](https://git.wur.nl/) and log in (using your **email address** as 
 
 4. *Enrol the public key to your user account*
 
-The SSH key pair is used to identify that you own the machine. <!--On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university.--> On WUR Linux virtual desktop instances (VDIs) via MyWorkspace/VMware Horizon, the keys are stored on your personal VDI, so you can access them from anywhere.
+The SSH key pair is used to identify that you own the machine. <!--On WUR Windows PCs, the keys are stored on your *M:* drive, so they will follow you on any computer in the university.--> On WUR Linux virtual machines (VMs), the keys are stored on your personal VM, so you can access them from any computer that can access the VM.
 
 Now you need to tell GitLab about your new key. To do that, copy the public key from the dialog, then in GitLab click on your avatar in the top right and go to *Edit profile* → *SSH keys*. Paste the public key in the box, give it a title describing your machine, and press *Add key*. You might need to confirm the key by email for added security.
 
