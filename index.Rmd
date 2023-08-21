@@ -179,7 +179,9 @@ Effective use of git includes two components: local software to manage the files
 In this course, we will primarily use Git GUI as the client. It is a simple client that is included with Git itself, and is language-agnostic. There are more graphical clients as well, including one integrated into RStudio itself, but these clients are outside the scope of this course. Note that Git is language-agnostic, and we will be using it with both R and Python, so it's best to learn the language-neutral GUI, rather than an R-specific GUI.
 
 ```{block, type="alert alert-info"}
-**Protip**: For those who are comfortable with working from the Linux terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in protip boxes like this you will find command line equivalents to the GUI actions we will perform. Choose whichever way you find the most convenient for yourself.
+**Protip**: For those who are comfortable with working from the Linux terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in pro-tip boxes like this you will find command line equivalents to the GUI actions we will perform. Choose whichever way you find the most convenient for yourself.
+
+For a quick linux command line refresher you can visit the following site [Ryan's Linux & Bash Tutorial ](https://ryanstutorials.net/linuxtutorial/). [Section 1 covers the command line](https://ryanstutorials.net/linuxtutorial/commandline.php), and [section 2 covers navigation](https://ryanstutorials.net/linuxtutorial/navigation.php).
 
 In addition, while this tutorial describes how to use the built-in `git-gui`, you can also use the more modern `git-cola`, which may be more intuitive to you. The general steps are the same as in `git-gui`. You can find Git Cola in the applications menu (or else you may need to install it).
 ```
