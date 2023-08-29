@@ -52,7 +52,7 @@ At the end of the tutorial, you should be able to:
 * Apply a software license to your own code
 * Use version control to develop, maintain, and share your code with others
 * Set up a project structure
-* Get familiar with using RStudio for scripting
+* Get familiar with (relative) paths
 * Submit an exercise using Git and GitLab
 
 # Linux
@@ -435,26 +435,23 @@ You can also browse the history of a repository from your Git hosting service, a
 
 That's it: now you know how to keep track of all your files, so you will never lose them again, and no longer have to worry about making backups or saving multiple versions. In addition, this is the way that free and open-source code development happens in actuality. Also, the exercises and assignments in the course will be delivered and submitted this way, so make sure you are familiar with the whole process!
 
-## Project structure
+# Project structure
 
-Another beneficial tool for scripting work is maintaining a consistent project structure as it will make it easier for you to switch from one project to the other and immediately understand how things work. In most cases, the project structure is entirely up to you. In some cases, however, the structure may be somewhat mandated, for instance, if you wish to make an R package. To make it easier to make a package out of your code, we will follow the structure of R packages:
+Another beneficial tool for scripting work is maintaining a consistent project structure as it will make it easier for you to switch from one project to the other and immediately understand how things work. In most cases, the project structure is entirely up to you. In some cases, however, the structure may be somewhat mandated, for instance, if you wish to make a package. For this course we will be following the structure below: 
 
-* A `main.R` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc). If you are making a package, this should instead be a demo and live as `demo/main.R`.
-* An `R/` subdirectory: This directory should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main.R` script. Or, if it's a package, `library(packagename)` makes them all available without needing to use `source()` manually.
-* A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitHub has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be geopackages, small rasters, csv files, or R archives. R offers two types of archives to store the important variables of the environments, `.rda` and `.rds`.
+![Project Structure Schema](figs/projectStruture.png)
+
+* A `main` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc). The file extension of this file will depend on what language you are using for your project.
+* As we will be working with multiple languages throughout this course we will keep things organized by placing the scripts into their respective language sub-directories (`R/`, `Python/`, and `Bash/`). These directories should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main` script. The way this is done depends on the language used by the `main` script. For example in R you would write `source("R/myfunction.R")`. Whereas in Python you would use `import Python.myfunction`. You will see this in action in later tutorials. 
+* A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitLab has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be geopackages, small rasters, csv files.
 * An `output/` sub directory (when applicable). This should not be tracked by git, since your scripts create the output, so there is no need to store it.
-* For packages, a `DESCRIPTION` file is necessary. As the name implies, it contains a description of your package, its name and the name of the authors, but also describes what other packages your package needs to function correctly. Optionally, see [the documentation of the `DESCRIPTION` file](https://r-pkgs.org/description.html) for more information.
+* Finally, a `README.md` file should be included, this file should contain a description of your project, its name and the name of the authors, along with a description of what other packages your package needs to function correctly. 
 
-Note that other languages propose slightly different structures, e.g. Python modules store all functions in a directory that is named the same as the package itself, e.g. for a package named `packagename`, instead of a directory called `R` you'd use a directory called `packagename`. Instead of `DESCRIPTION`, Python uses `setup.py` and `requirements.txt`. However, as long as you are familiar with the project/package structure of one language, switching to another is a breeze!
+### Example `main` file
 
-<center>
-![project structure](figs/project_structure_screenCapture.png)
-</center>
+Typically the header of your main script will look like the following:
 
-### Example `main.R` file
-
-Typically the header of your main script will look like that.
-
+#### in R `main.R`
 
 ```{r, eval=FALSE}
 # Team Teamname (John Doe and Jane Smith)
@@ -466,13 +463,31 @@ library(sf)
 source('R/function1.R')
 source('R/function2.R')
 # Load datasets 
-load('data/input_model.rda')
+wageningen_ndvi <- rast('data/wag_NDVI.tif')
 # Then the actual commands
 ```
 
-### Working directory, relative and absolute file paths
+#### and in Python
 
-As you can see in the example file above, we source a file from our project using **relative** file paths. The reason why they are called *relative* is because they are *relative* to the **working directory**, which is the directory *from which the script is called*. By convention, the working directory is the same as the location of the script itself. This means that you can simply assume that whoever runs your script, will run it from the directory that your script is located.
+```{python, eval=FALSE}
+# Team Teamname (John Doe and Jane Smith)
+# January 2020
+# Import packages
+import geopandas as gpd
+import matplotlib.pyplot at plt
+
+# Import functions
+import Python.functions as funcs
+
+# Load datasets 
+postboxes = gpd.read_file('data/postbox_locations.shp')
+# Then the actual commands
+```
+
+## Working directory, relative and absolute file paths
+*At the end of the following section you should be able to explain the difference between __root directory, working directory, absolute path, relative path__* 
+
+In the R and Python examples above we load the datasets by indicating the file location from the data directory `"data/postbox_locations.shp"`. This is an example of using **relative** file paths. We don't include the location of the project directory itself (`"C:/Geoscripting/myproject/data/postbox_locations.sph"`). The reason why they are called *relative* is because they are *relative* to the **working directory**, which is the directory *from which the script is called* (`"C:/Geoscripting/myproject"`). By convention, the working directory is the same as the location of the script itself. This means that you can simply assume that whoever runs your script, will run it from the directory that your script is located.
 
 ```{block, type="alert alert-danger"}
 **Note**: this also means that when you test others' code, you should also make sure to run it from the directory that the script is located, unless stated otherwise!
@@ -484,7 +499,7 @@ To refer to directories or files that are within the working directory, we simpl
 **Note**: on Windows, you might see a backslash (`\\`) being used as a path separator instead of a slash (`/`). **Don't do this**! In many languages, including R, a backslash denotes an [escape sequence](https://en.wikipedia.org/wiki/Escape_sequence). In addition, a backslash is not a valid path separator on non-Windows platforms, whereas both a slash and a backslash are valid on Windows. So save yourself the trouble and **always use a slash as a path separator**!
 ```
 
-If we want to refer to a file or directory that is above the indicated directory, we use the special directory `..`. For instance, if our `main.R` is not in our project root, but located in the subdirectory `demo` (therefore our working directory is `demo`), we would refer to our `function1.R` file as `../R/function1.R`. Another special directory is `.`, which refers to the indicated directory itself.
+If we want to refer to a file or directory that is above the indicated directory, we use the special directory `..`. For instance, if our `main.R` is not in our project root, but located in the sub-directory `demo` (therefore our working directory is `demo`), we would refer to our `function1.R` file as `../R/function1.R`. Another special directory is `.`, which refers to the indicated directory itself.
 
 In contrast, an **absolute** file path refers to a file from the root of the entire file system. For instance, on Windows, an absolute file path could be `C:/Windows/cmd.exe`, or equivalently `/Windows/cmd.exe`. On Linux (and other UNIX-like systems like macOS), absolute file paths **always** start with `/`, for instance, `/home/user/proposed-meme/R/function1.R`.
 
@@ -494,84 +509,6 @@ When making Git repository, you want to make sure that all your code is *portabl
 > **Question 4**: what would be the location of this file: `././R/./.././R/./././function2.R`? How about `/./R/./.././R/./././function2.R`? What would be the meaning of `C:/Windows/cmd.exe` on Linux? Is it a relative or absolute file path?
 ```
 
-<!--
-### Bigger data
-The `data/` directory of your project should indeed only contain relatively small data sets. When handling bigger remote sensing data sets, these should stay out of the project, where you store the rest of your data.
-### Example
-* Create 3 files in your `R/` directory (`ageCalculator.R`, `HelloWorld.R` and `minusRaster.R`) in which you will copy paste the respective functions.
-* Create a `main.R` script at the root of your project and add some code to it. The content of the `main.R` in that case could be something as below.
-```{r, eval=FALSE}
-# Name
-# Date
-library(raster)
-source('R/ageCalculator.R')
-source('R/HelloWorld.R')
-source('R/minusRaster.R')
-HelloWorld('john')
-ageCalculator(2009)
-# import dataset
-r <- raster(system.file("external/rlogo.grd", package="raster")) 
-r2 <- r 
-# Filling the rasterLayer with new values.
-r2[] <- (1:ncell(r2)) / 10
-# Performs the calculation
-r3 <- minusRaster(r, r2) 
-```
-### RStudio projects
-RStudio has a functionality called *projects* that allows organising your files a bit better. You may have learned that one of the first things to do when opening a R session is to set your working directory, using the `setwd()` command. When creating a new project, the working directory is automatically set to the root of the project, where your `main.R` is located. When working with RStudio projects you should not change the working directory. If you want to access files stored in your `data/` subdirectory, simply append `data/` to the beginning of the string leading to the file you want to load.
-**Note**: RStudio projects are specific to RStudio and are not usable with base R or with other R IDEs. The use of RStudio projects is optional and is merely for convenience. When using other IDEs you can assume the user will set the working directory to where the script is located.
-RStudio itself has integration with Git, and when creating a project there is an option to make it a git repository as well. However, in this lesson we will not be using this method, since it is specific to RStudio and does not work for Python or in other R IDEs. Git GUI, in contrast, is language-agnostic and standalone. So if you do create a project with RStudio, create it inside your cloned GitHub repository, and do **not** select that it creates a new git repository, then use Git GUI to handle all the changes you do in the repository. This will save you the confusion about how to handle it when we will come to Python lessons.
--->
-
-# *RStudio* setup {#gettingstarted}
-For this course you can use RStudio to write and run scripts. You can access it from e.g. *Applications* → *Programming* → *RStudio* menu.
-In case you are working on your own computer and would like to know how to install *R* and *RStudio*, see the [RStudio website](https://www.rstudio.com/products/rstudio/download/).
-
-## Getting started with *RStudio* and *R* on your own computer.
-
-If you are new to RStudio take a look at the following summary YouTube video about how to use RStudio: [Intro to RStudio (6 min)](https://www.youtube.com/watch?v=FIrsOBy5k58). In it you will learn how to navigate the RStudio environment and even run some code. This will be helpful for later in the course.
-
-Additionally, the first time you open RStudio it's helpful to change some global settings. To do this go to *Tools* → *Global Options...* in the top menu bar of RStudio. The following box should appear. Set the settings to match that of the screenshot, namely, *Never save the workspace to .RData file on exit* and uncheck the boxes under *History*.
-<center> 
-![Global Options](figs/global_options.png)
-<center>
-
-<!-- ### Set Your Working Directory
-
-Let's do some basic set up first.
-
-- Create a git repository which will be your working directory e.g. `Lesson1`
-- Create an R script within that directory
-- Set your working directory to `Lesson1`
-- Create a `data` directory within your working directory
-
-In RStudio you can set your working directory this way, if you have saved your R script to your working directory: 
-- In the RStudio menu bar, go to *Session* → *Set Working Directory* → *To Source File Location*
-
-<center>
-![Set working directory → to source file location](figs/setwd.png)
-<center>
-
-
-```{block, type="alert alert-danger"}
-**Warning**: The use of `setwd()` is not a good practice in scripts without a very, very good reason. The users are aware of the environment and working directories and scripts should not try to outsmart the users.
-*Never set either of the following in your script! This would make the script not reproducible by others!*
-    setwd("/some/path/on/your/computer")
-    setwd("../some/path/outside/your/repository")
-```
-
-
-```{block type="alert alert-info"}
-**Protip**: You can use relative paths to load your data. 
-For example by setting the path to a 
-file "my-table.csv" in the directory "data", relative to your script file:
-    datafile <- file.path("data", "my-table.csv")
-Then you can for example read in the file using:
-    mytable <- read.csv(datafile) # Do something with that file name
-```
-
-The above Protip is very important, so make sure you understand this and use this within the geo-scripting exercises.
--->
 
 # References
 
