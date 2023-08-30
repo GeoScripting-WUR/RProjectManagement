@@ -445,7 +445,8 @@ Another beneficial tool for scripting work is maintaining a consistent project s
 * As we will be working with multiple languages throughout this course we will keep things organized by placing the scripts into their respective language sub-directories (`R/`, `Python/`, and `Bash/`). These directories should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main` script. The way this is done depends on the language used by the `main` script. For example in R you would write `source("R/myfunction.R")`. Whereas in Python you would use `import Python.myfunction`. You will see this in action in later tutorials. 
 * A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitLab has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be geopackages, small rasters, csv files.
 * An `output/` sub directory (when applicable). This should not be tracked by git, since your scripts create the output, so there is no need to store it.
-* Finally, a `README.md` file should be included, this file should contain a description of your project, its name and the name of the authors, along with a description of what other packages your package needs to function correctly. 
+* A `README.md` file should be included, this file should contain a description of your project, its name and the name of the authors, along with a description of what other packages your package needs to function correctly. 
+* Finally, as you learned at the beginning of this tutorial, you should include a `LICENSE.txt` file with the software liscence which you would like your code to have. 
 
 ### Example `main` file
 
@@ -463,11 +464,11 @@ library(sf)
 source('R/function1.R')
 source('R/function2.R')
 # Load datasets 
-wageningen_ndvi <- rast('data/wag_NDVI.tif')
+wageningen_ndvi <- st_read('data/wag_NDVI.gpkg')
 # Then the actual commands
 ```
 
-#### and in Python
+#### and now in Python
 
 ```{python, eval=FALSE}
 # Team Teamname (John Doe and Jane Smith)
@@ -480,14 +481,31 @@ import matplotlib.pyplot at plt
 import Python.functions as funcs
 
 # Load datasets 
-postboxes = gpd.read_file('data/postbox_locations.shp')
+postboxes = gpd.read_file('data/postbox_locations.gpkg')
 # Then the actual commands
 ```
 
 ## Working directory, relative and absolute file paths
-*At the end of the following section you should be able to explain the difference between __root directory, working directory, absolute path, relative path__* 
 
-In the R and Python examples above we load the datasets by indicating the file location from the data directory `"data/postbox_locations.shp"`. This is an example of using **relative** file paths. We don't include the location of the project directory itself (`"C:/Geoscripting/myproject/data/postbox_locations.sph"`). The reason why they are called *relative* is because they are *relative* to the **working directory**, which is the directory *from which the script is called* (`"C:/Geoscripting/myproject"`). By convention, the working directory is the same as the location of the script itself. This means that you can simply assume that whoever runs your script, will run it from the directory that your script is located.
+*At the end of the following section you should be able to explain the difference between the following:* 
+
+* relative path
+* absolute path
+* working directory, 
+* And the following special directories:
+	 * ` . `
+	 * ` .. `
+	 * ` / ` or the **root** directory
+
+In the R and Python examples above we load the datasets by indicating the file location from the data directory `"data/postbox_locations.gpkg"`.  However, you may have many data folders on your computer, for all types of different projects. So how does the system know to look in the correct one?Moreover, if you share your script with a friend the location of their project and data folders will be different than that of your setup.  It would be a nuisance if they had to change all references to these files in their script. To deal with these issues, we use **relative file paths**. 
+
+In **relative** file paths, we don't include the location of the project (**working**) directory itself, these paths are *relative* to the *working directory* (the "Project_Structure" folder).  In the example above, the **relative** file path for the post box locations file would be `data/postbox_locations.gpkg`, whereas the **absolute** file path would be `"/home/osboxes/Geoscripting/Project_Structure/data/postbox_locations.gpkg"`. The **absolute** file path refers to a file from the **root** of the entire file system. On Linux (and other UNIX-like systems like macOS), absolute file paths **always** start with ` / `. 
+
+```{block, type="alert alert-danger"}
+**Note**: on Windows, you might see a backslash (`\\`) being used as a path separator instead of a slash (`/`). **Don't do this**! In many languages, including R, a backslash denotes an [escape sequence](https://en.wikipedia.org/wiki/Escape_sequence). In addition, a backslash is not a valid path separator on non-Windows platforms, whereas both a slash and a backslash are valid on Windows. So save yourself the trouble and **always use a slash as a path separator**!
+```
+
+So what is the **working directory**? By convention, the working directory is the same as the location of the script which you are working on. This means that you can simply assume that whoever runs your script, will run it from the directory that your script is located.
 
 ```{block, type="alert alert-danger"}
 **Note**: this also means that when you test others' code, you should also make sure to run it from the directory that the script is located, unless stated otherwise!
@@ -495,13 +513,7 @@ In the R and Python examples above we load the datasets by indicating the file l
 
 To refer to directories or files that are within the working directory, we simply use their names. So to refer to a directory called `R` in our working directory, we type `R`. To refer to a file or directory within another directory, we type the name of the directory, a slash, and then the name of the file/directory, for instance, `R/function1.R`.
 
-```{block, type="alert alert-danger"}
-**Note**: on Windows, you might see a backslash (`\\`) being used as a path separator instead of a slash (`/`). **Don't do this**! In many languages, including R, a backslash denotes an [escape sequence](https://en.wikipedia.org/wiki/Escape_sequence). In addition, a backslash is not a valid path separator on non-Windows platforms, whereas both a slash and a backslash are valid on Windows. So save yourself the trouble and **always use a slash as a path separator**!
-```
-
-If we want to refer to a file or directory that is above the indicated directory, we use the special directory `..`. For instance, if our `main.R` is not in our project root, but located in the sub-directory `demo` (therefore our working directory is `demo`), we would refer to our `function1.R` file as `../R/function1.R`. Another special directory is `.`, which refers to the indicated directory itself.
-
-In contrast, an **absolute** file path refers to a file from the root of the entire file system. For instance, on Windows, an absolute file path could be `C:/Windows/cmd.exe`, or equivalently `/Windows/cmd.exe`. On Linux (and other UNIX-like systems like macOS), absolute file paths **always** start with `/`, for instance, `/home/user/proposed-meme/R/function1.R`.
+If we want to refer to a file or directory that is above the indicated directory, we use the special directory ` .. `. For instance, if our `main.R` is not in our project root, but located in the sub-directory `demo` (therefore our working directory is `demo`), we would refer to our `function1.R` file as `../R/function1.R`. Another special directory is ` . `, which refers to the indicated directory itself.
 
 When making Git repository, you want to make sure that all your code is *portable* and self-contained, i.e. you can run it from any computer, and ideally using any operating system. That means that as a rule of thumb you should **always use relative file paths** in your scripts.
 
