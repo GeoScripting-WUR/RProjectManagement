@@ -7,7 +7,7 @@
 
         <meta name="author" content="Loïc Dutrieux, Jan Verbesselt, Johannes Eberenz, Dainius Masiliūnas" />
     
-        <meta name="date" content="2023-08-30" />
+        <meta name="date" content="2023-09-01" />
     
     <title>Linux &amp; version control</title>
 
@@ -905,7 +905,7 @@ margin-left: 0 !important;
       <!-- html_clean authors -->
          <h4 class="author"><em>Loïc Dutrieux, Jan Verbesselt, Johannes
 Eberenz, Dainius Masiliūnas</em></h4>
-            <h4 class="date"><em>2023-08-30</em></h4>
+            <h4 class="date"><em>2023-09-01</em></h4>
       
       
    
@@ -1342,11 +1342,8 @@ GUI actions we will perform. Choose whichever way you find the most
 convenient for yourself.
 </p>
 <p>
-For a quick linux command line refresher you can visit the following
-site <a href="https://ryanstutorials.net/linuxtutorial/">Ryan’s Linux
-&amp; Bash Tutorial</a>. <a href="https://ryanstutorials.net/linuxtutorial/commandline.php">Section
-1 covers the command line</a>, and <a href="https://ryanstutorials.net/linuxtutorial/navigation.php">section 2
-covers navigation</a>.
+In the <a href="https://geoscripting-wur.github.io/Intro2Linux/">next
+tutorial</a> we will introduce you to more command line commands.
 </p>
 <p>
 In addition, while this tutorial describes how to use the built-in
@@ -1877,11 +1874,11 @@ the language used by the <code>main</code> script. For example in R you
 would write <code>source(&quot;R/myfunction.R&quot;)</code>. Whereas in Python you
 would use <code>import Python.myfunction</code>. You will see this in
 action in later tutorials.</li>
-<li>A <code>data/</code> subdirectory: This directory contains data sets
-of the project. Since Git is not as efficient with non-text files, and
-GitLab has storage limits, you should only put small data sets in that
-directory (&lt;2-3 MB). These can be geopackages, small rasters, csv
-files.</li>
+<li>A <code>data/</code> sub directory: This directory contains data
+sets of the project. Since Git is not as efficient with non-text files,
+and GitLab has storage limits, you should only put small data sets in
+that directory (&lt;2-3 MB). These can be geopackages, small rasters,
+csv files.</li>
 <li>An <code>output/</code> sub directory (when applicable). This should
 not be tracked by git, since your scripts create the output, so there is
 no need to store it.</li>
@@ -1890,8 +1887,8 @@ contain a description of your project, its name and the name of the
 authors, along with a description of what other packages your package
 needs to function correctly.</li>
 <li>Finally, as you learned at the beginning of this tutorial, you
-should include a <code>LICENSE.txt</code> file with the software
-liscence which you would like your code to have.</li>
+should include a <code>LICENSE.txt</code> file with the software licence
+which you would like your code to have.</li>
 </ul>
 <div id="example-main-file" class="section level3">
 <h3>Example <code>main</code> file</h3>
@@ -1908,7 +1905,7 @@ following:</p>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;R/function1.R&#39;</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;R/function2.R&#39;</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Load datasets </span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>wageningen_ndvi <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&#39;data/wag_NDVI.gpkg&#39;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>postboxes <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&#39;data/postbox_locations.gpkg&#39;</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Then the actual commands</span></span></code></pre></div>
 </div>
 <div id="and-now-in-python" class="section level4">
@@ -1946,7 +1943,7 @@ the difference between the following:</em></p>
 the file location from the data directory
 <code>&quot;data/postbox_locations.gpkg&quot;</code>. However, you may have many
 data folders on your computer, for all types of different projects. So
-how does the system know to look in the correct one?Moreover, if you
+how does the system know to look in the correct one? Moreover, if you
 share your script with a friend the location of their project and data
 folders will be different than that of your setup. It would be a
 nuisance if they had to change all references to these files in their

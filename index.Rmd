@@ -185,7 +185,7 @@ In this course, we will primarily use Git GUI as the client. It is a simple clie
 ```{block, type="alert alert-info"}
 **Protip**: For those who are comfortable with working from the Linux terminal, the command line client is often the most efficient choice. Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing. So in pro-tip boxes like this you will find command line equivalents to the GUI actions we will perform. Choose whichever way you find the most convenient for yourself.
 
-For a quick linux command line refresher you can visit the following site [Ryan's Linux & Bash Tutorial ](https://ryanstutorials.net/linuxtutorial/). [Section 1 covers the command line](https://ryanstutorials.net/linuxtutorial/commandline.php), and [section 2 covers navigation](https://ryanstutorials.net/linuxtutorial/navigation.php).
+In the [next tutorial](https://geoscripting-wur.github.io/Intro2Linux/) we will introduce you to more command line commands. 
 
 In addition, while this tutorial describes how to use the built-in `git-gui`, you can also use the more modern `git-cola`, which may be more intuitive to you. The general steps are the same as in `git-gui`. You can find Git Cola in the applications menu (or else you may need to install it).
 ```
@@ -443,10 +443,10 @@ Another beneficial tool for scripting work is maintaining a consistent project s
 
 * A `main` script at the root of the project. This script performs step by step the different operations of your project. It is the only non-generic part of your project (it contains paths, already set variables, etc). The file extension of this file will depend on what language you are using for your project.
 * As we will be working with multiple languages throughout this course we will keep things organized by placing the scripts into their respective language sub-directories (`R/`, `Python/`, and `Bash/`). These directories should contain the functions you have defined as part of your project. These functions should be as generic as possible and are *sourced* and called by the `main` script. The way this is done depends on the language used by the `main` script. For example in R you would write `source("R/myfunction.R")`. Whereas in Python you would use `import Python.myfunction`. You will see this in action in later tutorials. 
-* A `data/` subdirectory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitLab has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be geopackages, small rasters, csv files.
+* A `data/` sub directory: This directory contains data sets of the project. Since Git is not as efficient with non-text files, and GitLab has storage limits, you should only put small data sets in that directory (<2-3 MB). These can be geopackages, small rasters, csv files.
 * An `output/` sub directory (when applicable). This should not be tracked by git, since your scripts create the output, so there is no need to store it.
 * A `README.md` file should be included, this file should contain a description of your project, its name and the name of the authors, along with a description of what other packages your package needs to function correctly. 
-* Finally, as you learned at the beginning of this tutorial, you should include a `LICENSE.txt` file with the software liscence which you would like your code to have. 
+* Finally, as you learned at the beginning of this tutorial, you should include a `LICENSE.txt` file with the software licence which you would like your code to have. 
 
 ### Example `main` file
 
@@ -464,7 +464,7 @@ library(sf)
 source('R/function1.R')
 source('R/function2.R')
 # Load datasets 
-wageningen_ndvi <- st_read('data/wag_NDVI.gpkg')
+postboxes <- st_read('data/postbox_locations.gpkg')
 # Then the actual commands
 ```
 
@@ -497,7 +497,7 @@ postboxes = gpd.read_file('data/postbox_locations.gpkg')
 	 * ` .. `
 	 * ` / ` or the **root** directory
 
-In the R and Python examples above we load the datasets by indicating the file location from the data directory `"data/postbox_locations.gpkg"`.  However, you may have many data folders on your computer, for all types of different projects. So how does the system know to look in the correct one?Moreover, if you share your script with a friend the location of their project and data folders will be different than that of your setup.  It would be a nuisance if they had to change all references to these files in their script. To deal with these issues, we use **relative file paths**. 
+In the R and Python examples above we load the datasets by indicating the file location from the data directory `"data/postbox_locations.gpkg"`.  However, you may have many data folders on your computer, for all types of different projects. So how does the system know to look in the correct one? Moreover, if you share your script with a friend the location of their project and data folders will be different than that of your setup.  It would be a nuisance if they had to change all references to these files in their script. To deal with these issues, we use **relative file paths**. 
 
 In **relative** file paths, we don't include the location of the project (**working**) directory itself, these paths are *relative* to the *working directory* (the "Project_Structure" folder).  In the example above, the **relative** file path for the post box locations file would be `data/postbox_locations.gpkg`, whereas the **absolute** file path would be `"/home/osboxes/Geoscripting/Project_Structure/data/postbox_locations.gpkg"`. The **absolute** file path refers to a file from the **root** of the entire file system. On Linux (and other UNIX-like systems like macOS), absolute file paths **always** start with ` / `. 
 
