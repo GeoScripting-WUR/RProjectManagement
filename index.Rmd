@@ -336,7 +336,7 @@ If it is the first time you use Git GUI to make a commit, and you haven't filled
 Next press the *Commit* button and your commit will be saved locally. A commit is like a saved state: you are always able to roll back the contents of your tracked files to the state they were in when you committed the changes.
 
 ```{block, type="alert alert-info"}
-**Protip**: To commit a change from the command line, use `git commit`. If you want to stage all tracked and changed files and commit, use `git commit -a`.
+**Protip**: To commit a change from the command line, use `git commit`. If you want to stage all tracked and changed files and commit, use `git commit -a`. To include a message with your commit you can use the commit command with a `-m` flag, for example: `git commit -m "added plots to webapp" `.
 ```
 
 In the case you made a mistake (a mistake in the message, forgot to stage something, etc.), you can press the *Amend Last Commit* button and get right back to where you were when you made the last commit; but use this functionality very sparingly, as it does not work with changes that have already been pushed to GitLab.
@@ -432,6 +432,10 @@ You can also browse the history of a repository from your Git hosting service, a
 ```{block, type="alert alert-success"}
 > **Question 3**: How do you find commit history and old versions of your files on GitHub/GitLab?
 ```
+
+Below you can see a visual summary of what we have described above. 
+
+![Git workflow overview](figs/Git_overview.png)
 
 That's it: now you know how to keep track of all your files, so you will never lose them again, and no longer have to worry about making backups or saving multiple versions. In addition, this is the way that free and open-source code development happens in actuality. Also, the exercises and assignments in the course will be delivered and submitted this way, so make sure you are familiar with the whole process!
 
