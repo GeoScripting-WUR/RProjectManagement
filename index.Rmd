@@ -285,8 +285,6 @@ Next, we will link our client with a Git host so that we can download and upload
 
 Go to [WUR GitLab](https://git.wur.nl/) and log in (using the **WUR Single Sign On** button). 
 
-You also need to set up two-factor authentication by going to [your profile page](https://git.wur.nl/-/profile/account). 
-
 4. *Enroll the public key to your user account*
 
 The SSH key pair is used to identify that you own the device.
