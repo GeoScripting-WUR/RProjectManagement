@@ -232,7 +232,7 @@ Therefore, the first step is to generate a key pair, and the second step is to r
 
 You can create the key pair in three ways.
 The easiest graphical way to do it is to use the *Passwords and Keys* app.
-In the VirtualBox, click *Show Apps* at the bottom left and either click on *Utilities* → *Passwords and Keys*, or just start typing *Passwords* in the *type to search* searching bar and hit Enter.
+In Ubuntu, click *Show Apps* at the bottom left and either click on *Utilities* → *Passwords and Keys*, or just start typing *Passwords* in the *type to search* searching bar and hit Enter.
 
 ![Utilities in Ubuntu 24.04](figs/noble-utilities.png)
 
@@ -326,7 +326,7 @@ Now that you have a remote repository, it's time to create a local repository th
 8. *Clone your repository*
 
 Let's first clone the repository using the *Git Cola* app.
-Open it from *Show Apps* at the bottom left of VirtualBox.
+Open it from *Show Apps* at the bottom left of the Ubuntu.
 Press *Clone...* in *Git Cola* and paste the link you just copied into the box.
 Press *Clone* and select the directory you want to put the repository into.
 A subdirectory with the name of the repository will be created for you.
@@ -377,7 +377,7 @@ Let's go back to Git Cola. If you closed the previous Git Cola window, you can g
 
 ![Changes pending in Git Cola](figs/git-cola-changes.png)
 
-To see a list of files with pending changes from the command line, use `git status` while in a git repository folder. To see what exactly changed in each of these files, use `git diff`. For example:
+To see a list of files with pending changes from the command line, use `git status` while in a git repository directory. To see what exactly changed in each of these files, use `git diff`. For example:
 
 ```bash
 # Go into our repository we just cloned
