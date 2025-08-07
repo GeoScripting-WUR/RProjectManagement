@@ -543,14 +543,34 @@ hello <- function(name) {
 The roxygen2 package was created to make it easier to write documentation in R, so that documentation does not have to be separate from the code.
 The `roxygenize()` function generates the documentation files from the comments automatically, and then the documentation appears when running `?hello` in our example.
 
-## Find help
-### Online resources
+## Summary
+
+Increasing your scripting/programming efficiency goes through adopting good scripting habits. Following the guidelines above will ensure that your work:
+
+* Can be understood and used by others.
+* Can be understood and reused by you in the future.
+* Can be debugged with minimal effort.
+* Can be re-used across different projects.
+* Is easily accessible by others.
+
+The summary of good practice guidelines below is not exhaustive, but already constitutes a good basis that will help you getting more efficient now and in the future when working on scripting projects:
+
+* Comment your code.
+* Write functions for code you need more than once:
+* Document your functions.
+* Keep consistent style.
+* Make your own packages, or at least keep a similar directory structure across your projects. 
+* Use version control to develop/maintain your projects and packages.
+
+
+# Find help
+## Online resources
 
 Great, now we know how to find help about specific commands! But how do we know *how* and *what* to write in the first place? Even the most experienced programmers run into these questions, so it's important to know how to find answers to them.
 
 There are many places where help can be found on the internet. So in case the documentation is not sufficient for what you are trying to achieve, a search engine like Google is your best friend. Most likely by searching the right key words relating to your problem, the search engine will direct you to online documentation, a tutorial, or to some discussions on [Stack Exchange](https://stackexchange.com/). It is quite likely that the problem you are trying to figure out has already been answered before, and using these resources you should be able to solve your particular problem as well. However, you need to be critical about the information you find on the internet, as it may refer to old versions of the software you are using, or it may provide a workaround but not a real solution to the problem. And, of course, some of the solutions may simply not work for you.
 
-### Question and answer forums
+## Question and answer forums
 
 However, it may also happen that you discover a *bug* or something that you would qualify as abnormal behavior, or that you really have a question that no one has ever asked (corollary: has never been answered). In that case, you may submit a question to an appropriate Stack Exchange (e.g. [Unix & Linux for Bash questions](https://unix.stackexchange.com/), or contact the author of the package you are using (often by filing an issue on the package's GitHub page).
 
@@ -569,7 +589,7 @@ So, when posting to Stack Exchange:
 * Do not expect an immediate answer (although well presented questions often get answered fairly quickly).
 
 
-### Reproducible examples (reprex)
+## Reproducible examples (reprex)
 
 Indispensable when asking a question to the online community, being able to write a reproducible example has many advantages:
 
@@ -599,7 +619,7 @@ mv *\ t* ../starwars
 
 As you can see from this example, the problem is reproduced on any computer that is running Bash, and the changes are restricted to creating two directories, namely, `films` and `starwars`, which are easy to clean up afterwards.
 
-### Generative AI in coding
+## Generative AI in coding
 **TODO: ADD MORE ABOUT COPILOT**
 Another type of online resource that has recently been gaining in popularity is generative AI, such as ChatGPT. Generative AI models can be interacted with by asking it questions, including questions about programming. The AI responds by providing examples of code, explanations about what the code does, and how to run it. Of course, most AI solutions are not limited to code and will also answer questions on history, biology, quantum mechanics, and will even play Dungeons and Dragons with you, including throwing dice.
 
@@ -619,25 +639,7 @@ Note that all of these generative AI tools are built on proprietary models, but 
 
 Every day, more generative AI tools become available, increasingly embedded in the tools we use, like Google Gemini replacing 'Ok Google' on your phone and some web-browsers shipping with built-in models, like Brave browser shipping with Leo AI based on [MistralAI's Mixtral model](https://mistral.ai/technology/#models). Despite the fact that generative AI is increasingly embedded, it remains important to check whether the results it provides are factual, accurate and if the output is compatible with the license of your own code.
 
-
-## Summary
-
-Increasing your scripting/programming efficiency goes through adopting good scripting habits. Following the guidelines above will ensure that your work:
-
-* Can be understood and used by others.
-* Can be understood and reused by you in the future.
-* Can be debugged with minimal effort.
-* Can be re-used across different projects.
-* Is easily accessible by others.
-
-The summary of good practice guidelines below is not exhaustive, but already constitutes a good basis that will help you getting more efficient now and in the future when working on scripting projects:
-
-* Comment your code.
-* Write functions for code you need more than once:
-* Document your functions.
-* Keep consistent style.
-* Make your own packages, or at least keep a similar directory structure across your projects. 
-* Use version control to develop/maintain your projects and packages.
+<!-- This find help part is moved back from linux to project management on 7th August 2025-->
 
 <!-- Move the following sections from into to linux to here, once we move Linux out:
 
