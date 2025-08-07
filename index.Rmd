@@ -326,7 +326,7 @@ Now that you have a remote repository, it's time to create a local repository th
 8. *Clone your repository*
 
 Let's first clone the repository using the *Git Cola* app.
-Open it from *Show Apps* at the bottom left of the Ubuntu.
+Open it from *Show Apps* at the bottom left of Ubuntu.
 Press *Clone...* in *Git Cola* and paste the link you just copied into the box.
 Press *Clone* and select the directory you want to put the repository into.
 A subdirectory with the name of the repository will be created for you.
