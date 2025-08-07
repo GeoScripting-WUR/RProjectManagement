@@ -57,9 +57,19 @@ At the end of the tutorial, you should be able to:
 
 # Linux
 
-*Linux* is a free and open-source operating system kernel. The kernel interacts with computer hardware and exposes its capabilities for your scripts! Together with a lot of small, handy programs, it forms an *operating system* called *GNU/Linux*. However, unlike e.g. Windows, there is not a single "GNU/Linux operating system". Rather, there is a [huge variety](https://en.wikipedia.org/wiki/List_of_Linux_distributions) of Linux distributions. Each Linux distribution provides the same kernel, but different programs and environments, suitable for different use cases.
+*Linux* is a free and open-source operating system kernel. The kernel interacts with computer hardware and exposes its capabilities for your scripts! Together with a wide collection of essential free software tools developed by the *GNU Project*, it forms an operating system called *GNU/Linux*. Unlike Windows, there is no single “GNU/Linux operating system”. Instead, there is a [huge variety](https://en.wikipedia.org/wiki/List_of_Linux_distributions) of Linux distributions. Each distribution shares the same kernel, but includes different sets of programs and configurations, making them suitable for different use cases.
 
-For example, one distribution that is very handy for geo-information science work is OSGeo-Live, which is an Ubuntu-based *Linux distribution* that has a wide range of free and open-source GIS and Remote sensing tools preinstalled.
+For example, if an operating system were a car, there are two approaches to getting one:
+
+- **The Linux way**: the **Linux kernel** is the engine, and **GNU/Linux** provides the essential components like the wheels, brakes, and steering. Different distributions are like different car builds — race cars, campers, city cars — each tailored for specific purposes using different tools and software.
+- **The Windows way**: you get a ready-made car, fully assembled and optimized, but it's hard to modify. You're expected to drive it as-is.
+
+```{block, type="alert alert-success"}
+> **Question 1**: What advantages might the “Linux way” offer over the “Windows way” when it comes to scripting, automation, or scientific research?
+```
+
+
+One distribution that is very handy for geo-information science work is OSGeo-Live, which is an Ubuntu-based *Linux distribution* that has a wide range of free and open-source GIS and Remote sensing tools preinstalled.
 See [this website](http://live.osgeo.org/) for more information.
 
 These tools are also available in other distributions, but they have to be installed manually. A general-use distribution such as *Ubuntu* itself, *openSUSE* or *Fedora* is more suitable for regular day-to-day tasks, since not having the unnecessary tools installed takes less space and makes it work faster. It is also easier to find help for them than for specialised distributions.
@@ -94,11 +104,15 @@ Once you have everything ready, login into your Linux VM, try out RStudio/RKWard
 
 One key advantage of Linux is that it is free and open-source software. While it is free as in free beer, that is, it can be used at no cost, more importantly it is free as in free speech: all of the source code of the kernel and the absolute majority of the applications is licensed under a free software license.
 
-A *software license* is a legal text that describes how the software and its source code can be used by other people. Software licenses are grounded in the framework of copyright: the protection of authors' intellectual rights. A *free* software license is a software license that gives others the freedom to run, copy, read, modify, and distribute changes to the original software and its source code. This is in addition to an *open-source* license, which makes the source code available and redistributable, but [does not necessarily make the source code free](https://www.gnu.org/philosophy/open-source-misses-the-point.html). Both free an open-source licenses have their overseeing bodies: the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.html) for free software licenses, and the [Open Source Initiative](https://opensource.org/osd) for open-source licenses. When a software fits both definitions (they often overlap), it is referred to as Free and Open-Source Software (FOSS), or les often as Free, Libre and Open-Source Software (FLOSS).
+A *software license* is a legal text that describes how the software and its source code can be used by other people. Software licenses are grounded in the framework of copyright: the protection of authors' intellectual rights. A *free* software license is a software license that gives others the freedom to run, copy, read, modify, and distribute changes to the original software and its source code. This is in addition to an *open-source* license, which makes the source code available and redistributable, but [does not necessarily make the source code free](https://www.gnu.org/philosophy/open-source-misses-the-point.html). Both free an open-source licenses have their overseeing bodies: the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.html) for free software licenses, and the [Open Source Initiative](https://opensource.org/osd) for open-source licenses. While sharing many similarities, they are [different](https://e.foundation/what-is-the-difference-between-free-software-and-open-source-software/). The key difference is that free software emphasizes the ethical and moral rights of users, whereas open-source focuses more on the practical aspects of source code accessibility, development, and redistribution. When a software fits both definitions (they often overlap), it is referred to as Free and Open-Source Software (FOSS), or less often as Free, Libre and Open-Source Software (FLOSS).
 
 There are many advantages to FOSS. One advantage is that it fosters collaboration: one person implementing a feature makes it available for all of the users in the world. This enables such a massive effort required to create GNU/Linux distributions based on volunteer work, without needing to rely on commercial licensing, advertisements, donations or spyware to finance the work. It also allows anyone to remove such undesired parts of any software component, therefore ensuring higher quality of the software. Thus, while FOSS projects initially start weaker than *proprietary* (non-free or closed-source) software, in the long run the collaboration potential brings it on par and even overtaking the propriatary counterparts. See for example QGIS, which is FOSS, vs the proprietary ArcGIS.
 
-A software license defines what others can do with your code, therefore before starting to write any code, **it is vital to think about the license** you would like to release your code under. This is because if you do not define any license, the default copyright terms apply: even if you publish the source code publicly, nobody is allowed to copy, redistribute or modify the code, in fact nobody is even allowed to read it! As an author, you are free to choose any license, both proprietary and FOSS licenses (or in fact no license altogether), but a proprietary license restricts the freedoms of others and therefore diminishes chances that others would want to collaborate with you to improve the code in the future. In addition, do not confuse a *software license* with *commercial licensing*, i.e. the requirement to activate a license subscription to use 
+A software license defines what others can do with your code, therefore before starting to write any code, **it is vital to think about the license** you would like to release your code under. This is because if you do not define any license, the default copyright terms apply: even if you publish the source code publicly, nobody is allowed to copy, redistribute or modify the code, in fact nobody is even allowed to read it! As an author, you are free to choose any license, both proprietary and FOSS licenses (or in fact no license altogether), but a proprietary license restricts the freedoms of others and therefore diminishes chances that others would want to collaborate with you to improve the code in the future. In addition, do not confuse a *software license* with *commercial licensing*, i.e. the requirement to activate a license subscription to use.
+
+```{block, type="alert alert-success"}
+> **Question 2**: What happens if you publish your code but don’t include a license?
+```
 
 There are two types of FOSS licenses: copyleft and permissive. A *permissive* license is one that allows copying, modifying and redistributing the code with no serious restrictions (usually with a restriction that the original author be credited for the work). A *copyleft* license adds a restriction that any modified versions that are distributed must be under the same (or equivalent) license. This restriction restricts others from restricting the terms of the software license in the future, therefore keeping the source code free forever. In other words, it's following the philosophy that if we want to achieve the most freedom, we must restrict the freedom to restrict freedom!
 
@@ -107,7 +121,7 @@ Lastly, there is also an option to *dedicate software to the public domain*, whi
 How can you choose a software license in practice? There are [multiple](https://choosealicense.com/) [websites](https://www.gnu.org/licenses/license-recommendations.en.html) that give an overview of the most popular licenses that you can choose. Once you choose one, you need to follow the terms of the license about how to apply it. In most cases, it is sufficient to copy the terms of the license next to your source code and include it in your version control repository.
 
 ```{block, type="alert alert-success"}
-> **Question 1**: If you wanted to contribute to a project that is licensed under the GNU General Public License v3 (copyleft), under which license(s) could you contribute? Which license would you choose in the end?
+> **Question 3**: If you wanted to contribute to a project that is licensed under the GNU General Public License v3 (copyleft), under which license(s) could you contribute? Which license would you choose in the end?
 ```
 
 # Version control
@@ -141,7 +155,7 @@ Additionally, version control:
 * Allows you to keep different versions of your code without having to worry about file names and archiving organization
 
 ```{block, type="alert alert-success"}
-> **Question 2**: Think of examples where you could use version control for things other than code.
+> **Question 4**: Think of examples where you could use version control for things other than code.
 ```
 
 The three most popular version control software are **Git**, **Mercurial** (abbreviated as hg) and **Subversion** (abbreviated as svn). *Git* is by far the most modern and popular one, so we will only use *Git* in this course.
@@ -218,13 +232,13 @@ Therefore, the first step is to generate a key pair, and the second step is to r
 
 You can create the key pair in three ways.
 The easiest graphical way to do it is to use the *Passwords and Keys* app.
-Click *Show Apps* at the bottom left and either click on *Utilities* → *Passwords and Keys*, or just start typing *Passwords* and hit Enter.
+In Ubuntu, click *Show Apps* at the bottom left and either click on *Utilities* → *Passwords and Keys*, or just start typing *Passwords* in the *type to search* searching bar and hit Enter.
 
 ![Utilities in Ubuntu 24.04](figs/noble-utilities.png)
 
 2. *Create an SSH key pair*
 
-Click on the `+` icon at the top left and select *Secure Shell key*.
+Click on the `+` icon at the top left of the *Passwords and Keys* app and select *Secure Shell key*.
 
 ![Passwords and Keys](figs/noble-seahorse.png)
 
@@ -269,7 +283,7 @@ Next, we will link our client with a Git host so that we can download and upload
 
 3. *Log into GitLab*
 
-Go to [GitLab](https://git.wur.nl/) and log in (using the **WUR Single Sign On** button). You also need to set up two-factor authentication by going to [your profile page](https://git.wur.nl/-/profile/account).
+Go to [WUR GitLab](https://git.wur.nl/) and log in (using the **WUR Single Sign On** button). 
 
 4. *Enroll the public key to your user account*
 
@@ -304,7 +318,7 @@ Next, check out the repository settings. Under the *Members* subtab of the *Mana
 
 7. *Get the URL of your new repository*
 
-Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new repository, click the blue *Code* button at the top right of the page, and copy the *Clone with **SSH** * address of your new repository.
+Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new repository, click the blue *Code* button at the top right of the your repository page, and copy the *Clone with **SSH** * address of your new repository.
 
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
 ![Blank GitLab repository](figs/GitLab-empty-repository.png)
@@ -312,8 +326,8 @@ Now that you have a remote repository, it's time to create a local repository th
 8. *Clone your repository*
 
 Let's first clone the repository using the *Git Cola* app.
-Open it from *Show Apps* at the bottom left.
-Press *Clone...* and paste the link you just copied into the box.
+Open it from *Show Apps* at the bottom left of Ubuntu.
+Press *Clone...* in *Git Cola* and paste the link you just copied into the box.
 Press *Clone* and select the directory you want to put the repository into.
 A subdirectory with the name of the repository will be created for you.
 After pressing *Open*, you will get a question about whether you trust the remote machine.
@@ -344,7 +358,7 @@ You will end up in an empty Git GUI window:
 
 9. *Tell Git who you are*
 
-Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to *File* → *Preferences* (in Git GUI it's *Edit* → *Options...*) and fill out the options *User Name* and *Email Address* under *All Repositories* . These will be displayed in GitLab.
+Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to *File* → *Preferences* in Git Cola (in Git GUI it's *Edit* → *Options...*) and fill out the options *User Name* and *Email Address* under *All Repositories* . These will be displayed in GitLab.
 
 You can also do that from the terminal:
 
@@ -357,14 +371,13 @@ git config --global user.email you@example.com
 
 10. *Make changes*
 
-To see Git in action, you need to make some changes in your repository. Try it by creating a new file in the directory where you cloned your new project.
-You can do that using the *Text editor* (gedit), or from the terminal using the `touch` command.
+To see Git in action, you need to make some changes in your repository. Try it by creating a new file in the directory where you cloned your new project. You can do that using the *Text editor* (gedit), or from the terminal using the `touch` and `nano` command.
 
-Once you are done, go back to Git Cola. If you closed the window, you can get back to your repository by launching Git Cola and clicking on its path in the *list*. You will see some changes:
+Let's go back to Git Cola. If you closed the previous Git Cola window, you can get back to your repository by launching Git Cola and clicking on its path in the *list*. You will see some changes:
 
 ![Changes pending in Git Cola](figs/git-cola-changes.png)
 
-To see a list of files with pending changes from the command line, use `git status` while in a git repository. To see what exactly changed in each of these files, use `git diff`. For example:
+To see a list of files with pending changes from the command line, use `git status` while in a git repository directory. To see what exactly changed in each of these files, use `git diff`. For example:
 
 ```bash
 # Go into our repository we just cloned
@@ -379,7 +392,9 @@ Git GUI works equivalent to Git Cola, only that you need to press the *Rescan* b
 ![Changes pending in Git GUI](figs/git_gui_changes.png)
 ```
 
-At the top left corner, the *Status* panel, you can see all the files that changed in your workspace. If you click on the name of the file, the *Diff* panel will show you what changed in that file since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. **Note**: Git is very efficient with storing changes in text files: these *diff* files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.
+11. *Stage changes*
+
+At the top left corner of Git Cola (or similar in Git GUI), the *Status* panel, you can see all the files that changed in your workspace. If you click on the name of the file, the *Diff* panel will show you what changed in that file since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. **Note** that Git is very efficient with storing changes in text files: these *diff* files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.
 
 If you double-click on the name of the file in the *Untracked* category, the file changes will be *staged* and appear at the *Staged* category. These are the file changes you want to save and sent to GitLab. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the *Commit* → *Stage Modified* button. If you staged more than you wanted to, you can double-click on the file in the *Staged* panel to unstage it.
 
@@ -398,7 +413,7 @@ Git GUI works similarly to Git Cola, but clicking the **name** of the file shows
 **Tip**: If you have files that you don't want git to track, you can add them into the `.gitignore` file. It could be the name of a file, a directory, a wildcard (e.g. `*.pdf`), or any combination of these. To list several, put them on separate lines.
 ```
 
-11. *Commit changes*
+12. *Commit changes*
 
 Once you staged the files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create. The **top line** (commit summary) is the **title** of the commit, keep that one short. Subsequent lines (extended description) are the **description**. You may notice that there is a character counter at the top right which goes yellow if you exceed 65 characters on a line. that is intentional, because your commit message should fit within 65 characters per line for easy reading on the terminal. Use new lines to break longer sentences or paragraphs.
 
@@ -417,7 +432,12 @@ git commit -m "Add a new file hello.txt"
 Git GUI works similarly, but the commit box is not separated into title and description. Rather, the title is the first line, and the subsequent lines are the description. The textbox is limited to 65 characters in width and has no scrollbar.
 ```
 
-10. *Push changes to the server*
+```{block, type="alert alert-success"}
+> **Question 5**: What's the difference between stage difference and commit changes in git?
+```
+
+
+13. *Push changes to the server*
 
 Select *Actions* → *Push*, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!
 
@@ -425,7 +445,7 @@ Select *Actions* → *Push*, and confirm the push, to send all your changes to y
 
 To push changes from the command line, type `git push`.
 
-11. *Pull changes from the server*
+14. *Pull changes from the server*
 
 One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git Cola by using *Actions* → *Pull*.
 
@@ -476,17 +496,17 @@ A fork is your own personal copy of someone else's repository. GitLab allows you
 **Tip**: In fact, if you click the edit button on a file on GitLab and do changes to a repository that you don't have the rights to write into, GitLab will helpfully make a fork for you, followed by a proposal to make a merge request for your changes.
 ```
 
-12. *Fork a repository*
+15. *Fork a repository*
 
 Go to your team member's repository that they created by following the steps above, and then click the *Fork* button at the top right. (If you can't find it, alternatively you can go to some other repository, and fork it.) You will find a new repository under your profile, by default with the same name as the original.
 
 <!--![Fork button](figs/GitHub-fork.png)-->
 
-13. *Make changes, commit and push*
+16. *Make changes, commit and push*
 
 After you have your own fork, it is the same as having your own personal repository with the code from the original (*upstream*) repository in it. Clone it locally, make some changes, commit them and push them back to GitLab, as per steps 7-10. You should see that your changes take effect in your own *downsteam* fork, but not in the upstream repository.
 
-14. *Make a merge request*
+17. *Make a merge request*
 
 If you are ready to ask the upstream developers to incorporate your code into their repository, go to the *Code* → *Merge Requests* tab and press the blue *New merge request* button. Select your `main` branch of your fork as the source.
 
@@ -521,7 +541,7 @@ The command line equivalent is `git log`, though it does not show a graph view. 
 You can also browse the history of a repository from your Git hosting service, and GitHub/GitLab even allow editing files from a web interface.
 
 ```{block, type="alert alert-success"}
-> **Question 3**: How do you find commit history and old versions of your files on GitHub/GitLab?
+> **Question 6**: How do you find commit history and old versions of your files on GitHub/GitLab?
 ```
 
 Below you can see a visual summary of what we have described above. 
@@ -529,7 +549,6 @@ Below you can see a visual summary of what we have described above.
 ![Git workflow overview](figs/Git_overview.png)
 
 That's it: now you know how to keep track of all your files, so you will never lose them again, and no longer have to worry about making backups or saving multiple versions. In addition, this is the way that free and open-source code development happens in actuality. Also, the exercises and assignments in the course will be delivered and submitted this way, so make sure you are familiar with the whole process!
-
 
 
 # References
