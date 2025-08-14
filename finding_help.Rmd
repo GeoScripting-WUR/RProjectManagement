@@ -120,7 +120,8 @@ Note that all of these generative AI tools are built on proprietary models and a
 There are also open-weight models that you can download on your own computer and run them on your own.
 This can be useful if you don't want to give your data to the company running the model, or if you have no internet connection, or if you want to avoid running out of credit.
 The downside is that the models running on your own computer are slow (you get to see the answer appearing word by word) and do not integrate easily with IDEs.
-A self-hosted web interface and open-weight model list can be find on the [Ollama](https://ollama.com/) website.
+A server and open-weight model list can be find on the [Ollama](https://ollama.com/) website.
+A web interface that links to it can be found on [Open WebUI](https://docs.openwebui.com/).
 
 ## Question and answer forums
 
