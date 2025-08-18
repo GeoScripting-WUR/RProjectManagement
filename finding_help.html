@@ -7,7 +7,7 @@
 
         <meta name="author" content="Dainius Masiliūnas" />
     
-        <meta name="date" content="2025-08-14" />
+        <meta name="date" content="2025-08-18" />
     
     <title>AI and best coding practices</title>
 
@@ -905,7 +905,7 @@ margin-left: 0 !important;
 
       <!-- html_clean authors -->
          <h4 class="author"><em>Dainius Masiliūnas</em></h4>
-            <h4 class="date"><em>2025-08-14</em></h4>
+            <h4 class="date"><em>2025-08-18</em></h4>
       
       
    
@@ -1473,27 +1473,12 @@ coding more efficient by the reuse of common functions.</p>
 <h1>Good programming habits</h1>
 <div id="project-structure" class="section level2">
 <h2>Project structure</h2>
-<p>Making packages is a great way to stay organized, keep track of what
-you are doing and be able to use it quickly and properly at any time.
-Packages are:</p>
-<ul>
-<li>Easy to share with others</li>
-<li>Dependencies are automatically imported and functions are sourced
-(reduces the risk of having broken dependencies)</li>
-<li>Documentation is attached to the functions and cannot be lost (or
-forgotten)</li>
-</ul>
-<p>For these reasons, if you build a package, next year you will still
-be able to run the functions you wrote yesterday. Which is often not the
-case for stand alone functions that are poorly documented and may depend
-on many other functions ... that you cannot find any more. So to
-summarize, packages are not only a way to extend functionality, they are
-also the standard way to archive and save functions.</p>
-<p>To make it easy for you to make a package out of your code, you need
-to stick with a project structure that packages have. Another benefit of
-maintaining a consistent project structure is that it will make it
-easier for you to switch from one project to the other and immediately
-understand how things work.</p>
+<p>How you organise files in your project dierctory (repository) is very
+important. Keeping a consistent structure allows you to easily share
+your project with collaborators, easily remember what is where when you
+come back to work on the project later, and allows setting up automatic
+testing of your software for bugs (Continuous Integration, CI). It also
+allows you to easily convert a project into a package.</p>
 <p>To practice keeping a consistent project structure, in this course we
 will be following the structure below:</p>
 <div class="float">

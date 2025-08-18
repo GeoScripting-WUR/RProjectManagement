@@ -225,3 +225,16 @@ rm -rf MyPackage MyPackage_1.0.tar.gz HelloWorld.r
 ```{r include=FALSE}
 remove.packages("MyPackage")
 ```
+
+## Project structure
+
+Making packages is a great way to stay organized, keep track of what you are doing and be able to use it quickly and properly at any time. Packages are:
+
+* Easy to share with others
+* Dependencies are automatically imported and functions are sourced (reduces the risk of having broken dependencies)
+* Documentation is attached to the functions and cannot be lost (or forgotten)
+
+For these reasons, if you build a package, next year you will still be able to run the functions you wrote yesterday. Which is often not the case for stand alone functions that are poorly documented and may depend on many other functions ... that you cannot find any more. So to summarize, packages are not only a way to extend functionality, they are also the standard way to archive and save functions.
+
+To make it easy for you to make a package out of your code, you need to stick with a project structure that packages have.
+Another benefit of maintaining a consistent project structure is that it will make it easier for you to switch from one project to the other and immediately understand how things work.
