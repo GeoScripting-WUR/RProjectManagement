@@ -100,7 +100,7 @@ And always give credit where credit is due: if you reuse code from anywhere, you
 This includes code that you used from AI.
 If you wrote code that was inspired by AI, it's also good to mention it explicitly.
 
-Note that when you use generative AI autocompletion, you need to be extra careful, as it will always provide you code.
+Note that when you use generative AI autocompletion, you need to be extra careful, as it will always provide you code. It is useful to turn off AI autocompletion during the course, so you can think about the code yourself before the autocompletion provides the code for you.
 The same applies as with code from chatbots: never accept the code as-is, always check what the functions are and what they do, and try to rewrite it to make sense for you.
 And always add attribution that this part of the code was based on code generated from the AI you were using.
 
