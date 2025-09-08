@@ -312,7 +312,7 @@ import rasterio
 
 Aside from Jupyter, you can use other IDEs for Python.
 A popular IDE for Python is Microsoft [Visual Studio Code](https://code.visualstudio.com/), which is also installed on your virtual machine.
-Another is [PyCharm](https://www.jetbrains.com/pycharm/), but it is not preinstalled as its installation os more difficult to automate.
+Another is [PyCharm](https://www.jetbrains.com/pycharm/), but it is not preinstalled as its installation is more difficult to automate.
 Therefore, in the rest of the tutorial we will cover VSCode, but if you feel comfortable with PyCharm (or another IDE), you can keep using it.
 
 
@@ -329,7 +329,7 @@ We then install packages in the IDE, these are collections of related code files
 
 ## Project structure
 
-How you organise files in your project dierctory (repository) is very important.
+How you organise files in your project directory (repository) is very important.
 Keeping a consistent structure allows you to easily share your project with collaborators, easily remember what is where when you come back to work on the project later, and allows setting up automatic testing of your software for bugs (Continuous Integration, CI).
 It also allows you to easily convert a project into a package.
 
@@ -405,7 +405,7 @@ postboxes = gpd.read_file('data/postbox_locations.gpkg')
 	 * ` .. `
 	 * ` / ` or the **root** directory
 
-In the R and Python examples above we load the datasets by indicating the file location from the data directory `"data/postbox_locations.gpkg"`.  However, you may have many data folders on your computer, for all types of different projects. So how does the system know to look in the correct one? Moreover, if you share your script with a friend the location of their project and data folders will be different than that of your setup.  It would be a nuisance if they had to change all references to these files in their script. To deal with these issues, we use **relative file paths**. 
+In the R and Python examples above we load the data sets by indicating the file location from the data directory `"data/postbox_locations.gpkg"`.  However, you may have many data folders on your computer, for all types of different projects. So how does the system know to look in the correct one? Moreover, if you share your script with a friend the location of their project and data folders will be different than that of your setup.  It would be a nuisance if they had to change all references to these files in their script. To deal with these issues, we use **relative file paths**. 
 
 In **relative** file paths, we don't include the location of the project (**working**) directory itself, these paths are *relative* to the *working directory* (the "Project_Structure" folder).  In the example above, the **relative** file path for the post box locations file would be `data/postbox_locations.gpkg`, whereas the **absolute** file path would be `"/home/osboxes/Geoscripting/Project_Structure/data/postbox_locations.gpkg"`. The **absolute** file path refers to a file from the **root** of the entire file system. On Linux (and other UNIX-like systems like macOS), absolute file paths **always** start with ` / `. 
 
@@ -433,12 +433,12 @@ When making Git repository, you want to make sure that all your code is *portabl
 
 As we have seen in the package examples, documentation of code is extremely important to understand what your code is doing.
 It's not only for others reading your code, but also for yourself, when you have to revisit code you haven't touched in a while.
-If you follow the good scripting habits mentioned above, you will already have your code divided into reusable functions, that are in their own function files.
+If you follow the good scripting habits mentioned above, you will already have your code divided into reusable functions that are in their own function files.
 Each function should have enough comments to understand each step the function is performing.
 Comments are any words after the `#` character, in either language.
 Same goes for the main script, it should also have each step described.
 But you don't need to make it redundant: if it's already clear from the function name what it does, it's useless to repeat it in a comment.
-Rather, you would describe sections of code at once, e.g. what a loop does by itself, rather than its indvidual steps.
+Rather, you would describe sections of code at once, e.g. what a loop does by itself, rather than its individual steps.
 In addition, if you use code from someone else, make sure to obey the license of the code you are using, and give credit to the original author using comments.
 
 In addition to comments of your code, each function should also have a description and an explanation for all of its arguments.
