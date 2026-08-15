@@ -194,16 +194,14 @@ Often you also setup a **remote repository**, stored on an online platform like 
 
 Effective use of git includes two components: local software to manage the files on your computer (git client) and an online git hosting service to make them centrally accessible. While git is a single system, there is a variety of clients and a variety of hosts.
 
-In the virtual machine provided for you, we have three clients installed: the command line client (`git`), the basic and a bit old-fashioned Git GUI and a more modern Git Cola.
+In the virtual machine provided for you, we have four clients installed: the command line client (`git`), the basic and a bit old-fashioned Git GUI, a more modern Git Cola, and the git client integrated into the R and Python integrated development environment Positron.
 The choice of client is up to you, and you can try them all out and even mix and match.
 
-In this tutorial, we will cover Git Cola and the command line client.
+In this tutorial, we will cover the command line client and Positron git integration.
 The command line client is by far the most efficient way to use Git.
 Knowing how to use git from the command line is also useful when working on cloud virtual machines/servers for big data processing.
 But you need to not be afraid to use the terminal, and know what commands to use.
 We have not covered how to use the terminal yet, but for now, you can follow along by opening the Terminal app and entering the given commands into it.
-
-There are more graphical clients as well, including one integrated into RStudio itself, but these clients are outside the scope of this course. Note that Git is language-agnostic, and we will be using it with both R and Python, so it's best to learn the language-neutral GUI, rather than an R-specific GUI.
 
 Throughout the Geoscripting course, for hosting our code, we will be using the university's very own instance of [GitLab](https://git.wur.nl), the most popular self-hosted Git hosting platform.
 
@@ -273,10 +271,10 @@ Once done, you will see your new public key:
 ![SSH public key generated](figs/git_gui_sshkey.png)
 
 The second option to generate keys is to use the terminal.
-This is especially useful if you are using a server without a GUI, or using a different Linux distribution or desktop environment. Simply run the command in the terminal: `ssh-keygen -t rsa -b 4096`
+This is especially useful if you are using a server without a GUI, or using a different Linux distribution or desktop environment. Simply run the command in the terminal: `ssh-keygen`
 
-In all cases, by default the public key is stored in the file `~/.ssh/id_rsa.pub` (where `~` indicates the user's home directory).
-You can read it from the terminal by running: `cat ~/.ssh/id_rsa.pub`
+In all cases, by default the public key is stored in the file `~/.ssh/id_*.pub` (where `~` indicates the user's home directory and `*` indicates the encryption algorithm used, such as `rsa` or `ed25519`).
+You can read it from the terminal by running: `cat ~/.ssh/id_*.pub`
 ```
 
 Next, we will link our client with a Git host so that we can download and upload repositories.
@@ -307,7 +305,6 @@ In addition, you can add a `.gitignore` file. This is useful to prevent Git from
 6. *Configure repository settings*
 
 Explore your new blank repository a bit. In the middle, you have buttons to add new files. Choose to add a `LICENSE` file, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
-
 On the tabs to the left, you can find that the repository can have issues and merge requests assigned to them. **Issues** is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
 
 ![Example issue on GitLab](figs/GitLab-issues.png)
@@ -318,22 +315,22 @@ Next, check out the repository settings. Under the *Members* subtab of the *Mana
 
 7. *Get the URL of your new repository*
 
-Now that you have a remote repository, it's time to create a local repository that links to it! Open the main page of your new repository, click the blue *Code* button at the top right of the your repository page, and copy the *Clone with **SSH** * address of your new repository.
+Now that you have a remote repository, it's time to create a local copy on your own computer! Open the main page of your new repository, click the blue *Code* button at the top right of the your repository page, and copy the *Clone with **SSH** * address of your new repository.
 
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
 ![Blank GitLab repository](figs/GitLab-empty-repository.png)
 
 8. *Clone your repository*
 
-Let's first clone the repository using the *Git Cola* app.
+Let's first clone the repository using the *Positron* app.
 Open it from *Show Apps* at the bottom left of Ubuntu.
-Press *Clone...* in *Git Cola* and paste the link you just copied into the box.
-Press *Clone* and select the directory you want to put the repository into.
-A subdirectory with the name of the repository will be created for you.
-After pressing *Open*, you will get a question about whether you trust the remote machine.
+Press *New Folder from Git...* in *Positron* and paste the link you just copied into the "Git repository URL" box.
+Select the directory you want to put the repository into under "Create folder as subfolder of".
+A subdirectory with the name of the repository will be created for you inside the sected directory.
+After pressing *OK*, you will get a question about whether you trust the remote machine.
 You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
 
-You will end up in an empty Git Cola window:
+You will see your files from GitLab copied locally to your computer at the top left of Positron:
 
 ![Git GUI in an empty directory](figs/git-cola.png)
 
@@ -344,38 +341,30 @@ git clone git@git.wur.nl:masil001/geoscripting-git-test.git
 
 The repository will be cloned into a subdirectory with a matching name. This is much faster than using any GUI!
 
-```{block, type="alert alert-info"}
-To clone using Git GUI, press *Clone Existing Repository*. Paste the URL you just copied to the *Source Location* field, and choose a directory you want to store your code in in the *Target Directory* field. **Note**: unlike in Git Cola, the *Target Directory* must **not** already exist! Git GUI will create it for you.
-
-You will end up in an empty Git GUI window:
-
-![Git GUI in an empty directory](figs/git_gui_blank.png)
-```
-
-```{block, type="alert alert-danger"}
-**Notice**: Sometimes Git GUI crashes or gets stuck at this stage. When you restart it, you may also find that the panes are collapsed (you need to drag them out from the borders of the window) and that the repository branch is set to `master` instead of `main`. To avoid this issue, and because it is much faster and more convenient in general, we recommend always cloning repositories from Git Cola or the terminal.
-```
-
 9. *Tell Git who you are*
 
-Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should go to *File* → *Preferences* in Git Cola (in Git GUI it's *Edit* → *Options...*) and fill out the options *User Name* and *Email Address* under *All Repositories* . These will be displayed in GitLab.
-
-You can also do that from the terminal:
+Before you start using Git, you should tell it what your name and email address is. You need to do that only once per Git installation. You should do that from the terminal:
 
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email you@example.com
 ```
 
-### Working with Git Cola
+If you don't do this step, you will get an error in step 12. For example, Positron will tell you `Make sure you configure your "user.name" and "user.email" in git.`
+
+### Working with Git
 
 10. *Make changes*
 
-To see Git in action, you need to make some changes in your repository. Try it by creating a new file in the directory where you cloned your new project. You can do that using the *Text editor* (gedit), or from the terminal using the `touch` and `nano` command.
+To see Git in action, you need to make some changes in your repository. Try it by creating a new file in the directory where you cloned your new project. You can do that using the *Text editor* (gedit), Positron, or from the terminal using the `touch` and `nano` commands.
 
-Let's go back to Git Cola. If you closed the previous Git Cola window, you can get back to your repository by launching Git Cola and clicking on its path in the *list*. You will see some changes:
+Let's go back to Positron. If you closed the previous Positron window, you can get back to your repository by launching Positron and clicking on its path in the *list*. You will see some changes in the Source Control tab on the left side of the screen:
 
 ![Changes pending in Git Cola](figs/git-cola-changes.png)
+
+Files marked with `U` are newly created **Untracked** files. Files marked with `M` are **Modified** files. If you click on a file here, you will get to see the differences from the previous version of the file, unless it's a binary file.
+
+**Note** that Git is very efficient with storing changes in text files: these *differences* are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible. As a rule: **Do not commit binary files to git unless absolutely necessary**!
 
 To see a list of files with pending changes from the command line, use `git status` while in a git repository directory. To see what exactly changed in each of these files, use `git diff`. For example:
 
@@ -386,17 +375,9 @@ cd geoscripting-git-test/
 git status
 ```
 
-```{block, type="alert alert-info"}
-Git GUI works equivalent to Git Cola, only that you need to press the *Rescan* button every time you want it to reload the list:
-
-![Changes pending in Git GUI](figs/git_gui_changes.png)
-```
-
 11. *Stage changes*
 
-At the top left corner of Git Cola (or similar in Git GUI), the *Status* panel, you can see all the files that changed in your workspace. If you click on the name of the file, the *Diff* panel will show you what changed in that file since the last commit. Unless it is a non-text (data) file, in which case it will just note that something has changed. **Note** that Git is very efficient with storing changes in text files: these *diff* files are all it stores internally, it does not copy the whole file on each commit. However, it does not deal efficiently with non-text files, and thus you should limit the amount and size of such files as much as possible.
-
-If you double-click on the name of the file in the *Untracked* category, the file changes will be *staged* and appear at the *Staged* category. These are the file changes you want to save and sent to GitLab. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the *Commit* → *Stage Modified* button. If you staged more than you wanted to, you can double-click on the file in the *Staged* panel to unstage it.
+If you click on the `+` next to the name of the file in the *Untracked* category, the file changes will be *staged* and appear at the *Staged Changes* category. These are the file changes you want to save and send to GitLab. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the `+` button on the "Changes" header. If you staged more than you wanted to, you can remove the file from the *Staged Changes* category by clicking the `-` button.
 
 To stage a change from the command line, use `git add` and a path to the file to stage To unstage, use `git restore --staged` and a path to the filename. For example:
 
@@ -408,28 +389,21 @@ git restore --staged hello.txt
 ```
 
 ```{block, type="alert alert-info"}
-Git GUI works similarly to Git Cola, but clicking the **name** of the file shows the changes you made, clicking the **icon** of the file stages or unstages the change.
-
 **Tip**: If you have files that you don't want git to track, you can add them into the `.gitignore` file. It could be the name of a file, a directory, a wildcard (e.g. `*.pdf`), or any combination of these. To list several, put them on separate lines.
 ```
 
 12. *Commit changes*
 
-Once you staged the files that you want to commit, you need to fill out the *commit message*. This is a brief description of what changes you made between the last commit and the one you are about to create. The **top line** (commit summary) is the **title** of the commit, keep that one short. Subsequent lines (extended description) are the **description**. You may notice that there is a character counter at the top right which goes yellow if you exceed 65 characters on a line. that is intentional, because your commit message should fit within 65 characters per line for easy reading on the terminal. Use new lines to break longer sentences or paragraphs.
+Once you staged the files that you want to commit, you need to fill out the commit *Message*. In Positron it is a textbox above the "Commit" button. This is a brief description of what changes you made between the last commit and the one you are about to create. The **top line** (commit summary) is the **title** of the commit, keep that one short. Subsequent lines (extended description) are the **description**. Your commit message should fit within 65 characters per line for easy reading on the terminal. Use new lines to break longer sentences or paragraphs.
 
-If it is the first time you use Git Cola to make a commit, and you haven't filled out your user name and email, it might complain about it not knowing who you are. In that case go back to step 9.
+If it is the first time you use Positron to make a commit, and you haven't filled out your user name and email, it might complain about it not knowing who you are. In that case go back to step 9.
 
-Next press the *Commit* button and your commit will be saved locally. A commit is like a saved state: you are always able to roll back the contents of your tracked files to the state they were in when you committed the changes.
+Next press the big *Commit* button and your commit will be saved locally. A commit is like a saved state: you are always able to roll back the contents of your tracked files to the state they were in when you committed the changes.
 
 To commit a change from the command line, use `git commit`. It will start a command line text editor so that you can write a commit message. If you want to stage all tracked and changed files and commit all in one step, use `git commit -a`. To include a message with your commit without using a text editor, you can use the commit command with the `-m` flag, for example:
 
 ```bash
 git commit -m "Add a new file hello.txt"
-```
-
-
-```{block, type="alert alert-info"}
-Git GUI works similarly, but the commit box is not separated into title and description. Rather, the title is the first line, and the subsequent lines are the description. The textbox is limited to 65 characters in width and has no scrollbar.
 ```
 
 ```{block, type="alert alert-success"}
@@ -439,7 +413,7 @@ Git GUI works similarly, but the commit box is not separated into title and desc
 
 13. *Push changes to the server*
 
-Select *Actions* → *Push*, and confirm the push, to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!
+Select *Sync Changes* to send all your changes to your GitLab repository. You can now refresh the GitLab page to see your changes. Well done!
 
 ![GitLab repository with content](figs/GitLab-repository.png)
 
@@ -447,17 +421,13 @@ To push changes from the command line, type `git push`.
 
 14. *Pull changes from the server*
 
-One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. That is done via Git Cola by using *Actions* → *Pull*.
+One of the major uses of Git is collaboration and the ability to synchronise changes across different devices. Multiple users can do changes in the same Git repository (as long as you change the repository settings in GitLab to allow another user to do that), and you can work on the same code on different devices yourself. In both cases, it is important to keep all local repositories in sync with the remote repository. The *Sync Changes* button not only pushes your changes to the server, but also fetches changes from the server and pulls new changes from the server to your local copy.
 
-If you like, you can test it by cloning the same repository in another directory, making changes and pushing them to the server, then using pull in the other copy. If all goes well, the changes in the server will be applied to your local repository files.
+If you like, you can test it by cloning the same repository in another directory, making changes and pushing them to the server, then using *Sync Changes* in the other copy. If all goes well, the changes in the server will be applied to your local repository files.
 
 You can do the same on the command line with `git pull`.
 
-```{block, type="alert alert-info"}
-In Git GUI, it is slightly more complicated, as there is no pull button. Rather, a pull is a combination of a fetch and a merge. Therefore, you need to first do *Remote* → *Fetch from* → *origin*, followed by a  *Merge* → *Local merge...*.
-```
-
-There may be cases where files go out of sync in incompatible ways, however, like two people editing one file at the same time. In that case you may hit a *merge conflict*. You will see a message such as:
+There may be cases where files go out of sync in incompatible ways, however, like two people editing the same line at the same time. In that case you may hit a *merge conflict*. In the terminal you will see a message such as:
 
 ```
 From git.wur.nl:masil001/geoscripting-git-test
@@ -474,7 +444,7 @@ hint: Disable this message with "git config advice.diverging false"
 fatal: Not possible to fast-forward, aborting.
 ```
 
-It is best to try to avoid them. In case it happens, you need to first try to merge the changes. Go to *Actions* →  *Merge* and select *Tracking branch*, *origin/main*. You will get another error message, such as:
+It is best to try to avoid them. In case it happens, you need to first try to merge the changes. Run `git merge --no-ff`. You will get another error message, such as:
 
 ```
 Auto-merging hello.txt
@@ -485,6 +455,16 @@ Automatic merge failed; fix conflicts and then commit the result.
 Now open the file(s) that are mentioned in the message in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>`, `====` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by committing the changed files.
 The title of the commit will be made automatically.
 After committing, it will allow you to push the resolved changes back to GitLab.
+
+In Positron, when a merge conflict happens, you can likewise open the affected file and edit it.
+Positron will highlight the conflicting parts and offer quick actions such as "Accept Current Change", "Accept Incoming Change".
+In many cases that will not be enough and you will need to manually merge the changes into something that makes sense.
+You can either do that manually like explained above, or use the *Merge Editor*.
+
+The Merge Editor displays both versions side by side, and also gives the final merged output at the bottom.
+It also allows you to select one of the two versions using checkboxes in each conflict, or to manually resolve it by editing the output in the result pane.
+In the end once everything is resolved, press "Complete Merge".
+You will need to stage and commit all changes you just made, and possibly sync again to push your changes back to the server.
 
 ### Forks and merge requests
 
@@ -522,21 +502,21 @@ Then it's up to the upstream developers to perform a code review and either acce
 **Tip**: For code review, GitLab also has special tools. If you look at the *Changes* tab of a merge request, you will see that you can press a bubble button next to any line of code and write a comment about it. Once finished, there is a "Submit review" button at the bottom to send all comments at once.
 ```
 
-### Other Git Cola functionality
+### Other Git functionality
 
-You might run into a situation when you have made changes in tracked files, but do not want to keep some of the changes. You can revert one file by right-clicking on it and selecting *Revert Unstaged Edits...*.
+You might run into a situation when you have made changes in tracked files, but do not want to keep some of the changes. You can revert one file in Positron by right-clicking on it and selecting *Discard Changes*.
 
-The command line equivalent is `git checkout \-\- path/to/file.ext`, or if you want to reset all changed files, `git reset \-\-hard`.
+The command line equivalent is `git restore \-\- path/to/file.ext`, or if you want to reset all changed files, `git reset \-\-hard`.
 
-Git Cola not only provides a way to make, push and pull commits, but also to visualise the commit history of your repository in a tree graph. There are two ways to do it. The first is to go to *Branch* → *Visualise Current Branch...*. For larger and more complex projects with lots of contributors and merges, it might look like some sort of a subway map:
+Positron not only provides a way to make, push and pull commits, but also to visualise the commit history of your repository in a tree graph. There are two ways to do it. The first is to go to the "Graph" category in the Source Control pane. For larger and more complex projects with lots of contributors and merges, it might look like some sort of a subway map:
 
 ![Git GUI history (gitk)](figs/git_gui_gitk.png)
 
-This visualisation tool is called `gitk` and is the same (old-fashioned) tools that Git GUI uses as well. There is a slightly more fancy way to visualise history in Git Cola by going to *View* → *DAG...*, which also shows the history as a clickable dynamic graph.
+The graph view also allows you to reset the state of the repository to any previous commit by using the context menu. Note, however, that you can only push if you are on the latest commit. So the easiest way to revert changes is to copy over the files to a temporary directory outside of git, reset back, and move the files back into your repository.
 
-The history view also allows you to reset the state of the repository to any previous commit by using the context menu. Note, however, that you can only push if you are on the latest commit. So the easiest way to revert changes is to copy over the files to a temporary directory outside of git, reset back, and move the files back into your repository.
+Another way to visualise file changes is in the Explorer pane, where your local files are listed. Opening a file will give you a Timeline category, listing all the commits specific to that file.
 
-The command line equivalent is `git log`, though it does not show a graph view. You can also run `gitk` from the terminal directly. A few more options are available from the command line. `git revert <commit>` will undo changes from a given commit, where `<commit>` is the commit ID (you can get commit IDs from `git log`, they look like a long string of letters and numbers). `git checkout <commit> \-\- path/to/file.ext` will reset a single file to the state it was at the given commit.
+The command line equivalent is `git log`, though it does not show a graph view. You can also run `gitk` from the terminal to get a graphical view. A few more options are available from the command line. `git revert <commit>` will undo changes from a given commit, where `<commit>` is the commit ID (you can get commit IDs from `git log`, they look like a long string of letters and numbers). `git restore <commit> \-\- path/to/file.ext` will reset a single file to the state it was at the given commit.
 
 You can also browse the history of a repository from your Git hosting service, and GitHub/GitLab even allow editing files from a web interface.
 
