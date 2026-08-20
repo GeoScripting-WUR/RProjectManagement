@@ -324,15 +324,15 @@ Now that you have a remote repository, it's time to create a local copy on your 
 
 Let's first clone the repository using the *Positron* app.
 Open it from *Show Apps* at the bottom left of Ubuntu.
-Press *New Folder from Git...* in *Positron* and paste the link you just copied into the "Git repository URL" box.
+Press *New from Git...* in *Positron* and paste the link you just copied into the "Git repository URL" box.
 Select the directory you want to put the repository into under "Create folder as subfolder of".
 A subdirectory with the name of the repository will be created for you inside the sected directory.
 After pressing *OK*, you will get a question about whether you trust the remote machine.
 You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
 
-You will see your files from GitLab copied locally to your computer at the top left of Positron:
+You will see your files from GitLab copied locally to your computer in the Explorer pane at the top left of Positron:
 
-![Git GUI in an empty directory](figs/git-cola.png)
+![Git GUI in an empty directory](figs/positron-clone.png)
 
 From the terminal, the same can be achieved with the `git clone` command (it will clone in your working directory, by default your user directory `~`), for example:
 ```bash
@@ -358,9 +358,9 @@ If you don't do this step, you will get an error in step 12. For example, Positr
 
 To see Git in action, you need to make some changes in your repository. Try it by creating a new file in the directory where you cloned your new project. You can do that using the *Text editor* (gedit), Positron, or from the terminal using the `touch` and `nano` commands.
 
-Let's go back to Positron. If you closed the previous Positron window, you can get back to your repository by launching Positron and clicking on its path in the *list*. You will see some changes in the Source Control tab on the left side of the screen:
+Let's go back to Positron. If you closed the folder in Positron, you can get back to your repository by clicking on its path in the *Recent* list. You will see some changes in the Source Control tab on the left side of the screen:
 
-![Changes pending in Git Cola](figs/git-cola-changes.png)
+![Changes pending in Git Cola](figs/positron-changes.png)
 
 Files marked with `U` are newly created **Untracked** files. Files marked with `M` are **Modified** files. If you click on a file here, you will get to see the differences from the previous version of the file, unless it's a binary file.
 
@@ -510,7 +510,7 @@ The command line equivalent is `git restore \-\- path/to/file.ext`, or if you wa
 
 Positron not only provides a way to make, push and pull commits, but also to visualise the commit history of your repository in a tree graph. There are two ways to do it. The first is to go to the "Graph" category in the Source Control pane. For larger and more complex projects with lots of contributors and merges, it might look like some sort of a subway map:
 
-![Git GUI history (gitk)](figs/git_gui_gitk.png)
+![Git GUI history (gitk)](figs/positron-graph.png)
 
 The graph view also allows you to reset the state of the repository to any previous commit by using the context menu. Note, however, that you can only push if you are on the latest commit. So the easiest way to revert changes is to copy over the files to a temporary directory outside of git, reset back, and move the files back into your repository.
 
