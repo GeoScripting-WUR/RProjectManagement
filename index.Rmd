@@ -304,8 +304,8 @@ In addition, you can add a `.gitignore` file. This is useful to prevent Git from
 
 6. *Configure repository settings*
 
-Explore your new blank repository a bit. In the middle, you have buttons to add new files. Choose to add a `LICENSE` file, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
-On the tabs to the left, you can find that the repository can have issues and merge requests assigned to them. **Issues** is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
+Explore your new blank repository a bit. On the right, you have buttons to add new files. Choose to add a `LICENSE` file, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
+On the tabs to the left, you can find that the repository can have issues and merge requests assigned to them. **Issues** is what is used to give feedback on code, so try and make a few issues and close them (click on the *GitHub* symbol in the blue ribbon on the left and you will find the issues tab in the grey vertical panel on the left). It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
 
 ![Example issue on GitLab](figs/GitLab-issues.png)
 
@@ -324,7 +324,7 @@ Now that you have a remote repository, it's time to create a local copy on your 
 
 Let's first clone the repository using the *Positron* app.
 Open it from *Show Apps* at the bottom left of Ubuntu.
-Press *New from Git...* in *Positron* and paste the link you just copied into the "Git repository URL" box.
+Press *New* in the top left > *New folder from Git...* in *Positron* and paste the link you just copied into the "Git repository URL" box.
 Select the directory you want to put the repository into under "Create folder as subfolder of".
 A subdirectory with the name of the repository will be created for you inside the sected directory.
 After pressing *OK*, you will get a question about whether you trust the remote machine.
@@ -334,7 +334,7 @@ You will see your files from GitLab copied locally to your computer in the Explo
 
 ![Git GUI in an empty directory](figs/positron-clone.png)
 
-From the terminal, the same can be achieved with the `git clone` command (it will clone in your working directory, by default your user directory `~`), for example:
+From the terminal (open from *Show Apps* at the bottom left of Ubuntu), the same can be achieved with the `git clone` command (it will clone in your working directory, by default your user directory `~`), for example:
 ```bash
 git clone git@git.wur.nl:masil001/geoscripting-git-test.git
 ```
@@ -356,7 +356,7 @@ If you don't do this step, you will get an error in step 12. For example, Positr
 
 10. *Make changes*
 
-To see Git in action, you need to make some changes in your repository. Try it by creating a new file in the directory where you cloned your new project. You can do that using the *Text editor* (gedit), Positron, or from the terminal using the `touch` and `nano` commands.
+To see Git in action, you need to make some changes in your repository. Try it by creating a new file in the directory where you cloned your new project. You can do that using the *Text editor* (gedit), Positron, or from the terminal using the `touch` and `nano` commands (save the file with the .txt extension).
 
 Let's go back to Positron. If you closed the folder in Positron, you can get back to your repository by clicking on its path in the *Recent* list. You will see some changes in the Source Control tab on the left side of the screen:
 
@@ -377,7 +377,7 @@ git status
 
 11. *Stage changes*
 
-If you click on the `+` next to the name of the file in the *Untracked* category, the file changes will be *staged* and appear at the *Staged Changes* category. These are the file changes you want to save and send to GitLab. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the `+` button on the "Changes" header. If you staged more than you wanted to, you can remove the file from the *Staged Changes* category by clicking the `-` button.
+In the *Source Control* tab in the blue vertical ribbon on the left, you can click on the `+` next to the name of the file in the *Untracked* category. The file changes will then be *staged* and appear at the *Staged Changes* category. These are the file changes you want to save and send to GitLab. You don't have to stage all files for each commit, only those you actually want to be tracked by git. You can safely ignore some files such as manual backups, temporary files, and the like and they will remain untracked by git, as long as you never stage them. If you do want to stage everything, you can press the `+` button on the "Changes" header. If you staged more than you wanted to, you can remove the file from the *Staged Changes* category by clicking the `-` button.
 
 To stage a change from the command line, use `git add` and a path to the file to stage To unstage, use `git restore --staged` and a path to the filename. For example:
 
