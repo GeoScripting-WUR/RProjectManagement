@@ -98,15 +98,15 @@ If you are a power user and want to install Linux on your own laptop directly to
 **The VMs are strongly recommended**. If you go for installing Linux yourself, the systems need to be set up manually and we do not have the time and manpower to support every student with this.
 ```
 
-Once you have everything ready, login into your Linux VM, try out Positron/RKWard, and also open QGIS. Explore the environment a little to get used to it.
+Once you have everything ready, login into your Linux VM, try out Positron/RStudio/RKWard, and also open QGIS. Explore the environment a little to get used to it.
 
 # Software licenses
 
 One key advantage of Linux is that it is free and open-source software. While it is free as in free beer, that is, it can be used at no cost, more importantly it is free as in free speech: all of the source code of the kernel and the absolute majority of the applications is licensed under a free software license.
 
-A *software license* is a legal text that describes how the software and its source code can be used by other people. Software licenses are grounded in the framework of copyright: the protection of authors' intellectual rights. A *free* software license is a software license that gives others the freedom to run, copy, read, modify, and distribute changes to the original software and its source code. This is in addition to an *open-source* license, which makes the source code available and redistributable, but [does not necessarily make the source code free](https://www.gnu.org/philosophy/open-source-misses-the-point.html). Both free an open-source licenses have their overseeing bodies: the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.html) for free software licenses, and the [Open Source Initiative](https://opensource.org/osd) for open-source licenses. While sharing many similarities, they are [different](https://e.foundation/what-is-the-difference-between-free-software-and-open-source-software/). The key difference is that free software emphasizes the ethical and moral rights of users, whereas open-source focuses more on the practical aspects of source code accessibility, development, and redistribution. When a software fits both definitions (they often overlap), it is referred to as Free and Open-Source Software (FOSS), or less often as Free, Libre and Open-Source Software (FLOSS).
+A *software license* is a legal text that describes how the software and its source code can be used by other people. Software licenses are grounded in the framework of copyright: the protection of authors' intellectual rights. A *free* software license is a software license that gives others the freedom to run, copy, read, modify, and distribute changes to the original software and its source code. This is in addition to an *open-source* license, which makes the source code available and redistributable, but [does not necessarily make the source code free](https://www.gnu.org/philosophy/open-source-misses-the-point.html). Both free and open-source licenses have their overseeing bodies: the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.html) for free software licenses, and the [Open Source Initiative](https://opensource.org/osd) for open-source licenses. While sharing many similarities, they are [different](https://e.foundation/what-is-the-difference-between-free-software-and-open-source-software/). The key difference is that free software emphasizes the ethical and moral rights of users, whereas open-source focuses more on the practical aspects of source code accessibility, development, and redistribution. When a software fits both definitions (they often overlap), it is referred to as Free and Open-Source Software (FOSS), or less often as Free, Libre and Open-Source Software (FLOSS).
 
-There are many advantages to FOSS. One advantage is that it fosters collaboration: one person implementing a feature makes it available for all of the users in the world. This enables such a massive effort required to create GNU/Linux distributions based on volunteer work, without needing to rely on commercial licensing, advertisements, donations or spyware to finance the work. It also allows anyone to remove such undesired parts of any software component, therefore ensuring higher quality of the software. Thus, while FOSS projects initially start weaker than *proprietary* (non-free or closed-source) software, in the long run the collaboration potential brings it on par and even overtaking the propriatary counterparts. See for example QGIS, which is FOSS, vs the proprietary ArcGIS.
+There are many advantages to FOSS. One advantage is that it fosters collaboration: one person implementing a feature makes it available for all of the users in the world. This enables such a massive effort required to create GNU/Linux distributions based on volunteer work, without needing to rely on commercial licensing, advertisements, donations or spyware to finance the work. It also allows anyone to remove such undesired parts of any software component, therefore ensuring higher quality of the software. Thus, while FOSS projects initially start weaker than *proprietary* (non-free or closed-source) software, in the long run the collaboration potential brings it on par and even overtaking the proprietary counterparts. See for example QGIS, which is FOSS, vs the proprietary ArcGIS.
 
 A software license defines what others can do with your code, therefore before starting to write any code, **it is vital to think about the license** you would like to release your code under. This is because if you do not define any license, the default copyright terms apply: even if you publish the source code publicly, nobody is allowed to copy, redistribute or modify the code, in fact nobody is even allowed to read it! As an author, you are free to choose any license, both proprietary and FOSS licenses (or in fact no license altogether), but a proprietary license restricts the freedoms of others and therefore diminishes chances that others would want to collaborate with you to improve the code in the future. In addition, do not confuse a *software license* with *commercial licensing*, i.e. the requirement to activate a license subscription to use.
 
@@ -325,15 +325,20 @@ Now that you have a remote repository, it's time to create a local copy on your 
 
 Let's first clone the repository using the *Positron* app.
 Open it from *Show Apps* at the bottom left of Ubuntu.
-In the top left of *Positron*, click *New*, then *New folder from Git...*, and paste the link you just copied into the "Git repository URL" box.
+In the center of the *Welcome* page, click on the icon *New from Git...*.
+
+![Positron Welcome page](figs/positron-init.png)
+
+Alternatively, you can find the option *New folder from Git...* under i) the *File*
+tab or *New* icon in the top-left, or ii) the *Folder* icon in the top-right.
 Select the directory you want to put the repository into under "Create folder as subfolder of".
-A subdirectory with the name of the repository will be created for you inside the sected directory.
+A subdirectory with the name of the repository will be created for you inside the selected directory.
 After pressing *OK*, you will get a question about whether you trust the remote machine.
 You need to answer this with `yes` (the full word). This puts the GitLab server into a list of trusted servers, to guard against potential impostor servers.
 
 You will see your files from GitLab copied locally to your computer in the Explorer pane at the top left of Positron:
 
-![Git GUI in an empty directory](figs/positron-clone.png)
+![Positron GUI cloned repository](figs/positron-clone.png)
 
 From the terminal, the same can be achieved with the `git clone` command (it will clone in your working directory, by default your user directory `~`), for example:
 ```bash
@@ -361,7 +366,7 @@ To see Git in action, you need to make some changes in your repository. Try it b
 
 Let's go back to Positron. If you closed the folder in Positron, you can get back to your repository by clicking on its path in the *Recent* list. You will see some changes in the Source Control tab on the left side of the screen:
 
-![Changes pending in Git Cola](figs/positron-changes.png)
+![Changes pending in Positron](figs/positron-changes.png)
 
 Files marked with `U` are newly created **Untracked** files. Files marked with `M` are **Modified** files. If you click on a file here, you will get to see the differences from the previous version of the file, unless it's a binary file.
 
@@ -453,7 +458,7 @@ CONFLICT (content): Merge conflict in hello.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Now open the file(s) that are mentioned in the message in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of of `>>>>`, `====` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by committing the changed files.
+Now open the file(s) that are mentioned in the message in a text editor and edit them by hand, keeping the parts of the files you need. The conflicting parts will be in between lines of `>>>>`, `====` and `<<<<` symbols. Once you remove the parts you don't need (including the separators), you can solve the conflict by committing the changed files.
 The title of the commit will be made automatically.
 After committing, it will allow you to push the resolved changes back to GitLab.
 
@@ -485,7 +490,7 @@ Go to your team member's repository that they created by following the steps abo
 
 16. *Make changes, commit and push*
 
-After you have your own fork, it is the same as having your own personal repository with the code from the original (*upstream*) repository in it. Clone it locally, make some changes, commit them and push them back to GitLab, as per steps 7-10. You should see that your changes take effect in your own *downsteam* fork, but not in the upstream repository.
+After you have your own fork, it is the same as having your own personal repository with the code from the original (*upstream*) repository in it. Clone it locally, make some changes, commit them and push them back to GitLab, as per steps 7-10. You should see that your changes take effect in your own *downstream* fork, but not in the upstream repository.
 
 17. *Make a merge request*
 
