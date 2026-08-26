@@ -60,12 +60,12 @@ And, of course, some of the solutions may be outright wrong and not work for you
 
 Generative AI, such as ChatGPT, has recently been gaining popularity. Generative AI models can be interacted with by asking it questions, including questions about programming. The AI responds by providing examples of code, explanations about what the code does, and how to run it. Of course, most AI solutions are not limited to code and will also answer questions on history, biology, quantum mechanics, and will even play Dungeons and Dragons with you, including throwing dice.
 
-Generative AI models can be a great tool to enhance learning, as they can quickly answer specific questions and give coding suggestions. However, many of the limitations of web search apply to generative AI models as well (in fact, most of these models are something of a smart web search engine, as they are trained on a lot of text found on the internet). Therefore, you need to be very critical of AI-generated answers. The code that the AI generates may seem like it would solve your problem, but it may also do something incorrectly, such as calling functions that are no longer available, or even making them up altogether. Previously, many generative AI solutions were unable to provide references for their statements, and when asked provided a list of references and links that did not exist in reality, though this has improved in the past months. They may also answer questions completely wrong, but the explanation that they provide usually sounds quite convincing, therefore it may mislead you or make you second-guess yourself. When generative AI models are confronted about a wrong answer, they often insist that it is correct, and the longer you talk with a generative AI, the more it will get facts mixed up with its own previous answers, as it remembers and learns from its own output.
+Generative AI models can be a great tool to enhance learning, as they can quickly answer specific questions and give coding suggestions. However, many of the limitations of web search apply to generative AI models as well (in fact, most of these models are something of a smart web search engine, as they are trained on a lot of text found on the internet). Therefore, you need to be very critical of AI-generated answers. The code that the AI generates may seem like it would solve your problem, but it may also do something incorrectly, such as calling functions that are no longer available, or even making them up altogether. Previously, many generative AI solutions were unable to provide references for their statements, and when asked, would provide a list of references and links that did not exist in reality, though this has improved in the past months. They may also answer questions completely wrong, but the explanation that they provide usually sounds quite convincing, therefore it may mislead you or make you second-guess yourself. When generative AI models are confronted about a wrong answer, they often insist that it is correct, and the longer you talk with a generative AI, the more it will get facts mixed up with its own previous answers, as it remembers and learns from its own output.
 
 Generative AI tools can be chatbots, like ChatGPT, but they can also be tools that suggest code snippets as you write code, such as GitHub Copilot.
 With the latter, you start with writing documentation for a function, and then ask the AI to finish it.
 The AI code suggestions are based on the same models and have the same pitfalls.
-Most of the AI models are also paid per query, and therefore you have only a limited amount of questions you can ask to it.
+Most of the AI models are also paid per query, and therefore you have only a limited amount of questions you can ask it.
 Therefore, it is important to learn how to use it efficiently.
 
 How to best use generative AI to help with your coding?
@@ -100,28 +100,60 @@ And always give credit where credit is due: if you reuse code from anywhere, you
 This includes code that you used from AI.
 If you wrote code that was inspired by AI, it's also good to mention it explicitly.
 
-Note that when you use generative AI autocompletion, you need to be extra careful, as it will always provide you code. It is useful to turn off AI autocompletion during the course, so you can think about the code yourself before the autocompletion provides the code for you.
-The same applies as with code from chatbots: never accept the code as-is, always check what the functions are and what they do, and try to rewrite it to make sense for you.
+There are multiple types of generative AI models.
+Even though chatbots are the most well-known, there are also models that generate images, music, autocompletes code, and act as a human-like agent.
+But these are all based on the same large language model (LLM) technology and have the same benefits and drawbacks.
+
+Autocomplete models, in particular, integrate into the app you use to write code (see the section on integrated development environments below), and suggest new code based on the context.
+This could be comments in the code, other functions, or the incomplete function that you are currently writing.
+It can be useful to quickly produce ideas on how to implement certain functions or parts of functions.
+However, note that when you use generative AI autocompletion, you need to be extra careful, as it will always provide you code, even if you don't need any, and will take credits from you, so it will stop working eventually.
+It is useful to turn off AI autocompletion during the course, so you can think about the code yourself before the autocompletion provides the code for you.
+The same applies as with code from chatbots: never accept the code as-is, always check what the functions are and what they do, and rewrite it to make sense for you.
 And always add attribution that this part of the code was based on code generated from the AI you were using.
+
+Agentic models, where an LLM is allowed to do work as if it was a human, i.e. allowed to read your files, use a web browser, push changes to git, etc. are also gaining popularity for the productivity boost they provide.
+However, agentic AI is the equivalent of giving your laptop away to a colleague, including your login password, and asking to perform something on your behalf.
+As you can imagine, that is generally a bad idea, because not only is it not guaranteed that the task will be performed the way you want it to, but it will also seem that you were the one doing it, therefore you get all the blame.
+Not to mention that your secrets (such as the SSH keys you use to log into GitLab) can be compromised or exposed to third parties.
+Therefore, unless you have very strong security guarantees, you should not use AI agents.
+And certainly not during this course, since not only will you not learn anything, but it will likely mess up your computer in some way.
+
+Another point to consider about LLMs is the amout of computing power they require.
+Each query to an AI model needs to be processed on graphics cards that are expensive and power-hungry.
+This is the reason why all AI models are limited in how much you can use them.
+If you use them too much, you will run out of tokens and will not be able to use them again for a while.
+Beyond that, AI models can drive up electricity and hardware prices, especially for graphics cards, and is not particularly sustainable for most large models.
+This is especially true for agentic AI, which requires hundreds of tokens to run, compared to a single regular chat query.
+Therefore, it is also perfectly fine to choose not to use LLM AI at all.
+
+To summarise the AI use for this course:
+do make use of AI, as it can help you to get answers faster, but *never* copy the code it generates directly.
+Copying code without understanding it is both legally dubious and will not help you learn.
+Ask to explain errors you get, suggest functions to use, brainstorm about potentially useful packages, but do not copy code it produces.
+If you do not understand the code you are using, you will also not be able to maintain, explain and improve it, and you might be introducing security problems without knowing it.
+Lastly, do not use agentic AI.
+During the course, we will check your understanding of the code you produce to make sure you are the one learning, not the AI.
+
+### Generative AI models
 
 Some of the currently active chatbot generative AI tools are:
 
-* [ChatGPT](https://chat.openai.com/) - the original chatbot that started the generative AI trend. Made by a team of top AI researchers that formed into a company. The newest version, ChatGPT-4 is able to provide sources and references if you specify this in the prompt. It also allows the usage of custom GPTs, better suited to specific tasks, like the Python and R Wizard GPTs.
-* [Perplexity](https://perplexity.ai/) - an alternative chatbot built using ChatGPT-4o and [Anthropic's Claude 3.5](https://www.anthropic.com/claude) models that is able to provide references for its statements (and you can even pick which ones it uses to give you answers). However, it still gives biased output and may get confused with its own answers.
-* [Microsoft Copilot](https://www.bing.com/?/ai) - Microsoft's version of ChatGPT, also built on the ChatGPT-4 framework. It can also provide references for you if you ask. It generally allows you to access the newest version of ChatGPT for free, instead of having to pay for GPT Plus on the ChatGPT website.
-* [Google Gemini](https://gemini.google.com/) - Google's version of ChatGPT. It has recently improved a lot compared to Google's older models. Will also provide sources or references, if you ask for it. Can integrate with your Google Workspace (Gmail, Drive, YouTube), for example, it's a great way to summarize a YouTube tutorial into bulletpoints or clear steps.
+* [ChatGPT](https://chatgpt.com) - the original chatbot that started the generative AI trend. Made by a team of top AI researchers that formed into a company. It also allows the usage of custom GPTs, better suited to specific tasks, like the Python and R Wizard GPTs.
+* [Anthropic's Claude](https://claude.ai/) - a model that is known to be advanced in coding tasks, such as translating code between different languages.
+* [Microsoft Copilot](https://copilot.microsoft.com/) - Microsoft's version of ChatGPT, also built on the GPT framework. It tries to provide references, though these are not guaranteed to be the ones the model actually used.
+* [Google Gemini](https://gemini.google.com/) - Google's rival to ChatGPT. It has recently improved a lot compared to Google's older models. Will also provide sources or references, but not for everything and not always accurate. Can integrate with your Google Workspace (Gmail, Drive, YouTube), for example, it's a great way to summarize a YouTube tutorial into bulletpoints or clear steps.
 
 Some of the code completion tools:
 
 * [GitHub Copilot](https://github.com/features/copilot) - GitHub AI, you get more free credit if you get the Education Pack from GitHub. Integrated into most IDEs.
-* [Amazon Q Developer](https://aws.amazon.com/q/developer/) - Amazon code suggestion AI, free to use, but works only with some code editors.
 
 Note that all of these generative AI tools are built on proprietary models and accessed through proprietary APIs.
 There are also open-weight models that you can download on your own computer and run them on your own.
 This can be useful if you don't want to give your data to the company running the model, or if you have no internet connection, or if you want to avoid running out of credit.
 The downside is that the models running on your own computer are slow (you get to see the answer appearing word by word) and do not integrate easily with IDEs.
-A server and open-weight model list can be find on the [Ollama](https://ollama.com/) website.
-A web interface that links to it can be found on [Open WebUI](https://docs.openwebui.com/).
+A server and open-weight model list can be find on the [Ollama](https://ollama.com/) and [Hugging Face](https://huggingface.co) websites.
+A web interface that links to Ollama can be found on [Open WebUI](https://docs.openwebui.com/).
 
 ## Question and answer forums
 
