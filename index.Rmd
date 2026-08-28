@@ -295,9 +295,9 @@ This only has to be done once (per device/OS you use GitLab on).
 
 5. *Create remote repository*
 
-Now we are ready to start making new repositories! In GitLab, press the "+" button at the top left, select *New project/repository* (GitLab uses both terms somewhat interchangeably) and *Create blank project*. Give it a descriptive name, select your username, choose the visibility of the repository and check *Initialize repository with a README*.
+Now we are ready to start making new repositories! In GitLab, press the "+" button at the top right, select *New project/repository* (GitLab uses both terms somewhat interchangeably) and *Create blank project*. Give it a descriptive name, select your username, choose the visibility of the repository and check *Initialize repository with a README*.
 
-![New repository creation on GitLab](figs/GitLab-new-project.png)
+![New repository creation on GitLab](figs/GitLab-new-project-updated.png)
 
 <!--Next, GitHub asks what software license you'd like to apply to your code, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
 
@@ -306,9 +306,9 @@ In addition, you can add a `.gitignore` file. This is useful to prevent Git from
 6. *Configure repository settings*
 
 Explore your new blank repository. On the right, you have buttons to add new files. Choose to add a `LICENSE` file, as we have discussed in the previous chapter. See [Choose a License](http://choosealicense.com/) for a quick overview of what licenses are available. Make sure to choose a license, otherwise basic copyright applies to your code.
-On the tabs to the left, you can find that the repository can have issues and merge requests assigned to them. **Issues**, under the *Plan* tab, is what is used to give feedback on code, so try and make a few issues and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
+On the tabs to the left, you can find that the repository can have work items and merge requests assigned to them. **Work items**, under the *Plan* tab, is what is used to give feedback on code, so try and make a few issues, with the *New item* button, and close them. It is useful to know how to use these, as for personal projects it can be used as a to-do list, and for others' projects you can use it to report bugs or propose suggestions. You may be surprised how responsive developers can be to newly raised issues!
 
-![Example issue on GitLab](figs/GitLab-issues.png)
+![Example issue on GitLab](figs/GitLab-issues-updated.png)
 
 Next, check out the repository settings. Under the *Members* subtab of the *Manage* tab, you can invite other people to collaborate on your repository. Go ahead and invite your team member to be a collaborator with a maintainer role.
 
@@ -319,7 +319,7 @@ Next, check out the repository settings. Under the *Members* subtab of the *Mana
 Now that you have a remote repository, it's time to create a local copy on your own computer! Open the main page of your new repository, click the blue *Code* button at the top right of the your repository page, and copy the *Clone with **SSH** * address of your new repository.
 
 <!-- ![Clone or Download → Clone with SSH](figs/github_screenCapture.png) -->
-![Blank GitLab repository](figs/GitLab-empty-repository.png)
+![Repository link to clone](figs/GitLab-empty-repository-updated.png)
 
 8. *Clone your repository*
 
@@ -338,7 +338,7 @@ You need to answer this with `yes` (the full word). This puts the GitLab server 
 
 You will see your files from GitLab copied locally to your computer in the Explorer pane at the top left of Positron:
 
-![Positron GUI cloned repository](figs/positron-clone.png)
+![Positron GUI cloned repository](figs/positron-clone-updated.png)
 
 From the terminal, the same can be achieved with the `git clone` command (it will clone in your working directory, by default your user directory `~`), for example:
 ```bash
