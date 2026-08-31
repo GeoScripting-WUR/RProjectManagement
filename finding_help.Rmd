@@ -119,7 +119,7 @@ Some of the currently active chatbot generative AI tools are:
 
 Some of the code completion tools:
 
-* [GitHub Copilot](https://github.com/features/copilot) - GitHub AI, you get more free credit if you get the Education Pack from GitHub. Integrated into most IDEs. 
+* [GitHub Copilot](https://github.com/features/copilot) - GitHub AI, you get more free credit if you get the Education Pack from GitHub. Integrated into most IDEs.
 
 Note that all of these generative AI tools are built on proprietary models and accessed through proprietary APIs.
 There are also open-weight models that you can download on your own computer and run them on your own.
