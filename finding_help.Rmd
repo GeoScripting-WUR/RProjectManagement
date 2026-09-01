@@ -287,6 +287,10 @@ To make a new script, click on *File* -> *New File* -> *R Script*, and a new edi
 When you write a line, you can run each individual line that your text cursor is on by hitting *Ctrl+Enter*.
 To install packages, aside from using the R console below (`install.packages()` function), you can install them through the graphical *Packages* pane at the lower right corner of the screen, where you can search for and install packages and their updates.
 
+To enable Copilot in RStudio, again go to *Tools* → *Global Options...* in the top menu bar. A menu will appear where you should change the setting according to the settings shown in the image below. Make sure to set the Copilot Completions to **manually**. Now you can enable autocompletion when you need it with **Ctrl + Backslash**.
+
+![Global Options](../Scripting4GeoIntro/figs/copilot_Rstudio.png)
+
 ### RKWard
 
 RKWard is also preinstalled on the virtual machine.
